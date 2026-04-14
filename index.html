@@ -24,7 +24,7 @@ nav.scrolled{padding:12px 52px;}
  
 /* HERO — the magic fade-in from the original */
 .hero{height:100vh;min-height:700px;position:relative;display:flex;align-items:center;overflow:hidden;}
-.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;opacity:0;transform:scale(1.06);animation:heroFade 2.2s ease-out forwards;}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;opacity:0;transform:scale(1.06);animation:heroFade 2.2s ease-out forwards;}
 @keyframes heroFade{0%{opacity:0;transform:scale(1.06);}100%{opacity:1;transform:scale(1);}}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(7,16,24,0.92) 0%,rgba(7,16,24,0.72) 45%,rgba(7,16,24,0.12) 100%);}
 .hero-overlay-bottom{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,16,24,0.7) 0%,transparent 30%);}
@@ -90,13 +90,19 @@ section{padding:120px 52px;}
 /* PHOTO GRID */
 .life-photos{background:var(--dark);}
 .life-hd{text-align:center;margin-bottom:56px;}
-.photo-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:360px 360px;gap:6px;}
-.photo-card{position:relative;overflow:hidden;}
-.photo-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.7s ease;}
-.photo-card:hover img{transform:scale(1.06);}
+.photo-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:420px 420px;gap:8px;}
+.photo-card{position:relative;overflow:hidden;background:var(--navy);}
+.photo-card img{width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;transition:transform 0.7s ease;}
+.photo-card:hover img{transform:scale(1.04);}
 .photo-card.tall{grid-column:1;grid-row:1/span 2;}
-.photo-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(7,16,24,0.9));padding:32px 18px 16px;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold-light);opacity:0;transition:opacity 0.35s;}
-.photo-card:hover .photo-caption{opacity:1;}
+.photo-card.tall img{object-position:center 15%;}
+.photo-card.p-center img{object-position:center center;}
+.photo-card.p-top img{object-position:center top;}
+.photo-card.p-mid img{object-position:center 35%;}
+.photo-card.p-fish img{object-position:center 40%;}
+.photo-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(7,16,24,0.95));padding:44px 20px 16px;}
+.photo-cap-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold-light);display:block;}
+.photo-cap-sub{font-family:'Lato',sans-serif;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(232,213,163,0.6);display:block;margin-top:4px;}
  
 /* FAMILY */
 .family-section{background:var(--deep);}
@@ -233,7 +239,7 @@ footer a{color:var(--gold);text-decoration:none;}
 <section id="about" class="about">
   <div class="section-inner two-col">
     <div class="fade-in from-left">
-      <img class="portrait" src="images/powell-parker-founder.jpg" alt="Powell Parker">
+      <img class="portrait" src="images/powell-parker-founder.jpg" alt="Powell Parker" style="object-position:center top;">
     </div>
     <div class="fade-in from-right">
       <p class="section-label">About Powell</p>
@@ -315,42 +321,88 @@ footer a{color:var(--gold);text-decoration:none;}
       <h2 class="section-title">The Moments That Matter</h2>
     </div>
     <div class="photo-grid fade-in">
+ 
+      <!-- TALL HERO — Powell on Monty, full body shown -->
       <div class="photo-card tall">
-        <img src="images/powell-horseback-hero.jpg" alt="Powell on horseback">
-        <div class="photo-caption">In the Saddle</div>
+        <img src="images/powell-horseback-hero.jpg" alt="Powell Parker on Monty">
+        <div class="photo-caption">
+          <span class="photo-cap-title">Powell &amp; Monty</span>
+          <span class="photo-cap-sub">In the Saddle — Monty, Direct Grandson of Secretariat</span>
+        </div>
       </div>
-      <div class="photo-card">
-        <img src="images/life-roping.jpeg" alt="Team roping">
-        <div class="photo-caption">Team Roping — Powell &amp; Joel</div>
+ 
+      <!-- Team Roping — Powell & Joel -->
+      <div class="photo-card p-mid">
+        <img src="images/life-roping.jpeg" alt="Powell and Joel team roping">
+        <div class="photo-caption">
+          <span class="photo-cap-title">Powell &amp; Joel</span>
+          <span class="photo-cap-sub">Team Roping — Rubio &amp; Monty</span>
+        </div>
       </div>
-      <div class="photo-card">
-        <img src="images/life-daughters.jpeg" alt="Sara and Scarlett">
-        <div class="photo-caption">Sara &amp; Scarlett</div>
+ 
+      <!-- Sara & Scarlett — full bodies, centered -->
+      <div class="photo-card p-center">
+        <img src="images/life-daughters.jpeg" alt="Sara and Scarlett Parker">
+        <div class="photo-caption">
+          <span class="photo-cap-title">Sara &amp; Scarlett</span>
+          <span class="photo-cap-sub">Ages 19 &amp; 10 — Heart of Everything</span>
+        </div>
       </div>
-      <div class="photo-card">
-        <img src="images/life-fishing.jpeg" alt="Fishing">
-        <div class="photo-caption">On the Water</div>
+ 
+      <!-- Fishing -->
+      <div class="photo-card p-fish">
+        <img src="images/life-fishing.jpeg" alt="Powell fishing">
+        <div class="photo-caption">
+          <span class="photo-cap-title">On the Water</span>
+          <span class="photo-cap-sub">Life Outside the Office</span>
+        </div>
       </div>
-      <div class="photo-card">
-        <img src="images/life-mountain.jpeg" alt="Mountain">
-        <div class="photo-caption">Mountain Life</div>
+ 
+      <!-- Mountain -->
+      <div class="photo-card p-center">
+        <img src="images/life-mountain.jpeg" alt="Powell in the mountains">
+        <div class="photo-caption">
+          <span class="photo-cap-title">Mountain Life</span>
+          <span class="photo-cap-sub">Always Up for an Adventure</span>
+        </div>
       </div>
-      <div class="photo-card">
-        <img src="images/mount-lemmon-family.jpg" alt="Mount Lemmon">
-        <div class="photo-caption">Mount Lemmon</div>
+ 
+      <!-- Mount Lemmon Family -->
+      <div class="photo-card p-center">
+        <img src="images/mount-lemmon-family.jpg" alt="Family at Mount Lemmon">
+        <div class="photo-caption">
+          <span class="photo-cap-title">Mount Lemmon</span>
+          <span class="photo-cap-sub">Family Time in the Pines</span>
+        </div>
       </div>
-      <div class="photo-card">
-        <img src="images/life-rodeo.jpeg" alt="Rodeo">
-        <div class="photo-caption">Rodeo Roots</div>
+ 
+      <!-- Rodeo -->
+      <div class="photo-card p-mid">
+        <img src="images/life-rodeo.jpeg" alt="Rodeo days">
+        <div class="photo-caption">
+          <span class="photo-cap-title">Rodeo Roots</span>
+          <span class="photo-cap-sub">High School &amp; College Rodeo — Queen Creek, AZ</span>
+        </div>
       </div>
-      <div class="photo-card">
-        <img src="images/family1.jpeg" alt="Family">
-        <div class="photo-caption">Family</div>
+ 
+      <!-- Family -->
+      <div class="photo-card p-center">
+        <img src="images/family1.jpeg" alt="Parker family">
+        <div class="photo-caption">
+          <span class="photo-cap-title">Family</span>
+          <span class="photo-cap-sub">The Reason for All of It</span>
+        </div>
       </div>
-      <div class="photo-card">
+ 
+      <!-- Powell & Cristina -->
+      <div class="photo-card p-center">
         <img src="images/about-couple.jpeg" alt="Powell and Cristina">
-        <div class="photo-caption">Powell &amp; Cristina</div>
+        <div class="photo-caption">
+          <span class="photo-cap-title">Powell &amp; Cristina</span>
+          <span class="photo-cap-sub">Together</span>
+        </div>
       </div>
+ 
     </div>
   </div>
 </section>
@@ -368,7 +420,7 @@ footer a{color:var(--gold);text-decoration:none;}
     <!-- HORSES -->
     <div class="two-col fade-in" style="margin-bottom:100px;">
       <div>
-        <img src="images/life-roping.jpeg" alt="Powell and Joel on horseback" style="width:100%;height:540px;object-fit:cover;border:3px solid rgba(201,168,76,0.3);box-shadow:24px 24px 72px rgba(0,0,0,0.5);">
+        <img src="images/life-roping.jpeg" alt="Powell and Joel on horseback" style="width:100%;height:540px;object-fit:cover;object-position:center center;border:3px solid rgba(201,168,76,0.3);box-shadow:24px 24px 72px rgba(0,0,0,0.5);">
       </div>
       <div>
         <p class="section-label">Powell &amp; Joel</p>
@@ -404,7 +456,7 @@ footer a{color:var(--gold);text-decoration:none;}
     </div>
  
     <div class="fade-in" style="margin-top:60px;">
-      <img src="images/life-daughters.jpeg" alt="Sara and Scarlett" style="width:100%;height:500px;object-fit:cover;object-position:center top;border:3px solid rgba(201,168,76,0.3);box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+      <img src="images/life-daughters.jpeg" alt="Sara and Scarlett" style="width:100%;height:560px;object-fit:cover;object-position:center center;border:3px solid rgba(201,168,76,0.3);box-shadow:0 20px 60px rgba(0,0,0,0.5);">
     </div>
   </div>
 </section>
@@ -547,4 +599,3 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 </script>
 </body>
 </html>
-
