@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Powell Parker — Founder, Rightful Returns Recovery</title>
+<meta name="description" content="Powell Parker — Founder of Rightful Returns Recovery. Asset recovery professional, Arizona native, faith-driven entrepreneur, and community leader.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8D5A3;
+    --dark: #1a2e42;
+    --navy: #1B2A40;
+    --deep: #071018;
+    --light: #F5F0E8;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Lato', sans-serif; background: var(--deep); color: var(--light); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 32px;
+    background: rgba(7,16,24,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); letter-spacing: 0.08em; text-decoration: none; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a { color: var(--light); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; transition: opacity 0.2s, color 0.2s; }
+  .nav-links a:hover { opacity: 1; color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    height: 100vh; min-height: 600px; position: relative;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    animation: heroFade 2s ease-out forwards;
+    opacity: 0;
+  }
+  @keyframes heroFade { 0% { opacity:0; transform:scale(1.04); } 100% { opacity:1; transform:scale(1); } }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(7,16,24,0.82) 45%, rgba(7,16,24,0.15) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 2; padding: 0 60px; max-width: 640px;
+  }
+  .hero-eyebrow {
+    font-size: 0.78rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 18px;
+    opacity: 0; animation: slideUp 0.8s 0.6s ease forwards;
+  }
+  .hero-name {
+    font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.05; color: #fff; margin-bottom: 20px;
+    opacity: 0; animation: slideUp 0.8s 0.9s ease forwards;
+  }
+  .hero-name span { color: var(--gold); }
+  .hero-sub {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--gold-light);
+    line-height: 1.6; margin-bottom: 36px;
+    opacity: 0; animation: slideUp 0.8s 1.1s ease forwards;
+  }
+  .hero-cta {
+    display: inline-block; padding: 14px 36px;
+    background: var(--gold); color: var(--deep);
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    opacity: 0; animation: slideUp 0.8s 1.3s ease forwards;
+  }
+  .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+  @keyframes slideUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--gold); padding: 22px 40px;
+    display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--deep); }
+  .stat-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(7,16,24,0.75); }
+
+  /* SECTIONS */
+  section { padding: 90px 40px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    line-height: 1.2; margin-bottom: 28px; color: #fff;
+  }
+  .section-body {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
+    line-height: 1.85; color: var(--light); max-width: 680px;
+  }
+  .divider { width: 60px; height: 3px; background: var(--gold); margin: 24px 0; }
+
+  /* ABOUT — two column */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+  }
+  .about-photo {
+    width: 100%; aspect-ratio: 4/5; object-fit: cover;
+    border: 3px solid rgba(201,168,76,0.3);
+  }
+
+  /* PILLARS */
+  .pillars { background: var(--navy); }
+  .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  .pillar {
+    background: rgba(255,255,255,0.03); padding: 48px 36px;
+    border-top: 3px solid var(--gold);
+    transition: background 0.3s;
+  }
+  .pillar:hover { background: rgba(201,168,76,0.07); }
+  .pillar-icon { font-size: 2rem; margin-bottom: 18px; }
+  .pillar-title {
+    font-family: 'Playfair Display', serif; font-size: 1.3rem;
+    color: var(--gold); margin-bottom: 14px;
+  }
+  .pillar-text { font-size: 0.95rem; line-height: 1.75; color: var(--light); opacity: 0.85; }
+
+  /* ARIZONA */
+  .arizona { background: var(--deep); }
+  .arizona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .arizona-photo {
+    width: 100%; aspect-ratio: 3/2; object-fit: cover;
+    border: 3px solid rgba(201,168,76,0.3);
+  }
+
+  /* PARALLAX DIVIDER */
+  .parallax-divider {
+    position: relative; height: 420px; overflow: hidden;
+  }
+  .parallax-bg {
+    position: absolute; inset: -30px; background-size: cover; background-position: center;
+    background-attachment: fixed;
+  }
+  .parallax-dim { position: absolute; inset: 0; background: rgba(7,16,24,0.35); }
+
+  /* AZ QUOTE */
+  .az-quote {
+    background: var(--navy); padding: 40px;
+    text-align: center; border-top: 1px solid rgba(201,168,76,0.2);
+  }
+  .az-quote blockquote {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(1.15rem, 2.2vw, 1.5rem); color: var(--gold-light);
+    max-width: 720px; margin: 0 auto; line-height: 1.7;
+  }
+  .az-quote cite {
+    display: block; margin-top: 14px;
+    font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); font-style: normal;
+  }
+
+  /* LIFE PHOTOS */
+  .life-photos { background: var(--dark); }
+  .photo-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 8px;
+  }
+  .photo-card { position: relative; overflow: hidden; }
+  .photo-card img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+    aspect-ratio: 4/3;
+  }
+  .photo-card.wide { grid-column: span 1; grid-row: span 2; }
+  .photo-card.wide img { aspect-ratio: unset; height: 100%; min-height: 400px; }
+  .photo-card:hover img { transform: scale(1.04); }
+  .photo-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(7,16,24,0.85));
+    padding: 24px 16px 14px;
+    font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold-light); opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .photo-card:hover .photo-caption { opacity: 1; }
+
+  /* BUSINESS CARD */
+  .biz-card-section { background: var(--deep); }
+  .biz-card {
+    max-width: 700px; margin: 0 auto;
+    background: linear-gradient(135deg, var(--navy) 0%, #0d1f33 100%);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 52px 60px; text-align: center;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  }
+  .biz-card-name {
+    font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff; margin-bottom: 6px;
+  }
+  .biz-card-title {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1.1rem; color: var(--gold); margin-bottom: 28px;
+  }
+  .biz-card-divider { width: 50px; height: 2px; background: var(--gold); margin: 0 auto 28px; }
+  .biz-card-tagline {
+    font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--light); opacity: 0.7; margin-bottom: 32px;
+  }
+  .biz-card-logo { max-width: 180px; margin: 0 auto; }
+  .biz-card-logo img { width: 100%; }
+
+  /* GIVING BACK */
+  .giving { background: var(--navy); text-align: center; }
+  .charity-grid { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+  .charity-item {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2);
+    padding: 28px 36px; max-width: 260px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .charity-item:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+  .charity-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 10px; }
+  .charity-desc { font-size: 0.9rem; line-height: 1.65; color: var(--light); opacity: 0.8; }
+
+  /* CONTACT */
+  .contact { background: var(--deep); text-align: center; }
+  .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; max-width: 900px; margin-left: auto; margin-right: auto; }
+  .contact-card {
+    background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.2);
+    padding: 32px 24px; transition: border-color 0.3s, background 0.3s;
+  }
+  .contact-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+  .contact-icon { font-size: 1.6rem; margin-bottom: 12px; }
+  .contact-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .contact-value { font-size: 1rem; color: #fff; font-weight: 400; }
+  .contact-value a { color: #fff; text-decoration: none; }
+  .contact-value a:hover { color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    background: #030b12; padding: 32px 40px;
+    text-align: center; border-top: 1px solid rgba(201,168,76,0.15);
+    font-size: 0.82rem; color: rgba(245,240,232,0.45); line-height: 2;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  /* FADE-IN */
+  .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: none; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 0 28px; }
+    .about-grid, .arizona-grid { grid-template-columns: 1fr; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .photo-grid { grid-template-columns: 1fr 1fr; }
+    .photo-card.wide { grid-column: span 2; }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+    .stats-bar { gap: 28px; }
+    section { padding: 60px 24px; }
+    .biz-card { padding: 36px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Powell Parker</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#arizona">Arizona</a></li>
+    <li><a href="#rrr">RRR</a></li>
+    <li><a href="#giving">Giving Back</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-img" src="images/hero-horseback.png" alt="Powell Parker on horseback">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Phoenix, Arizona · Hereford, Texas · Faith · Family · Recovery</p>
+    <h1 class="hero-name">Powell <span>Parker</span></h1>
+    <p class="hero-sub">Founder & Managing Member,<br>Rightful Returns Recovery</p>
+    <a class="hero-cta" href="#contact">Connect With Powell</a>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-num">$10.5B+</div>
+    <div class="stat-label">Unclaimed in Texas</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">3</div>
+    <div class="stat-label">States We Serve</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">$0</div>
+    <div class="stat-label">Upfront to Clients</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Contingency Based</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" style="background: var(--navy);">
+  <div class="section-inner about-grid">
+    <div class="fade-in">
+      <img class="about-photo" src="images/about-couple.jpeg" alt="Powell Parker with friends">
+    </div>
+    <div class="fade-in">
+      <p class="section-label">About Powell</p>
+      <h2 class="section-title">Built on Faith,<br>Driven by Purpose</h2>
+      <div class="divider"></div>
+      <p class="section-body">
+        Powell Parker is the founder and managing member of Rightful Returns Recovery — a contingency-only surplus funds and forensic asset recovery firm operating across Texas, Arizona, and Georgia. Every case is taken at zero upfront cost. Every recovery is built on integrity.
+      </p>
+      <br>
+      <p class="section-body">
+        Rooted in the small-town values of Hereford, Texas and the wide-open spirit of the Arizona desert, Powell brings a cowboy work ethic and a servant's heart to every client relationship. Faith, family, and community aren't just words — they're the foundation everything is built on.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars" id="pillars">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom: 56px;" class="fade-in">
+      <p class="section-label">What I Stand For</p>
+      <h2 class="section-title">Why We Kneel. Why We Stand.<br>Why We're In Business.</h2>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar fade-in">
+        <div class="pillar-icon">🙏</div>
+        <h3 class="pillar-title">Why We Kneel</h3>
+        <p class="pillar-text">Faith is the anchor. Every decision, every case, every conversation starts with a foundation built not on profit — but on purpose. We kneel because we know where our strength comes from.</p>
+      </div>
+      <div class="pillar fade-in">
+        <div class="pillar-icon">🇺🇸</div>
+        <h3 class="pillar-title">Why We Stand</h3>
+        <p class="pillar-text">We stand for the families who've been overlooked, the veterans who've sacrificed, and the communities that deserve better. This work matters. The people we serve matter.</p>
+      </div>
+      <div class="pillar fade-in">
+        <div class="pillar-icon">⚖️</div>
+        <h3 class="pillar-title">Why We're In Business</h3>
+        <p class="pillar-text">Because billions of dollars in rightful assets sit unclaimed while families struggle. We exist to find what's hidden, recover what's owed, and return what's rightfully yours — at zero cost to you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARIZONA -->
+<section id="arizona" class="arizona">
+  <div class="section-inner arizona-grid">
+    <div class="fade-in">
+      <p class="section-label">Arizona Roots</p>
+      <h2 class="section-title">State 48.<br>Home Forever.</h2>
+      <div class="divider"></div>
+      <p class="section-body">
+        Raised in Queen Creek, Arizona — before it was a suburb, when it was still red dirt and cotton fields. Powell grew up competing in High School and College Rodeos across the state, specializing in Team Roping and Bulldogging.
+      </p>
+      <br>
+      <p class="section-body">
+        Arizona didn't just shape Powell's work ethic — it forged his identity. The desert teaches patience. The rodeo arena teaches resilience. And the community of Queen Creek taught him that your word is your bond and your handshake still means something.
+      </p>
+    </div>
+    <div class="fade-in">
+      <img class="arizona-photo" src="images/arizona-scene.jpeg" alt="Arizona landscape">
+    </div>
+  </div>
+</section>
+
+<!-- PARALLAX / AZ MOONRISE -->
+<div class="parallax-divider">
+  <div class="parallax-bg" style="background-image: url('images/arizona-moon.png');"></div>
+  <div class="parallax-dim"></div>
+</div>
+<div class="az-quote">
+  <blockquote>"Arizona, where every sunrise paints a canvas of hope for the day ahead"</blockquote>
+  <cite>~ P. Parker</cite>
+</div>
+
+<!-- LIFE PHOTOS -->
+<section class="life-photos" id="life">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom: 40px;" class="fade-in">
+      <p class="section-label">Life Outside the Office</p>
+      <h2 class="section-title">The Moments That Matter</h2>
+    </div>
+    <div class="photo-grid fade-in">
+      <div class="photo-card wide">
+        <img src="images/life-roping.jpeg" alt="Team roping">
+        <div class="photo-caption">In the Arena</div>
+      </div>
+      <div class="photo-card">
+        <img src="images/life-daughters.jpeg" alt="Powell with family">
+        <div class="photo-caption">Family First</div>
+      </div>
+      <div class="photo-card">
+        <img src="images/life-fishing.jpeg" alt="Powell fishing">
+        <div class="photo-caption">On the Water</div>
+      </div>
+      <div class="photo-card">
+        <img src="images/life-mountain.jpeg" alt="Powell in the mountains">
+        <div class="photo-caption">Powell &amp; Friends</div>
+      </div>
+      <div class="photo-card">
+        <img src="images/life-rodeo.jpeg" alt="Rodeo days">
+        <div class="photo-caption">Rodeo Roots</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RRR BUSINESS CARD -->
+<section class="biz-card-section" id="rrr">
+  <div class="section-inner">
+    <div class="biz-card fade-in">
+      <div class="biz-card-name">Powell Parker</div>
+      <div class="biz-card-title">Founder &amp; Managing Member</div>
+      <div class="biz-card-divider"></div>
+      <div class="biz-card-tagline">Finding Hidden Assets · Recovering What's Rightfully Yours</div>
+      <div class="biz-card-logo">
+        <img src="images/rrr-logo.jpeg" alt="Rightful Returns Recovery">
+      </div>
+      <div style="margin-top: 28px; font-size: 0.82rem; color: var(--gold-light); letter-spacing: 0.1em;">
+        <a href="https://www.rightfulreturnsrecovery.com" style="color: var(--gold); text-decoration: none;">www.rightfulreturnsrecovery.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GIVING BACK -->
+<section class="giving" id="giving">
+  <div class="section-inner">
+    <div class="fade-in">
+      <p class="section-label">Community &amp; Giving</p>
+      <h2 class="section-title">Giving Back Is Non-Negotiable</h2>
+      <div class="divider" style="margin: 24px auto;"></div>
+      <p class="section-body" style="margin: 0 auto; max-width: 620px;">
+        A portion of every recovery goes directly to organizations that serve those who can't always advocate for themselves. This isn't a marketing strategy — it's a conviction.
+      </p>
+    </div>
+    <div class="charity-grid">
+      <div class="charity-item fade-in">
+        <div class="charity-name">Wounded Warrior Project</div>
+        <div class="charity-desc">Supporting veterans and service members who've sacrificed everything for this country.</div>
+      </div>
+      <div class="charity-item fade-in">
+        <div class="charity-name">St. Jude Children's Research Hospital</div>
+        <div class="charity-desc">Fighting childhood cancer and saving lives — no family is ever sent a bill.</div>
+      </div>
+      <div class="charity-item fade-in">
+        <div class="charity-name">Sunshine Acres Children's Home</div>
+        <div class="charity-desc">Providing a safe, faith-based home for children in need right here in Mesa, Arizona.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="section-inner">
+    <div class="fade-in">
+      <p class="section-label">Get In Touch</p>
+      <h2 class="section-title">Let's Connect</h2>
+      <div class="divider" style="margin: 24px auto;"></div>
+      <p class="section-body" style="margin: 0 auto; max-width: 560px;">
+        Whether you're exploring a partnership, have a case to discuss, or just want to connect — Powell is one call or click away.
+      </p>
+    </div>
+    <div class="contact-grid fade-in" style="margin-top: 48px;">
+      <div class="contact-card">
+        <div class="contact-icon">📧</div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value"><a href="mailto:powell@powparker.com">powell@powparker.com</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">📞</div>
+        <div class="contact-label">Toll-Free</div>
+        <div class="contact-value"><a href="tel:18004282022">1-800-428-2022</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🌵</div>
+        <div class="contact-label">Phoenix, AZ</div>
+        <div class="contact-value"><a href="tel:14807882320">480-788-2320</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">⭐</div>
+        <div class="contact-label">Texas / Dallas</div>
+        <div class="contact-value"><a href="tel:12148381883">214-838-1883</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">🏛️</div>
+        <div class="contact-label">Rightful Returns Recovery</div>
+        <div class="contact-value"><a href="https://www.rightfulreturnsrecovery.com" target="_blank">Visit RRR Website</a></div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-icon">💼</div>
+        <div class="contact-label">Free Case Evaluation</div>
+        <div class="contact-value"><a href="https://www.rightfulreturnsrecovery.com/#contact" target="_blank">Start Here →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--gold); margin-bottom:8px;">Powell Parker</p>
+  <p>Phoenix, Arizona &nbsp;·&nbsp; Hereford, Texas</p>
+  <p style="margin-top:8px;">© 2026 Powell Parker. All rights reserved. &nbsp;·&nbsp;
+    <a href="https://www.rightfulreturnsrecovery.com">RightfulReturnsRecovery.com</a>
+  </p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 90);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
