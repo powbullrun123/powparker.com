@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Powell Parker — Founder, Rightful Returns Recovery</title>
 <meta name="description" content="Powell Parker — Founder of Rightful Returns Recovery. Asset recovery professional, Arizona native, faith-driven entrepreneur, and community leader.">
+<meta name="robots" content="index, follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
     --gold: #C9A84C;
@@ -20,255 +21,330 @@
   html { scroll-behavior: smooth; }
   body { font-family: 'Lato', sans-serif; background: var(--deep); color: var(--light); overflow-x: hidden; }
 
-  /* NAV */
+  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 32px;
+    padding: 18px 48px;
     background: rgba(7,16,24,0.88);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(201,168,76,0.2);
   }
-  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); letter-spacing: 0.08em; text-decoration: none; }
-  .nav-links { display: flex; gap: 28px; list-style: none; }
-  .nav-links a { color: var(--light); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; transition: opacity 0.2s, color 0.2s; }
+  .nav-logo {
+    font-family: 'Playfair Display', serif; font-size: 1.4rem;
+    color: var(--gold); letter-spacing: 0.08em; text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    color: var(--light); text-decoration: none; font-size: 0.82rem;
+    letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.8;
+    transition: opacity 0.2s, color 0.2s;
+  }
   .nav-links a:hover { opacity: 1; color: var(--gold); }
 
-  /* HERO */
+  /* ── HERO ── */
   .hero {
-    height: 100vh; min-height: 600px; position: relative;
-    display: flex; align-items: center;
-    overflow: hidden;
+    height: 100vh; min-height: 700px; position: relative;
+    display: flex; align-items: center; overflow: hidden;
   }
-  .hero-img {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    object-fit: cover; object-position: center;
-    animation: heroFade 2s ease-out forwards;
-    opacity: 0;
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('images/powell-horseback-hero.jpg') center center / cover no-repeat;
+    animation: heroZoom 8s ease-out forwards;
+    transform-origin: center;
   }
-  @keyframes heroFade { 0% { opacity:0; transform:scale(1.04); } 100% { opacity:1; transform:scale(1); } }
+  @keyframes heroZoom {
+    0%   { transform: scale(1.08); opacity: 0.7; }
+    100% { transform: scale(1.0);  opacity: 1; }
+  }
   .hero-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to right, rgba(7,16,24,0.82) 45%, rgba(7,16,24,0.15) 100%);
+    background: linear-gradient(
+      to right,
+      rgba(7,16,24,0.90) 0%,
+      rgba(7,16,24,0.70) 40%,
+      rgba(7,16,24,0.15) 100%
+    );
   }
   .hero-content {
-    position: relative; z-index: 2; padding: 0 60px; max-width: 640px;
+    position: relative; z-index: 2;
+    padding: 0 80px; max-width: 700px;
   }
   .hero-eyebrow {
-    font-size: 0.78rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 18px;
-    opacity: 0; animation: slideUp 0.8s 0.6s ease forwards;
+    font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 20px;
+    opacity: 0; animation: slideUp 0.9s 0.5s ease forwards;
   }
   .hero-name {
-    font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 6vw, 5rem);
-    line-height: 1.05; color: #fff; margin-bottom: 20px;
-    opacity: 0; animation: slideUp 0.8s 0.9s ease forwards;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    line-height: 1.0; color: #fff; margin-bottom: 10px;
+    opacity: 0; animation: slideUp 0.9s 0.8s ease forwards;
   }
   .hero-name span { color: var(--gold); }
-  .hero-sub {
+  .hero-title {
     font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--gold-light);
-    line-height: 1.6; margin-bottom: 36px;
-    opacity: 0; animation: slideUp 0.8s 1.1s ease forwards;
+    font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+    color: var(--gold-light); margin-bottom: 8px;
+    opacity: 0; animation: slideUp 0.9s 1.0s ease forwards;
+  }
+  .hero-sub {
+    font-size: 0.85rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(245,240,232,0.6); margin-bottom: 42px;
+    opacity: 0; animation: slideUp 0.9s 1.1s ease forwards;
+  }
+  .hero-divider {
+    width: 70px; height: 2px; background: var(--gold);
+    margin-bottom: 38px;
+    opacity: 0; animation: slideUp 0.9s 1.05s ease forwards;
   }
   .hero-cta {
-    display: inline-block; padding: 14px 36px;
+    display: inline-block; padding: 16px 44px;
     background: var(--gold); color: var(--deep);
-    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-    text-decoration: none; border: none; cursor: pointer;
-    transition: background 0.2s, transform 0.2s;
-    opacity: 0; animation: slideUp 0.8s 1.3s ease forwards;
+    font-size: 0.82rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.25s, transform 0.25s;
+    opacity: 0; animation: slideUp 0.9s 1.3s ease forwards;
   }
-  .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
-  @keyframes slideUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  .hero-cta:hover { background: var(--gold-light); transform: translateY(-3px); }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
-  /* STATS BAR */
+  /* ── STATS BAR ── */
   .stats-bar {
-    background: var(--gold); padding: 22px 40px;
-    display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;
+    background: var(--gold); padding: 28px 48px;
+    display: flex; justify-content: center; gap: 80px; flex-wrap: wrap;
   }
   .stat { text-align: center; }
-  .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--deep); }
-  .stat-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(7,16,24,0.75); }
+  .stat-num {
+    font-family: 'Playfair Display', serif; font-size: 2.2rem;
+    font-weight: 700; color: var(--deep);
+  }
+  .stat-label {
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(7,16,24,0.72); margin-top: 4px;
+  }
 
-  /* SECTIONS */
-  section { padding: 90px 40px; }
-  .section-inner { max-width: 1100px; margin: 0 auto; }
+  /* ── SHARED SECTION STYLES ── */
+  section { padding: 110px 48px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
   .section-label {
-    font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 14px;
+    font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 16px;
   }
   .section-title {
-    font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    line-height: 1.2; margin-bottom: 28px; color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.15; margin-bottom: 24px; color: #fff;
   }
   .section-body {
-    font-family: 'Cormorant Garamond', serif; font-size: 1.2rem;
-    line-height: 1.85; color: var(--light); max-width: 680px;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.25rem;
+    line-height: 1.9; color: var(--light); max-width: 680px;
   }
-  .divider { width: 60px; height: 3px; background: var(--gold); margin: 24px 0; }
+  .divider { width: 60px; height: 3px; background: var(--gold); margin: 28px 0; }
 
-  /* ABOUT — two column */
+  /* ── ABOUT ── */
+  .about { background: var(--navy); }
   .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
   }
   .about-photo {
-    width: 100%; aspect-ratio: 4/5; object-fit: cover;
+    width: 100%; height: 620px; object-fit: cover;
+    object-position: center top;
     border: 3px solid rgba(201,168,76,0.3);
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.5);
   }
 
-  /* PILLARS */
-  .pillars { background: var(--navy); }
-  .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+  /* ── PILLARS ── */
+  .pillars { background: var(--deep); }
+  .pillars-header { text-align: center; margin-bottom: 72px; }
+  .pillars-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
   .pillar {
-    background: rgba(255,255,255,0.03); padding: 48px 36px;
+    background: rgba(255,255,255,0.03); padding: 56px 44px;
     border-top: 3px solid var(--gold);
-    transition: background 0.3s;
+    transition: background 0.35s;
   }
   .pillar:hover { background: rgba(201,168,76,0.07); }
-  .pillar-icon { font-size: 2rem; margin-bottom: 18px; }
+  .pillar-icon { font-size: 2.2rem; margin-bottom: 22px; }
   .pillar-title {
-    font-family: 'Playfair Display', serif; font-size: 1.3rem;
-    color: var(--gold); margin-bottom: 14px;
+    font-family: 'Playfair Display', serif; font-size: 1.4rem;
+    color: var(--gold); margin-bottom: 18px;
   }
-  .pillar-text { font-size: 0.95rem; line-height: 1.75; color: var(--light); opacity: 0.85; }
+  .pillar-text { font-size: 1rem; line-height: 1.8; color: var(--light); opacity: 0.85; }
 
-  /* ARIZONA */
-  .arizona { background: var(--deep); }
-  .arizona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  /* ── ARIZONA ── */
+  .arizona { background: var(--navy); }
+  .arizona-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+  }
   .arizona-photo {
-    width: 100%; aspect-ratio: 3/2; object-fit: cover;
+    width: 100%; height: 540px; object-fit: cover;
     border: 3px solid rgba(201,168,76,0.3);
+    box-shadow: -20px 20px 60px rgba(0,0,0,0.5);
+  }
+  .az-badge {
+    display: inline-block; margin-top: 28px;
+    padding: 10px 24px; border: 1px solid var(--gold);
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold);
   }
 
-  /* PARALLAX DIVIDER */
+  /* ── PARALLAX ── */
   .parallax-divider {
-    position: relative; height: 420px; overflow: hidden;
+    position: relative; height: 500px; overflow: hidden;
   }
   .parallax-bg {
-    position: absolute; inset: -30px; background-size: cover; background-position: center;
+    position: absolute; inset: -60px;
+    background: url('images/arizona-moon.png') center center / cover no-repeat;
     background-attachment: fixed;
   }
-  .parallax-dim { position: absolute; inset: 0; background: rgba(7,16,24,0.35); }
-
-  /* AZ QUOTE */
-  .az-quote {
-    background: var(--navy); padding: 40px;
-    text-align: center; border-top: 1px solid rgba(201,168,76,0.2);
+  .parallax-dim {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(7,16,24,0.3), rgba(7,16,24,0.55));
   }
-  .az-quote blockquote {
+  .parallax-text {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 0 40px;
+  }
+  .parallax-text blockquote {
     font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: clamp(1.15rem, 2.2vw, 1.5rem); color: var(--gold-light);
-    max-width: 720px; margin: 0 auto; line-height: 1.7;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    color: #fff; max-width: 760px; line-height: 1.6;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.6);
   }
-  .az-quote cite {
-    display: block; margin-top: 14px;
-    font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+  .parallax-text cite {
+    display: block; margin-top: 20px;
+    font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase;
     color: var(--gold); font-style: normal;
   }
 
-  /* LIFE PHOTOS */
+  /* ── LIFE PHOTOS ── */
   .life-photos { background: var(--dark); }
+  .life-header { text-align: center; margin-bottom: 52px; }
   .photo-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: auto auto;
-    gap: 8px;
+    grid-template-rows: 360px 360px;
+    gap: 6px;
   }
   .photo-card { position: relative; overflow: hidden; }
   .photo-card img {
     width: 100%; height: 100%; object-fit: cover; display: block;
-    transition: transform 0.5s ease;
-    aspect-ratio: 4/3;
+    transition: transform 0.6s ease;
   }
-  .photo-card.wide { grid-column: span 1; grid-row: span 2; }
-  .photo-card.wide img { aspect-ratio: unset; height: 100%; min-height: 400px; }
-  .photo-card:hover img { transform: scale(1.04); }
+  .photo-card:hover img { transform: scale(1.05); }
+  .photo-card.tall {
+    grid-column: 1; grid-row: 1 / span 2;
+  }
   .photo-caption {
     position: absolute; bottom: 0; left: 0; right: 0;
-    background: linear-gradient(transparent, rgba(7,16,24,0.85));
-    padding: 24px 16px 14px;
-    font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--gold-light); opacity: 0;
-    transition: opacity 0.3s;
+    background: linear-gradient(transparent, rgba(7,16,24,0.88));
+    padding: 30px 18px 16px;
+    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0; transition: opacity 0.3s;
   }
   .photo-card:hover .photo-caption { opacity: 1; }
 
-  /* BUSINESS CARD */
-  .biz-card-section { background: var(--deep); }
-  .biz-card {
-    max-width: 700px; margin: 0 auto;
-    background: linear-gradient(135deg, var(--navy) 0%, #0d1f33 100%);
-    border: 1px solid rgba(201,168,76,0.4);
-    padding: 52px 60px; text-align: center;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+  /* ── RRR SECTION ── */
+  .rrr-section { background: var(--deep); }
+  .rrr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .rrr-logo-wrap img {
+    width: 100%; max-width: 440px;
+    filter: drop-shadow(0 20px 60px rgba(0,0,0,0.7));
   }
-  .biz-card-name {
-    font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff; margin-bottom: 6px;
+  .rrr-contact { margin-top: 40px; display: flex; flex-direction: column; gap: 14px; }
+  .rrr-contact-line {
+    display: flex; align-items: center; gap: 16px;
+    font-size: 1rem; color: var(--light);
   }
-  .biz-card-title {
-    font-family: 'Cormorant Garamond', serif; font-style: italic;
-    font-size: 1.1rem; color: var(--gold); margin-bottom: 28px;
+  .rrr-contact-line .lbl {
+    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); min-width: 80px;
   }
-  .biz-card-divider { width: 50px; height: 2px; background: var(--gold); margin: 0 auto 28px; }
-  .biz-card-tagline {
-    font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--light); opacity: 0.7; margin-bottom: 32px;
-  }
-  .biz-card-logo { max-width: 180px; margin: 0 auto; }
-  .biz-card-logo img { width: 100%; }
+  .rrr-contact-line a { color: var(--light); text-decoration: none; transition: color 0.2s; }
+  .rrr-contact-line a:hover { color: var(--gold); }
 
-  /* GIVING BACK */
+  /* ── GIVING BACK ── */
   .giving { background: var(--navy); text-align: center; }
-  .charity-grid { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+  .charity-grid {
+    display: flex; gap: 28px; justify-content: center;
+    flex-wrap: wrap; margin-top: 52px;
+  }
   .charity-item {
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2);
-    padding: 28px 36px; max-width: 260px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 36px 40px; max-width: 280px; text-align: left;
     transition: border-color 0.3s, background 0.3s;
   }
-  .charity-item:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
-  .charity-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 10px; }
-  .charity-desc { font-size: 0.9rem; line-height: 1.65; color: var(--light); opacity: 0.8; }
-
-  /* CONTACT */
-  .contact { background: var(--deep); text-align: center; }
-  .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; max-width: 900px; margin-left: auto; margin-right: auto; }
-  .contact-card {
-    background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.2);
-    padding: 32px 24px; transition: border-color 0.3s, background 0.3s;
+  .charity-item:hover { border-color: var(--gold); background: rgba(201,168,76,0.07); }
+  .charity-icon { font-size: 1.8rem; margin-bottom: 16px; }
+  .charity-name {
+    font-family: 'Playfair Display', serif; font-size: 1.1rem;
+    color: var(--gold); margin-bottom: 12px;
   }
-  .contact-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
-  .contact-icon { font-size: 1.6rem; margin-bottom: 12px; }
-  .contact-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-  .contact-value { font-size: 1rem; color: #fff; font-weight: 400; }
-  .contact-value a { color: #fff; text-decoration: none; }
+  .charity-desc { font-size: 0.92rem; line-height: 1.7; color: var(--light); opacity: 0.82; }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--deep); text-align: center; }
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 20px; margin-top: 56px;
+    max-width: 1000px; margin-left: auto; margin-right: auto;
+  }
+  .contact-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 36px 28px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .contact-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+  .contact-icon { font-size: 1.8rem; margin-bottom: 14px; }
+  .contact-label {
+    font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 10px;
+  }
+  .contact-value { font-size: 1.05rem; color: #fff; }
+  .contact-value a { color: #fff; text-decoration: none; transition: color 0.2s; }
   .contact-value a:hover { color: var(--gold); }
 
-  /* FOOTER */
+  /* ── FOOTER ── */
   footer {
-    background: #030b12; padding: 32px 40px;
-    text-align: center; border-top: 1px solid rgba(201,168,76,0.15);
-    font-size: 0.82rem; color: rgba(245,240,232,0.45); line-height: 2;
+    background: #030b12; padding: 44px 48px;
+    text-align: center;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    font-size: 0.84rem; color: rgba(245,240,232,0.45); line-height: 2.2;
   }
   footer a { color: var(--gold); text-decoration: none; }
 
-  /* FADE-IN */
-  .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  /* ── FADE-IN ── */
+  .fade-in {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.75s ease, transform 0.75s ease;
+  }
   .fade-in.visible { opacity: 1; transform: none; }
 
-  /* RESPONSIVE */
-  @media (max-width: 768px) {
-    nav { padding: 14px 20px; }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 14px 24px; }
     .nav-links { display: none; }
-    .hero-content { padding: 0 28px; }
-    .about-grid, .arizona-grid { grid-template-columns: 1fr; }
+    .hero-content { padding: 0 32px; }
+    .about-grid, .arizona-grid, .rrr-grid { grid-template-columns: 1fr; }
+    .about-photo, .arizona-photo { height: 380px; }
     .pillars-grid { grid-template-columns: 1fr; }
-    .photo-grid { grid-template-columns: 1fr 1fr; }
-    .photo-card.wide { grid-column: span 2; }
+    .photo-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+    }
+    .photo-card.tall { grid-column: span 2; grid-row: auto; }
     .contact-grid { grid-template-columns: 1fr 1fr; }
-    .stats-bar { gap: 28px; }
-    section { padding: 60px 24px; }
-    .biz-card { padding: 36px 28px; }
+    .stats-bar { gap: 32px; padding: 22px 24px; }
+    section { padding: 72px 24px; }
   }
 </style>
 </head>
@@ -281,6 +357,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#arizona">Arizona</a></li>
     <li><a href="#rrr">RRR</a></li>
+    <li><a href="#life">Life</a></li>
     <li><a href="#giving">Giving Back</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -288,12 +365,14 @@
 
 <!-- HERO -->
 <section class="hero">
-  <img class="hero-img" src="images/hero-horseback.png" alt="Powell Parker on horseback">
+  <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Phoenix, Arizona · Hereford, Texas · Faith · Family · Recovery</p>
+    <p class="hero-eyebrow">Phoenix, Arizona &nbsp;·&nbsp; Hereford, Texas &nbsp;·&nbsp; Faith · Family · Recovery</p>
     <h1 class="hero-name">Powell <span>Parker</span></h1>
-    <p class="hero-sub">Founder & Managing Member,<br>Rightful Returns Recovery</p>
+    <p class="hero-title">Founder &amp; Managing Member</p>
+    <p class="hero-sub">Rightful Returns Recovery &nbsp;·&nbsp; Contingency Only &nbsp;·&nbsp; Zero Upfront Cost</p>
+    <div class="hero-divider"></div>
     <a class="hero-cta" href="#contact">Connect With Powell</a>
   </div>
 </section>
@@ -319,10 +398,10 @@
 </div>
 
 <!-- ABOUT -->
-<section id="about" style="background: var(--navy);">
+<section id="about" class="about">
   <div class="section-inner about-grid">
     <div class="fade-in">
-      <img class="about-photo" src="images/about-couple.jpeg" alt="Powell Parker with friends">
+      <img class="about-photo" src="images/powell-parker-founder.jpg" alt="Powell Parker">
     </div>
     <div class="fade-in">
       <p class="section-label">About Powell</p>
@@ -342,7 +421,7 @@
 <!-- PILLARS -->
 <section class="pillars" id="pillars">
   <div class="section-inner">
-    <div style="text-align:center; margin-bottom: 56px;" class="fade-in">
+    <div class="pillars-header fade-in">
       <p class="section-label">What I Stand For</p>
       <h2 class="section-title">Why We Kneel. Why We Stand.<br>Why We're In Business.</h2>
     </div>
@@ -374,43 +453,52 @@
       <h2 class="section-title">State 48.<br>Home Forever.</h2>
       <div class="divider"></div>
       <p class="section-body">
-        Raised in Queen Creek, Arizona — before it was a suburb, when it was still red dirt and cotton fields. Powell grew up competing in High School and College Rodeos across the state, specializing in Team Roping and Bulldogging.
+        Raised in Queen Creek, Arizona — before it was a suburb, when it was still red dirt and cotton fields. The kind of place where you knew your neighbors and your word still meant something.
       </p>
       <br>
       <p class="section-body">
-        Arizona didn't just shape Powell's work ethic — it forged his identity. The desert teaches patience. The rodeo arena teaches resilience. And the community of Queen Creek taught him that your word is your bond and your handshake still means something.
+        Powell competed in High School and College Rodeos across the state, specializing in <strong style="color:var(--gold-light)">Team Roping</strong> and <strong style="color:var(--gold-light)">Bulldogging</strong>. The arena didn't just build skill — it built character. It taught him that preparation wins, effort never lies, and you always get back up.
       </p>
+      <br>
+      <p class="section-body">
+        Arizona didn't just shape Powell's work ethic — it forged his identity. The desert teaches patience. The rodeo arena teaches resilience. Queen Creek taught him that your handshake still means something.
+      </p>
+      <div class="az-badge">🌵 Queen Creek · Scottsdale · Phoenix</div>
     </div>
     <div class="fade-in">
-      <img class="arizona-photo" src="images/arizona-scene.jpeg" alt="Arizona landscape">
+      <img class="arizona-photo" src="images/arizona-moon1.png" alt="Arizona">
     </div>
   </div>
 </section>
 
-<!-- PARALLAX / AZ MOONRISE -->
+<!-- PARALLAX MOON DIVIDER -->
 <div class="parallax-divider">
-  <div class="parallax-bg" style="background-image: url('images/arizona-moon.png');"></div>
+  <div class="parallax-bg"></div>
   <div class="parallax-dim"></div>
-</div>
-<div class="az-quote">
-  <blockquote>"Arizona, where every sunrise paints a canvas of hope for the day ahead"</blockquote>
-  <cite>~ P. Parker</cite>
+  <div class="parallax-text">
+    <blockquote>"Arizona, where every sunrise paints a canvas of hope for the day ahead"</blockquote>
+    <cite>~ Powell Parker</cite>
+  </div>
 </div>
 
 <!-- LIFE PHOTOS -->
 <section class="life-photos" id="life">
   <div class="section-inner">
-    <div style="text-align:center; margin-bottom: 40px;" class="fade-in">
+    <div class="life-header fade-in">
       <p class="section-label">Life Outside the Office</p>
       <h2 class="section-title">The Moments That Matter</h2>
     </div>
     <div class="photo-grid fade-in">
-      <div class="photo-card wide">
-        <img src="images/life-roping.jpeg" alt="Team roping">
-        <div class="photo-caption">In the Arena</div>
+      <div class="photo-card tall">
+        <img src="images/powell-horseback-hero.jpg" alt="Powell on horseback">
+        <div class="photo-caption">In the Saddle</div>
       </div>
       <div class="photo-card">
-        <img src="images/life-daughters.jpeg" alt="Powell with family">
+        <img src="images/life-roping.jpeg" alt="Team roping">
+        <div class="photo-caption">Team Roping</div>
+      </div>
+      <div class="photo-card">
+        <img src="images/life-daughters.jpeg" alt="Powell with daughters">
         <div class="photo-caption">Family First</div>
       </div>
       <div class="photo-card">
@@ -418,30 +506,63 @@
         <div class="photo-caption">On the Water</div>
       </div>
       <div class="photo-card">
-        <img src="images/life-mountain.jpeg" alt="Powell in the mountains">
-        <div class="photo-caption">Powell &amp; Friends</div>
+        <img src="images/life-mountain.jpeg" alt="Mountain adventure">
+        <div class="photo-caption">Mountain Life</div>
       </div>
       <div class="photo-card">
         <img src="images/life-rodeo.jpeg" alt="Rodeo days">
         <div class="photo-caption">Rodeo Roots</div>
       </div>
+      <div class="photo-card">
+        <img src="images/family1.jpeg" alt="Family">
+        <div class="photo-caption">Family</div>
+      </div>
+      <div class="photo-card">
+        <img src="images/mount-lemmon-family.jpg" alt="Mount Lemmon family">
+        <div class="photo-caption">Mount Lemmon</div>
+      </div>
+      <div class="photo-card">
+        <img src="images/about-couple.jpeg" alt="Powell and Cristina">
+        <div class="photo-caption">Powell &amp; Cristina</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- RRR BUSINESS CARD -->
-<section class="biz-card-section" id="rrr">
-  <div class="section-inner">
-    <div class="biz-card fade-in">
-      <div class="biz-card-name">Powell Parker</div>
-      <div class="biz-card-title">Founder &amp; Managing Member</div>
-      <div class="biz-card-divider"></div>
-      <div class="biz-card-tagline">Finding Hidden Assets · Recovering What's Rightfully Yours</div>
-      <div class="biz-card-logo">
-        <img src="images/rrr-logo.jpeg" alt="Rightful Returns Recovery">
-      </div>
-      <div style="margin-top: 28px; font-size: 0.82rem; color: var(--gold-light); letter-spacing: 0.1em;">
-        <a href="https://www.rightfulreturnsrecovery.com" style="color: var(--gold); text-decoration: none;">www.rightfulreturnsrecovery.com</a>
+<!-- RRR -->
+<section class="rrr-section" id="rrr">
+  <div class="section-inner rrr-grid">
+    <div class="rrr-logo-wrap fade-in">
+      <img src="images/rrr-logo.jpeg" alt="Rightful Returns Recovery">
+    </div>
+    <div class="fade-in">
+      <p class="section-label">Rightful Returns Recovery</p>
+      <h2 class="section-title">Finding Hidden Assets.<br>Recovering What's<br>Rightfully Yours.</h2>
+      <div class="divider"></div>
+      <p class="section-body">
+        Contingency-only surplus funds and forensic asset recovery across Texas, Arizona, and Georgia. Zero upfront cost. Full documentation. Attorney-backed filings.
+      </p>
+      <div class="rrr-contact">
+        <div class="rrr-contact-line">
+          <span class="lbl">Arizona</span>
+          <a href="tel:14807882320">480-788-2320</a>
+        </div>
+        <div class="rrr-contact-line">
+          <span class="lbl">Texas</span>
+          <a href="tel:12148381883">214-838-1883</a>
+        </div>
+        <div class="rrr-contact-line">
+          <span class="lbl">Toll Free</span>
+          <a href="tel:18004282022">1-800-428-2022</a>
+        </div>
+        <div class="rrr-contact-line">
+          <span class="lbl">Web</span>
+          <a href="https://www.rightfulreturnsrecovery.com" target="_blank">rightfulreturnsrecovery.com</a>
+        </div>
+        <div class="rrr-contact-line">
+          <span class="lbl">Email</span>
+          <a href="mailto:powell@rightfulreturnsrecovery.com">powell@rightfulreturnsrecovery.com</a>
+        </div>
       </div>
     </div>
   </div>
@@ -453,44 +574,138 @@
     <div class="fade-in">
       <p class="section-label">Community &amp; Giving</p>
       <h2 class="section-title">Giving Back Is Non-Negotiable</h2>
-      <div class="divider" style="margin: 24px auto;"></div>
-      <p class="section-body" style="margin: 0 auto; max-width: 620px;">
+      <div class="divider" style="margin: 28px auto;"></div>
+      <p class="section-body" style="margin: 0 auto; text-align: center;">
         A portion of every recovery goes directly to organizations that serve those who can't always advocate for themselves. This isn't a marketing strategy — it's a conviction.
       </p>
     </div>
     <div class="charity-grid">
       <div class="charity-item fade-in">
+        <div class="charity-icon">🎖️</div>
         <div class="charity-name">Wounded Warrior Project</div>
         <div class="charity-desc">Supporting veterans and service members who've sacrificed everything for this country.</div>
       </div>
       <div class="charity-item fade-in">
+        <div class="charity-icon">🎗️</div>
         <div class="charity-name">St. Jude Children's Research Hospital</div>
-        <div class="charity-desc">Fighting childhood cancer and saving lives — no family is ever sent a bill.</div>
+        <div class="charity-desc">Fighting childhood cancer and saving lives — no family is ever sent a bill for treatment or travel.</div>
       </div>
       <div class="charity-item fade-in">
+        <div class="charity-icon">🏡</div>
         <div class="charity-name">Sunshine Acres Children's Home</div>
         <div class="charity-desc">Providing a safe, faith-based home for children in need right here in Mesa, Arizona.</div>
       </div>
+      <div class="charity-item fade-in">
+        <div class="charity-icon">🎖️</div>
+        <div class="charity-name">Wounded Warrior Project</div>
+        <div class="charity-desc">Supporting veterans and service members who've sacrificed everything for this country.</div>
+      </div>
+    </div>
+
+    <!-- PLASMA DONATION -->
+    <div class="fade-in" style="margin-top: 72px; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; padding: 52px 48px; background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.2);">
+      <div style="font-size: 2rem; margin-bottom: 18px;">💉</div>
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--gold); margin-bottom:16px;">Giving From the Inside Out</h3>
+      <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.15rem; line-height:1.85; color:var(--light); opacity:0.9;">
+        Every month, Powell donates plasma at BioLife Plasma Services — a quiet, consistent act of giving that saves lives. No cameras. No announcements. Just showing up because someone out there needs it. It's the same philosophy that drives everything else: give what you can, when you can, without keeping score.
+      </p>
     </div>
   </div>
 </section>
 
+<!-- FAMILY -->
+<section id="family" style="background: var(--deep);">
+  <div class="section-inner">
+    <div class="fade-in" style="text-align: center; margin-bottom: 72px;">
+      <p class="section-label">The People Who Matter Most</p>
+      <h2 class="section-title">A Family Man, First and Always</h2>
+      <div class="divider" style="margin: 28px auto;"></div>
+      <p class="section-body" style="margin: 0 auto; text-align: center; max-width: 720px;">
+        Before the business cards, before the cases, before the miles logged across Texas and Arizona — there is family. They are the reason for all of it.
+      </p>
+    </div>
+
+    <!-- HORSES FEATURE -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 100px;" class="fade-in">
+      <div>
+        <img src="images/life-roping.jpeg" alt="Powell and Joel on horseback" style="width:100%; height:520px; object-fit:cover; border:3px solid rgba(201,168,76,0.3); box-shadow: 20px 20px 60px rgba(0,0,0,0.5);">
+      </div>
+      <div>
+        <p class="section-label">Powell &amp; Joel</p>
+        <h3 style="font-family:'Playfair Display',serif; font-size:2.2rem; color:#fff; line-height:1.15; margin-bottom:24px;">In the Saddle<br>Together</h3>
+        <div class="divider"></div>
+        <p class="section-body">
+          That's Joel on <strong style="color:var(--gold-light)">Rubio</strong>, the Palomino — and Powell on <strong style="color:var(--gold-light)">Monty</strong>, the Chestnut. Monty isn't just any horse. He is the direct grandson of <strong style="color:var(--gold)">Secretariat</strong> — the greatest racehorse who ever lived. Riding Monty is a privilege that doesn't go unnoticed.
+        </p>
+        <br>
+        <p class="section-body">
+          Joel Parker is working toward his Doctorate in <strong style="color:var(--gold-light)">Biostatistical Engineering</strong> at the University of Arizona — bringing the same precision and discipline to science that he carries in the saddle. Powell couldn't be more proud.
+        </p>
+        <div style="margin-top: 28px; padding: 20px 24px; border-left: 3px solid var(--gold); background: rgba(201,168,76,0.06);">
+          <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.05rem; color:var(--gold-light); line-height:1.7;">
+            "Monty is the direct grandson of Secretariat — a living connection to greatness. Every ride is a reminder of what's possible when heart and bloodline meet."
+          </p>
+          <p style="font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold); margin-top:12px;">— Powell Parker</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAMILY CARDS GRID -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;" class="fade-in">
+
+      <!-- Russell -->
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.2); padding: 40px 32px; transition: border-color 0.3s, background 0.3s;" onmouseover="this.style.borderColor='var(--gold)'; this.style.background='rgba(201,168,76,0.06)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.2)'; this.style.background='rgba(255,255,255,0.03)'">
+        <div style="font-size:2rem; margin-bottom:16px;">🎓</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--gold); margin-bottom:12px;">Russell</h4>
+        <p style="font-size:0.95rem; line-height:1.8; color:var(--light); opacity:0.85;">
+          Russell holds his <strong style="color:var(--gold-light)">Master's in Statistics</strong> and is building a beautiful life with his lovely family — including three daughters who keep things lively. The apple doesn't fall far from the tree.
+        </p>
+      </div>
+
+      <!-- Joel -->
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.2); padding: 40px 32px; transition: border-color 0.3s, background 0.3s;" onmouseover="this.style.borderColor='var(--gold)'; this.style.background='rgba(201,168,76,0.06)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.2)'; this.style.background='rgba(255,255,255,0.03)'">
+        <div style="font-size:2rem; margin-bottom:16px;">🔬</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--gold); margin-bottom:12px;">Joel</h4>
+        <p style="font-size:0.95rem; line-height:1.8; color:var(--light); opacity:0.85;">
+          Doctoral candidate in <strong style="color:var(--gold-light)">Biostatistical Engineering</strong> at the University of Arizona. In the field — and in the saddle on Rubio — Joel embodies the same work ethic that defines the whole Parker family.
+        </p>
+      </div>
+
+      <!-- Daughters -->
+      <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.2); padding: 40px 32px; transition: border-color 0.3s, background 0.3s;" onmouseover="this.style.borderColor='var(--gold)'; this.style.background='rgba(201,168,76,0.06)'" onmouseout="this.style.borderColor='rgba(201,168,76,0.2)'; this.style.background='rgba(255,255,255,0.03)'">
+        <div style="font-size:2rem; margin-bottom:16px;">🌟</div>
+        <h4 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:var(--gold); margin-bottom:12px;">Scarlett &amp; Sara</h4>
+        <p style="font-size:0.95rem; line-height:1.8; color:var(--light); opacity:0.85;">
+          Powell's two daughters — <strong style="color:var(--gold-light)">Sara, 19</strong>, and <strong style="color:var(--gold-light)">Scarlett, 10</strong> — are the heart behind everything he does. Every case recovered, every mile driven, every early morning is for them.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- FAMILY PHOTO -->
+    <div class="fade-in" style="margin-top: 60px;">
+      <img src="images/life-daughters.jpeg" alt="Powell with Sara and Scarlett" style="width:100%; height:480px; object-fit:cover; object-position: center top; border:3px solid rgba(201,168,76,0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.5);">
+    </div>
+
+  </div>
+</section>
+
 <!-- CONTACT -->
-<section id="contact" class="contact">
+<section id="contact" style="background: var(--navy); text-align: center;">
   <div class="section-inner">
     <div class="fade-in">
       <p class="section-label">Get In Touch</p>
       <h2 class="section-title">Let's Connect</h2>
-      <div class="divider" style="margin: 24px auto;"></div>
-      <p class="section-body" style="margin: 0 auto; max-width: 560px;">
+      <div class="divider" style="margin: 28px auto;"></div>
+      <p class="section-body" style="margin: 0 auto; text-align: center; max-width: 560px;">
         Whether you're exploring a partnership, have a case to discuss, or just want to connect — Powell is one call or click away.
       </p>
     </div>
-    <div class="contact-grid fade-in" style="margin-top: 48px;">
+    <div class="contact-grid fade-in">
       <div class="contact-card">
         <div class="contact-icon">📧</div>
         <div class="contact-label">Email</div>
-        <div class="contact-value"><a href="mailto:powell@powparker.com">powell@powparker.com</a></div>
+        <div class="contact-value"><a href="mailto:powell@rightfulreturnsrecovery.com">powell@rightfulreturnsrecovery.com</a></div>
       </div>
       <div class="contact-card">
         <div class="contact-icon">📞</div>
@@ -523,8 +738,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <p style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--gold); margin-bottom:8px;">Powell Parker</p>
-  <p>Phoenix, Arizona &nbsp;·&nbsp; Hereford, Texas</p>
+  <p style="font-family:'Playfair Display',serif; font-size:1.1rem; color:var(--gold); margin-bottom:8px;">Powell Parker</p>
+  <p>Phoenix, Arizona &nbsp;·&nbsp; Hereford, Texas &nbsp;·&nbsp; Faith · Family · Recovery</p>
   <p style="margin-top:8px;">© 2026 Powell Parker. All rights reserved. &nbsp;·&nbsp;
     <a href="https://www.rightfulreturnsrecovery.com">RightfulReturnsRecovery.com</a>
   </p>
