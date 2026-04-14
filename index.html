@@ -20,37 +20,45 @@
   html { scroll-behavior: smooth; }
   body { font-family: 'Lato', sans-serif; background: var(--deep); color: var(--light); overflow-x: hidden; }
 
+  /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 16px 32px;
-    background: rgba(7,16,24,0.88);
+    background: rgba(7,16,24,0.92);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(201,168,76,0.2);
   }
   .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); letter-spacing: 0.08em; text-decoration: none; }
   .nav-links { display: flex; gap: 28px; list-style: none; }
-  .nav-links a { color: var(--light); text-decoration: none; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; transition: opacity 0.2s, color 0.2s; }
+  .nav-links a { color: var(--light); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; transition: opacity 0.2s, color 0.2s; }
   .nav-links a:hover { opacity: 1; color: var(--gold); }
 
+  /* HERO */
   .hero { height: 100vh; min-height: 600px; position: relative; display: flex; align-items: center; overflow: hidden; }
-  .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; animation: heroFade 2s ease-out forwards; opacity: 0; }
+  .hero-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: top center;
+    animation: heroFade 2s ease-out forwards; opacity: 0;
+  }
   @keyframes heroFade { 0% { opacity:0; transform:scale(1.04); } 100% { opacity:1; transform:scale(1); } }
-  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(7,16,24,0.82) 42%, rgba(7,16,24,0.08) 100%); }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(7,16,24,0.82) 42%, rgba(7,16,24,0.05) 100%); }
   .hero-content { position: relative; z-index: 2; padding: 0 60px; max-width: 620px; }
   .hero-eyebrow { font-size: 0.78rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; opacity: 0; animation: slideUp 0.8s 0.6s ease forwards; }
   .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 6vw, 5rem); line-height: 1.05; color: #fff; margin-bottom: 20px; opacity: 0; animation: slideUp 0.8s 0.9s ease forwards; }
   .hero-name span { color: var(--gold); }
   .hero-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--gold-light); line-height: 1.6; margin-bottom: 36px; opacity: 0; animation: slideUp 0.8s 1.1s ease forwards; }
-  .hero-cta { display: inline-block; padding: 14px 36px; background: var(--gold); color: var(--deep); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: background 0.2s, transform 0.2s; opacity: 0; animation: slideUp 0.8s 1.3s ease forwards; }
+  .hero-cta { display: inline-block; padding: 14px 36px; background: var(--gold); color: var(--deep); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.2s; opacity: 0; animation: slideUp 0.8s 1.3s ease forwards; }
   .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
   @keyframes slideUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
 
+  /* STATS */
   .stats-bar { background: var(--gold); padding: 22px 40px; display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; }
   .stat { text-align: center; }
   .stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--deep); }
   .stat-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(7,16,24,0.75); }
 
+  /* SECTIONS */
   section { padding: 90px 40px; }
   .section-inner { max-width: 1100px; margin: 0 auto; }
   .section-label { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
@@ -58,9 +66,11 @@
   .section-body { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; line-height: 1.85; color: var(--light); max-width: 680px; }
   .divider { width: 60px; height: 3px; background: var(--gold); margin: 24px 0; }
 
+  /* ABOUT */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-  .about-photo { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: top; border: 3px solid rgba(201,168,76,0.3); }
+  .about-photo { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: top; border: 3px solid rgba(201,168,76,0.3); display: block; }
 
+  /* PILLARS */
   .pillars { background: var(--navy); }
   .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
   .pillar { background: rgba(255,255,255,0.03); padding: 48px 36px; border-top: 3px solid var(--gold); transition: background 0.3s; }
@@ -69,32 +79,48 @@
   .pillar-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); margin-bottom: 14px; }
   .pillar-text { font-size: 0.95rem; line-height: 1.75; color: var(--light); opacity: 0.85; }
 
+  /* ARIZONA */
   .arizona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-  .arizona-photo { width: 100%; aspect-ratio: 3/2; object-fit: cover; object-position: top; border: 3px solid rgba(201,168,76,0.3); }
+  .arizona-photo { width: 100%; aspect-ratio: 3/2; object-fit: cover; object-position: top; border: 3px solid rgba(201,168,76,0.3); display: block; }
 
-  .parallax-divider { position: relative; height: 420px; overflow: hidden; }
-  .parallax-bg { position: absolute; inset: -30px; background-size: cover; background-position: center; background-attachment: fixed; }
-  .parallax-dim { position: absolute; inset: 0; background: rgba(7,16,24,0.35); }
+  /* MOON DIVIDER — fixed for iOS, no parallax */
+  .moon-divider { position: relative; width: 100%; height: 420px; overflow: hidden; }
+  .moon-divider img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+  .moon-divider-dim { position: absolute; inset: 0; background: rgba(7,16,24,0.20); }
 
+  /* AZ QUOTE */
   .az-quote { background: var(--navy); padding: 40px; text-align: center; border-top: 1px solid rgba(201,168,76,0.2); }
   .az-quote blockquote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.15rem, 2.2vw, 1.5rem); color: var(--gold-light); max-width: 720px; margin: 0 auto; line-height: 1.7; }
   .az-quote cite { display: block; margin-top: 14px; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-style: normal; }
 
-  /* LIFE PHOTOS - full bleed alternating */
-  .life-photos { background: var(--dark); padding: 0; }
-  .life-header { text-align: center; padding: 80px 40px 40px; }
-  .photo-stack { display: flex; flex-direction: column; }
-  .photo-feature { display: grid; grid-template-columns: 1fr 1fr; min-height: 480px; }
-  .photo-feature img { width: 100%; height: 100%; min-height: 400px; object-fit: cover; object-position: top center; display: block; }
-  .photo-feature-text { padding: 60px 50px; display: flex; flex-direction: column; justify-content: center; background: var(--navy); }
-  .photo-feature.alt .photo-feature-text { background: var(--dark); }
-  .photo-feature.alt { direction: rtl; }
-  .photo-feature.alt > * { direction: ltr; }
-  .photo-feature-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
-  .photo-feature-title { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 2.5vw, 1.9rem); color: #fff; margin-bottom: 16px; line-height: 1.2; }
-  .photo-feature-divider { width: 50px; height: 2px; background: var(--gold); margin-bottom: 20px; }
-  .photo-feature-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; line-height: 1.85; color: var(--light); opacity: 0.9; }
+  /* LIFE PHOTOS — photo on top, gold frame, text underneath */
+  .life-photos { background: var(--dark); padding: 80px 40px; }
+  .life-header { text-align: center; margin-bottom: 70px; }
+  .photo-cards { display: flex; flex-direction: column; gap: 60px; max-width: 900px; margin: 0 auto; }
 
+  .photo-card {
+    border: 3px solid var(--gold);
+    background: var(--navy);
+    overflow: hidden;
+  }
+  .photo-card img {
+    width: 100%;
+    height: 480px;
+    object-fit: contain;
+    object-position: center;
+    background: #000;
+    display: block;
+  }
+  .photo-card-body {
+    padding: 32px 36px 36px;
+    border-top: 1px solid rgba(201,168,76,0.3);
+  }
+  .photo-card-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .photo-card-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 14px; line-height: 1.2; }
+  .photo-card-divider { width: 50px; height: 2px; background: var(--gold); margin-bottom: 16px; }
+  .photo-card-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; line-height: 1.85; color: var(--light); opacity: 0.9; }
+
+  /* BUSINESS CARD */
   .biz-card-section { background: var(--deep); }
   .biz-card { max-width: 700px; margin: 0 auto; background: linear-gradient(135deg, var(--navy) 0%, #0d1f33 100%); border: 1px solid rgba(201,168,76,0.4); padding: 52px 60px; text-align: center; box-shadow: 0 24px 80px rgba(0,0,0,0.6); }
   .biz-card-name { font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff; margin-bottom: 6px; }
@@ -104,6 +130,7 @@
   .biz-card-logo { max-width: 180px; margin: 0 auto; }
   .biz-card-logo img { width: 100%; }
 
+  /* GIVING */
   .giving { background: var(--navy); text-align: center; }
   .charity-grid { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
   .charity-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2); padding: 28px 36px; max-width: 260px; transition: border-color 0.3s, background 0.3s; }
@@ -111,6 +138,7 @@
   .charity-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 10px; }
   .charity-desc { font-size: 0.9rem; line-height: 1.65; color: var(--light); opacity: 0.8; }
 
+  /* CONTACT */
   .contact { background: var(--deep); text-align: center; }
   .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; max-width: 900px; margin-left: auto; margin-right: auto; }
   .contact-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.2); padding: 32px 24px; transition: border-color 0.3s, background 0.3s; }
@@ -121,12 +149,15 @@
   .contact-value a { color: #fff; text-decoration: none; }
   .contact-value a:hover { color: var(--gold); }
 
+  /* FOOTER */
   footer { background: #030b12; padding: 32px 40px; text-align: center; border-top: 1px solid rgba(201,168,76,0.15); font-size: 0.82rem; color: rgba(245,240,232,0.45); line-height: 2; }
   footer a { color: var(--gold); text-decoration: none; }
 
+  /* FADE-IN */
   .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .fade-in.visible { opacity: 1; transform: none; }
 
+  /* RESPONSIVE */
   @media (max-width: 768px) {
     nav { padding: 14px 20px; }
     .nav-links { display: none; }
@@ -136,16 +167,16 @@
     .contact-grid { grid-template-columns: 1fr 1fr; }
     .stats-bar { gap: 28px; }
     section { padding: 60px 24px; }
+    .life-photos { padding: 60px 20px; }
     .biz-card { padding: 36px 28px; }
-    .photo-feature { grid-template-columns: 1fr !important; direction: ltr !important; }
-    .photo-feature.alt { direction: ltr; }
-    .photo-feature img { min-height: 280px; }
-    .photo-feature-text { padding: 40px 28px; }
+    .photo-card img { height: 300px; }
+    .photo-card-body { padding: 24px 20px 28px; }
   }
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Powell Parker</a>
   <ul class="nav-links">
@@ -157,6 +188,7 @@
   </ul>
 </nav>
 
+<!-- HERO — solo horseback, full person visible -->
 <section class="hero">
   <img class="hero-img" src="images/powell-parker-founder.jpg" alt="Powell Parker on horseback">
   <div class="hero-overlay"></div>
@@ -168,6 +200,7 @@
   </div>
 </section>
 
+<!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stat"><div class="stat-num">$10.5B+</div><div class="stat-label">Unclaimed in Texas</div></div>
   <div class="stat"><div class="stat-num">3</div><div class="stat-label">States We Serve</div></div>
@@ -175,6 +208,7 @@
   <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Contingency Based</div></div>
 </div>
 
+<!-- ABOUT -->
 <section id="about" style="background: var(--navy);">
   <div class="section-inner about-grid">
     <div class="fade-in">
@@ -191,6 +225,7 @@
   </div>
 </section>
 
+<!-- PILLARS -->
 <section class="pillars" id="pillars">
   <div class="section-inner">
     <div style="text-align:center; margin-bottom: 56px;" class="fade-in">
@@ -217,6 +252,7 @@
   </div>
 </section>
 
+<!-- ARIZONA -->
 <section id="arizona" style="background: var(--deep);">
   <div class="section-inner arizona-grid">
     <div class="fade-in">
@@ -228,101 +264,134 @@
       <p class="section-body">Arizona didn't just shape Powell's work ethic — it forged his identity. The desert teaches patience. The rodeo arena teaches resilience. And the community of Queen Creek taught him that your word is your bond and your handshake still means something.</p>
     </div>
     <div class="fade-in">
-      <img class="arizona-photo" src="images/life-fishing.jpeg" alt="Powell Parker in Arizona">
+      <img class="arizona-photo" src="images/about-couple.jpeg" alt="Powell Parker in Arizona">
     </div>
   </div>
 </section>
 
-<div class="parallax-divider">
-  <div class="parallax-bg" style="background-image: url('images/arizona-moon.png');"></div>
-  <div class="parallax-dim"></div>
+<!-- MOON DIVIDER — iOS compatible, no parallax -->
+<div class="moon-divider">
+  <img src="images/arizona-moon.png" alt="Arizona moonrise">
+  <div class="moon-divider-dim"></div>
 </div>
 <div class="az-quote">
   <blockquote>"Arizona, where every sunrise paints a canvas of hope for the day ahead"</blockquote>
   <cite>~ P. Parker</cite>
 </div>
 
+<!-- LIFE PHOTOS — full photo, gold frame, text underneath -->
 <section class="life-photos" id="life">
   <div class="life-header fade-in">
     <p class="section-label">Life Outside the Office</p>
     <h2 class="section-title">The Moments That Matter</h2>
   </div>
 
-  <div class="photo-stack">
+  <div class="photo-cards">
 
-    <div class="photo-feature fade-in">
+    <div class="photo-card fade-in">
       <img src="images/life-roping.jpeg" alt="Powell and Joel team roping">
-      <div class="photo-feature-text">
-        <p class="photo-feature-label">In the Arena</p>
-        <h3 class="photo-feature-title">Powell &amp; Joel — Team Roping</h3>
-        <div class="photo-feature-divider"></div>
-        <p class="photo-feature-desc">Rubio the Palomino and Monty the Chestnut. Team roping isn't just a sport — it's a brotherhood built on trust, timing, and two cowboys who've got each other's back. Powell has competed since his Queen Creek rodeo days and still gets after it whenever he can.</p>
+      <div class="photo-card-body">
+        <p class="photo-card-label">In the Arena</p>
+        <h3 class="photo-card-title">Powell &amp; Joel — Team Roping</h3>
+        <div class="photo-card-divider"></div>
+        <p class="photo-card-desc">Rubio the Palomino and Monty the Chestnut. Team roping isn't just a sport — it's a brotherhood built on trust, timing, and two cowboys who've got each other's back. Powell has competed since his Queen Creek rodeo days and still gets after it whenever he can.</p>
       </div>
     </div>
 
-    <div class="photo-feature alt fade-in">
+    <div class="photo-card fade-in">
       <img src="images/life-daughters.jpeg" alt="Sara and Scarlett">
-      <div class="photo-feature-text">
-        <p class="photo-feature-label">Family First</p>
-        <h3 class="photo-feature-title">Sara &amp; Scarlett — The Heart of Everything</h3>
-        <div class="photo-feature-divider"></div>
-        <p class="photo-feature-desc">Ages 19 and 10. Every case worked, every mile driven, every dollar recovered is ultimately for them. Family isn't the reason Powell shows up. It's the reason he never quits.</p>
+      <div class="photo-card-body">
+        <p class="photo-card-label">Family First</p>
+        <h3 class="photo-card-title">Sara &amp; Scarlett — The Heart of Everything</h3>
+        <div class="photo-card-divider"></div>
+        <p class="photo-card-desc">Ages 19 and 10. Every case worked, every mile driven, every dollar recovered is ultimately for them. Family isn't the reason Powell shows up. It's the reason he never quits.</p>
       </div>
     </div>
 
-    <div class="photo-feature fade-in">
-      <img src="images/life-fishing.jpeg" alt="Powell fishing in Arizona">
-      <div class="photo-feature-text">
-        <p class="photo-feature-label">On the Water</p>
-        <h3 class="photo-feature-title">Arizona Fishing — Life Outside the Office</h3>
-        <div class="photo-feature-divider"></div>
-        <p class="photo-feature-desc">The pines of northern Arizona, a cold mountain lake, and a fishing rod. Powell believes the best ideas and the clearest thinking happen when you step away from the desk and let the land do the talking.</p>
+    <div class="photo-card fade-in">
+      <img src="images/pool-design.jpg" alt="Powell's custom pool design">
+      <div class="photo-card-body">
+        <p class="photo-card-label">Built by Hand</p>
+        <h3 class="photo-card-title">Custom Pool Design — Fire, Water &amp; Vision</h3>
+        <div class="photo-card-divider"></div>
+        <p class="photo-card-desc">Fire features, a waterfall, a slide, and blue-lit water at night. Powell designed this himself — proof that the same attention to detail he brings to asset recovery shows up everywhere he puts his name on something.</p>
       </div>
     </div>
 
-    <div class="photo-feature alt fade-in">
+    <div class="photo-card fade-in">
       <img src="images/mount-lemmon-family.jpg" alt="Mount Lemmon family time">
-      <div class="photo-feature-text">
-        <p class="photo-feature-label">Mountain Life</p>
-        <h3 class="photo-feature-title">Mount Lemmon — Family Time in the Pines</h3>
-        <div class="photo-feature-divider"></div>
-        <p class="photo-feature-desc">Always up for an adventure. Whether it's the White Mountains or the Santa Catalinas, Powell finds that elevation clears the mind and keeps perspective sharp. The mountains remind you what's real.</p>
+      <div class="photo-card-body">
+        <p class="photo-card-label">Mountain Life</p>
+        <h3 class="photo-card-title">Mount Lemmon — Family Time in the Pines</h3>
+        <div class="photo-card-divider"></div>
+        <p class="photo-card-desc">Always up for an adventure. Whether it's the White Mountains or the Santa Catalinas, Powell finds that elevation clears the mind and keeps perspective sharp. The mountains remind you what's real.</p>
       </div>
     </div>
 
-    <div class="photo-feature fade-in">
+    <div class="photo-card fade-in">
       <img src="images/life-rodeo.jpeg" alt="Rodeo roots Queen Creek Arizona">
-      <div class="photo-feature-text">
-        <p class="photo-feature-label">Rodeo Roots</p>
-        <h3 class="photo-feature-title">High School &amp; College Rodeo — Queen Creek, AZ</h3>
-        <div class="photo-feature-divider"></div>
-        <p class="photo-feature-desc">Team Roping and Bulldogging across Arizona. The rodeo arena taught Powell the same lessons that drive RRR today — preparation, grit, and the courage to commit when the gate swings open.</p>
+      <div class="photo-card-body">
+        <p class="photo-card-label">Rodeo Roots</p>
+        <h3 class="photo-card-title">High School &amp; College Rodeo — Queen Creek, AZ</h3>
+        <div class="photo-card-divider"></div>
+        <p class="photo-card-desc">Team Roping and Bulldogging across Arizona. The rodeo arena taught Powell the same lessons that drive RRR today — preparation, grit, and the courage to commit when the gate swings open.</p>
       </div>
     </div>
 
-    <div class="photo-feature alt fade-in">
+    <div class="photo-card fade-in">
       <img src="images/family1.jpeg" alt="Powell Parker family">
-      <div class="photo-feature-text">
-        <p class="photo-feature-label">Family</p>
-        <h3 class="photo-feature-title">The Reason for All of It</h3>
-        <div class="photo-feature-divider"></div>
-        <p class="photo-feature-desc">Faith, family, and community aren't bumper sticker words — they're the foundation everything is built on. The people in Powell's life keep him grounded and remind him what the work is really for.</p>
+      <div class="photo-card-body">
+        <p class="photo-card-label">Family</p>
+        <h3 class="photo-card-title">The Reason for All of It</h3>
+        <div class="photo-card-divider"></div>
+        <p class="photo-card-desc">Faith, family, and community aren't bumper sticker words — they're the foundation everything is built on. The people in Powell's life keep him grounded and remind him what the work is really for.</p>
       </div>
     </div>
 
-    <div class="photo-feature fade-in">
-      <img src="images/family2.jpeg" alt="Powell Parker with family and friends">
-      <div class="photo-feature-text">
-        <p class="photo-feature-label">Together</p>
-        <h3 class="photo-feature-title">Community &amp; Connection</h3>
-        <div class="photo-feature-divider"></div>
-        <p class="photo-feature-desc">From Hereford to Queen Creek to Phoenix — the people who show up matter. Powell surrounds himself with loyal, faith-driven people who lift each other up and get things done.</p>
+    <div class="photo-card fade-in">
+      <img src="images/family2.jpeg" alt="Parker family at the wedding">
+      <div class="photo-card-body">
+        <p class="photo-card-label">Family Celebration</p>
+        <h3 class="photo-card-title">The Parker Family</h3>
+        <div class="photo-card-divider"></div>
+        <p class="photo-card-desc">Together for the big moments. The Parker family shows up for each other — in the good times, the hard times, and everything in between. That's not something you take for granted.</p>
+      </div>
+    </div>
+
+    <div class="photo-card fade-in">
+      <img src="images/family3.jpeg" alt="Parker brothers and Dad">
+      <div class="photo-card-body">
+        <p class="photo-card-label">Brotherhood</p>
+        <h3 class="photo-card-title">Parker Brothers &amp; Dad</h3>
+        <div class="photo-card-divider"></div>
+        <p class="photo-card-desc">The men who shaped the man. From Hereford to Phoenix, the Parker family bond runs deep. Dad set the standard — the brothers carry it forward.</p>
+      </div>
+    </div>
+
+    <div class="photo-card fade-in">
+      <img src="images/pow-bluedorado.jpg" alt="Powell Parker with mahi-mahi in Puerto Vallarta">
+      <div class="photo-card-body">
+        <p class="photo-card-label">Deep Sea — Puerto Vallarta</p>
+        <h3 class="photo-card-title">Blue Dorado — The One That Didn't Get Away</h3>
+        <div class="photo-card-divider"></div>
+        <p class="photo-card-desc">Powell landed this brilliant blue mahi-mahi on a company deep sea fishing trip in Puerto Vallarta — a reward trip he organized for top performers. Work hard, play hard, and never miss a chance to get offshore.</p>
+      </div>
+    </div>
+
+    <div class="photo-card fade-in">
+      <img src="images/pow-buttons.jpg" alt="Powell Parker deep sea fishing Puerto Vallarta">
+      <div class="photo-card-body">
+        <p class="photo-card-label">Company Trip — Puerto Vallarta</p>
+        <h3 class="photo-card-title">Rewarding the People Who Show Up</h3>
+        <div class="photo-card-divider"></div>
+        <p class="photo-card-desc">Powell believes in taking care of the people around him. This deep sea fishing trip to Puerto Vallarta was his way of saying thank you to the top performers who grind alongside him. Culture is built in moments like these.</p>
       </div>
     </div>
 
   </div>
 </section>
 
+<!-- RRR BUSINESS CARD -->
 <section class="biz-card-section" id="rrr">
   <div class="section-inner">
     <div class="biz-card fade-in">
@@ -340,6 +409,7 @@
   </div>
 </section>
 
+<!-- GIVING BACK -->
 <section class="giving" id="giving">
   <div class="section-inner">
     <div class="fade-in">
@@ -365,6 +435,7 @@
   </div>
 </section>
 
+<!-- CONTACT -->
 <section id="contact" class="contact">
   <div class="section-inner">
     <div class="fade-in">
@@ -408,6 +479,7 @@
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <p style="font-family:'Playfair Display',serif; font-size:1rem; color:var(--gold); margin-bottom:8px;">Powell Parker</p>
   <p>Phoenix, Arizona &nbsp;·&nbsp; Hereford, Texas</p>
