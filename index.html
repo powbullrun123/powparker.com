@@ -79,56 +79,213 @@
   .pillar-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); margin-bottom: 14px; }
   .pillar-text { font-size: 0.95rem; line-height: 1.75; color: var(--light); opacity: 0.85; }
 
-  /* ARIZONA */
+  /* ARIZONA — FIX: remove aspect-ratio so full sunset shows */
   .arizona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-  .arizona-photo { width: 100%; aspect-ratio: 3/2; object-fit: cover; object-position: top; border: 3px solid rgba(201,168,76,0.3); display: block; }
+  .arizona-photo {
+    width: 100%;
+    height: auto;          /* KEY FIX: let natural height show full image */
+    object-fit: contain;   /* show entire photo, no cropping */
+    border: 3px solid rgba(201,168,76,0.3);
+    display: block;
+    background: #000;
+  }
 
-  /* MOON DIVIDER — fixed for iOS, no parallax */
-  .moon-divider { position: relative; width: 100%; height: 420px; overflow: hidden; }
-  .moon-divider img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-  .moon-divider-dim { position: absolute; inset: 0; background: rgba(7,16,24,0.20); }
+  /* MOON DIVIDER — full viewport width, tall enough to see the full moon */
+  .moon-divider {
+    position: relative;
+    width: 100%;
+    height: 100vh;         /* full screen height so moon is glorious */
+    min-height: 500px;
+    overflow: hidden;
+  }
+  .moon-divider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+  }
+  .moon-divider-dim { position: absolute; inset: 0; background: rgba(7,16,24,0.15); }
+  /* Elegant text overlay on moon */
+  .moon-text {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 2;
+    width: 90%;
+  }
+  .moon-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    color: #fff;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+    letter-spacing: 0.05em;
+  }
+  .moon-text cite {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-style: normal;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+  }
 
-  /* AZ QUOTE */
-  .az-quote { background: var(--navy); padding: 40px; text-align: center; border-top: 1px solid rgba(201,168,76,0.2); }
-  .az-quote blockquote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.15rem, 2.2vw, 1.5rem); color: var(--gold-light); max-width: 720px; margin: 0 auto; line-height: 1.7; }
-  .az-quote cite { display: block; margin-top: 14px; font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-style: normal; }
+  /* AZ QUOTE — kept but now quote lives on the moon image */
+  .az-quote { background: var(--navy); padding: 32px 40px; text-align: center; border-top: 1px solid rgba(201,168,76,0.2); display: none; }
 
-  /* LIFE PHOTOS — photo on top, gold frame, text underneath */
+  /* ─── LIFE PHOTOS ─────────────────────────────────────────────── */
   .life-photos { background: var(--dark); padding: 80px 40px; }
   .life-header { text-align: center; margin-bottom: 70px; }
-  .photo-cards { display: flex; flex-direction: column; gap: 60px; max-width: 900px; margin: 0 auto; }
+  .photo-cards { display: flex; flex-direction: column; gap: 80px; max-width: 900px; margin: 0 auto; }
 
+  /* Gold-framed card with decorative Western corners */
   .photo-card {
     border: 3px solid var(--gold);
     background: var(--navy);
     overflow: hidden;
+    position: relative;
   }
-  .photo-card img {
+
+  /* Decorative corner pieces — SVG drawn via CSS */
+  .photo-card::before,
+  .photo-card::after {
+    content: '';
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .photo-card::before {
+    top: -3px; left: -3px;
+    border-top: 4px solid var(--gold);
+    border-left: 4px solid var(--gold);
+  }
+  .photo-card::after {
+    bottom: -3px; right: -3px;
+    border-bottom: 4px solid var(--gold);
+    border-right: 4px solid var(--gold);
+  }
+
+  /* Photo wrapper — handles the image + decorative side bars */
+  .photo-card-img-wrap {
+    position: relative;
     width: 100%;
-    height: 480px;
+    background: var(--deep);
+    display: flex;
+    align-items: stretch;
+  }
+
+  /* Side decorative bars (the "black bars" filled with Western art) */
+  .photo-deco {
+    width: 64px;
+    flex-shrink: 0;
+    background: var(--deep);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 12px 0;
+    gap: 8px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+  .photo-deco-icon {
+    font-size: 1.4rem;
+    opacity: 0.55;
+    line-height: 1;
+  }
+  /* Thin gold rule between icons */
+  .photo-deco-rule {
+    width: 1px;
+    height: 28px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    opacity: 0.4;
+  }
+
+  .photo-card img {
+    flex: 1;
+    min-width: 0;
+    /* FIX: use height:auto + max-height so full image shows, no cropping */
+    width: 100%;
+    height: auto;
+    max-height: 600px;
     object-fit: contain;
     object-position: center;
     background: #000;
     display: block;
   }
+
   .photo-card-body {
     padding: 32px 36px 36px;
     border-top: 1px solid rgba(201,168,76,0.3);
+    position: relative;
   }
   .photo-card-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
   .photo-card-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 14px; line-height: 1.2; }
   .photo-card-divider { width: 50px; height: 2px; background: var(--gold); margin-bottom: 16px; }
   .photo-card-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; line-height: 1.85; color: var(--light); opacity: 0.9; }
 
-  /* BUSINESS CARD */
+  /* Gold leaf corner accents on card body */
+  .photo-card-body::before {
+    content: '✦';
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    color: var(--gold);
+    font-size: 0.85rem;
+    opacity: 0.45;
+  }
+
+  /* ─── BUSINESS CARD — 4X BIGGER LOGO ─────────────────────────── */
   .biz-card-section { background: var(--deep); }
-  .biz-card { max-width: 700px; margin: 0 auto; background: linear-gradient(135deg, var(--navy) 0%, #0d1f33 100%); border: 1px solid rgba(201,168,76,0.4); padding: 52px 60px; text-align: center; box-shadow: 0 24px 80px rgba(0,0,0,0.6); }
-  .biz-card-name { font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff; margin-bottom: 6px; }
-  .biz-card-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: var(--gold); margin-bottom: 28px; }
-  .biz-card-divider { width: 50px; height: 2px; background: var(--gold); margin: 0 auto 28px; }
-  .biz-card-tagline { font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light); opacity: 0.7; margin-bottom: 32px; }
-  .biz-card-logo { max-width: 180px; margin: 0 auto; }
-  .biz-card-logo img { width: 100%; }
+  .biz-card {
+    max-width: 860px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--navy) 0%, #0d1f33 100%);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 64px 80px;
+    text-align: center;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+  }
+  /* subtle background pattern */
+  .biz-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 60%),
+                      radial-gradient(circle at 80% 20%, rgba(201,168,76,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .biz-card-name { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: #fff; margin-bottom: 6px; }
+  .biz-card-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.25rem; color: var(--gold); margin-bottom: 28px; }
+  .biz-card-divider { width: 80px; height: 2px; background: var(--gold); margin: 0 auto 28px; }
+  .biz-card-tagline { font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light); opacity: 0.75; margin-bottom: 44px; }
+
+  /* 4X BIGGER LOGO */
+  .biz-card-logo {
+    max-width: 480px;   /* was 180px — now ~4x */
+    margin: 0 auto 36px;
+  }
+  .biz-card-logo img { width: 100%; height: auto; display: block; }
+
+  /* Motto text below logo */
+  .biz-card-motto {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+    margin-bottom: 24px;
+    opacity: 0.9;
+  }
 
   /* GIVING */
   .giving { background: var(--navy); text-align: center; }
@@ -168,9 +325,11 @@
     .stats-bar { gap: 28px; }
     section { padding: 60px 24px; }
     .life-photos { padding: 60px 20px; }
-    .biz-card { padding: 36px 28px; }
-    .photo-card img { height: 300px; }
-    .photo-card-body { padding: 24px 20px 28px; }
+    .biz-card { padding: 36px 24px; }
+    .photo-deco { width: 36px; }
+    .photo-deco-icon { font-size: 1rem; }
+    .biz-card-logo { max-width: 320px; }
+    .moon-divider { height: 60vh; min-height: 340px; }
   }
 </style>
 </head>
@@ -188,7 +347,7 @@
   </ul>
 </nav>
 
-<!-- HERO — solo horseback, full person visible -->
+<!-- HERO -->
 <section class="hero">
   <img class="hero-img" src="images/powell-parker-founder.jpg" alt="Powell Parker on horseback">
   <div class="hero-overlay"></div>
@@ -252,7 +411,7 @@
   </div>
 </section>
 
-<!-- ARIZONA -->
+<!-- ARIZONA — full sunset photo, no crop -->
 <section id="arizona" style="background: var(--deep);">
   <div class="section-inner arizona-grid">
     <div class="fade-in">
@@ -264,22 +423,23 @@
       <p class="section-body">Arizona didn't just shape Powell's work ethic — it forged his identity. The desert teaches patience. The rodeo arena teaches resilience. And the community of Queen Creek taught him that your word is your bond and your handshake still means something.</p>
     </div>
     <div class="fade-in">
+      <!-- FIXED: height:auto + object-fit:contain shows full sunset, no crop -->
       <img class="arizona-photo" src="images/horse-sunset48.jpg" alt="Powell Parker with horses at Arizona sunset">
     </div>
   </div>
 </section>
 
-<!-- MOON DIVIDER — iOS compatible, no parallax -->
+<!-- MOON DIVIDER — full viewport, whole moon visible, quote overlaid -->
 <div class="moon-divider">
-  <img src="images/arizona-moon.png" alt="Arizona moonrise">
+  <img src="images/arizona-moon.png" alt="Arizona moonrise over the desert">
   <div class="moon-divider-dim"></div>
-</div>
-<div class="az-quote">
-  <blockquote>"Arizona, where every sunrise paints a canvas of hope for the day ahead"</blockquote>
-  <cite>~ P. Parker</cite>
+  <div class="moon-text">
+    <p>"Arizona, where every sunrise paints a canvas of hope for the day ahead"</p>
+    <cite>~ P. Parker</cite>
+  </div>
 </div>
 
-<!-- LIFE PHOTOS — full photo, gold frame, text underneath -->
+<!-- LIFE PHOTOS -->
 <section class="life-photos" id="life">
   <div class="life-header fade-in">
     <p class="section-label">Life Outside the Office</p>
@@ -289,7 +449,31 @@
   <div class="photo-cards">
 
     <div class="photo-card fade-in">
-      <img src="images/life-roping.jpeg" alt="Powell and Joel team roping">
+      <div class="photo-card-img-wrap">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🤠</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🐴</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🪢</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">⭐</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🤠</span>
+        </div>
+        <img src="images/life-roping.jpeg" alt="Powell and Joel team roping">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🤠</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🐴</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🪢</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">⭐</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🤠</span>
+        </div>
+      </div>
       <div class="photo-card-body">
         <p class="photo-card-label">In the Arena</p>
         <h3 class="photo-card-title">Powell &amp; Joel — Team Roping</h3>
@@ -299,7 +483,31 @@
     </div>
 
     <div class="photo-card fade-in">
-      <img src="images/life-daughters.jpeg" alt="Sara and Scarlett">
+      <div class="photo-card-img-wrap">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">👨‍👧‍👧</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">❤️</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌟</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🙏</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">❤️</span>
+        </div>
+        <img src="images/life-daughters.jpeg" alt="Sara and Scarlett">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">👨‍👧‍👧</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">❤️</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌟</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🙏</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">❤️</span>
+        </div>
+      </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Family First</p>
         <h3 class="photo-card-title">Sara &amp; Scarlett — The Heart of Everything</h3>
@@ -309,7 +517,31 @@
     </div>
 
     <div class="photo-card fade-in">
-      <img src="images/pool-designs.jpg" alt="Powell's custom pool design">
+      <div class="photo-card-img-wrap">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🏗️</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">💧</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🔥</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">✨</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🏗️</span>
+        </div>
+        <img src="images/pool-designs.jpg" alt="Powell's custom pool design">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🏗️</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">💧</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🔥</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">✨</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🏗️</span>
+        </div>
+      </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Built by Hand</p>
         <h3 class="photo-card-title">Custom Pool Design — Fire, Water &amp; Vision</h3>
@@ -319,7 +551,31 @@
     </div>
 
     <div class="photo-card fade-in">
-      <img src="images/mount-lemmon-family.jpg" alt="Mount Lemmon family time">
+      <div class="photo-card-img-wrap">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">⛰️</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌲</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🦅</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌲</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">⛰️</span>
+        </div>
+        <img src="images/mount-lemmon-family.jpg" alt="Mount Lemmon family time">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">⛰️</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌲</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🦅</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌲</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">⛰️</span>
+        </div>
+      </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Mountain Life</p>
         <h3 class="photo-card-title">Mount Lemmon — Family Time in the Pines</h3>
@@ -329,7 +585,31 @@
     </div>
 
     <div class="photo-card fade-in">
-      <img src="images/life-rodeo.jpeg" alt="Rodeo roots Queen Creek Arizona">
+      <div class="photo-card-img-wrap">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🤠</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🐂</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🏆</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🐂</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🤠</span>
+        </div>
+        <img src="images/life-rodeo.jpeg" alt="Rodeo roots Queen Creek Arizona">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🤠</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🐂</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🏆</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🐂</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🤠</span>
+        </div>
+      </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Rodeo Roots</p>
         <h3 class="photo-card-title">High School &amp; College Rodeo — Queen Creek, AZ</h3>
@@ -339,7 +619,31 @@
     </div>
 
     <div class="photo-card fade-in">
-      <img src="images/family1.jpeg" alt="Powell Parker family">
+      <div class="photo-card-img-wrap">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🙏</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">✝️</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">❤️</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">✝️</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🙏</span>
+        </div>
+        <img src="images/family1.jpeg" alt="Powell Parker family">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🙏</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">✝️</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">❤️</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">✝️</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🙏</span>
+        </div>
+      </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Family</p>
         <h3 class="photo-card-title">The Reason for All of It</h3>
@@ -349,7 +653,31 @@
     </div>
 
     <div class="photo-card fade-in">
-      <img src="images/family2.jpeg" alt="Parker family at the wedding">
+      <div class="photo-card-img-wrap">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🎉</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🥂</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">💛</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🥂</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🎉</span>
+        </div>
+        <img src="images/family2.jpeg" alt="Parker family at the wedding">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🎉</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🥂</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">💛</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🥂</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🎉</span>
+        </div>
+      </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Family Celebration</p>
         <h3 class="photo-card-title">The Parker Family</h3>
@@ -359,7 +687,31 @@
     </div>
 
     <div class="photo-card fade-in">
-      <img src="images/family3.jpeg" alt="Parker brothers and Dad">
+      <div class="photo-card-img-wrap">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🤠</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌵</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">⭐</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌵</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🤠</span>
+        </div>
+        <img src="images/family3.jpeg" alt="Parker brothers and Dad">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🤠</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌵</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">⭐</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌵</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🤠</span>
+        </div>
+      </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Brotherhood</p>
         <h3 class="photo-card-title">Parker Brothers &amp; Dad</h3>
@@ -369,7 +721,31 @@
     </div>
 
     <div class="photo-card fade-in">
-      <img src="images/pow-bluedorado.jpg" alt="Powell Parker with mahi-mahi in Puerto Vallarta">
+      <div class="photo-card-img-wrap">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🎣</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🐟</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌊</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🐟</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🎣</span>
+        </div>
+        <img src="images/pow-bluedorado.jpg" alt="Powell Parker with mahi-mahi in Puerto Vallarta">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🎣</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🐟</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌊</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🐟</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🎣</span>
+        </div>
+      </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Deep Sea — Puerto Vallarta</p>
         <h3 class="photo-card-title">Blue Dorado — The One That Didn't Get Away</h3>
@@ -379,7 +755,31 @@
     </div>
 
     <div class="photo-card fade-in">
-      <img src="images/pow-buttons.jpg" alt="Powell Parker deep sea fishing Puerto Vallarta">
+      <div class="photo-card-img-wrap">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🏆</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌊</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">☀️</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌊</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🏆</span>
+        </div>
+        <img src="images/pow-buttons.jpg" alt="Powell Parker deep sea fishing Puerto Vallarta">
+        <div class="photo-deco">
+          <span class="photo-deco-icon">🏆</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌊</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">☀️</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🌊</span>
+          <div class="photo-deco-rule"></div>
+          <span class="photo-deco-icon">🏆</span>
+        </div>
+      </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Company Trip — Puerto Vallarta</p>
         <h3 class="photo-card-title">Rewarding the People Who Show Up</h3>
@@ -391,7 +791,7 @@
   </div>
 </section>
 
-<!-- RRR BUSINESS CARD -->
+<!-- RRR BUSINESS CARD — 4X BIGGER LOGO -->
 <section class="biz-card-section" id="rrr">
   <div class="section-inner">
     <div class="biz-card fade-in">
@@ -399,11 +799,15 @@
       <div class="biz-card-title">Founder &amp; Managing Member</div>
       <div class="biz-card-divider"></div>
       <div class="biz-card-tagline">Finding Hidden Assets &nbsp;·&nbsp; Recovering What's Rightfully Yours</div>
+      <!-- 4X BIGGER LOGO -->
       <div class="biz-card-logo">
-        <img src="images/rrr-logo.jpeg" alt="Rightful Returns Recovery">
+        <img src="images/rrr-logo.jpeg" alt="Rightful Returns Recovery Shield Logo">
       </div>
-      <div style="margin-top: 28px; font-size: 0.85rem;">
-        <a href="https://www.rightfulreturnsrecovery.com" style="color: var(--gold); text-decoration: none;">www.rightfulreturnsrecovery.com</a>
+      <div class="biz-card-motto">
+        "Finding Hidden Assets. Recovering What's Rightfully Yours."
+      </div>
+      <div style="margin-top: 8px; font-size: 0.9rem;">
+        <a href="https://www.rightfulreturnsrecovery.com" style="color: var(--gold); text-decoration: none; letter-spacing: 0.05em;">www.rightfulreturnsrecovery.com</a>
       </div>
     </div>
   </div>
