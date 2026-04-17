@@ -1,8 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- PRIMARY SEO -->
 
 <title>Powell Parker | Founder of Rightful Returns Recovery | Phoenix, Arizona</title>
 <meta name="description" content="Powell Parker is the founder of Rightful Returns Recovery — a contingency-only surplus funds and asset recovery firm serving Texas, Arizona, and Georgia. Faith-driven entrepreneur, Arizona cowboy, and community leader based in Phoenix, AZ.">
@@ -11,21 +14,29 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://www.powparker.com/">
 
+<!-- GOOGLE SEARCH CONSOLE VERIFICATION -->
+
 <meta name="google-site-verification" content="gA5hA4aCNqoToPmSzbR7jDNhaiCYoLFrznqVuirGpwc">
+
+<!-- OPEN GRAPH -->
 
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Powell Parker | Founder of Rightful Returns Recovery">
 <meta property="og:description" content="Powell Parker — founder of Rightful Returns Recovery. Contingency-only asset recovery serving TX, AZ, and GA. Faith-driven, cowboy-built, community-focused.">
 <meta property="og:url" content="https://www.powparker.com/">
 <meta property="og:site_name" content="Powell Parker">
-<meta property="og:image" content="https://www.powparker.com/images/powell-parker-founder.webp">
+<meta property="og:image" content="https://www.powparker.com/images/powell-parker-founder.jpg">
 <meta property="profile:first_name" content="Powell">
 <meta property="profile:last_name" content="Parker">
+
+<!-- TWITTER/X CARD -->
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Powell Parker | Founder, Rightful Returns Recovery">
 <meta name="twitter:description" content="Contingency-only surplus funds & asset recovery. TX, AZ, GA. Faith. Family. Recovery.">
-<meta name="twitter:image" content="https://www.powparker.com/images/powell-parker-founder.webp">
+<meta name="twitter:image" content="https://www.powparker.com/images/powell-parker-founder.jpg">
+
+<!-- STRUCTURED DATA: Person -->
 
 <script type="application/ld+json">
 {
@@ -71,6 +82,8 @@
 }
 </script>
 
+<!-- STRUCTURED DATA: WebSite -->
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -96,12 +109,10 @@
     --navy: #1B2A40;
     --deep: #071018;
     --light: #F5F0E8;
-    /* GLOBAL FONT INCREASE: Added 1pt (~1.33px) to your original sizes */
-    --base-font-size: 19.33px; 
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Lato', sans-serif; background: var(--deep); color: var(--light); overflow-x: hidden; font-size: var(--base-font-size); }
+  body { font-family: 'Lato', sans-serif; background: var(--deep); color: var(--light); overflow-x: hidden; }
 
   /* NAV */
   nav {
@@ -158,50 +169,274 @@
 
   /* ARIZONA */
   .arizona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-  .arizona-photo { width: 100%; height: auto; object-fit: contain; border: 3px solid rgba(201,168,76,0.3); display: block; background: #000; }
+  .arizona-photo {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border: 3px solid rgba(201,168,76,0.3);
+    display: block;
+    background: #000;
+  }
 
   /* MOON DIVIDER */
-  .moon-divider { position: relative; width: 100%; height: 100vh; min-height: 500px; overflow: hidden; }
-  .moon-divider img { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
+  .moon-divider {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 500px;
+    overflow: hidden;
+  }
+  .moon-divider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+  }
   .moon-divider-dim { position: absolute; inset: 0; background: rgba(7,16,24,0.15); }
-  .moon-text { position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 2; width: 90%; }
-  .moon-text p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.2rem, 2.5vw, 1.8rem); color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,0.8); letter-spacing: 0.05em; }
-  .moon-text cite { display: block; margin-top: 10px; font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-style: normal; text-shadow: 0 2px 12px rgba(0,0,0,0.9); }
+  .moon-text {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 2;
+    width: 90%;
+  }
+  .moon-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    color: #fff;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+    letter-spacing: 0.05em;
+  }
+  .moon-text cite {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-style: normal;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+  }
 
   /* LIFE PHOTOS */
   .life-photos { background: var(--dark); padding: 80px 40px; }
   .life-header { text-align: center; margin-bottom: 70px; }
   .photo-cards { display: flex; flex-direction: column; gap: 80px; max-width: 900px; margin: 0 auto; }
-  .photo-card { border: 3px solid var(--gold); background: var(--navy); overflow: hidden; position: relative; }
-  .photo-card::before, .photo-card::after { content: ''; position: absolute; width: 48px; height: 48px; z-index: 10; pointer-events: none; }
+
+  .photo-card {
+    border: 3px solid var(--gold);
+    background: var(--navy);
+    overflow: hidden;
+    position: relative;
+  }
+  .photo-card::before,
+  .photo-card::after {
+    content: '';
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    z-index: 10;
+    pointer-events: none;
+  }
   .photo-card::before { top: -3px; left: -3px; border-top: 4px solid var(--gold); border-left: 4px solid var(--gold); }
   .photo-card::after { bottom: -3px; right: -3px; border-bottom: 4px solid var(--gold); border-right: 4px solid var(--gold); }
-  .photo-card-img-wrap { position: relative; width: 100%; background: var(--deep); display: flex; align-items: stretch; }
-  .photo-deco { width: 64px; flex-shrink: 0; background: var(--deep); display: flex; flex-direction: column; align-items: center; justify-content: space-evenly; padding: 12px 0; gap: 8px; border-top: 1px solid rgba(201,168,76,0.15); border-bottom: 1px solid rgba(201,168,76,0.15); }
+
+  .photo-card-img-wrap {
+    position: relative;
+    width: 100%;
+    background: var(--deep);
+    display: flex;
+    align-items: stretch;
+  }
+  .photo-deco {
+    width: 64px;
+    flex-shrink: 0;
+    background: var(--deep);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 12px 0;
+    gap: 8px;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
   .photo-deco-icon { font-size: 1.4rem; opacity: 0.55; line-height: 1; }
-  .photo-deco-rule { width: 1px; height: 28px; background: linear-gradient(to bottom, transparent, var(--gold), transparent); opacity: 0.4; }
-  .photo-card img { flex: 1; min-width: 0; width: 100%; height: auto; max-height: 600px; object-fit: contain; object-position: center; background: #000; display: block; }
-  .photo-card-body { padding: 32px 36px 36px; border-top: 1px solid rgba(201,168,76,0.3); position: relative; }
+  .photo-deco-rule {
+    width: 1px;
+    height: 28px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    opacity: 0.4;
+  }
+  .photo-card img {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: contain;
+    object-position: center;
+    background: #000;
+    display: block;
+  }
+  .photo-card-body {
+    padding: 32px 36px 36px;
+    border-top: 1px solid rgba(201,168,76,0.3);
+    position: relative;
+  }
   .photo-card-label { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
   .photo-card-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 14px; line-height: 1.2; }
   .photo-card-divider { width: 50px; height: 2px; background: var(--gold); margin-bottom: 16px; }
   .photo-card-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; line-height: 1.85; color: var(--light); opacity: 0.9; }
-  .photo-card-body::before { content: '✦'; position: absolute; top: 14px; right: 20px; color: var(--gold); font-size: 0.85rem; opacity: 0.45; }
+  .photo-card-body::before {
+    content: '✦';
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    color: var(--gold);
+    font-size: 0.85rem;
+    opacity: 0.45;
+  }
+
+  /* GIVING */
+  .giving { background: var(--navy); text-align: center; }
+  .charity-grid { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+  .charity-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2); padding: 28px 36px; max-width: 260px; transition: border-color 0.3s, background 0.3s; }
+  .charity-item:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+  .charity-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 10px; }
+  .charity-desc { font-size: 0.9rem; line-height: 1.65; color: var(--light); opacity: 0.8; }
 
   /* BIZ CARD */
   .biz-card-section { background: var(--deep); }
-  .biz-card { max-width: 860px; margin: 0 auto; background: linear-gradient(135deg, var(--navy) 0%, #0d1f33 100%); border: 1px solid rgba(201,168,76,0.4); padding: 64px 80px; text-align: center; box-shadow: 0 24px 80px rgba(0,0,0,0.6); position: relative; overflow: hidden; }
+  .biz-card {
+    max-width: 860px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--navy) 0%, #0d1f33 100%);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 64px 80px;
+    text-align: center;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+  }
+  .biz-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 60%),
+                      radial-gradient(circle at 80% 20%, rgba(201,168,76,0.05) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .biz-card-name { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: #fff; margin-bottom: 6px; }
+  .biz-card-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.25rem; color: var(--gold); margin-bottom: 28px; }
+  .biz-card-divider { width: 80px; height: 2px; background: var(--gold); margin: 0 auto 28px; }
+  .biz-card-tagline { font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light); opacity: 0.75; margin-bottom: 44px; }
   .biz-card-logo { max-width: 480px; margin: 0 auto 36px; }
   .biz-card-logo img { width: 100%; height: auto; display: block; }
+  .biz-card-motto {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+    margin-bottom: 24px;
+    opacity: 0.9;
+  }
 
   /* CONTACT */
   .contact { background: var(--deep); text-align: center; }
   .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; max-width: 900px; margin-left: auto; margin-right: auto; }
   .contact-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.2); padding: 32px 24px; transition: border-color 0.3s, background 0.3s; }
+  .contact-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+  .contact-icon { font-size: 1.6rem; margin-bottom: 12px; }
+  .contact-label { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .contact-value { font-size: 1rem; color: #fff; }
+  .contact-value a { color: #fff; text-decoration: none; }
+  .contact-value a:hover { color: var(--gold); }
+
+  /* SOCIAL HUB STRIP */
+  .social-hub {
+    background: var(--navy);
+    padding: 48px 40px;
+    text-align: center;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .social-hub-inner { max-width: 600px; margin: 0 auto; }
+  .social-hub-label { font-size: 0.72rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .social-hub-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #fff; margin-bottom: 8px; }
+  .social-hub-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--light); opacity: 0.75; margin-bottom: 28px; }
+  .social-hub-photo {
+    width: 120px; height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid var(--gold);
+    margin: 0 auto 24px;
+    display: block;
+  }
+  .social-hub-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .social-hub-btn {
+    display: inline-block;
+    padding: 13px 28px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.88rem;
+    letter-spacing: 0.06em;
+    transition: transform 0.2s, opacity 0.2s;
+  }
+  .social-hub-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+  .btn-navy { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); }
+  .btn-gold { background: var(--gold); color: var(--deep); }
+  .btn-dark { background: var(--deep); color: var(--light); border: 2px solid rgba(245,240,232,0.25); }
+
+  /* NETWORK */
+  .network-section { background: #030b12; padding: 60px 40px; text-align: center; border-top: 1px solid rgba(201,168,76,0.15); }
+  .network-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; max-width: 700px; margin: 0 auto; }
+  .network-card {
+    display: block;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(201,168,76,0.25);
+    padding: 28px 20px;
+    text-decoration: none;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .network-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+  .network-card-highlight { background: rgba(201,168,76,0.07); border-color: rgba(201,168,76,0.5); }
+  .network-card-domain { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1rem; margin-bottom: 8px; }
+  .network-card-desc { font-size: 0.82rem; color: var(--light); opacity: 0.7; line-height: 1.5; }
 
   /* FOOTER */
   footer { background: #030b12; padding: 48px 40px 32px; text-align: center; border-top: 1px solid rgba(201,168,76,0.15); }
   .footer-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold); margin-bottom: 6px; }
+  .footer-location { color: var(--light); opacity: 0.9; margin-bottom: 28px; }
+  .footer-linkedin {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    border: 2px solid rgba(201,168,76,0.5);
+    padding: 14px 32px;
+    border-radius: 8px;
+    background: rgba(201,168,76,0.08);
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    margin-bottom: 32px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .footer-linkedin:hover { background: rgba(201,168,76,0.15); border-color: var(--gold); }
+  .footer-linkedin img { width: 28px; }
+  .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 24px; font-size: 0.85rem; margin: 24px 0 16px; }
+  .footer-links a { color: var(--light); text-decoration: none; opacity: 0.75; }
+  .footer-links a:hover { color: var(--gold); opacity: 1; }
+  .footer-links .sep { color: rgba(201,168,76,0.3); }
+  .footer-copy { font-size: 0.78rem; color: var(--light); opacity: 0.45; line-height: 1.7; }
+  .footer-copy a { color: var(--gold); text-decoration: none; }
 
   /* FADE-IN */
   .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
@@ -209,13 +444,28 @@
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
     .nav-links { display: none; }
-    .about-grid, .arizona-grid, .pillars-grid { grid-template-columns: 1fr; }
+    .hero-content { padding: 0 28px; }
+    .about-grid, .arizona-grid { grid-template-columns: 1fr; }
+    .pillars-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr 1fr; }
+    section { padding: 60px 24px; }
+    .life-photos { padding: 60px 20px; }
+    .biz-card { padding: 36px 24px; }
+    .photo-deco { width: 36px; }
+    .photo-deco-icon { font-size: 1rem; }
+    .biz-card-logo { max-width: 320px; }
+    .moon-divider { height: 60vh; min-height: 340px; }
+    .social-hub-btns { flex-direction: column; align-items: center; }
+    .network-grid { grid-template-columns: 1fr 1fr; }
   }
 </style>
+
 </head>
 <body>
+
+<!-- NAV -->
 
 <nav>
   <a class="nav-logo" href="#">Powell Parker</a>
@@ -229,8 +479,10 @@
   </ul>
 </nav>
 
+<!-- HERO -->
+
 <section class="hero">
-  <img class="hero-img" src="images/powell-parker-founder.webp" alt="Powell Parker on horseback" width="1600" height="900" fetchpriority="high">
+  <img class="hero-img" src="images/powell-parker-founder.jpg" alt="Powell Parker on horseback" width="1600" height="900" fetchpriority="high">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Phoenix, Arizona &nbsp;·&nbsp; Hereford, Texas &nbsp;·&nbsp; Faith &nbsp;·&nbsp; Family</p>
@@ -240,21 +492,53 @@
   </div>
 </section>
 
+<!-- ABOUT -->
+
 <section id="about" style="background: var(--navy);">
   <div class="section-inner about-grid">
     <div class="fade-in">
-      <img class="about-photo" src="images/about-couple.webp" alt="Powell Parker" loading="lazy" width="600" height="750">
+      <img class="about-photo" src="images/about-couple.jpeg" alt="Powell Parker" loading="lazy" width="600" height="750">
     </div>
     <div class="fade-in">
       <p class="section-label">My Story</p>
       <h2 class="section-title">I'm Powell Parker.<br>This is who I am.</h2>
       <div class="divider"></div>
-      <p class="section-body">I grew up in Hereford, Texas — a small town where people say what they mean and mean what they say...</p>
+      <p class="section-body">I grew up in Hereford, Texas — a small town where people say what they mean and mean what they say. My roots are West Texas all the way: dirt roads, wide open skies, and a handshake that means something. That's where my foundation was poured.</p>
       <br>
-      <p class="section-body">I've built my life around three things that never change on me: my faith, my family, and my word...</p>
+      <p class="section-body">I've built my life around three things that never change on me: my faith, my family, and my word. Everything else — the work, the hustle, the early mornings — flows out of those three. I'm not perfect at any of it, but I show up every single day and give it everything I've got.</p>
     </div>
   </div>
 </section>
+
+<!-- PILLARS -->
+
+<section class="pillars" id="pillars">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom: 56px;" class="fade-in">
+      <p class="section-label">What I Stand For</p>
+      <h2 class="section-title">Why I Kneel. Why I Stand.<br>Why I Get Up Every Morning.</h2>
+    </div>
+    <div class="pillars-grid">
+      <div class="pillar fade-in">
+        <div class="pillar-icon">🙏</div>
+        <h3 class="pillar-title">Why I Kneel</h3>
+        <p class="pillar-text">Faith is the anchor for me. Every decision I make, every relationship I build, starts with a foundation that isn't built on me — it's built on something much bigger. I kneel because I know exactly where my strength comes from, and it isn't from me alone.</p>
+      </div>
+      <div class="pillar fade-in">
+        <div class="pillar-icon">🇺🇸</div>
+        <h3 class="pillar-title">Why I Stand</h3>
+        <p class="pillar-text">I stand for the families who've been overlooked, the veterans who gave everything, and the communities that deserve someone in their corner. I stand because someone has to — and I'd rather it be me than nobody at all.</p>
+      </div>
+      <div class="pillar fade-in">
+        <div class="pillar-icon">🌅</div>
+        <h3 class="pillar-title">Why I Get Up</h3>
+        <p class="pillar-text">I get up for Sara and Scarlett. I get up for Cristina. I get up for my family and the people counting on me. The alarm goes off early and I'm grateful for it — because another day means another chance to do something that matters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARIZONA -->
 
 <section id="arizona" style="background: var(--deep);">
   <div class="section-inner arizona-grid">
@@ -262,16 +546,20 @@
       <p class="section-label">Arizona Roots</p>
       <h2 class="section-title">State 48.<br>My Home Forever.</h2>
       <div class="divider"></div>
-      <p class="section-body">I was raised in Queen Creek, Arizona — back before it was a suburb...</p>
+      <p class="section-body">I was raised in Queen Creek, Arizona — back before it was a suburb, when it was still red dirt roads and cotton fields and everybody knew everybody. I competed in High School and College Rodeos all across the state. Team Roping and Bulldogging — two events that taught me more about life than any classroom ever did.</p>
+      <br>
+      <p class="section-body">Arizona didn't just shape my work ethic — it forged who I am. The desert teaches you patience whether you want to learn it or not. The rodeo arena teaches you that you either commit or you don't — there's no halfway. And growing up in Queen Creek taught me that your word is your bond and your handshake still means something. I still believe that with everything I've got.</p>
     </div>
     <div class="fade-in">
-      <img class="arizona-photo" src="images/horse-sunset48.webp" alt="Powell Parker with horses at Arizona sunset" loading="lazy" width="800" height="600">
+      <img class="arizona-photo" src="images/horse-sunset48.jpg" alt="Powell Parker with horses at Arizona sunset" loading="lazy" width="800" height="600">
     </div>
   </div>
 </section>
 
+<!-- MOON DIVIDER -->
+
 <div class="moon-divider">
-  <img src="images/arizona-moon.webp" alt="Arizona moonrise over the desert" loading="lazy" width="1600" height="900">
+  <img src="images/arizona-moon.png" alt="Arizona moonrise over the desert" loading="lazy" width="1600" height="900">
   <div class="moon-divider-dim"></div>
   <div class="moon-text">
     <p>"Arizona, where every sunrise paints a canvas of hope for the day ahead"</p>
@@ -279,64 +567,465 @@
   </div>
 </div>
 
+<!-- LIFE PHOTOS -->
+
 <section class="life-photos" id="life">
+  <div class="life-header fade-in">
+    <p class="section-label">My Life Outside the Office</p>
+    <h2 class="section-title">The Moments That Matter Most to Me</h2>
+  </div>
+
   <div class="photo-cards">
-    <div class="photo-card fade-in">
-      <div class="photo-card-img-wrap">
-        <img src="images/IMG_6893.webp" alt="Powell and Joel team roping" loading="lazy" width="800" height="600">
-      </div>
-      <div class="photo-card-body">
-        <p class="photo-card-label">In the Arena</p>
-        <h3 class="photo-card-title">Me &amp; Joel — Team Roping</h3>
-        <p class="photo-card-desc">Rubio the Palomino under me and Monty the Chestnut under him...</p>
-      </div>
+
+```
+<div class="photo-card fade-in">
+  <div class="photo-card-img-wrap">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🤠</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🐴</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🪢</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">⭐</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🤠</span>
     </div>
-    <div class="photo-card fade-in">
-      <div class="photo-card-img-wrap">
-        <img src="images/scarlett-dad.webp" alt="Sara and Scarlett" loading="lazy" width="800" height="600">
-      </div>
-      <div class="photo-card-body">
-        <p class="photo-card-label">My Girls</p>
-        <h3 class="photo-card-title">Sara &amp; Scarlett — My Whole Heart</h3>
-      </div>
+    <img src="images/life-roping.jpeg" alt="Powell and Joel team roping" loading="lazy" width="800" height="600">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🤠</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🐴</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🪢</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">⭐</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🤠</span>
     </div>
-    <div class="photo-card fade-in">
-      <div class="photo-card-img-wrap">
-        <img src="images/IMG_6891.webp" alt="Powell's custom pool design" loading="lazy" width="800" height="600">
+  </div>
+  <div class="photo-card-body">
+    <p class="photo-card-label">In the Arena</p>
+    <h3 class="photo-card-title">Me &amp; Joel — Team Roping</h3>
+    <div class="photo-card-divider"></div>
+    <p class="photo-card-desc">That's me and my buddy Joel — Rubio the Palomino under me and Monty the Chestnut under him. Team roping is one of those things I never got out of my blood. It's not just a sport to me. It's a brotherhood. You learn real fast that you can't do it alone — you have to trust your partner completely. I've been competing since my Queen Creek days and I still get after it every chance I get.</p>
+  </div>
+</div>
+
+<div class="photo-card fade-in">
+  <div class="photo-card-img-wrap">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">👨‍👧‍👧</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">❤️</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌟</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🙏</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">❤️</span>
+    </div>
+    <img src="images/life-daughters.jpeg" alt="Sara and Scarlett" loading="lazy" width="800" height="600">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">👨‍👧‍👧</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">❤️</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌟</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🙏</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">❤️</span>
+    </div>
+  </div>
+  <div class="photo-card-body">
+    <p class="photo-card-label">My Girls</p>
+    <h3 class="photo-card-title">Sara &amp; Scarlett — My Whole Heart</h3>
+    <div class="photo-card-divider"></div>
+    <p class="photo-card-desc">Sara is 19 and Scarlett is 10 — and I'll tell you straight, every early morning I've ever put in, every mile I've ever driven, every deal I've ever worked has been for these two. They're not the reason I started. They're the reason I never stop. Being their dad is the best thing I've ever done and the title I'm most proud of, full stop.</p>
+  </div>
+</div>
+
+<div class="photo-card fade-in">
+  <div class="photo-card-img-wrap">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🏗️</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">💧</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🔥</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">✨</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🏗️</span>
+    </div>
+    <img src="images/pool-designs.jpg" alt="Powell's custom pool design" loading="lazy" width="800" height="600">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🏗️</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">💧</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🔥</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">✨</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🏗️</span>
+    </div>
+  </div>
+  <div class="photo-card-body">
+    <p class="photo-card-label">Built With My Own Vision</p>
+    <h3 class="photo-card-title">My Custom Pool — Fire, Water &amp; a Little Obsession</h3>
+    <div class="photo-card-divider"></div>
+    <p class="photo-card-desc">I designed this myself — fire features, a waterfall, a slide, and blue-lit water at night. When I build something I put my name on it, and that means I don't cut corners. Same goes for everything I do. If I'm going to do it, I'm going to do it right. This pool is exactly what I had in my head — and I'm proud of it every single time I look at it.</p>
+  </div>
+</div>
+
+<div class="photo-card fade-in">
+  <div class="photo-card-img-wrap">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">⛰️</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌲</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🦅</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌲</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">⛰️</span>
+    </div>
+    <img src="images/mount-lemmon-family.jpg" alt="Mount Lemmon family time" loading="lazy" width="800" height="600">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">⛰️</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌲</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🦅</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌲</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">⛰️</span>
+    </div>
+  </div>
+  <div class="photo-card-body">
+    <p class="photo-card-label">Up in the Pines</p>
+    <h3 class="photo-card-title">Mount Lemmon — Where I Go to Reset</h3>
+    <div class="photo-card-divider"></div>
+    <p class="photo-card-desc">There's something about getting up in elevation that clears my head like nothing else. Mount Lemmon, the White Mountains, the Santa Catalinas — I'll take any of them. When I'm up in the pines with my family I'm reminded of what's actually real and what's just noise. I need that. We all need that.</p>
+  </div>
+</div>
+
+<div class="photo-card fade-in">
+  <div class="photo-card-img-wrap">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🤠</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🐂</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🏆</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🐂</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🤠</span>
+    </div>
+    <img src="images/life-rodeo.jpeg" alt="Rodeo roots Queen Creek Arizona" loading="lazy" width="800" height="600">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🤠</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🐂</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🏆</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🐂</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🤠</span>
+    </div>
+  </div>
+  <div class="photo-card-body">
+    <p class="photo-card-label">Where It All Started</p>
+    <h3 class="photo-card-title">High School &amp; College Rodeo — Queen Creek, AZ</h3>
+    <div class="photo-card-divider"></div>
+    <p class="photo-card-desc">I competed in Team Roping and Bulldogging all across Arizona from the time I was in high school through college. The rodeo arena doesn't care about excuses — you either do it or you don't. That's where I learned to prepare, to commit, and to trust my gut when the gate swings open. Those lessons never left me.</p>
+  </div>
+</div>
+
+<div class="photo-card fade-in">
+  <div class="photo-card-img-wrap">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🙏</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">✝️</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">❤️</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">✝️</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🙏</span>
+    </div>
+    <img src="images/family1.jpeg" alt="Powell Parker family" loading="lazy" width="800" height="600">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🙏</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">✝️</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">❤️</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">✝️</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🙏</span>
+    </div>
+  </div>
+  <div class="photo-card-body">
+    <p class="photo-card-label">My Foundation</p>
+    <h3 class="photo-card-title">The Reason Behind Everything I Do</h3>
+    <div class="photo-card-divider"></div>
+    <p class="photo-card-desc">Faith, family, and community aren't things I talk about — they're things I live. The people in my life keep me grounded on the hard days and make the good days worth celebrating. I don't take a single one of them for granted. They're not the backdrop to my story. They are the story.</p>
+  </div>
+</div>
+
+<div class="photo-card fade-in">
+  <div class="photo-card-img-wrap">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🎉</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🥂</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">💛</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🥂</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🎉</span>
+    </div>
+    <img src="images/family2.jpeg" alt="Parker family at the wedding" loading="lazy" width="800" height="600">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🎉</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🥂</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">💛</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🥂</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🎉</span>
+    </div>
+  </div>
+  <div class="photo-card-body">
+    <p class="photo-card-label">Family Celebration</p>
+    <h3 class="photo-card-title">The Parker Family — Together for the Big Ones</h3>
+    <div class="photo-card-divider"></div>
+    <p class="photo-card-desc">My family shows up. That's all I can say. In the good times, the hard times, the times in between — the Parkers are there. I don't think you fully appreciate that until you've been through something tough and you look around and every single person you love is standing right next to you. I've got that. And I don't take it lightly.</p>
+  </div>
+</div>
+
+<div class="photo-card fade-in">
+  <div class="photo-card-img-wrap">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🤠</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌵</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">⭐</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌵</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🤠</span>
+    </div>
+    <img src="images/family3.jpeg" alt="Parker brothers and Dad" loading="lazy" width="800" height="600">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🤠</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌵</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">⭐</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌵</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🤠</span>
+    </div>
+  </div>
+  <div class="photo-card-body">
+    <p class="photo-card-label">My Brothers &amp; My Dad</p>
+    <h3 class="photo-card-title">The Men Who Made Me</h3>
+    <div class="photo-card-divider"></div>
+    <p class="photo-card-desc">From Hereford to Phoenix, the Parker men have always carried the same code — work hard, tell the truth, take care of your family. My dad set that standard before I knew what a standard was. My brothers carry it right alongside me. I wouldn't be who I am without these guys. Simple as that.</p>
+  </div>
+</div>
+
+<div class="photo-card fade-in">
+  <div class="photo-card-img-wrap">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🎣</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🐟</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌊</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🐟</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🎣</span>
+    </div>
+    <img src="images/pow-bluedorado.jpg" alt="Powell Parker with mahi-mahi in Puerto Vallarta" loading="lazy" width="800" height="600">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🎣</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🐟</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌊</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🐟</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🎣</span>
+    </div>
+  </div>
+  <div class="photo-card-body">
+    <p class="photo-card-label">Puerto Vallarta — Deep Sea</p>
+    <h3 class="photo-card-title">My Blue Dorado — The One That Did NOT Get Away</h3>
+    <div class="photo-card-divider"></div>
+    <p class="photo-card-desc">I pulled this brilliant blue mahi-mahi out of the Pacific off Puerto Vallarta on a company fishing trip I put together for my top performers. I'll be honest — I was pretty proud of that fish. Work hard, take care of your people, and never miss a chance to get out on the water. That's my philosophy and I'm sticking to it.</p>
+  </div>
+</div>
+
+<div class="photo-card fade-in">
+  <div class="photo-card-img-wrap">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🏆</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌊</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">☀️</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌊</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🏆</span>
+    </div>
+    <img src="images/pow-buttons.jpg" alt="Powell Parker deep sea fishing Puerto Vallarta" loading="lazy" width="800" height="600">
+    <div class="photo-deco">
+      <span class="photo-deco-icon">🏆</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌊</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">☀️</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🌊</span><div class="photo-deco-rule"></div>
+      <span class="photo-deco-icon">🏆</span>
+    </div>
+  </div>
+  <div class="photo-card-body">
+    <p class="photo-card-label">Taking Care of My People</p>
+    <h3 class="photo-card-title">Puerto Vallarta — Rewarding the Ones Who Show Up</h3>
+    <div class="photo-card-divider"></div>
+    <p class="photo-card-desc">I put this trip together myself for the people who grind alongside me. I believe in taking care of the people in my corner — not just when it's easy, but consistently. If you show up for me, I'm going to show up for you. That's not a management philosophy. That's just how I was raised.</p>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- GIVING BACK -->
+
+<section class="giving" id="giving">
+  <div class="section-inner">
+    <div class="fade-in">
+      <p class="section-label">What I Give Back</p>
+      <h2 class="section-title">Giving Back Isn't Optional for Me</h2>
+      <div class="divider" style="margin: 24px auto;"></div>
+      <p class="section-body" style="margin: 0 auto; max-width: 660px; text-align: center;">I was raised to believe that the more you're given, the more you're responsible to give. I take that seriously. A portion of everything I earn goes to organizations that fight for people who can't always fight for themselves. That's not a line item — that's a commitment I made a long time ago and I'm not walking it back.</p>
+    </div>
+    <div class="charity-grid">
+      <div class="charity-item fade-in">
+        <div class="charity-name">Wounded Warrior Project</div>
+        <div class="charity-desc">These men and women gave everything for this country. The least I can do is make sure they know someone still has their back when they come home.</div>
       </div>
-      <div class="photo-card-body">
-        <h3 class="photo-card-title">My Custom Pool — Fire, Water &amp; a Little Obsession</h3>
+      <div class="charity-item fade-in">
+        <div class="charity-name">St. Jude Children's Research Hospital</div>
+        <div class="charity-desc">No family should ever have to choose between saving their child and paying their bills. St. Jude doesn't send families a bill. I want to be part of that.</div>
+      </div>
+      <div class="charity-item fade-in">
+        <div class="charity-name">Sunshine Acres Children's Home</div>
+        <div class="charity-desc">Right here in Mesa, Arizona — giving children a safe, faith-based home when they need it most. This one is personal to me. Our community, our responsibility.</div>
       </div>
     </div>
   </div>
 </section>
 
-<section id="rrr" class="biz-card-section">
-  <div class="biz-card fade-in">
-    <div class="biz-card-logo">
-      <img src="images/rrr-logo.webp" alt="Rightful Returns Recovery Logo">
+<!-- RRR BUSINESS SECTION -->
+
+<section class="biz-card-section" id="rrr">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom: 56px;" class="fade-in">
+      <p class="section-label">My Professional Work</p>
+      <h2 class="section-title" style="margin-bottom:20px;">Now That You Know Me —<br>Here's What I Do.</h2>
+      <div class="divider" style="margin: 0 auto 28px;"></div>
+      <p class="section-body" style="margin: 0 auto; max-width: 680px; text-align:center;">I started Rightful Returns Recovery because I saw billions of dollars sitting in government accounts that rightfully belong to families who don't even know it exists. I built a firm to find it, fight for it, and return it — at zero cost to the people who deserve it. No upfront fees. Ever. If I don't recover, I don't get paid. That's the deal and I'm proud of it.</p>
     </div>
-    <h2 class="biz-card-name">Powell Parker</h2>
-    <p class="biz-card-title">Managing Member</p>
+    <div class="biz-card fade-in">
+      <div class="biz-card-name">Powell Parker</div>
+      <div class="biz-card-title">Founder &amp; Managing Member — Rightful Returns Recovery</div>
+      <div class="biz-card-divider"></div>
+      <div class="biz-card-tagline">Finding Hidden Assets &nbsp;·&nbsp; Recovering What's Rightfully Yours &nbsp;·&nbsp; TX &nbsp;·&nbsp; AZ &nbsp;·&nbsp; GA</div>
+      <div class="biz-card-logo">
+        <img src="images/rrr-logo.jpeg" alt="Rightful Returns Recovery Shield Logo" loading="lazy" width="480" height="480">
+      </div>
+      <div class="biz-card-motto">"Finding Hidden Assets. Recovering What's Rightfully Yours."</div>
+      <div style="margin-top: 20px;">
+        <a href="https://www.rightfulreturnsrecovery.com" target="_blank"
+           style="display:inline-block; padding:16px 44px; background:var(--gold); color:var(--deep); font-weight:700; font-size:0.88rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none;">
+          Visit RightfulReturnsRecovery.com &rarr;
+        </a>
+      </div>
+      <div style="margin-top: 16px; font-size: 0.85rem; opacity: 0.6; color: var(--light);">
+        Toll-Free: <a href="tel:18004282022" style="color:var(--gold); text-decoration:none;">1-800-428-2022</a>
+        &nbsp;·&nbsp;
+        Phoenix: <a href="tel:14807882320" style="color:var(--gold); text-decoration:none;">480-788-2320</a>
+        &nbsp;·&nbsp;
+        Texas: <a href="tel:12148381883" style="color:var(--gold); text-decoration:none;">214-838-1883</a>
+      </div>
+    </div>
   </div>
 </section>
+
+<!-- CONTACT -->
+
+<section id="contact" class="contact">
+  <div class="section-inner">
+    <div class="fade-in">
+      <p class="section-label">Reach Out</p>
+      <h2 class="section-title">I'd Love to Hear From You</h2>
+      <div class="divider" style="margin: 24px auto;"></div>
+      <p class="section-body" style="margin: 0 auto; max-width: 560px; text-align: center;">Whether you want to talk business, connect personally, or just say hello — I'm reachable. I'm a real person and I pick up the phone. Don't be a stranger.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card fade-in">
+        <div class="contact-icon">📧</div>
+        <div class="contact-label">Email Me</div>
+        <div class="contact-value"><a href="mailto:powell@powparker.com">powell@powparker.com</a></div>
+      </div>
+      <div class="contact-card fade-in">
+        <div class="contact-icon">📞</div>
+        <div class="contact-label">Call Toll-Free</div>
+        <div class="contact-value"><a href="tel:18004282022">1-800-428-2022</a></div>
+      </div>
+      <div class="contact-card fade-in">
+        <div class="contact-icon">🌵</div>
+        <div class="contact-label">Phoenix, Arizona</div>
+        <div class="contact-value"><a href="tel:14807882320">480-788-2320</a></div>
+      </div>
+      <div class="contact-card fade-in">
+        <div class="contact-icon">⭐</div>
+        <div class="contact-label">Texas / Dallas</div>
+        <div class="contact-value"><a href="tel:12148381883">214-838-1883</a></div>
+      </div>
+      <div class="contact-card fade-in">
+        <div class="contact-icon">🛡️</div>
+        <div class="contact-label">My Recovery Firm</div>
+        <div class="contact-value"><a href="https://www.rightfulreturnsrecovery.com" target="_blank">RightfulReturnsRecovery.com</a></div>
+      </div>
+      <div class="contact-card fade-in">
+        <div class="contact-icon">💼</div>
+        <div class="contact-label">Free Case Review</div>
+        <div class="contact-value"><a href="https://www.rightfulreturnsrecovery.com/#contact" target="_blank">Start Here &rarr;</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL HUB — link.me section, positioned after Contact -->
+
+<div class="social-hub">
+  <div class="social-hub-inner fade-in">
+    <p class="social-hub-label">Connect With Powell</p>
+    <img src="profile.png" alt="Powell Parker" class="social-hub-photo" loading="lazy" width="120" height="120">
+    <h2 class="social-hub-title">Powell Parker</h2>
+    <p class="social-hub-sub">Asset Recovery · Arizona Cowboy · Faith &amp; Family</p>
+    <div class="social-hub-btns">
+      <a href="tel:4807882320" class="social-hub-btn btn-navy">📞 Call Me</a>
+      <a href="sms:4807882320" class="social-hub-btn btn-gold">💬 Text Me</a>
+      <a href="https://link.me/powparker_com" target="_blank" rel="noopener noreferrer" class="social-hub-btn btn-dark">🌐 Social Hub</a>
+    </div>
+  </div>
+</div>
+
+<!-- POWELL PARKER NETWORK -->
+
+<section class="network-section">
+  <div style="max-width:900px; margin:0 auto;">
+    <p style="font-size:0.72rem; letter-spacing:0.25em; text-transform:uppercase; color:var(--gold); margin-bottom:14px;">The Powell Parker Network</p>
+    <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.4rem,2.5vw,2rem); color:#fff; margin-bottom:20px; line-height:1.3;">One Mission. Multiple Fronts.</h2>
+    <p style="font-family:'Cormorant Garamond',serif; font-size:1.1rem; color:var(--light); opacity:0.85; max-width:640px; margin:0 auto 40px; line-height:1.8;">
+      Powell Parker operates across several platforms — from his personal hub to his blog to his professional recovery firm. Each one connected. Each one purposeful.
+    </p>
+    <div class="network-grid">
+      <a href="https://www.powparker.com" rel="me" class="network-card">
+        <div class="network-card-domain">powparker.com</div>
+        <div class="network-card-desc">Powell Parker — personal &amp; professional hub</div>
+      </a>
+      <a href="https://www.powellparker.com" rel="me" target="_blank" class="network-card">
+        <div class="network-card-domain">powellparker.com</div>
+        <div class="network-card-desc">Powell Parker — blog &amp; thoughts</div>
+      </a>
+      <a href="https://www.rightfulreturnsrecovery.com" target="_blank" class="network-card network-card-highlight">
+        <div class="network-card-domain">RightfulReturnsRecovery.com</div>
+        <div class="network-card-desc">Contingency-only asset recovery — TX · AZ · GA</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 
 <footer>
   <p class="footer-name">Powell Parker</p>
-  <p class="footer-location">Phoenix, Arizona | Mesa, Arizona</p>
+  <p class="footer-location">Phoenix, Arizona &nbsp;·&nbsp; Hereford, Texas</p>
+  <a href="https://www.linkedin.com/in/powell-p-bab40414" target="_blank" rel="noopener noreferrer" class="footer-linkedin">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" width="28" height="28">
+    Powell Parker on LinkedIn
+  </a>
+  <div style="border-top:1px solid rgba(201,168,76,0.2); border-bottom:1px solid rgba(201,168,76,0.2); padding:18px 0; margin-bottom:16px;">
+    <p style="font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); margin-bottom:12px;">Powell Parker Online</p>
+    <div class="footer-links">
+      <a href="https://www.powparker.com" rel="me">powparker.com</a>
+      <span class="sep">·</span>
+      <a href="https://www.powellparker.com" rel="me" target="_blank">powellparker.com</a>
+      <span class="sep">·</span>
+      <a href="https://www.rightfulreturnsrecovery.com" target="_blank" style="color:var(--gold); font-weight:700;">RightfulReturnsRecovery.com</a>
+    </div>
+  </div>
+  <p class="footer-copy">&copy; 2026 Powell Parker. All rights reserved.<br>
+    Powell Parker is the founder of <a href="https://www.rightfulreturnsrecovery.com">Rightful Returns Recovery</a> — contingency-only surplus funds &amp; asset recovery serving Texas, Arizona, and Georgia.
+  </p>
 </footer>
 
 <script>
-  // Simple intersection observer for the fade-in effect
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 </script>
 
 </body>
