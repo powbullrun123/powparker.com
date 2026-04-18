@@ -93,7 +93,8 @@
 </script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet"></noscript>
 <style>
   :root {
     --gold: #C9A84C;
@@ -220,8 +221,8 @@
   .footer-links a { color: var(--light); text-decoration: none; opacity: 0.75; }
   .footer-links a:hover { color: var(--gold); opacity: 1; }
   .footer-links .sep { color: rgba(201,168,76,0.3); }
-  .footer-copy { font-size: 0.78rem; color: var(--light); opacity: 0.45; line-height: 1.7; }
-  .footer-copy a { color: var(--gold); text-decoration: none; }
+  .footer-copy { font-size: 0.78rem; color: var(--light); opacity: 0.7; line-height: 1.7; }
+  .footer-copy a { color: var(--gold); text-decoration: underline; text-decoration-color: rgba(201,168,76,0.4); }
   .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .fade-in.visible { opacity: 1; transform: none; }
   @media (max-width: 768px) {
@@ -259,6 +260,8 @@
   </ul>
 </nav>
 
+<main>
+
 <!-- HERO -->
 <section class="hero">
   <img class="hero-img" src="images/powell-parker-founder.webp" alt="Powell Parker on horseback" width="1600" height="900" fetchpriority="high">
@@ -275,7 +278,7 @@
 <section id="about" style="background: var(--navy);">
   <div class="section-inner about-grid">
     <div class="fade-in">
-      <img class="about-photo" src="images/about-couple.webp" alt="Powell Parker" loading="lazy" width="600" height="750">
+      <img class="about-photo" src="images/about-couple.webp" alt="Powell Parker" loading="lazy" width="1000" height="1333">
     </div>
     <div class="fade-in">
       <p class="section-label">My Story</p>
@@ -598,6 +601,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- FOOTER -->
 <footer>
