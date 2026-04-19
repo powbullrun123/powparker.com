@@ -171,7 +171,6 @@
   .photo-card-divider { width: 50px; height: 2px; background: var(--gold); margin-bottom: 16px; }
   .photo-card-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; line-height: 1.85; color: var(--light); opacity: 0.9; }
   .photo-card-body::before { content: '✦'; position: absolute; top: 14px; right: 20px; color: var(--gold); font-size: 0.85rem; opacity: 0.45; }
-  /* ── CHANGE 3: Pool double images fill the full frame ── */
   .photo-card-double { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; align-items: stretch; }
   .photo-card-double img { width: 100%; height: 100%; min-height: 260px; object-fit: cover; display: block; max-height: none; }
   .giving { background: var(--navy); text-align: center; }
@@ -206,7 +205,6 @@
   .social-hub-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; color: var(--light); opacity: 0.75; margin-bottom: 28px; }
   .social-hub-photo { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; border: 4px solid var(--gold); margin: 0 auto 24px; display: block; }
   .social-hub-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
-  /* ── Social buttons 20% larger ── */
   .social-hub-btn { display: inline-block; padding: 16px 34px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.06rem; letter-spacing: 0.06em; transition: transform 0.2s, opacity 0.2s; }
   .social-hub-btn:hover { transform: translateY(-2px); opacity: 0.9; }
   .btn-navy { background: var(--navy); color: var(--gold); border: 2px solid var(--gold); }
@@ -246,7 +244,6 @@ margin: 0 0 0 0;
 display: block;
 }
 
-/* ── CHANGE 2: Parker Country divider — full-width, edge to edge, centered ── */
 .pc-divider {
 background: linear-gradient(180deg, var(–deep) 0%, #1a1208 50%, var(–deep) 100%);
 padding: 64px 0;
@@ -270,7 +267,6 @@ rgba(139,90,43,0.02) 8px
 );
 pointer-events: none;
 }
-/* Gold leaf triple-layer frame */
 .pc-divider img {
 max-width: 92vw;
 width: 680px;
@@ -289,14 +285,12 @@ filter: drop-shadow(0 4px 16px rgba(201,168,76,0.35));
 box-sizing: border-box;
 }
 
-/* ── CHANGE 1: Force gold on western link buttons — kill browser blue ── */
 .western-link,
 .western-link:link,
 .western-link:visited {
 color: var(–gold) !important;
 }
 
-/* WOOD GRAIN WESTERN LINKS */
 .western-links {
 display: flex;
 justify-content: center;
@@ -350,7 +344,6 @@ inset 0 -1px 0 rgba(0,0,0,0.3),
 border-color: var(–gold);
 }
 
-/* FOOTER BRAND */
 .footer-brand { margin-bottom: 28px; }
 .footer-brand img { max-width: 400px; height: auto; display: block; margin: 0 auto 10px; filter: drop-shadow(0 2px 12px rgba(201,168,76,0.25)); }
 .footer-brand-text { font-family: ‘Rye’, serif; font-size: 1.1rem; color: var(–gold); letter-spacing: 0.12em; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); }
@@ -371,7 +364,6 @@ section { padding: 60px 24px; }
 .moon-divider { height: 60vh; min-height: 340px; }
 .social-hub-btns { flex-direction: column; align-items: center; }
 .network-grid { grid-template-columns: 1fr 1fr; }
-/* ── CHANGE 4: Mobile pool images fill frame ── */
 .photo-card-double img { min-height: 180px; height: 100%; }
 .western-links { gap: 10px; }
 .western-link { padding: 12px 20px; font-size: 0.72rem; }
@@ -390,6 +382,7 @@ section { padding: 60px 24px; }
     <li><a href="#about">My Story</a></li>
     <li><a href="#arizona">Arizona</a></li>
     <li><a href="#life">My Life</a></li>
+    <li><a href="#music">Music</a></li>
     <li><a href="#giving">Giving Back</a></li>
     <li><a href="#rrr">My Business</a></li>
     <li><a href="#contact">Connect</a></li>
@@ -466,6 +459,7 @@ section { padding: 60px 24px; }
     <a href="#about" class="western-link">My Story</a>
     <a href="#arizona" class="western-link">Arizona</a>
     <a href="#life" class="western-link">My Life</a>
+    <a href="#music" class="western-link">Music</a>
     <a href="#giving" class="western-link">Giving Back</a>
     <a href="#rrr" class="western-link">My Business</a>
     <a href="#contact" class="western-link">Connect</a>
@@ -673,6 +667,456 @@ section { padding: 60px 24px; }
   </div>
 </section>
 
+<!-- ============================================================
+     MUSIC SECTION
+     ============================================================ -->
+
+<section id="music" style="
+  background: linear-gradient(160deg, #071018 0%, #1a2e42 55%, #0d1f30 100%);
+  padding: 80px 20px 90px;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Lato', sans-serif;
+">
+
+  <!-- Subtle background texture lines -->
+
+  <div style="
+    position:absolute; inset:0; pointer-events:none;
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(201,168,76,0.03) 40px,
+      rgba(201,168,76,0.03) 41px
+    );
+  "></div>
+
+  <!-- Section label -->
+
+  <div style="text-align:center; margin-bottom:12px;">
+    <span style="
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-style:italic;
+      font-size:1rem;
+      letter-spacing:0.18em;
+      color:#C9A84C;
+      text-transform:uppercase;
+    ">The Soundtrack of Powell Parker</span>
+  </div>
+
+  <!-- Main heading -->
+
+  <h2 style="
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:clamp(2rem, 5vw, 3.2rem);
+    font-weight:700;
+    color:#F5F0E8;
+    text-align:center;
+    margin:0 0 16px;
+    line-height:1.15;
+  ">Music That Moves the Soul</h2>
+
+  <!-- Intro copy -->
+
+  <p style="
+    font-family:'Cormorant Garamond', Georgia, serif;
+    font-style:italic;
+    font-size:1.2rem;
+    color:#E8D5A3;
+    text-align:center;
+    max-width:680px;
+    margin:0 auto 56px;
+    line-height:1.75;
+  ">
+    Born in Hereford, Texas — raised on red dirt roads and open skies —
+    music has always been the thread that ties it all together.
+    Country, classic Spanish, vintage rock &amp; soul.
+    Follow along on Apple Music and ride shotgun on the playlist.
+  </p>
+
+  <!-- Artist cards grid -->
+
+  <div style="
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap:20px;
+    max-width:960px;
+    margin:0 auto 60px;
+  ">
+
+```
+<!-- George Strait — cowboy hat photo -->
+<div class="music-card fade-in" style="
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(201,168,76,0.25);
+  border-radius:12px;
+  padding:28px 22px;
+  transition:transform 0.25s, border-color 0.25s, background 0.25s;
+  cursor:default;
+" onmouseenter="this.style.transform='translateY(-5px)';this.style.borderColor='rgba(201,168,76,0.65)';this.style.background='rgba(201,168,76,0.07)'"
+   onmouseleave="this.style.transform='';this.style.borderColor='rgba(201,168,76,0.25)';this.style.background='rgba(255,255,255,0.04)'">
+  <div style="margin-bottom:14px;">
+    <img
+      src="images/hero-horseback.png"
+      alt="Powell Parker in cowboy hat"
+      style="
+        width:64px;
+        height:64px;
+        border-radius:50%;
+        object-fit:cover;
+        object-position:center top;
+        border:2px solid rgba(201,168,76,0.5);
+        display:block;
+      "
+    >
+  </div>
+  <div style="
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:1.15rem;
+    font-weight:700;
+    color:#F5F0E8;
+    margin-bottom:6px;
+  ">George Strait</div>
+  <div style="
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:#C9A84C;
+    margin-bottom:10px;
+  ">Classic Country</div>
+  <p style="font-size:0.92rem; color:#c8c0b0; line-height:1.6; margin:0;">
+    The King of Country. Pure Texas roots, storytelling that hits bone-deep.
+    A constant on the ranch and on the road.
+  </p>
+</div>
+
+<!-- Alejandro Fernández -->
+<div class="music-card fade-in" style="
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(201,168,76,0.25);
+  border-radius:12px;
+  padding:28px 22px;
+  transition:transform 0.25s, border-color 0.25s, background 0.25s;
+  cursor:default;
+" onmouseenter="this.style.transform='translateY(-5px)';this.style.borderColor='rgba(201,168,76,0.65)';this.style.background='rgba(201,168,76,0.07)'"
+   onmouseleave="this.style.transform='';this.style.borderColor='rgba(201,168,76,0.25)';this.style.background='rgba(255,255,255,0.04)'">
+  <div style="margin-bottom:14px;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="rgba(201,168,76,0.4)" stroke-width="1"/><path d="M12 7v6M9 11l3 3 3-3" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="16" r="1.5" fill="#C9A84C"/></svg></div>
+  <div style="
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:1.15rem;
+    font-weight:700;
+    color:#F5F0E8;
+    margin-bottom:6px;
+  ">Alejandro Fernández</div>
+  <div style="
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:#C9A84C;
+    margin-bottom:10px;
+  ">Contemporary Spanish</div>
+  <p style="font-size:0.92rem; color:#c8c0b0; line-height:1.6; margin:0;">
+    El Potrillo. His voice carries the same wide-open passion as a West Texas sunset —
+    ranchera soul with modern fire.
+  </p>
+</div>
+
+<!-- Creedence Clearwater Revival -->
+<div class="music-card fade-in" style="
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(201,168,76,0.25);
+  border-radius:12px;
+  padding:28px 22px;
+  transition:transform 0.25s, border-color 0.25s, background 0.25s;
+  cursor:default;
+" onmouseenter="this.style.transform='translateY(-5px)';this.style.borderColor='rgba(201,168,76,0.65)';this.style.background='rgba(201,168,76,0.07)'"
+   onmouseleave="this.style.transform='';this.style.borderColor='rgba(201,168,76,0.25)';this.style.background='rgba(255,255,255,0.04)'">
+  <div style="margin-bottom:14px;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="rgba(201,168,76,0.4)" stroke-width="1"/><path d="M12 7v6M9 11l3 3 3-3" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="16" r="1.5" fill="#C9A84C"/></svg></div>
+  <div style="
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:1.15rem;
+    font-weight:700;
+    color:#F5F0E8;
+    margin-bottom:6px;
+  ">Creedence Clearwater Revival</div>
+  <div style="
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:#C9A84C;
+    margin-bottom:10px;
+  ">Classic Rock · Vintage</div>
+  <p style="font-size:0.92rem; color:#c8c0b0; line-height:1.6; margin:0;">
+    Bayou rock that never gets old. CCR's swampy grit and honest American sound
+    feel right at home alongside a good campfire.
+  </p>
+</div>
+
+<!-- The Bee Gees -->
+<div class="music-card fade-in" style="
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(201,168,76,0.25);
+  border-radius:12px;
+  padding:28px 22px;
+  transition:transform 0.25s, border-color 0.25s, background 0.25s;
+  cursor:default;
+" onmouseenter="this.style.transform='translateY(-5px)';this.style.borderColor='rgba(201,168,76,0.65)';this.style.background='rgba(201,168,76,0.07)'"
+   onmouseleave="this.style.transform='';this.style.borderColor='rgba(201,168,76,0.25)';this.style.background='rgba(255,255,255,0.04)'">
+  <div style="margin-bottom:14px;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="rgba(201,168,76,0.4)" stroke-width="1"/><path d="M12 7v6M9 11l3 3 3-3" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="16" r="1.5" fill="#C9A84C"/></svg></div>
+  <div style="
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:1.15rem;
+    font-weight:700;
+    color:#F5F0E8;
+    margin-bottom:6px;
+  ">The Bee Gees</div>
+  <div style="
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:#C9A84C;
+    margin-bottom:10px;
+  ">70s Soul &amp; Harmony</div>
+  <p style="font-size:0.92rem; color:#c8c0b0; line-height:1.6; margin:0;">
+    Pure harmony and heart. The '78 sound — those brothers could write a song
+    that made a Texas boy feel every word.
+  </p>
+</div>
+
+<!-- The Monkees -->
+<div class="music-card fade-in" style="
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(201,168,76,0.25);
+  border-radius:12px;
+  padding:28px 22px;
+  transition:transform 0.25s, border-color 0.25s, background 0.25s;
+  cursor:default;
+" onmouseenter="this.style.transform='translateY(-5px)';this.style.borderColor='rgba(201,168,76,0.65)';this.style.background='rgba(201,168,76,0.07)'"
+   onmouseleave="this.style.transform='';this.style.borderColor='rgba(201,168,76,0.25)';this.style.background='rgba(255,255,255,0.04)'">
+  <div style="margin-bottom:14px;"><svg width="36" height="36" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="rgba(201,168,76,0.4)" stroke-width="1"/><path d="M12 7v6M9 11l3 3 3-3" stroke="#C9A84C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="16" r="1.5" fill="#C9A84C"/></svg></div>
+  <div style="
+    font-family:'Playfair Display', Georgia, serif;
+    font-size:1.15rem;
+    font-weight:700;
+    color:#F5F0E8;
+    margin-bottom:6px;
+  ">The Monkees</div>
+  <div style="
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:#C9A84C;
+    margin-bottom:10px;
+  ">70s Pop Classics</div>
+  <p style="font-size:0.92rem; color:#c8c0b0; line-height:1.6; margin:0;">
+    Grew up with these guys. Timeless pop hooks, good energy, and the kind of
+    music that puts a smile on your face no matter what.
+  </p>
+</div>
+```
+
+  </div>
+
+  <!-- Apple Music CTA -->
+
+  <div style="
+    max-width:560px;
+    margin:0 auto 70px;
+    background:linear-gradient(135deg, rgba(201,168,76,0.12) 0%, rgba(201,168,76,0.04) 100%);
+    border:1.5px solid rgba(201,168,76,0.4);
+    border-radius:16px;
+    padding:36px 32px;
+    text-align:center;
+  ">
+    <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:14px;">
+      <rect width="44" height="44" rx="10" fill="#FC3C44"/>
+      <path d="M30.5 14.5V28.25C30.5 29.769 29.269 31 27.75 31C26.231 31 25 29.769 25 28.25C25 26.731 26.231 25.5 27.75 25.5C28.24 25.5 28.697 25.634 29.09 25.865V17.91L18.5 20.41V30.25C18.5 31.769 17.269 33 15.75 33C14.231 33 13 31.769 13 30.25C13 28.731 14.231 27.5 15.75 27.5C16.24 27.5 16.697 27.634 17.09 27.865V16.5L30.5 14.5Z" fill="white"/>
+    </svg>
+
+```
+<h3 style="
+  font-family:'Playfair Display', Georgia, serif;
+  font-size:1.45rem;
+  font-weight:700;
+  color:#F5F0E8;
+  margin:0 0 10px;
+">Follow ParkercountryAZ on Apple Music</h3>
+
+<p style="
+  font-size:0.95rem;
+  color:#c8c0b0;
+  line-height:1.65;
+  margin:0 0 24px;
+">
+  Dive into Powell's curated playlist — country legends, Spanish fire,
+  and classic rock gold. Free to stream on Apple Music.
+</p>
+
+<a href="https://music.apple.com/profile/ParkercountryAZ"
+   target="_blank"
+   rel="noopener"
+   style="
+     display:inline-flex;
+     align-items:center;
+     gap:10px;
+     background:#FC3C44;
+     color:#fff;
+     font-family:'Lato', sans-serif;
+     font-weight:700;
+     font-size:1rem;
+     letter-spacing:0.04em;
+     padding:14px 32px;
+     border-radius:50px;
+     text-decoration:none;
+     transition:opacity 0.2s, transform 0.2s;
+     box-shadow:0 4px 20px rgba(252,60,68,0.35);
+   "
+   onmouseenter="this.style.opacity='0.88';this.style.transform='scale(1.03)'"
+   onmouseleave="this.style.opacity='1';this.style.transform='scale(1)'">
+  <svg width="20" height="20" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M30.5 14.5V28.25C30.5 29.769 29.269 31 27.75 31C26.231 31 25 29.769 25 28.25C25 26.731 26.231 25.5 27.75 25.5C28.24 25.5 28.697 25.634 29.09 25.865V17.91L18.5 20.41V30.25C18.5 31.769 17.269 33 15.75 33C14.231 33 13 31.769 13 30.25C13 28.731 14.231 27.5 15.75 27.5C16.24 27.5 16.697 27.634 17.09 27.865V16.5L30.5 14.5Z" fill="white"/>
+  </svg>
+  🎵 &nbsp;Listen Free on Apple Music
+</a>
+```
+
+  </div>
+
+  <!-- Divider -->
+
+  <div style="
+    max-width:200px;
+    margin:0 auto 60px;
+    height:1px;
+    background:linear-gradient(90deg, transparent, rgba(201,168,76,0.5), transparent);
+  "></div>
+
+  <!-- Newsletter Signup -->
+
+  <div style="max-width:540px; margin:0 auto; text-align:center;">
+    <div style="
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-style:italic;
+      font-size:0.9rem;
+      letter-spacing:0.15em;
+      text-transform:uppercase;
+      color:#C9A84C;
+      margin-bottom:10px;
+    ">Weekly Newsletter</div>
+
+```
+<h3 style="
+  font-family:'Playfair Display', Georgia, serif;
+  font-size:1.7rem;
+  font-weight:700;
+  color:#F5F0E8;
+  margin:0 0 12px;
+  line-height:1.2;
+">Country Music &amp; Rising Stars<br>Straight to Your Inbox</h3>
+
+<p style="
+  font-size:0.95rem;
+  color:#c8c0b0;
+  line-height:1.65;
+  margin:0 0 28px;
+">
+  Every week: hand-picked new country tracks, future stars worth watching,
+  and Powell's picks from across genres. No spam — just good music,
+  delivered free.
+</p>
+
+<!-- Newsletter form — Formspree xeevzqqd -->
+<form
+  action="https://formspree.io/f/xeevzqqd"
+  method="POST"
+  onsubmit="handleNewsletterSubmit(event, this)"
+  style="display:flex; flex-direction:column; gap:14px; max-width:420px; margin:0 auto;"
+>
+  <input type="hidden" name="_subject" value="New Newsletter Signup — powparker.com">
+  <input type="hidden" name="source" value="Music Newsletter">
+  <input type="text" name="_gotcha" style="display:none">
+
+  <input
+    type="text"
+    name="name"
+    placeholder="Your First Name"
+    required
+    style="
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(201,168,76,0.3);
+      border-radius:8px;
+      padding:14px 18px;
+      color:#F5F0E8;
+      font-family:'Lato', sans-serif;
+      font-size:0.95rem;
+      outline:none;
+      transition:border-color 0.2s;
+    "
+    onfocus="this.style.borderColor='rgba(201,168,76,0.8)'"
+    onblur="this.style.borderColor='rgba(201,168,76,0.3)'"
+  >
+
+  <input
+    type="email"
+    name="email"
+    placeholder="Your Email Address"
+    required
+    style="
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(201,168,76,0.3);
+      border-radius:8px;
+      padding:14px 18px;
+      color:#F5F0E8;
+      font-family:'Lato', sans-serif;
+      font-size:0.95rem;
+      outline:none;
+      transition:border-color 0.2s;
+    "
+    onfocus="this.style.borderColor='rgba(201,168,76,0.8)'"
+    onblur="this.style.borderColor='rgba(201,168,76,0.3)'"
+  >
+
+  <button
+    type="submit"
+    style="
+      background:linear-gradient(135deg, #C9A84C, #E8D5A3);
+      color:#071018;
+      font-family:'Lato', sans-serif;
+      font-weight:800;
+      font-size:0.95rem;
+      letter-spacing:0.06em;
+      text-transform:uppercase;
+      padding:15px 28px;
+      border:none;
+      border-radius:8px;
+      cursor:pointer;
+      transition:opacity 0.2s, transform 0.2s;
+      box-shadow:0 4px 18px rgba(201,168,76,0.25);
+    "
+    onmouseenter="this.style.opacity='0.88';this.style.transform='translateY(-2px)'"
+    onmouseleave="this.style.opacity='1';this.style.transform=''"
+  >
+    🎵 &nbsp;Sign Me Up — It's Free
+  </button>
+
+  <div id="newsletter-msg" style="
+    display:none;
+    padding:12px 18px;
+    border-radius:8px;
+    font-size:0.92rem;
+    font-weight:600;
+    text-align:center;
+  "></div>
+</form>
+
+<p style="font-size:0.78rem; color:rgba(200,192,176,0.5); margin:14px 0 0;">No spam, ever. Unsubscribe anytime with one click.</p>
+```
+
+  </div>
+
+</section>
+
 <!-- GIVING BACK -->
 
 <section class="giving" id="giving">
@@ -799,6 +1243,43 @@ const obs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.08 });
 document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+
+<script>
+async function handleNewsletterSubmit(e, form) {
+  e.preventDefault();
+  const btn = form.querySelector('button[type="submit"]');
+  const msg = document.getElementById('newsletter-msg');
+  btn.disabled = true;
+  btn.textContent = 'Sending\u2026';
+
+  try {
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      msg.style.display = 'block';
+      msg.style.background = 'rgba(201,168,76,0.15)';
+      msg.style.border = '1px solid rgba(201,168,76,0.4)';
+      msg.style.color = '#E8D5A3';
+      msg.textContent = '\uD83E\uDD20 You\'re in! First issue coming your way soon.';
+      form.reset();
+      btn.style.display = 'none';
+    } else {
+      throw new Error();
+    }
+  } catch {
+    msg.style.display = 'block';
+    msg.style.background = 'rgba(255,80,80,0.1)';
+    msg.style.border = '1px solid rgba(255,80,80,0.3)';
+    msg.style.color = '#ffaaaa';
+    msg.textContent = 'Something went wrong. Please try again or email info@powparker.com';
+    btn.disabled = false;
+    btn.textContent = '\uD83C\uDFB5  Sign Me Up \u2014 It\'s Free';
+  }
+}
 </script>
 
 </body>
