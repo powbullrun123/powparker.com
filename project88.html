@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project 88 | Deep-Seated Granite Aquifer Initiative | Kearny Basin, AZ</title>
+  <meta name="description" content="Project 88 targets unregulated granite-vault aquifer formations in Kearny Basin, Arizona — below the GEC-adjudicated Gila River alluvium — using Managed Aquifer Recharge and Storage (MARS) to secure long-term water rights and infrastructure.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.powparker.com/project88">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Share+Tech+Mono&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:   #0b1624;
+      --dark:   #071018;
+      --mid:    #122035;
+      --panel:  #0e1c2f;
+      --cyan:   #00c8d4;
+      --cyan2:  #00a8b4;
+      --gold:   #C9A84C;
+      --gold-lt:#E8D5A3;
+      --white:  #f0f6ff;
+      --muted:  #7a9ab8;
+      --red:    #e05252;
+      --green:  #3ecf8e;
+      --yellow: #f0c040;
+    }
+
+```
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--dark);
+  color: var(--white);
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  background: rgba(7,16,24,0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(0,200,212,0.12);
+}
+.nav-logo {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: var(--cyan);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--cyan); }
+.nav-back {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid var(--gold);
+  padding: 6px 16px;
+  border-radius: 2px;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-back:hover { background: var(--gold); color: var(--dark); }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 100px 24px 60px;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(0,200,212,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 60%),
+    linear-gradient(180deg, #071018 0%, #0b1a2e 50%, #071018 100%);
+}
+/* animated grid lines */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,200,212,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,200,212,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: gridPulse 8s ease-in-out infinite;
+}
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+/* depth layers pulse */
+.hero-layers {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 55%;
+  pointer-events: none;
+}
+.depth-line {
+  position: absolute;
+  left: 0; right: 0;
+  height: 1px;
+  opacity: 0.35;
+}
+.depth-line:nth-child(1) { bottom: 72%; background: var(--muted); opacity: 0.2; }
+.depth-line:nth-child(2) { bottom: 44%; background: var(--cyan); }
+.depth-line:nth-child(3) { bottom: 18%; background: var(--gold); }
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 860px;
+}
+.hero-eyebrow {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.hero-eyebrow::before,
+.hero-eyebrow::after {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  background: var(--cyan);
+  opacity: 0.5;
+}
+.hero-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: clamp(3.2rem, 9vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+.hero-title .num {
+  color: var(--cyan);
+  font-size: clamp(4rem, 12vw, 9rem);
+  display: block;
+}
+.hero-subtitle {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 300;
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  letter-spacing: 0.04em;
+  color: var(--gold-lt);
+  margin-bottom: 32px;
+  text-transform: uppercase;
+}
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 620px;
+  margin: 0 auto 40px;
+  line-height: 1.75;
+}
+.hero-badges {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.badge {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 2px;
+  border: 1px solid;
+}
+.badge-cyan  { color: var(--cyan);   border-color: var(--cyan);   background: rgba(0,200,212,0.06); }
+.badge-gold  { color: var(--gold);   border-color: var(--gold);   background: rgba(201,168,76,0.06); }
+.badge-muted { color: var(--muted);  border-color: rgba(122,154,184,0.3); background: transparent; }
+.hero-cta {
+  display: inline-block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dark);
+  background: var(--cyan);
+  padding: 14px 36px;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 0.2s, transform 0.15s;
+}
+.hero-cta:hover { background: var(--cyan2); transform: translateY(-1px); }
+
+/* scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  animation: bounce 2s ease-in-out infinite;
+}
+.scroll-hint::after {
+  content: '';
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(var(--cyan), transparent);
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ── SECTIONS ── */
+section { padding: 80px 24px; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 14px;
+}
+.section-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+.section-lead {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 680px;
+  line-height: 1.8;
+  margin-bottom: 48px;
+}
+
+/* ── GEOLOGY LAYER DIAGRAM ── */
+.geology-section { background: var(--panel); }
+.geo-diagram {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  border: 1px solid rgba(0,200,212,0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 40px;
+}
+.geo-layer {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  align-items: stretch;
+  min-height: 110px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.25s;
+}
+.geo-layer:last-child { border-bottom: none; }
+.geo-layer:hover { background: rgba(0,200,212,0.03); }
+.geo-depth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0,0,0,0.25);
+  border-right: 1px solid rgba(255,255,255,0.06);
+  gap: 6px;
+}
+.depth-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.depth-val {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--white);
+}
+.depth-indicator {
+  width: 32px;
+  height: 3px;
+  border-radius: 2px;
+  margin-top: 4px;
+}
+.geo-info {
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.geo-layer-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.geo-layer-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.geo-tag {
+  display: inline-block;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 2px;
+  margin-bottom: 8px;
+  align-self: flex-start;
+}
+.tag-adjudicated { color: var(--red);   background: rgba(224,82,82,0.12);   border: 1px solid rgba(224,82,82,0.3); }
+.tag-transition   { color: var(--muted); background: rgba(122,154,184,0.1);  border: 1px solid rgba(122,154,184,0.25); }
+.tag-operational  { color: var(--cyan);  background: rgba(0,200,212,0.1);    border: 1px solid rgba(0,200,212,0.3); }
+.tag-target       { color: var(--gold);  background: rgba(201,168,76,0.1);   border: 1px solid rgba(201,168,76,0.3); }
+
+/* ── MARS ACRONYM ── */
+.mars-section { background: var(--navy); }
+.mars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1px;
+  background: rgba(0,200,212,0.1);
+  border: 1px solid rgba(0,200,212,0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 40px;
+}
+.mars-card {
+  background: var(--panel);
+  padding: 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: background 0.2s;
+}
+.mars-card:hover { background: rgba(0,200,212,0.05); }
+.mars-letter {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--cyan);
+  opacity: 0.25;
+}
+.mars-word {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  color: var(--white);
+}
+.mars-desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+/* ── LEGAL FRAMEWORK ── */
+.legal-section { background: var(--dark); }
+.legal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+.legal-card {
+  background: var(--panel);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 4px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.legal-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--gold);
+}
+.legal-card-icon {
+  font-size: 1.8rem;
+  margin-bottom: 14px;
+}
+.legal-card-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  color: var(--gold-lt);
+  margin-bottom: 10px;
+}
+.legal-card-body {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.legal-stat {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--cyan);
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ── STATUS BOARD ── */
+.status-section { background: var(--panel); }
+.status-board {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(0,200,212,0.12);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.status-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 140px;
+  align-items: center;
+  padding: 20px 24px;
+  gap: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: background 0.2s;
+}
+.status-row:last-child { border-bottom: none; }
+.status-row:hover { background: rgba(0,200,212,0.03); }
+.status-num {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  text-align: center;
+}
+.status-info {}
+.status-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--white);
+  margin-bottom: 3px;
+}
+.status-detail {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+.status-pill {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-align: center;
+  justify-self: end;
+}
+.pill-complete { background: rgba(62,207,142,0.15); color: var(--green); border: 1px solid rgba(62,207,142,0.3); }
+.pill-active   { background: rgba(0,200,212,0.12);  color: var(--cyan);  border: 1px solid rgba(0,200,212,0.3); }
+.pill-pending  { background: rgba(122,154,184,0.1); color: var(--muted); border: 1px solid rgba(122,154,184,0.25); }
+
+/* ── CONTACT / CTA ── */
+.cta-section { background: var(--dark); text-align: center; }
+.cta-box {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  border: 1px solid rgba(0,200,212,0.2);
+  border-radius: 4px;
+  background: var(--panel);
+  position: relative;
+  overflow: hidden;
+}
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--gold), transparent);
+}
+.cta-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.cta-body {
+  font-size: 0.95rem;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dark);
+  background: var(--cyan);
+  padding: 14px 32px;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: var(--cyan2); }
+.btn-secondary {
+  display: inline-block;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: transparent;
+  border: 1px solid var(--gold);
+  padding: 14px 32px;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-secondary:hover { background: var(--gold); color: var(--dark); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--dark);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 32px 24px;
+  text-align: center;
+}
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.footer-brand {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.footer-brand span { color: var(--cyan); }
+.footer-copy {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: rgba(122,154,184,0.5);
+}
+.footer-link {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+}
+.footer-link:hover { text-decoration: underline; }
+
+/* ── FADE IN ANIMATION ── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 700px) {
+  nav { padding: 12px 18px; }
+  .nav-links { display: none; }
+  .geo-layer { grid-template-columns: 1fr; }
+  .geo-depth { flex-direction: row; justify-content: flex-start; padding: 14px 18px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .status-row { grid-template-columns: 1fr 100px; }
+  .status-num { display: none; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .cta-box { padding: 40px 24px; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+
+  <nav>
+    <a href="https://www.powparker.com" class="nav-logo">Powell <span>Parker</span></a>
+    <ul class="nav-links">
+      <li><a href="#geology">Geology</a></li>
+      <li><a href="#mars">MARS</a></li>
+      <li><a href="#legal">Legal</a></li>
+      <li><a href="#status">Status</a></li>
+    </ul>
+    <a href="https://www.powparker.com" class="nav-back">← powparker.com</a>
+  </nav>
+
+  <!-- HERO -->
+
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-layers">
+      <div class="depth-line"></div>
+      <div class="depth-line"></div>
+      <div class="depth-line"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Kearny Basin, Arizona</div>
+      <h1 class="hero-title">
+        <span class="num">88</span>
+        PROJECT
+      </h1>
+      <p class="hero-subtitle">Deep-Seated Granite Aquifer Initiative</p>
+      <p class="hero-desc">
+        Securing long-term water infrastructure for the Town of Kearny by targeting
+        unregulated granite-vault formations below the GEC-adjudicated Gila River
+        alluvium — using Managed Aquifer Recharge and Storage technology.
+      </p>
+      <div class="hero-badges">
+        <span class="badge badge-cyan">Kearny Basin, AZ</span>
+        <span class="badge badge-gold">ARS Title 45</span>
+        <span class="badge badge-muted">ADWR Pre-App Active</span>
+        <span class="badge badge-muted">GEC Boundary Analysis Complete</span>
+      </div>
+      <a href="#geology" class="hero-cta">Explore the Initiative</a>
+    </div>
+    <div class="scroll-hint">Scroll</div>
+  </div>
+
+  <!-- GEOLOGY LAYERS -->
+
+  <section class="geology-section" id="geology">
+    <div class="section-inner">
+      <p class="section-label fade-up">Geological Framework</p>
+      <h2 class="section-title fade-up">Four Zones.<br>One Legal Opportunity.</h2>
+      <p class="section-lead fade-up">
+        The Globe Equity Decree adjudicates the surface alluvium tied to the Gila River mainstem.
+        Project 88 operates in the formations beneath that boundary — geology the 1935 court never
+        thought to foreclose.
+      </p>
+
+```
+  <div class="geo-diagram fade-up">
+
+    <div class="geo-layer">
+      <div class="geo-depth">
+        <span class="depth-label">Zone</span>
+        <span class="depth-val">01</span>
+        <div class="depth-indicator" style="background:var(--red);"></div>
+      </div>
+      <div class="geo-info">
+        <span class="geo-tag tag-adjudicated">GEC Adjudicated</span>
+        <div class="geo-layer-name" style="color:var(--red);">Gila River Subflow Alluvium</div>
+        <div class="geo-layer-desc">
+          Surface and near-surface alluvial deposits hydraulically connected to the Gila River mainstem.
+          Governed by the Globe Equity Decree (1935). All new wells in this zone are legally classified as
+          river diversions — subject to senior priority rights and strict curtailment.
+        </div>
+      </div>
+    </div>
+
+    <div class="geo-layer">
+      <div class="geo-depth">
+        <span class="depth-label">Zone</span>
+        <span class="depth-val">02</span>
+        <div class="depth-indicator" style="background:var(--muted);"></div>
+      </div>
+      <div class="geo-info">
+        <span class="geo-tag tag-transition">Transition Layer</span>
+        <div class="geo-layer-name" style="color:var(--muted);">Deep Geological Containment</div>
+        <div class="geo-layer-desc">
+          The transitional buffer between GEC-governed alluvium and unregulated deep geology.
+          This layer defines the legal boundary of Project 88's operational zone — everything above
+          is adjudicated; everything below is open ground.
+        </div>
+      </div>
+    </div>
+
+    <div class="geo-layer">
+      <div class="geo-depth">
+        <span class="depth-label">Zone</span>
+        <span class="depth-val">03</span>
+        <div class="depth-indicator" style="background:var(--cyan);"></div>
+      </div>
+      <div class="geo-info">
+        <span class="geo-tag tag-operational">Operational Core</span>
+        <div class="geo-layer-name" style="color:var(--cyan);">MARS Recharge Well</div>
+        <div class="geo-layer-desc">
+          The Managed Aquifer Recharge and Storage well is bored to granite-vault depth,
+          bypassing the GEC alluvium entirely. Documented beneficial use at this depth establishes
+          prior appropriation rights under ARS Title 45 — rights the Decree was never written to block.
+        </div>
+      </div>
+    </div>
+
+    <div class="geo-layer">
+      <div class="geo-depth">
+        <span class="depth-label">Zone</span>
+        <span class="depth-val">04</span>
+        <div class="depth-indicator" style="background:var(--gold);"></div>
+      </div>
+      <div class="geo-info">
+        <span class="geo-tag tag-target">Primary Target</span>
+        <div class="geo-layer-name" style="color:var(--gold);">Granite-Vault Aquifer Formations</div>
+        <div class="geo-layer-desc">
+          Deep-seated granite-vault geology beneath the Kearny Basin — geologically distinct from
+          the GEC-adjudicated alluvial subflow. Unregulated. Rechargeable. Capable of storing
+          substantial water volumes independent of Gila River hydrology and senior surface rights.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- MARS ACRONYM -->
+
+  <section class="mars-section" id="mars">
+    <div class="section-inner">
+      <p class="section-label fade-up">Core Mechanism</p>
+      <h2 class="section-title fade-up">M·A·R·S</h2>
+      <p class="section-lead fade-up">
+        Managed Aquifer Recharge and Storage is the technical framework that transforms
+        Project 88 from a legal theory into operational water infrastructure.
+      </p>
+      <div class="mars-grid fade-up">
+        <div class="mars-card">
+          <div class="mars-letter">M</div>
+          <div class="mars-word">Managed</div>
+          <div class="mars-desc">
+            Controlled recharge operations through engineered wells — not passive infiltration.
+            Managed injection allows precise volume tracking, which is the evidentiary foundation
+            for prior appropriation claims under Arizona water law.
+          </div>
+        </div>
+        <div class="mars-card">
+          <div class="mars-letter">A</div>
+          <div class="mars-word">Aquifer</div>
+          <div class="mars-desc">
+            The granite-vault formations in the Kearny Basin are the storage vessel.
+            Unlike surface reservoirs or alluvial systems, deep granite-vault geology
+            offers long-term containment with minimal evaporation loss.
+          </div>
+        </div>
+        <div class="mars-card">
+          <div class="mars-letter">R</div>
+          <div class="mars-word">Recharge</div>
+          <div class="mars-desc">
+            Surplus water from rain events, effluent, or treated water is injected
+            during high-availability periods and stored for recovery during shortage —
+            creating a year-round buffer independent of Gila River flows.
+          </div>
+        </div>
+        <div class="mars-card">
+          <div class="mars-letter">S</div>
+          <div class="mars-word">Storage</div>
+          <div class="mars-desc">
+            Long-term underground storage builds water security across multi-year drought cycles.
+            Storage credits accrued under ARS Title 45 are transferable — creating
+            infrastructure with standalone asset value beyond municipal use.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEGAL FRAMEWORK -->
+
+  <section class="legal-section" id="legal">
+    <div class="section-inner">
+      <p class="section-label fade-up">Legal Architecture</p>
+      <h2 class="section-title fade-up">The Strategy Is in<br>the Boundary.</h2>
+      <p class="section-lead fade-up">
+        Project 88 doesn't fight the Globe Equity Decree. It operates below it —
+        in geology the 1935 court never adjudicated and never foreclosed.
+      </p>
+      <div class="legal-grid">
+
+```
+    <div class="legal-card fade-up">
+      <div class="legal-card-icon">⚖️</div>
+      <div class="legal-card-title">Globe Equity Decree (1935)</div>
+      <div class="legal-card-body">
+        Governs surface and alluvial subflow hydraulically connected to the Gila River
+        mainstem. Jurisdiction is defined by proximity to the river and hydrological
+        connectivity — not by depth or geological formation type.
+      </div>
+      <div class="legal-stat">// Jurisdictional boundary: alluvial subflow only</div>
+    </div>
+
+    <div class="legal-card fade-up">
+      <div class="legal-card-icon">📐</div>
+      <div class="legal-card-title">ARS Title 45 — Prior Appropriation</div>
+      <div class="legal-card-body">
+        Arizona water law recognizes prior appropriation rights for groundwater
+        beneficially used and documented. A MARS well that injects and extracts
+        water from granite-vault formations — below the GEC boundary — establishes
+        legally defensible priority rights through use.
+      </div>
+      <div class="legal-stat">// Rights established via: documented beneficial use</div>
+    </div>
+
+    <div class="legal-card fade-up">
+      <div class="legal-card-icon">🏔️</div>
+      <div class="legal-card-title">The Arbitrage</div>
+      <div class="legal-card-body">
+        All legal value is created below the GEC line. The granite-vault formations
+        are not subflow. They are not adjudicated. Recharging them does not trigger
+        a senior-rights violation. The Town of Kearny gains a water supply pathway
+        the Decree was never designed to close.
+      </div>
+      <div class="legal-stat">// GEC line = boundary of constraint AND opportunity</div>
+    </div>
+
+    <div class="legal-card fade-up">
+      <div class="legal-card-icon">🤝</div>
+      <div class="legal-card-title">Industry Partnership Path</div>
+      <div class="legal-card-body">
+        ASARCO and Resolution Copper have existing operational footprints in the Kearny Basin.
+        Project 88 offers both a water stability solution for their next-century operations
+        and a mechanism to fulfill long-term community water commitments — a negotiated
+        transfer cannot do what a repressurized aquifer can.
+      </div>
+      <div class="legal-stat">// Target partners: ASARCO · Resolution Copper · Water.org</div>
+    </div>
+
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- STATUS BOARD -->
+
+  <section class="status-section" id="status">
+    <div class="section-inner">
+      <p class="section-label fade-up">Initiative Status</p>
+      <h2 class="section-title fade-up">Milestone Sequence</h2>
+      <p class="section-lead fade-up">
+        Current operational stage: ADWR pre-application consultation underway.
+        Geological model and GEC boundary analysis complete.
+      </p>
+      <div class="status-board fade-up">
+
+```
+    <div class="status-row">
+      <div class="status-num">01</div>
+      <div class="status-info">
+        <div class="status-name">Geological Model</div>
+        <div class="status-detail">Kearny Basin granite-vault formation mapping and analysis</div>
+      </div>
+      <div class="status-pill pill-complete">Complete</div>
+    </div>
+
+    <div class="status-row">
+      <div class="status-num">02</div>
+      <div class="status-info">
+        <div class="status-name">GEC Boundary Analysis</div>
+        <div class="status-detail">Legal jurisdictional boundary documentation and rationale</div>
+      </div>
+      <div class="status-pill pill-complete">Complete</div>
+    </div>
+
+    <div class="status-row">
+      <div class="status-num">03</div>
+      <div class="status-info">
+        <div class="status-name">ADWR Pre-Application Consultation</div>
+        <div class="status-detail">Arizona Department of Water Resources — formal engagement initiated</div>
+      </div>
+      <div class="status-pill pill-active">In Progress</div>
+    </div>
+
+    <div class="status-row">
+      <div class="status-num">04</div>
+      <div class="status-info">
+        <div class="status-name">Hydrogeological Investigation</div>
+        <div class="status-detail">Licensed hydrogeologist engagement for site-specific formation study</div>
+      </div>
+      <div class="status-pill pill-pending">Pending</div>
+    </div>
+
+    <div class="status-row">
+      <div class="status-num">05</div>
+      <div class="status-info">
+        <div class="status-name">MARS Well Installation</div>
+        <div class="status-detail">Recharge well bored to granite-vault depth; beneficial use documentation begins</div>
+      </div>
+      <div class="status-pill pill-pending">Pending</div>
+    </div>
+
+    <div class="status-row">
+      <div class="status-num">06</div>
+      <div class="status-info">
+        <div class="status-name">Water Storage Credits — ARS Title 45</div>
+        <div class="status-detail">Prior appropriation rights filing; storage credit accrual and registry</div>
+      </div>
+      <div class="status-pill pill-pending">Pending</div>
+    </div>
+
+  </div>
+</div>
+```
+
+  </section>
+
+  <!-- CTA -->
+
+  <section class="cta-section">
+    <div class="section-inner">
+      <div class="cta-box fade-up">
+        <div class="cta-title">Interested in Project 88?</div>
+        <p class="cta-body">
+          Whether you represent a municipal authority, industrial water user, investment group,
+          or water infrastructure organization — if you see the same opportunity in this basin
+          that we do, let's talk.
+        </p>
+        <div class="cta-buttons">
+          <a href="mailto:powell@powparker.com" class="btn-primary">Contact Powell</a>
+          <a href="https://www.powparker.com" class="btn-secondary">Back to powparker.com</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">Project <span>88</span> · Kearny Basin, AZ</div>
+      <div class="footer-copy">&copy; 2026 Powell Parker · powparker.com</div>
+      <a href="https://www.powparker.com" class="footer-link">← powparker.com</a>
+    </div>
+  </footer>
+
+  <script>
+    // Fade-up on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Stagger children of grids
+    document.querySelectorAll('.mars-grid .mars-card, .legal-grid .legal-card').forEach((card, i) => {
+      card.style.transitionDelay = (i * 0.08) + 's';
+    });
+  </script>
+
+</body>
+</html>
