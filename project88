@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 88 | Granite-Vault Water Infrastructure | Parker Country</title>
+    <meta name="description" content="A strategic infrastructure solution for Kearny, AZ, leveraging deep geology, historic proven water management, and MAR technology to secure a permanent water supply.">
+    
+    <style>
+        /* --- General Layout --- */
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: #ffffff; /* Clean white background */
+            color: #1a2a47; /* DARK NAVY BLUE LETTERING */
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+            color: #1a2a47; /* DARK NAVY BLUE HEADINGS */
+            margin-bottom: 0.5em;
+        }
+
+        a {
+            color: #1a2a47;
+            text-decoration: underline;
+        }
+
+        a:hover {
+            color: #4c6691; /* Lighter blue accent */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2em 0;
+        }
+
+        /* --- Global Navy Text --- */
+        .navy-text {
+            color: #1a2a47 !important;
+        }
+
+        /* --- Header / Project Intro --- */
+        #hero-header {
+            background-color: #f5f8ff; /* Very faint blue hero area */
+            padding: 4em 0;
+            border-bottom: 2px solid #1a2a47;
+        }
+
+        .project-meta {
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1em;
+        }
+
+        /* --- Text Structure & Alignment --- */
+        .intro-text {
+            font-size: 1.3em;
+            font-weight: 300;
+            max-width: 800px;
+        }
+
+        .section-header {
+            margin-top: 2em;
+            border-top: 1px solid #ddd;
+            padding-top: 1.5em;
+        }
+
+        /* --- Technical Image Callout --- */
+        .tech-callout {
+            display: flex;
+            align-items: center;
+            gap: 2em;
+            margin: 2em 0;
+            flex-wrap: wrap;
+        }
+
+        .tech-image {
+            flex: 1 1 500px;
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: #fff;
+        }
+
+        .tech-text {
+            flex: 1 1 400px;
+        }
+
+        /* --- Proof & Partners --- */
+        #sources-partners {
+            background-color: #f5f8ff;
+            padding: 2em;
+            margin-top: 2em;
+        }
+
+        .partner-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1em;
+            list-style: none;
+            padding: 0;
+            font-weight: bold;
+        }
+
+        .partner-list li {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            padding: 0.5em 1em;
+            border-radius: 4px;
+        }
+
+        /* --- Footer (Simple Integration) --- */
+        footer {
+            background-color: #1a2a47;
+            color: #ffffff;
+            padding: 2em 0;
+            margin-top: 3em;
+            text-align: center;
+        }
+
+        footer p, footer a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="hero-header">
+        <div class="container">
+            <div class="project-meta navy-text">Strategic Water Infrastructure</div>
+            <h1>Project 88: The Granite-Vault Aquifer Solution</h1>
+            <p class="intro-text navy-text">A geologically distinct, non-adjudicated water resource management plan designed to secure the permanence of Kearny, AZ.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <div class="section-header">
+            <h2>I. The Geological & Legal Distinction</h2>
+        </div>
+
+        <p>The 1935 Globe Equity Decree governs the alluvial subflow of the Gila River. Project 88 identifies and accesses a separate system: the **Granite-Vault Aquifer formations**. This system is defined by deep geological containment that has been isolated from the river's adjudicated flows since before the Decree was enacted.</p>
+        
+        <div class="tech-callout">
+            <div class="tech-text">
+                <h3>Proven Since the 1890s</h3>
+                <p>This is not 'new' water. It is a historically proven, re-accessed resource. Mining operations and USGS geological surveys from the late 19th and early 20th centuries documented deep bedrock aquifers capable of sustainable flow, geologically distinct from the sandy river plain. We are leveraging this archived data to build a new model of containment.</p>
+            </div>
+            <img src="assets/granite_aquifer.png" alt="A cross-section diagram showing the shallow Gila River Alluvium separated by a fault boundary from the deeper, non-adjudicated Granite-Vault Aquifer system where Project 88 target water is located." class="tech-image" />
+        </div>
+
+        <div class="section-header">
+            <h2>II. Proven Technology: Managed Aquifer Recharge (MAR)</h2>
+        </div>
+
+        <p>Project 88 isn't an experimental pilot. It deploys proven Managed Aquifer Recharge technology—repressurizing deep geology during surplus flow events to create reliable, multi-generational groundwater storage.</p>
+        <p>We leverage the same logic and engineering used successfully for decades by major regional precedents: **Salt River Project (GRUSP)** and the **City of Chandler** water management teams.</p>
+
+        <div id="sources-partners">
+            <h3>III. Verifiable Data & Verified Partners</h3>
+            <p>Our hydrogeological mapping draws exclusively from publicly verifiable archives, combining 130 years of documentation with modern AI-driven geological modeling.</p>
+            <ul>
+                <li><strong>USGS Historic Records:</strong> 1890–1940 well logs.</li>
+                <li><strong>ADWR Drilling Records:</strong> Comprehensive state data on existing well perforations and Pinal AMA water levels.</li>
+            </ul>
+
+            <h4>The Collaboration Framework</h4>
+                <ul class="partner-list">
+                    <li>The Town of Kearny</li>
+                    <li>Water.org</li>
+                    <li>ASARCO</li>
+                    <li>Resolution Copper</li>
+                    <li>Gila River Indian Community</li>
+                </ul>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Powell Parker | Parker Country | Water Strategy | <a href="tel:4807882320">480-788-2320</a></p>
+            <p><a href="../index.html">Back to Main Parker Country Homepage</a></p>
+            <p>&copy; 2024 Parker Country. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
