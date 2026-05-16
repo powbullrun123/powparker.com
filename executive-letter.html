@@ -157,16 +157,20 @@ body {
   background: #fff;
   box-shadow: 0 6px 40px rgba(0,0,0,0.3);
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Gold bars — thick */
 .top-bar {
   height: 10px;
   background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark));
+  flex-shrink: 0;
 }
 .bottom-bar {
   height: 10px;
   background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark));
+  flex-shrink: 0;
 }
 
 /* Fade-in/out gold dividers */
@@ -175,46 +179,54 @@ body {
   border: none;
   margin: 0 56px;
   background: linear-gradient(90deg, transparent 0%, var(--gold-light) 15%, var(--gold) 40%, var(--gold) 60%, var(--gold-light) 85%, transparent 100%);
+  flex-shrink: 0;
 }
 .footer-rule {
   height: 3px;
   margin: 0 56px;
   background: linear-gradient(90deg, transparent 0%, var(--gold-light) 15%, var(--gold) 40%, var(--gold) 60%, var(--gold-light) 85%, transparent 100%);
+  flex-shrink: 0;
 }
 
-/* Letterhead */
+/* Letterhead Layout */
 .letterhead {
   display: flex;
   align-items: center;
-  padding: 32px 56px 24px;
+  justify-content: space-between;
+  padding: 40px 56px 24px;
+  flex-shrink: 0;
+}
+.lh-brand-group {
+  display: flex;
+  align-items: center;
 }
 .lh-seal {
-  width: 150px;
-  height: 150px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   flex-shrink: 0;
   box-shadow: 0 3px 14px rgba(0,0,0,0.15);
+  object-fit: contain;
 }
 .lh-text {
   margin-left: 24px;
-  flex: 1;
 }
 .lh-name {
   font-family: 'Cormorant', serif;
-  font-size: 1.65rem;
+  font-size: 1.95rem;
   font-weight: 700;
   color: var(--navy);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   line-height: 1.1;
 }
 .lh-motto {
   font-family: 'Cormorant', serif;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--gold);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 .lh-contact {
   text-align: right;
@@ -222,9 +234,9 @@ body {
 }
 .lh-contact div {
   font-family: 'Lato', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--text-light);
-  line-height: 1.8;
+  line-height: 1.6;
   letter-spacing: 0.02em;
 }
 .lh-contact a {
@@ -235,64 +247,65 @@ body {
 
 /* Letter body */
 .letter-content {
-  padding: 36px 56px 40px;
-  font-size: 1.02rem;
+  padding: 40px 56px 120px; /* Large bottom padding safeguards footer space */
+  font-size: 1.05rem;
   line-height: 1.85;
   color: var(--text);
+  flex: 1 0 auto;
 }
 .l-date {
   font-family: 'Lato', sans-serif;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--text-light);
   letter-spacing: 0.03em;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
 }
 .l-recipient {
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   line-height: 1.6;
-  font-size: 0.95rem;
+  font-size: 0.98rem;
 }
 .l-recipient strong {
   font-family: 'Cormorant', serif;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--navy);
 }
 .l-subject {
   font-family: 'Cormorant', serif;
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-weight: 700;
   color: var(--gold);
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--rule);
 }
 .l-salutation {
   font-family: 'Cormorant', serif;
-  font-size: 1.12rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--navy);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 .l-body p {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   text-align: justify;
   hyphens: auto;
 }
 .l-body p:last-child { margin-bottom: 0; }
 .l-closing {
-  margin-top: 32px;
+  margin-top: 36px;
   font-family: 'Cormorant', serif;
   font-style: italic;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 500;
 }
 .l-sig { margin-top: 36px; }
 .l-sig-name {
   font-family: 'Cormorant', serif;
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--navy);
 }
@@ -322,9 +335,9 @@ body {
   letter-spacing: 0.02em;
 }
 .l-sig-links {
-  margin-top: 6px;
+  margin-top: 8px;
   display: flex;
-  gap: 16px;
+  gap: 14px;
   align-items: center;
   flex-wrap: wrap;
 }
@@ -353,6 +366,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+  flex-shrink: 0;
 }
 .footer-content {
   padding: 16px 56px;
@@ -389,24 +403,25 @@ body {
   body { background: #fff; }
   .editor-bar, .input-panel { display: none !important; }
   .page-container { padding: 0; }
-  .page { box-shadow: none; width: 100%; }
+  .page { box-shadow: none; width: 100%; min-height: 100vh; }
 }
 @media (max-width: 860px) {
   .page { width: 100%; min-height: auto; }
-  .letterhead { padding: 24px 28px 18px; flex-wrap: wrap; }
-  .lh-seal { width: 110px; height: 110px; }
-  .lh-contact { text-align: left; width: 100%; margin-top: 12px; }
-  .letter-content { padding: 24px 28px 32px; }
+  .letterhead { padding: 32px 28px 20px; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .lh-brand-group { width: 100%; }
+  .lh-seal { width: 90px; height: 90px; }
+  .lh-contact { text-align: left; width: 100%; }
+  .letter-content { padding: 24px 28px 140px; }
   .header-rule, .footer-rule { margin: 0 28px; }
   .footer-content { padding: 12px 28px; flex-direction: column; text-align: center; }
   .field-grid { grid-template-columns: 1fr; }
-  .l-sig-links { flex-direction: column; gap: 4px; }
+  .l-sig-links { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .l-sig-links .sig-divider { display: none; }
 }
 </style>
 </head>
 <body>
 
-<!-- ═══ EDITOR BAR ═══ -->
 <div class="editor-bar">
   <div class="bar-left">
     <div class="bar-title">Powell Parker &mdash; Executive Stationery</div>
@@ -419,7 +434,6 @@ body {
   </div>
 </div>
 
-<!-- ═══ INPUT PANEL ═══ -->
 <div class="input-panel active" id="inputPanel">
   <h3>Compose Your Letter</h3>
   <div class="field-grid">
@@ -458,30 +472,23 @@ body {
   </div>
 </div>
 
-<!-- ═══ THE LETTER ═══ -->
 <div class="page-container">
   <div class="page">
     <div class="top-bar"></div>
+    
     <div class="letterhead">
-      <img src="powparker-logo.webp" class="lh-seal" id="outSeal" alt="Seal">
-      <div class="lh-text">
-        <div class="lh-name">Powell Parker</div>
-        <div class="lh-motto">Precision &middot; Foresight &middot; Execution</div>
-      </div>
-      <div class="lh-contact">
-        <div><a href="mailto:powell@powparker.com">powell@powparker.com</a></div>
-        <div><a href="mailto:info@powparker.com">info@powparker.com</a></div>
-        <div><span class="phone-label">AZ:</span> <a href="tel:4807882320">480-788-2320</a></div>
-      </div>
-    </div>
-   <div class="lh-text">
-        <div class="lh-name">Powell Parker</div>
-        <div class="lh-motto">Precision &middot; Foresight &middot; Execution</div>
+      <div class="lh-brand-group">
+        <img src="powparker-logo.webp" class="lh-seal" id="outSeal" alt="Seal">
+        <div class="lh-text">
+          <div class="lh-name">Powell Parker</div>
+          <div class="lh-motto">Precision &middot; Foresight &middot; Execution</div>
+        </div>
       </div>
       <div class="lh-contact">
         <div><a href="https://www.powparker.com">powparker.com</a></div>
-        <div><a href="mailto:pow@powparker.com">pow@powparker.com</a></div>
-        <div><a href="tel:4807882320">(480) 788-2320</a></div>
+        <div><a href="mailto:powell@powparker.com">powell@powparker.com</a></div>
+        <div><a href="mailto:info@powparker.com">info@powparker.com</a></div>
+        <div><span class="phone-label">AZ:</span> <a href="tel:4807882320">(480) 788-2320</a></div>
         <div>Mesa, Arizona</div>
       </div>
     </div>
@@ -505,16 +512,16 @@ body {
         <div class="l-sig-name">Powell Parker</div>
         <div class="l-sig-title" id="outSigTitle">Founder &mdash; SaveKearnyAZ.org &middot; Project 88</div>
         <div class="l-sig-phones">
-          <a href="tel:4807882320">(480) 788-2320</a> <span class="phone-label">Mesa</span>
+          <span class="phone-label">AZ:</span> <a href="tel:4807882320">(480) 788-2320</a>
           &nbsp;&nbsp;&middot;&nbsp;&nbsp;
-          <a href="tel:2148381883">(214) 838-1883</a> <span class="phone-label">Dallas</span>
+          <span class="phone-label">TX:</span> <a href="tel:2148381883">(214) 838-1883</a>
         </div>
         <div class="l-sig-links">
           <a href="https://www.powparker.com">www.powparker.com</a>
           <span class="sig-divider">|</span>
           <a href="https://www.rightfulreturnsrecovery.com">www.rightfulreturnsrecovery.com</a>
           <span class="sig-divider">|</span>
-          <span class="sig-email"><a href="mailto:pow@powparker.com">pow@powparker.com</a></span>
+          <span class="sig-email"><a href="mailto:powell@powparker.com">powell@powparker.com</a></span>
         </div>
       </div>
     </div>
