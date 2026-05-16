@@ -145,6 +145,47 @@ body {
   gap: 14px;
 }
 
+/* ── INTERACTIVE PHOTO BUILDER STYLING ── */
+.exhibit-manager-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(201,168,76,0.3);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  position: relative;
+}
+.btn-delete-exhibit {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: #ff6b6b;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.btn-delete-exhibit:hover { text-decoration: underline; }
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+.slider-row input[type="range"] {
+  flex: 1;
+  accent-color: var(--gold);
+}
+.slider-value {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.7rem;
+  color: var(--gold-light);
+  min-width: 35px;
+}
+
 /* ── THE PAGE ── */
 .page-container {
   display: flex;
@@ -247,7 +288,7 @@ body {
 
 /* Letter body */
 .letter-content {
-  padding: 40px 56px 120px; /* Large bottom padding safeguards footer space */
+  padding: 40px 56px 140px; /* Large bottom padding safeguards footer space */
   font-size: 1.05rem;
   line-height: 1.85;
   color: var(--text);
@@ -295,6 +336,36 @@ body {
   hyphens: auto;
 }
 .l-body p:last-child { margin-bottom: 0; }
+
+/* ── EMBEDDED PRINT EXHIBIT STYLING ── */
+.printed-exhibit-container {
+  margin: 32px 0;
+  text-align: center;
+  page-break-inside: avoid;
+}
+.exhibit-print-heading {
+  font-family: 'Cormorant', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 12px;
+  text-align: center;
+}
+.exhibit-print-img {
+  display: inline-block;
+  border: 2px solid var(--gold);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.exhibit-print-caption {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
 .l-closing {
   margin-top: 36px;
   font-family: 'Cormorant', serif;
@@ -302,7 +373,7 @@ body {
   font-size: 1.1rem;
   font-weight: 500;
 }
-.l-sig { margin-top: 36px; }
+.l-sig { margin-top: 36px; page-break-inside: avoid; }
 .l-sig-name {
   font-family: 'Cormorant', serif;
   font-size: 1.25rem;
@@ -460,6 +531,15 @@ body {
     <textarea id="inBody" placeholder="Write your letter here. Use a blank line between paragraphs.&#10;&#10;Wrap text in *asterisks* for bold emphasis."></textarea>
     <div class="hint">Blank line = new paragraph &nbsp;|&nbsp; *text* = bold &nbsp;|&nbsp; Just write naturally.</div>
   </div>
+
+  <div style="margin-top: 24px; margin-bottom: 20px; border-top: 1px solid rgba(201,168,76,0.2); padding-top: 16px;">
+    <h3 style="margin-bottom: 10px;">Visual Exhibits & Photos</h3>
+    <div id="exhibitsContainer"></div>
+    <button class="bar-btn" type="button" onclick="addExhibitField()" style="width: 100%; border-style: dashed; padding: 10px; background: rgba(201,168,76,0.05);">
+      + Add Photo Exhibit / Attachment
+    </button>
+  </div>
+
   <div class="field-grid">
     <div class="field-row">
       <label>Closing</label>
@@ -504,9 +584,13 @@ body {
       </div>
       <div class="l-subject" id="outSubject" style="display:none;"></div>
       <div class="l-salutation" id="outSalutation">Dear Colleague,</div>
+      
       <div class="l-body" id="outBody">
         <p style="color: #999; font-style: italic;">Your letter will appear here. Fill in the fields above and click &ldquo;Generate Letter&rdquo; to format it.</p>
       </div>
+
+      <div id="outExhibits"></div>
+
       <div class="l-closing" id="outClosing">Respectfully,</div>
       <div class="l-sig">
         <div class="l-sig-name">Powell Parker</div>
@@ -553,6 +637,8 @@ body {
 })();
 
 var editMode = true;
+var exhibitCount = 0;
+var exhibitDataStore = {}; // Holds memory values of uploaded files
 
 function toggleMode() {
   editMode = !editMode;
@@ -572,49 +658,54 @@ function toggleMode() {
   }
 }
 
-function generateLetter() {
-  var date = document.getElementById('inDate').value.trim();
-  if (date) document.getElementById('outDate').textContent = date;
-
-  var recip = document.getElementById('inRecipient').value.trim();
-  if (recip) {
-    var parts = recip.split(',').map(function(s) { return s.trim(); });
-    var html = '<strong>' + parts[0] + '</strong>';
-    for (var i = 1; i < parts.length; i++) { html += '<br>' + parts[i]; }
-    document.getElementById('outRecipient').innerHTML = html;
-  }
-
-  var subj = document.getElementById('inSubject').value.trim();
-  var subjEl = document.getElementById('outSubject');
-  if (subj) { subjEl.textContent = subj; subjEl.style.display = 'block'; }
-  else { subjEl.style.display = 'none'; }
-
-  var sal = document.getElementById('inSalutation').value.trim();
-  if (sal) document.getElementById('outSalutation').textContent = sal;
-
-  var body = document.getElementById('inBody').value.trim();
-  if (body) {
-    var paragraphs = body.split(/\n\s*\n/);
-    var bodyHtml = '';
-    paragraphs.forEach(function(p) {
-      p = p.trim();
-      if (!p) return;
-      p = p.replace(/\*([^*]+)\*/g, '<strong>$1</strong>');
-      p = p.replace(/\n/g, ' ');
-      bodyHtml += '<p>' + p + '</p>';
-    });
-    document.getElementById('outBody').innerHTML = bodyHtml;
-  }
-
-  var closing = document.getElementById('inClosing').value.trim();
-  if (closing) document.getElementById('outClosing').textContent = closing;
-
-  var sigTitle = document.getElementById('inSigTitle').value.trim();
-  if (sigTitle) document.getElementById('outSigTitle').textContent = sigTitle;
-
-  if (editMode) toggleMode();
+// Spawns a fresh interactive entry container inside the control block
+function addExhibitField() {
+  exhibitCount++;
+  var id = 'exhibit_' + exhibitCount;
+  
+  var card = document.createElement('div');
+  card.className = 'exhibit-manager-card';
+  card.id = 'manager_' + id;
+  
+  card.innerHTML = `
+    <button type="button" class="btn-delete-exhibit" onclick="removeExhibitField('${id}')">Remove</button>
+    <div class="field-row">
+      <label>Exhibit Heading (Optional)</label>
+      <input type="text" id="heading_${id}" placeholder="e.g., Exhibit A: Field Inspection Layout">
+    </div>
+    <div class="field-row">
+      <label>Choose Image File</label>
+      <input type="file" id="file_${id}" accept="image/*" onchange="handleExhibitFile(this, '${id}')" style="padding: 5px;">
+    </div>
+    <div class="field-row">
+      <label>Visual Size Scaling</label>
+      <div class="slider-row">
+        <input type="range" id="scale_${id}" min="20" max="100" value="100" oninput="updateSliderDisplay('${id}', this.value)">
+        <span class="slider-value" id="valDisplay_${id}">100%</span>
+      </div>
+    </div>
+    <div class="field-row" style="margin-bottom:0;">
+      <label>Small-Print Caption / Footnotes</label>
+      <input type="text" id="caption_${id}" placeholder="e.g., Taken on site showing current infrastructure borders.">
+    </div>
+  `;
+  
+  document.getElementById('exhibitsContainer').appendChild(card);
 }
-</script>
 
-</body>
-</html>
+function removeExhibitField(id) {
+  var element = document.getElementById('manager_' + id);
+  if (element) element.remove();
+  delete exhibitDataStore[id];
+}
+
+function updateSliderDisplay(id, val) {
+  document.getElementById('valDisplay_' + id).textContent = val + '%';
+}
+
+// Converts file streams dynamically to high-fidelity Base64 string data 
+function handleExhibitFile(input, id) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      ex
