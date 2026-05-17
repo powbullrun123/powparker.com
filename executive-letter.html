@@ -352,8 +352,9 @@ body {
 }
 .lh-brand-group { display: flex; align-items: center; }
 .lh-seal {
-  width: 132px;
-  height: 132px;
+  /* ── LOGO: bumped 10% from 132px → 145px ── */
+  width: 145px;
+  height: 145px;
   border-radius: 50%;
   flex-shrink: 0;
   box-shadow: 0 3px 14px rgba(0,0,0,0.15);
@@ -415,7 +416,14 @@ body {
 .printed-exhibit-container { margin: 32px 0; text-align: center; page-break-inside: avoid; }
 .exhibit-print-heading { font-family: 'Cormorant', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
 .exhibit-print-img { display: inline-block; border: 2px solid var(--gold); border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.exhibit-print-caption { font-style: italic; font-size: 0.9rem; color: var(--text-light); margin-top: 8px; }
+/* ── CAPTION: bumped from 0.9rem faint → 1.05rem bold readable ── */
+.exhibit-print-caption {
+  font-style: italic;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  margin-top: 10px;
+}
 
 .letter-footer { position: absolute; bottom: 0; left: 0; right: 0; }
 .footer-content {
@@ -433,6 +441,22 @@ body {
 .footer-phones { display: flex; gap: 14px; align-items: center; }
 .footer-phones span { font-size: 0.68rem; color: #999; text-transform: uppercase; letter-spacing: 0.06em; }
 
+/* ParlayPen badge */
+.parlaypен-badge {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #bbb;
+  text-align: center;
+  padding-bottom: 4px;
+}
+.parlaypен-badge a {
+  color: var(--gold-dark) !important;
+  text-decoration: none;
+  font-weight: 700;
+}
+
 /* ── PRINT ── */
 @media print {
   body { background: #fff; }
@@ -440,11 +464,14 @@ body {
   .page-container { padding: 0; }
   .page { box-shadow: none; width: 100%; min-height: 100vh; }
 }
+
+/* ── MOBILE ── */
 @media (max-width: 860px) {
   .page { width: 100%; min-height: auto; }
   .letterhead { padding: 24px 20px 16px; flex-direction: column; align-items: flex-start; gap: 14px; }
   .lh-brand-group { width: 100%; }
-  .lh-seal { width: 125px; height: 125px; }
+  /* ── LOGO mobile: bumped 10% from 125px → 138px ── */
+  .lh-seal { width: 138px; height: 138px; }
   .lh-text { margin-left: 14px; }
   .lh-name { font-size: 1.5rem; }
   .lh-contact { text-align: left; width: 100%; }
@@ -619,6 +646,7 @@ body {
         </div>
         <div><a href="https://www.powparker.com">www.powparker.com</a></div>
       </div>
+      <div class="parlaypен-badge">Powered by <a href="#">ParlayPen</a></div>
       <div class="bottom-bar"></div>
     </div>
   </div>
