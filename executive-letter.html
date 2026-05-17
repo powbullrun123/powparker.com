@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Powell Parker — Executive Letter</title>
-<meta name="description" content="Official correspondence from Powell Parker — Precision · Foresight · Execution">
+<meta name="description" content="Official correspondence — From the Desk of Powell Parker">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
@@ -352,8 +352,8 @@ body {
 }
 .lh-brand-group { display: flex; align-items: center; }
 .lh-seal {
-  width: 145px;
-  height: 145px;
+  width: 132px;
+  height: 132px;
   border-radius: 50%;
   flex-shrink: 0;
   box-shadow: 0 3px 14px rgba(0,0,0,0.15);
@@ -415,13 +415,7 @@ body {
 .printed-exhibit-container { margin: 32px 0; text-align: center; page-break-inside: avoid; }
 .exhibit-print-heading { font-family: 'Cormorant', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
 .exhibit-print-img { display: inline-block; border: 2px solid var(--gold); border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-.exhibit-print-caption {
-  font-style: italic;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--text-mid);
-  margin-top: 10px;
-}
+.exhibit-print-caption { font-style: italic; font-size: 0.9rem; color: var(--text-light); margin-top: 8px; }
 
 .letter-footer { position: absolute; bottom: 0; left: 0; right: 0; }
 .footer-content {
@@ -439,22 +433,6 @@ body {
 .footer-phones { display: flex; gap: 14px; align-items: center; }
 .footer-phones span { font-size: 0.68rem; color: #999; text-transform: uppercase; letter-spacing: 0.06em; }
 
-/* ParlayPen badge */
-.parlaypен-badge {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #bbb;
-  text-align: center;
-  padding-bottom: 4px;
-}
-.parlaypен-badge a {
-  color: var(--gold-dark) !important;
-  text-decoration: none;
-  font-weight: 700;
-}
-
 /* ── PRINT ── */
 @media print {
   body { background: #fff; }
@@ -462,13 +440,11 @@ body {
   .page-container { padding: 0; }
   .page { box-shadow: none; width: 100%; min-height: 100vh; }
 }
-
-/* ── MOBILE ── */
 @media (max-width: 860px) {
   .page { width: 100%; min-height: auto; }
   .letterhead { padding: 24px 20px 16px; flex-direction: column; align-items: flex-start; gap: 14px; }
   .lh-brand-group { width: 100%; }
-  .lh-seal { width: 138px; height: 138px; }
+  .lh-seal { width: 100px; height: 100px; }
   .lh-text { margin-left: 14px; }
   .lh-name { font-size: 1.5rem; }
   .lh-contact { text-align: left; width: 100%; }
@@ -565,6 +541,12 @@ body {
   </div>
 
   <div class="field-row" style="margin-top: 4px;">
+    <label>Password Protection (optional)</label>
+    <input type="text" id="inPassword" placeholder="Leave blank for public, or enter an access code">
+    <div class="hint">If set, recipients must enter this code to view the letter.</div>
+  </div>
+
+  <div class="field-row" style="margin-top: 4px;">
     <label>Letter Slug (URL)</label>
     <input type="text" id="inSlug" placeholder="stacy-kearny-water">
     <div class="hint">Auto-generated from subject. This becomes the shareable link.</div>
@@ -586,10 +568,10 @@ body {
 
     <div class="letterhead">
       <div class="lh-brand-group">
-        <img src="powparker-logo.webp" class="lh-seal" id="outSeal" alt="Powell Parker Seal">
+        <img src="https://powparker.com/powparker-logo.webp" class="lh-seal" id="outSeal" alt="Powell Parker Seal">
         <div class="lh-text">
           <div class="lh-name">Powell Parker</div>
-          <div class="lh-motto">Precision &middot; Foresight &middot; Execution</div>
+          <div class="lh-motto">From the Desk of Powell Parker</div>
         </div>
       </div>
       <div class="lh-contact">
@@ -604,7 +586,7 @@ body {
     <div class="header-rule"></div>
 
     <div class="letter-content" id="letterContent">
-      <div class="l-date" id="outDate">May 16, 2026</div>
+      <div class="l-date" id="outDate">May 17, 2026</div>
       <div class="l-recipient" id="outRecipient">
         <strong>Recipient Name</strong><br>Title / Organization<br>Address
       </div>
@@ -643,7 +625,6 @@ body {
         </div>
         <div><a href="https://www.powparker.com">www.powparker.com</a></div>
       </div>
-      <div class="parlaypен-badge">Powered by <a href="#">ParlayPen</a></div>
       <div class="bottom-bar"></div>
     </div>
   </div>
@@ -799,6 +780,7 @@ async function generateAndSave() {
       body: document.getElementById('inBody').value.trim(),
       closing: document.getElementById('inClosing').value.trim(),
       sigTitle: document.getElementById('inSigTitle').value.trim(),
+      password: document.getElementById('inPassword').value.trim() || null,
       exhibits: exhibits,
     };
 
