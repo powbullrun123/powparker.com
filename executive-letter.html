@@ -352,8 +352,8 @@ body {
 }
 .lh-brand-group { display: flex; align-items: center; }
 .lh-seal {
-  width: 110px;
-  height: 110px;
+  width: 132px;
+  height: 132px;
   border-radius: 50%;
   flex-shrink: 0;
   box-shadow: 0 3px 14px rgba(0,0,0,0.15);
@@ -444,7 +444,7 @@ body {
   .page { width: 100%; min-height: auto; }
   .letterhead { padding: 24px 20px 16px; flex-direction: column; align-items: flex-start; gap: 14px; }
   .lh-brand-group { width: 100%; }
-  .lh-seal { width: 80px; height: 80px; }
+  .lh-seal { width: 100px; height: 100px; }
   .lh-text { margin-left: 14px; }
   .lh-name { font-size: 1.5rem; }
   .lh-contact { text-align: left; width: 100%; }
@@ -472,7 +472,7 @@ body {
   <div class="bar-right">
     <button class="bar-btn" id="btnToggle" onclick="toggleMode()">Preview</button>
     <button class="bar-btn" onclick="window.print()">&#128424; Print</button>
-    <button class="bar-btn primary" id="btnSave" onclick="generateAndSave()">Save & Share</button>
+    <button class="bar-btn primary" id="btnSave" onclick="generateAndSave()">Save &amp; Share</button>
   </div>
 </div>
 
@@ -481,12 +481,12 @@ body {
 
 <!-- ── SHARE PANEL ── -->
 <div class="share-panel" id="sharePanel">
-  <h3>✓ Letter Saved — Share It</h3>
+  <h3>&#10003; Letter Saved — Share It</h3>
   <div class="share-url-box" id="shareUrl"></div>
   <div class="share-btns">
-    <button class="bar-btn" onclick="copyShareUrl()">🔗 Copy Link</button>
-    <button class="bar-btn" onclick="shareNative()">💬 Text / Share</button>
-    <button class="bar-btn" onclick="window.open(document.getElementById('shareUrl').textContent,'_blank')">↗ Open</button>
+    <button class="bar-btn" onclick="copyShareUrl()">&#128279; Copy Link</button>
+    <button class="bar-btn" onclick="shareNative()">&#128172; Text / Share</button>
+    <button class="bar-btn" onclick="window.open(document.getElementById('shareUrl').textContent,'_blank')">&#8599; Open</button>
   </div>
 </div>
 
@@ -524,7 +524,7 @@ body {
 
   <!-- EXHIBITS -->
   <div style="margin-top: 18px; border-top: 1px solid rgba(201,168,76,0.2); padding-top: 14px;">
-    <h3 style="margin-bottom: 8px;">Visual Exhibits & Photos</h3>
+    <h3 style="margin-bottom: 8px;">Visual Exhibits &amp; Photos</h3>
     <div id="exhibitsContainer"></div>
     <button class="bar-btn btn-add-exhibit" type="button" onclick="addExhibit()">+ Add Photo Exhibit</button>
   </div>
@@ -562,7 +562,7 @@ body {
 
     <div class="letterhead">
       <div class="lh-brand-group">
-        <img src="https://powparker.com/powparker-logo.webp" class="lh-seal" id="outSeal" alt="Seal">
+        <img src="https://powparker.com/powparker-logo.webp" class="lh-seal" id="outSeal" alt="Powell Parker Seal">
         <div class="lh-text">
           <div class="lh-name">Powell Parker</div>
           <div class="lh-motto">Precision &middot; Foresight &middot; Execution</div>
@@ -580,14 +580,14 @@ body {
     <div class="header-rule"></div>
 
     <div class="letter-content" id="letterContent">
-      <div class="l-date" id="outDate">May 16, 2026</div>
+      <div class="l-date" id="outDate">May 17, 2026</div>
       <div class="l-recipient" id="outRecipient">
         <strong>Recipient Name</strong><br>Title / Organization<br>Address
       </div>
       <div class="l-subject" id="outSubject" style="display:none;"></div>
       <div class="l-salutation" id="outSalutation">Dear Colleague,</div>
       <div class="l-body" id="outBody">
-        <p style="color:#999;font-style:italic;">Your letter will appear here. Fill in the fields above and click "Save & Share" to generate it.</p>
+        <p style="color:#999;font-style:italic;">Your letter will appear here. Fill in the fields above and click &ldquo;Save &amp; Share&rdquo; to generate it.</p>
       </div>
       <div id="outExhibits"></div>
       <div class="l-closing" id="outClosing">Respectfully,</div>
@@ -631,7 +631,7 @@ var API_KEY = 'Parker-letters-062878!';
 
 var editMode = true;
 var exhibitCounter = 0;
-var exhibitFiles = {};  // id -> { file, dataUrl }
+var exhibitFiles = {};
 
 // ── INIT ──
 (function() {
@@ -641,7 +641,6 @@ var exhibitFiles = {};  // id -> { file, dataUrl }
   document.getElementById('inDate').value = today;
   document.getElementById('outDate').textContent = today;
 
-  // Auto-slug from subject
   document.getElementById('inSubject').addEventListener('input', function(e) {
     var slug = e.target.value.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').substring(0, 60);
     document.getElementById('inSlug').value = slug;
@@ -677,7 +676,7 @@ function addExhibit() {
   card.className = 'exhibit-card';
   card.id = 'card_' + id;
   card.innerHTML =
-    '<button type="button" class="btn-remove" onclick="removeExhibit(\'' + id + '\')">✕ Remove</button>' +
+    '<button type="button" class="btn-remove" onclick="removeExhibit(\'' + id + '\')">&#10005; Remove</button>' +
     '<div class="field-row">' +
       '<label>Exhibit Heading</label>' +
       '<input type="text" id="heading_' + id + '" placeholder="e.g., Exhibit A: Site Overview">' +
@@ -722,10 +721,8 @@ function handleExFile(input, id) {
 
 // ── GENERATE & SAVE ──
 async function generateAndSave() {
-  // 1. Render the letter locally first
   renderLetter();
 
-  // 2. Validate slug
   var slug = document.getElementById('inSlug').value.trim();
   if (!slug) {
     slug = 'letter-' + Date.now();
@@ -737,7 +734,6 @@ async function generateAndSave() {
   showToast('Saving letter...', 'loading');
 
   try {
-    // 3. Upload any exhibit photos to R2
     var exhibits = [];
     var cards = document.querySelectorAll('.exhibit-card');
     for (var i = 0; i < cards.length; i++) {
@@ -764,7 +760,6 @@ async function generateAndSave() {
       }
     }
 
-    // 4. Build letter object
     var recip = document.getElementById('inRecipient').value.trim();
     var recipParts = recip.split(',').map(function(s) { return s.trim(); });
     var recipHtml = '<strong>' + recipParts[0] + '</strong>';
@@ -782,7 +777,6 @@ async function generateAndSave() {
       exhibits: exhibits,
     };
 
-    // 5. Save to KV
     showToast('Saving to cloud...', 'loading');
     var res = await fetch(WORKER + '/api/save', {
       method: 'POST',
@@ -843,7 +837,6 @@ function renderLetter() {
     document.getElementById('outBody').innerHTML = bodyHtml;
   }
 
-  // Render exhibits locally
   var outEx = document.getElementById('outExhibits');
   outEx.innerHTML = '';
   var cards = document.querySelectorAll('.exhibit-card');
@@ -888,7 +881,7 @@ async function loadSavedLetters() {
       return '<li class="saved-item">' +
         '<a href="' + WORKER + '/s/' + l.slug + '" target="_blank">' + (l.subject || l.slug) + '</a>' +
         '<span class="meta">' + (l.to || '') + ' · ' + ds + '</span>' +
-        '<button class="btn-del" onclick="deleteLetter(\'' + l.slug + '\')">✕</button>' +
+        '<button class="btn-del" onclick="deleteLetter(\'' + l.slug + '\')">&#10005;</button>' +
         '</li>';
     }).join('');
   } catch(e) {
