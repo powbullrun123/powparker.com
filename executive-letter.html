@@ -32,7 +32,7 @@ body {
 .editor-bar {
   background: var(--deep);
   border-bottom: 2px solid var(--gold);
-  padding: 10px 20px;
+  padding: 10px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -45,7 +45,7 @@ body {
 .editor-bar .bar-left {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 .editor-bar .bar-title {
   font-family: 'Cormorant', serif;
@@ -56,29 +56,32 @@ body {
 }
 .editor-bar .bar-right {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   align-items: center;
+  flex-wrap: wrap;
 }
 .bar-btn {
   font-family: 'Lato', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  padding: 7px 16px;
+  padding: 7px 14px;
   border: 1px solid var(--gold);
   border-radius: 4px;
   cursor: pointer;
   transition: all 0.25s;
   background: transparent;
   color: var(--gold);
+  white-space: nowrap;
 }
 .bar-btn:hover { background: var(--gold); color: var(--deep); }
 .bar-btn.primary { background: var(--gold); color: var(--deep); }
 .bar-btn.primary:hover { background: var(--gold-light); }
+.bar-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .mode-indicator {
   font-family: 'Lato', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 4px 10px;
@@ -88,36 +91,91 @@ body {
 .mode-edit { background: rgba(201,168,76,0.15); color: var(--gold); }
 .mode-view { background: rgba(45,106,79,0.15); color: #52b788; }
 
+/* ── STATUS TOAST ── */
+.toast {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  z-index: 200;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+  max-width: 90%;
+  text-align: center;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.success { background: #2ecc71; color: #fff; }
+.toast.error { background: #e74c3c; color: #fff; }
+.toast.loading { background: var(--gold); color: var(--deep); }
+
+/* ── SHARE PANEL (after save) ── */
+.share-panel {
+  max-width: 700px;
+  margin: 0 auto 16px;
+  background: var(--deep);
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  padding: 20px 24px;
+  display: none;
+  text-align: center;
+}
+.share-panel.active { display: block; }
+.share-panel h3 {
+  font-family: 'Cormorant', serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.share-url-box {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-family: monospace;
+  font-size: 0.82rem;
+  color: var(--gold-light);
+  word-break: break-all;
+  margin-bottom: 14px;
+}
+.share-btns { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.share-btns .bar-btn { font-size: 0.72rem; padding: 9px 18px; }
+
 /* ── INPUT PANEL ── */
 .input-panel {
   max-width: 700px;
-  margin: 24px auto;
+  margin: 20px auto;
   background: var(--deep);
   border: 1px solid rgba(201,168,76,0.2);
   border-radius: 10px;
-  padding: 28px;
+  padding: 24px;
   display: none;
 }
 .input-panel.active { display: block; }
 .input-panel h3 {
   font-family: 'Cormorant', serif;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: var(--gold);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   font-weight: 700;
 }
-.field-row { margin-bottom: 14px; }
+.field-row { margin-bottom: 12px; }
 .field-row label {
   display: block;
   font-family: 'Lato', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--gold-light);
   margin-bottom: 4px;
 }
-.field-row input, .field-row textarea {
+.field-row input, .field-row textarea, .field-row select {
   width: 100%;
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(201,168,76,0.25);
@@ -127,70 +185,140 @@ body {
   font-size: 1rem;
   color: var(--cream);
   transition: border-color 0.3s;
+  -webkit-appearance: none;
 }
 .field-row input:focus, .field-row textarea:focus {
   outline: none;
   border-color: var(--gold);
 }
-.field-row textarea { min-height: 200px; resize: vertical; line-height: 1.8; }
+.field-row textarea { min-height: 180px; resize: vertical; line-height: 1.8; }
+.field-row select { background: var(--deep); }
 .field-row .hint {
   font-family: 'Lato', sans-serif;
-  font-size: 0.68rem;
-  color: rgba(255,255,255,0.35);
-  margin-top: 4px;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.3);
+  margin-top: 3px;
 }
 .field-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 12px;
 }
 
-/* ── INTERACTIVE PHOTO BUILDER STYLING ── */
-.exhibit-manager-card {
+/* ── EXHIBIT CARDS ── */
+.exhibit-card {
   background: rgba(255,255,255,0.03);
   border: 1px dashed rgba(201,168,76,0.3);
   border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 16px;
+  padding: 14px;
+  margin-bottom: 12px;
   position: relative;
 }
-.btn-delete-exhibit {
+.exhibit-card .btn-remove {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 10px;
+  right: 10px;
   background: transparent;
   border: none;
   color: #ff6b6b;
   cursor: pointer;
   font-family: 'Lato', sans-serif;
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-.btn-delete-exhibit:hover { text-decoration: underline; }
+.exhibit-card .btn-remove:hover { text-decoration: underline; }
+.exhibit-preview {
+  margin-top: 8px;
+  text-align: center;
+}
+.exhibit-preview img {
+  max-width: 100%;
+  max-height: 180px;
+  border: 2px solid var(--gold);
+  border-radius: 4px;
+}
 .slider-row {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 8px;
+  gap: 10px;
+  margin-top: 6px;
 }
 .slider-row input[type="range"] {
   flex: 1;
   accent-color: var(--gold);
 }
-.slider-value {
+.slider-val {
   font-family: 'Lato', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--gold-light);
-  min-width: 35px;
+  min-width: 32px;
+}
+.btn-add-exhibit {
+  width: 100%;
+  border-style: dashed;
+  padding: 10px;
+  background: rgba(201,168,76,0.04);
+  margin-top: 4px;
 }
 
-/* ── THE PAGE ── */
+/* ── SAVED LETTERS ── */
+.saved-section {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(201,168,76,0.15);
+}
+.saved-section h3 {
+  font-family: 'Cormorant', serif;
+  font-size: 1rem;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.saved-list { list-style: none; }
+.saved-item {
+  padding: 9px 12px;
+  background: rgba(201,168,76,0.05);
+  border: 1px solid rgba(201,168,76,0.12);
+  border-radius: 6px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.saved-item a {
+  color: var(--gold);
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.saved-item .meta {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.65rem;
+  color: #888;
+  white-space: nowrap;
+}
+.saved-item .btn-del {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  cursor: pointer;
+  font-size: 0.6rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+
+/* ── THE LETTER PAGE ── */
 .page-container {
   display: flex;
   justify-content: center;
-  padding: 32px 16px 48px;
+  padding: 24px 12px 40px;
 }
 .page {
   width: 816px;
@@ -201,46 +329,28 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-/* Gold bars — thick */
-.top-bar {
+.top-bar, .bottom-bar {
   height: 10px;
   background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark));
   flex-shrink: 0;
 }
-.bottom-bar {
-  height: 10px;
-  background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark));
-  flex-shrink: 0;
-}
-
-/* Fade-in/out gold dividers */
 .header-rule {
   height: 3px;
-  border: none;
   margin: 0 56px;
   background: linear-gradient(90deg, transparent 0%, var(--gold-light) 15%, var(--gold) 40%, var(--gold) 60%, var(--gold-light) 85%, transparent 100%);
-  flex-shrink: 0;
 }
 .footer-rule {
   height: 3px;
   margin: 0 56px;
   background: linear-gradient(90deg, transparent 0%, var(--gold-light) 15%, var(--gold) 40%, var(--gold) 60%, var(--gold-light) 85%, transparent 100%);
-  flex-shrink: 0;
 }
-
-/* Letterhead Layout */
 .letterhead {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 40px 56px 24px;
-  flex-shrink: 0;
 }
-.lh-brand-group {
-  display: flex;
-  align-items: center;
-}
+.lh-brand-group { display: flex; align-items: center; }
 .lh-seal {
   width: 110px;
   height: 110px;
@@ -249,9 +359,7 @@ body {
   box-shadow: 0 3px 14px rgba(0,0,0,0.15);
   object-fit: contain;
 }
-.lh-text {
-  margin-left: 24px;
-}
+.lh-text { margin-left: 24px; }
 .lh-name {
   font-family: 'Cormorant', serif;
   font-size: 1.95rem;
@@ -269,176 +377,47 @@ body {
   text-transform: uppercase;
   margin-top: 6px;
 }
-.lh-contact {
-  text-align: right;
-  flex-shrink: 0;
-}
+.lh-contact { text-align: right; flex-shrink: 0; }
 .lh-contact div {
   font-family: 'Lato', sans-serif;
   font-size: 0.75rem;
   color: var(--text-light);
   line-height: 1.6;
-  letter-spacing: 0.02em;
 }
-.lh-contact a {
-  color: var(--gold-dark);
-  text-decoration: none;
-}
-.lh-contact a:hover { color: var(--gold); }
+.lh-contact a { color: var(--gold-dark); text-decoration: none; }
 
-/* Letter body */
 .letter-content {
-  padding: 40px 56px 140px; /* Large bottom padding safeguards footer space */
+  padding: 40px 56px 140px;
   font-size: 1.05rem;
   line-height: 1.85;
   color: var(--text);
   flex: 1 0 auto;
 }
-.l-date {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.82rem;
-  color: var(--text-light);
-  letter-spacing: 0.03em;
-  margin-bottom: 28px;
-}
-.l-recipient {
-  margin-bottom: 28px;
-  line-height: 1.6;
-  font-size: 0.98rem;
-}
-.l-recipient strong {
-  font-family: 'Cormorant', serif;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--navy);
-}
-.l-subject {
-  font-family: 'Cormorant', serif;
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: var(--gold);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--rule);
-}
-.l-salutation {
-  font-family: 'Cormorant', serif;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 20px;
-}
-.l-body p {
-  margin-bottom: 16px;
-  text-align: justify;
-  hyphens: auto;
-}
-.l-body p:last-child { margin-bottom: 0; }
-
-/* ── EMBEDDED PRINT EXHIBIT STYLING ── */
-.printed-exhibit-container {
-  margin: 32px 0;
-  text-align: center;
-  page-break-inside: avoid;
-}
-.exhibit-print-heading {
-  font-family: 'Cormorant', serif;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 12px;
-  text-align: center;
-}
-.exhibit-print-img {
-  display: inline-block;
-  border: 2px solid var(--gold);
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-}
-.exhibit-print-caption {
-  font-family: 'EB Garamond', serif;
-  font-style: italic;
-  font-size: 0.9rem;
-  color: var(--text-light);
-  margin-top: 8px;
-  line-height: 1.4;
-}
-
-.l-closing {
-  margin-top: 36px;
-  font-family: 'Cormorant', serif;
-  font-style: italic;
-  font-size: 1.1rem;
-  font-weight: 500;
-}
+.l-date { font-family: 'Lato', sans-serif; font-size: 0.82rem; color: var(--text-light); margin-bottom: 28px; }
+.l-recipient { margin-bottom: 28px; line-height: 1.6; font-size: 0.98rem; }
+.l-recipient strong { font-family: 'Cormorant', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); }
+.l-subject { font-family: 'Cormorant', serif; font-size: 0.92rem; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+.l-salutation { font-family: 'Cormorant', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 20px; }
+.l-body p { margin-bottom: 16px; text-align: justify; hyphens: auto; }
+.l-closing { margin-top: 36px; font-family: 'Cormorant', serif; font-style: italic; font-size: 1.1rem; }
 .l-sig { margin-top: 36px; page-break-inside: avoid; }
-.l-sig-name {
-  font-family: 'Cormorant', serif;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--navy);
-}
-.l-sig-phones {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.78rem;
-  color: var(--text-light);
-  margin-top: 4px;
-  line-height: 1.7;
-}
-.l-sig-phones a {
-  color: var(--gold-dark);
-  text-decoration: none;
-}
-.l-sig-phones a:hover { color: var(--gold); }
-.l-sig-phones .phone-label {
-  font-size: 0.68rem;
-  color: #999;
-  letter-spacing: 0.04em;
-}
-.l-sig-title {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.75rem;
-  color: var(--text-light);
-  margin-top: 6px;
-  line-height: 1.6;
-  letter-spacing: 0.02em;
-}
-.l-sig-links {
-  margin-top: 8px;
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.l-sig-links a {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.76rem;
-  color: var(--gold);
-  text-decoration: none;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-}
-.l-sig-links a:hover { color: var(--gold-dark); text-decoration: underline; }
-.l-sig-links .sig-divider {
-  color: #ccc;
-  font-size: 0.7rem;
-}
-.l-sig-links .sig-email {
-  font-weight: 400;
-  color: var(--text-light);
-}
+.l-sig-name { font-family: 'Cormorant', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+.l-sig-phones { font-family: 'Lato', sans-serif; font-size: 0.78rem; color: var(--text-light); margin-top: 4px; line-height: 1.7; }
+.l-sig-phones a { color: var(--gold-dark); text-decoration: none; }
+.l-sig-phones .phone-label { font-size: 0.68rem; color: #999; }
+.l-sig-title { font-family: 'Lato', sans-serif; font-size: 0.75rem; color: var(--text-light); margin-top: 6px; line-height: 1.6; }
+.l-sig-links { margin-top: 8px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.l-sig-links a { font-family: 'Lato', sans-serif; font-size: 0.76rem; color: var(--gold); text-decoration: none; font-weight: 700; }
+.l-sig-links .sig-divider { color: #ccc; font-size: 0.7rem; }
 .l-sig-links .sig-email a { font-weight: 400; color: var(--gold-dark); }
 
-/* Footer */
-.letter-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  flex-shrink: 0;
-}
+/* Exhibit output in letter */
+.printed-exhibit-container { margin: 32px 0; text-align: center; page-break-inside: avoid; }
+.exhibit-print-heading { font-family: 'Cormorant', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+.exhibit-print-img { display: inline-block; border: 2px solid var(--gold); border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.exhibit-print-caption { font-style: italic; font-size: 0.9rem; color: var(--text-light); margin-top: 8px; }
+
+.letter-footer { position: absolute; bottom: 0; left: 0; right: 0; }
 .footer-content {
   padding: 16px 56px;
   display: flex;
@@ -447,66 +426,74 @@ body {
   font-family: 'Lato', sans-serif;
   font-size: 0.78rem;
   color: #777;
-  letter-spacing: 0.03em;
   flex-wrap: wrap;
   gap: 8px;
 }
-.footer-content a {
-  color: var(--gold-dark);
-  text-decoration: none;
-  font-weight: 700;
-}
-.footer-content a:hover { color: var(--gold); }
-.footer-phones {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-}
-.footer-phones span {
-  font-size: 0.68rem;
-  color: #999;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
+.footer-content a { color: var(--gold-dark); text-decoration: none; font-weight: 700; }
+.footer-phones { display: flex; gap: 14px; align-items: center; }
+.footer-phones span { font-size: 0.68rem; color: #999; text-transform: uppercase; letter-spacing: 0.06em; }
 
 /* ── PRINT ── */
 @media print {
   body { background: #fff; }
-  .editor-bar, .input-panel { display: none !important; }
+  .editor-bar, .input-panel, .share-panel, .saved-section { display: none !important; }
   .page-container { padding: 0; }
   .page { box-shadow: none; width: 100%; min-height: 100vh; }
 }
 @media (max-width: 860px) {
   .page { width: 100%; min-height: auto; }
-  .letterhead { padding: 32px 28px 20px; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .letterhead { padding: 24px 20px 16px; flex-direction: column; align-items: flex-start; gap: 14px; }
   .lh-brand-group { width: 100%; }
-  .lh-seal { width: 90px; height: 90px; }
+  .lh-seal { width: 80px; height: 80px; }
+  .lh-text { margin-left: 14px; }
+  .lh-name { font-size: 1.5rem; }
   .lh-contact { text-align: left; width: 100%; }
-  .letter-content { padding: 24px 28px 140px; }
-  .header-rule, .footer-rule { margin: 0 28px; }
-  .footer-content { padding: 12px 28px; flex-direction: column; text-align: center; }
+  .letter-content { padding: 20px 20px 120px; }
+  .header-rule, .footer-rule { margin: 0 20px; }
+  .footer-content { padding: 12px 20px; flex-direction: column; text-align: center; }
   .field-grid { grid-template-columns: 1fr; }
-  .l-sig-links { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .l-sig-links { flex-direction: column; align-items: flex-start; gap: 4px; }
   .l-sig-links .sig-divider { display: none; }
+  .input-panel { margin: 12px 10px; padding: 16px; }
+  .share-panel { margin: 12px 10px; }
+  .editor-bar { padding: 8px 10px; }
+  .bar-title { font-size: 0.85rem; }
 }
 </style>
 </head>
 <body>
 
+<!-- ── TOOLBAR ── -->
 <div class="editor-bar">
   <div class="bar-left">
-    <div class="bar-title">Powell Parker &mdash; Executive Stationery</div>
+    <div class="bar-title">Powell Parker — Executive Stationery</div>
     <span class="mode-indicator mode-edit" id="modeTag">&#9998; EDITING</span>
   </div>
   <div class="bar-right">
-    <button class="bar-btn" id="btnToggle" onclick="toggleMode()">Preview Letter</button>
-    <button class="bar-btn" onclick="window.print()">&#128424; Print / PDF</button>
-    <button class="bar-btn primary" id="btnGenerate" onclick="generateLetter()">Generate Letter</button>
+    <button class="bar-btn" id="btnToggle" onclick="toggleMode()">Preview</button>
+    <button class="bar-btn" onclick="window.print()">&#128424; Print</button>
+    <button class="bar-btn primary" id="btnSave" onclick="generateAndSave()">Save & Share</button>
   </div>
 </div>
 
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"></div>
+
+<!-- ── SHARE PANEL ── -->
+<div class="share-panel" id="sharePanel">
+  <h3>✓ Letter Saved — Share It</h3>
+  <div class="share-url-box" id="shareUrl"></div>
+  <div class="share-btns">
+    <button class="bar-btn" onclick="copyShareUrl()">🔗 Copy Link</button>
+    <button class="bar-btn" onclick="shareNative()">💬 Text / Share</button>
+    <button class="bar-btn" onclick="window.open(document.getElementById('shareUrl').textContent,'_blank')">↗ Open</button>
+  </div>
+</div>
+
+<!-- ── EDITOR ── -->
 <div class="input-panel active" id="inputPanel">
   <h3>Compose Your Letter</h3>
+
   <div class="field-grid">
     <div class="field-row">
       <label>Date</label>
@@ -517,45 +504,62 @@ body {
       <input type="text" id="inSubject" placeholder="Re: Water Infrastructure Partnership">
     </div>
   </div>
+
   <div class="field-row">
     <label>Recipient</label>
-    <input type="text" id="inRecipient" placeholder="Mayor Curtis Stacy, Town of Kearny, 912-C Tilbury Drive, PO Box 639, Kearny, AZ 85137">
-    <div class="hint">Separate lines with commas. First entry becomes the bold name.</div>
+    <input type="text" id="inRecipient" placeholder="Mayor Curtis Stacy, Town of Kearny, PO Box 639, Kearny, AZ 85137">
+    <div class="hint">Separate lines with commas. First entry = bold name.</div>
   </div>
+
   <div class="field-row">
     <label>Salutation</label>
     <input type="text" id="inSalutation" placeholder="Dear Mayor Stacy,">
   </div>
+
   <div class="field-row">
     <label>Letter Body</label>
     <textarea id="inBody" placeholder="Write your letter here. Use a blank line between paragraphs.&#10;&#10;Wrap text in *asterisks* for bold emphasis."></textarea>
-    <div class="hint">Blank line = new paragraph &nbsp;|&nbsp; *text* = bold &nbsp;|&nbsp; Just write naturally.</div>
+    <div class="hint">Blank line = new paragraph &nbsp;|&nbsp; *text* = bold</div>
   </div>
 
-  <div style="margin-top: 24px; margin-bottom: 20px; border-top: 1px solid rgba(201,168,76,0.2); padding-top: 16px;">
-    <h3 style="margin-bottom: 10px;">Visual Exhibits & Photos</h3>
+  <!-- EXHIBITS -->
+  <div style="margin-top: 18px; border-top: 1px solid rgba(201,168,76,0.2); padding-top: 14px;">
+    <h3 style="margin-bottom: 8px;">Visual Exhibits & Photos</h3>
     <div id="exhibitsContainer"></div>
-    <button class="bar-btn" type="button" onclick="addExhibitField()" style="width: 100%; border-style: dashed; padding: 10px; background: rgba(201,168,76,0.05);">
-      + Add Photo Exhibit / Attachment
-    </button>
+    <button class="bar-btn btn-add-exhibit" type="button" onclick="addExhibit()">+ Add Photo Exhibit</button>
   </div>
 
-  <div class="field-grid">
+  <div class="field-grid" style="margin-top: 16px;">
     <div class="field-row">
       <label>Closing</label>
-      <input type="text" id="inClosing" placeholder="Respectfully," value="Respectfully,">
+      <input type="text" id="inClosing" value="Respectfully,">
     </div>
     <div class="field-row">
       <label>Signature Title</label>
-      <input type="text" id="inSigTitle" placeholder="Founder — SaveKearnyAZ.org" value="Founder — SaveKearnyAZ.org · Project 88">
+      <input type="text" id="inSigTitle" value="Founder — SaveKearnyAZ.org · Project 88">
     </div>
+  </div>
+
+  <div class="field-row" style="margin-top: 4px;">
+    <label>Letter Slug (URL)</label>
+    <input type="text" id="inSlug" placeholder="stacy-kearny-water">
+    <div class="hint">Auto-generated from subject. This becomes the shareable link.</div>
+  </div>
+
+  <!-- SAVED LETTERS -->
+  <div class="saved-section">
+    <h3>Saved Letters</h3>
+    <ul class="saved-list" id="savedList">
+      <li class="saved-item" style="border:none;background:none;"><span class="meta">Loading...</span></li>
+    </ul>
   </div>
 </div>
 
+<!-- ── THE LETTER ── -->
 <div class="page-container">
   <div class="page">
     <div class="top-bar"></div>
-    
+
     <div class="letterhead">
       <div class="lh-brand-group">
         <img src="powparker-logo.webp" class="lh-seal" id="outSeal" alt="Seal">
@@ -565,10 +569,10 @@ body {
         </div>
       </div>
       <div class="lh-contact">
-        <div><a href="https://www.powparker.com">powparker.com</a></div>
         <div><a href="mailto:powell@powparker.com">powell@powparker.com</a></div>
         <div><a href="mailto:info@powparker.com">info@powparker.com</a></div>
         <div><span class="phone-label">AZ:</span> <a href="tel:4807882320">(480) 788-2320</a></div>
+        <div><a href="https://www.powparker.com">powparker.com</a></div>
         <div>Mesa, Arizona</div>
       </div>
     </div>
@@ -578,26 +582,21 @@ body {
     <div class="letter-content" id="letterContent">
       <div class="l-date" id="outDate">May 16, 2026</div>
       <div class="l-recipient" id="outRecipient">
-        <strong>Recipient Name</strong><br>
-        Title / Organization<br>
-        Address
+        <strong>Recipient Name</strong><br>Title / Organization<br>Address
       </div>
       <div class="l-subject" id="outSubject" style="display:none;"></div>
       <div class="l-salutation" id="outSalutation">Dear Colleague,</div>
-      
       <div class="l-body" id="outBody">
-        <p style="color: #999; font-style: italic;">Your letter will appear here. Fill in the fields above and click &ldquo;Generate Letter&rdquo; to format it.</p>
+        <p style="color:#999;font-style:italic;">Your letter will appear here. Fill in the fields above and click "Save & Share" to generate it.</p>
       </div>
-
       <div id="outExhibits"></div>
-
       <div class="l-closing" id="outClosing">Respectfully,</div>
       <div class="l-sig">
         <div class="l-sig-name">Powell Parker</div>
         <div class="l-sig-title" id="outSigTitle">Founder &mdash; SaveKearnyAZ.org &middot; Project 88</div>
         <div class="l-sig-phones">
           <span class="phone-label">AZ:</span> <a href="tel:4807882320">(480) 788-2320</a>
-          &nbsp;&nbsp;&middot;&nbsp;&nbsp;
+          &nbsp;&middot;&nbsp;
           <span class="phone-label">TX:</span> <a href="tel:2148381883">(214) 838-1883</a>
         </div>
         <div class="l-sig-links">
@@ -615,12 +614,10 @@ body {
       <div class="footer-content">
         <div class="footer-phones">
           <span>Dallas</span> <a href="tel:2148381883">(214) 838-1883</a>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
+          &nbsp;|&nbsp;
           <span>Toll Free</span> <a href="tel:18004282022">1-800-428-2022</a>
         </div>
-        <div>
-          <a href="https://www.powparker.com">www.powparker.com</a>
-        </div>
+        <div><a href="https://www.powparker.com">www.powparker.com</a></div>
       </div>
       <div class="bottom-bar"></div>
     </div>
@@ -628,18 +625,32 @@ body {
 </div>
 
 <script>
-(function() {
-  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  var d = new Date();
-  var today = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
-  document.getElementById('inDate').value = today;
-  document.getElementById('outDate').textContent = today;
-})();
+// ── CONFIG ──
+var WORKER = 'https://letters.powparker.com';
+var API_KEY = 'Parker-letters-062878!';
 
 var editMode = true;
-var exhibitCount = 0;
-var exhibitDataStore = {}; // Holds memory values of uploaded files
+var exhibitCounter = 0;
+var exhibitFiles = {};  // id -> { file, dataUrl }
 
+// ── INIT ──
+(function() {
+  var m = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var d = new Date();
+  var today = m[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  document.getElementById('inDate').value = today;
+  document.getElementById('outDate').textContent = today;
+
+  // Auto-slug from subject
+  document.getElementById('inSubject').addEventListener('input', function(e) {
+    var slug = e.target.value.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').substring(0, 60);
+    document.getElementById('inSlug').value = slug;
+  });
+
+  loadSavedLetters();
+})();
+
+// ── TOGGLE MODE ──
 function toggleMode() {
   editMode = !editMode;
   var panel = document.getElementById('inputPanel');
@@ -647,65 +658,285 @@ function toggleMode() {
   var tag = document.getElementById('modeTag');
   if (editMode) {
     panel.classList.add('active');
-    btn.textContent = 'Preview Letter';
+    btn.textContent = 'Preview';
     tag.className = 'mode-indicator mode-edit';
     tag.innerHTML = '&#9998; EDITING';
   } else {
     panel.classList.remove('active');
-    btn.textContent = 'Edit Letter';
+    btn.textContent = 'Edit';
     tag.className = 'mode-indicator mode-view';
     tag.textContent = '\u2713 PREVIEW';
   }
 }
 
-// Spawns a fresh interactive entry container inside the control block
-function addExhibitField() {
-  exhibitCount++;
-  var id = 'exhibit_' + exhibitCount;
-  
+// ── ADD EXHIBIT ──
+function addExhibit() {
+  exhibitCounter++;
+  var id = 'ex_' + exhibitCounter;
   var card = document.createElement('div');
-  card.className = 'exhibit-manager-card';
-  card.id = 'manager_' + id;
-  
-  card.innerHTML = `
-    <button type="button" class="btn-delete-exhibit" onclick="removeExhibitField('${id}')">Remove</button>
-    <div class="field-row">
-      <label>Exhibit Heading (Optional)</label>
-      <input type="text" id="heading_${id}" placeholder="e.g., Exhibit A: Field Inspection Layout">
-    </div>
-    <div class="field-row">
-      <label>Choose Image File</label>
-      <input type="file" id="file_${id}" accept="image/*" onchange="handleExhibitFile(this, '${id}')" style="padding: 5px;">
-    </div>
-    <div class="field-row">
-      <label>Visual Size Scaling</label>
-      <div class="slider-row">
-        <input type="range" id="scale_${id}" min="20" max="100" value="100" oninput="updateSliderDisplay('${id}', this.value)">
-        <span class="slider-value" id="valDisplay_${id}">100%</span>
-      </div>
-    </div>
-    <div class="field-row" style="margin-bottom:0;">
-      <label>Small-Print Caption / Footnotes</label>
-      <input type="text" id="caption_${id}" placeholder="e.g., Taken on site showing current infrastructure borders.">
-    </div>
-  `;
-  
+  card.className = 'exhibit-card';
+  card.id = 'card_' + id;
+  card.innerHTML =
+    '<button type="button" class="btn-remove" onclick="removeExhibit(\'' + id + '\')">✕ Remove</button>' +
+    '<div class="field-row">' +
+      '<label>Exhibit Heading</label>' +
+      '<input type="text" id="heading_' + id + '" placeholder="e.g., Exhibit A: Site Overview">' +
+    '</div>' +
+    '<div class="field-row">' +
+      '<label>Photo</label>' +
+      '<input type="file" id="file_' + id + '" accept="image/*" capture="environment" onchange="handleExFile(this,\'' + id + '\')" ' +
+      'style="padding:5px;font-size:0.85rem;">' +
+    '</div>' +
+    '<div class="exhibit-preview" id="preview_' + id + '"></div>' +
+    '<div class="field-row">' +
+      '<label>Size</label>' +
+      '<div class="slider-row">' +
+        '<input type="range" id="scale_' + id + '" min="20" max="100" value="80" oninput="document.getElementById(\'sv_' + id + '\').textContent=this.value+\'%\'">' +
+        '<span class="slider-val" id="sv_' + id + '">80%</span>' +
+      '</div>' +
+    '</div>' +
+    '<div class="field-row" style="margin-bottom:0;">' +
+      '<label>Caption</label>' +
+      '<input type="text" id="caption_' + id + '" placeholder="e.g., Taken on site May 2026">' +
+    '</div>';
   document.getElementById('exhibitsContainer').appendChild(card);
 }
 
-function removeExhibitField(id) {
-  var element = document.getElementById('manager_' + id);
-  if (element) element.remove();
-  delete exhibitDataStore[id];
+function removeExhibit(id) {
+  var el = document.getElementById('card_' + id);
+  if (el) el.remove();
+  delete exhibitFiles[id];
 }
 
-function updateSliderDisplay(id, val) {
-  document.getElementById('valDisplay_' + id).textContent = val + '%';
+function handleExFile(input, id) {
+  if (!input.files || !input.files[0]) return;
+  var file = input.files[0];
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    exhibitFiles[id] = { file: file, dataUrl: e.target.result };
+    document.getElementById('preview_' + id).innerHTML =
+      '<img src="' + e.target.result + '" alt="Preview">';
+  };
+  reader.readAsDataURL(file);
 }
 
-// Converts file streams dynamically to high-fidelity Base64 string data 
-function handleExhibitFile(input, id) {
-  if (input.files && input.files[0]) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-      ex
+// ── GENERATE & SAVE ──
+async function generateAndSave() {
+  // 1. Render the letter locally first
+  renderLetter();
+
+  // 2. Validate slug
+  var slug = document.getElementById('inSlug').value.trim();
+  if (!slug) {
+    slug = 'letter-' + Date.now();
+    document.getElementById('inSlug').value = slug;
+  }
+
+  var btn = document.getElementById('btnSave');
+  btn.disabled = true;
+  showToast('Saving letter...', 'loading');
+
+  try {
+    // 3. Upload any exhibit photos to R2
+    var exhibits = [];
+    var cards = document.querySelectorAll('.exhibit-card');
+    for (var i = 0; i < cards.length; i++) {
+      var id = cards[i].id.replace('card_', '');
+      var heading = document.getElementById('heading_' + id).value.trim();
+      var scale = document.getElementById('scale_' + id).value;
+      var caption = document.getElementById('caption_' + id).value.trim();
+      var exData = exhibitFiles[id];
+
+      if (exData && exData.file) {
+        showToast('Uploading photo ' + (i+1) + '...', 'loading');
+        var formData = new FormData();
+        formData.append('photo', exData.file);
+        formData.append('letterId', slug);
+        var pRes = await fetch(WORKER + '/api/photo', {
+          method: 'POST',
+          headers: { 'X-API-Key': API_KEY },
+          body: formData,
+        });
+        var pData = await pRes.json();
+        if (pData.success) {
+          exhibits.push({ photoKey: pData.key, heading: heading, scale: scale, caption: caption });
+        }
+      }
+    }
+
+    // 4. Build letter object
+    var recip = document.getElementById('inRecipient').value.trim();
+    var recipParts = recip.split(',').map(function(s) { return s.trim(); });
+    var recipHtml = '<strong>' + recipParts[0] + '</strong>';
+    for (var j = 1; j < recipParts.length; j++) { recipHtml += '<br>' + recipParts[j]; }
+
+    var letter = {
+      date: document.getElementById('inDate').value.trim(),
+      recipientName: recipParts[0],
+      recipientHtml: recipHtml,
+      subject: document.getElementById('inSubject').value.trim(),
+      salutation: document.getElementById('inSalutation').value.trim(),
+      body: document.getElementById('inBody').value.trim(),
+      closing: document.getElementById('inClosing').value.trim(),
+      sigTitle: document.getElementById('inSigTitle').value.trim(),
+      exhibits: exhibits,
+    };
+
+    // 5. Save to KV
+    showToast('Saving to cloud...', 'loading');
+    var res = await fetch(WORKER + '/api/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
+      body: JSON.stringify({ slug: slug, letter: letter }),
+    });
+    var data = await res.json();
+
+    if (data.success) {
+      var fullUrl = WORKER + '/s/' + data.slug;
+      document.getElementById('shareUrl').textContent = fullUrl;
+      document.getElementById('sharePanel').classList.add('active');
+      showToast('Letter saved! Link ready.', 'success');
+      loadSavedLetters();
+      if (editMode) toggleMode();
+    } else {
+      throw new Error(data.error || 'Save failed');
+    }
+  } catch(e) {
+    showToast('Error: ' + e.message, 'error');
+  }
+
+  btn.disabled = false;
+}
+
+// ── RENDER LETTER LOCALLY ──
+function renderLetter() {
+  var date = document.getElementById('inDate').value.trim();
+  if (date) document.getElementById('outDate').textContent = date;
+
+  var recip = document.getElementById('inRecipient').value.trim();
+  if (recip) {
+    var parts = recip.split(',').map(function(s) { return s.trim(); });
+    var html = '<strong>' + parts[0] + '</strong>';
+    for (var i = 1; i < parts.length; i++) { html += '<br>' + parts[i]; }
+    document.getElementById('outRecipient').innerHTML = html;
+  }
+
+  var subj = document.getElementById('inSubject').value.trim();
+  var subjEl = document.getElementById('outSubject');
+  if (subj) { subjEl.textContent = subj; subjEl.style.display = 'block'; }
+  else { subjEl.style.display = 'none'; }
+
+  var sal = document.getElementById('inSalutation').value.trim();
+  if (sal) document.getElementById('outSalutation').textContent = sal;
+
+  var body = document.getElementById('inBody').value.trim();
+  if (body) {
+    var paragraphs = body.split(/\n\s*\n/);
+    var bodyHtml = '';
+    paragraphs.forEach(function(p) {
+      p = p.trim();
+      if (!p) return;
+      p = p.replace(/\*([^*]+)\*/g, '<strong>$1</strong>');
+      p = p.replace(/\n/g, ' ');
+      bodyHtml += '<p>' + p + '</p>';
+    });
+    document.getElementById('outBody').innerHTML = bodyHtml;
+  }
+
+  // Render exhibits locally
+  var outEx = document.getElementById('outExhibits');
+  outEx.innerHTML = '';
+  var cards = document.querySelectorAll('.exhibit-card');
+  cards.forEach(function(card) {
+    var id = card.id.replace('card_', '');
+    var headVal = document.getElementById('heading_' + id).value.trim();
+    var scaleVal = document.getElementById('scale_' + id).value;
+    var capVal = document.getElementById('caption_' + id).value.trim();
+    var exData = exhibitFiles[id];
+    if (exData && exData.dataUrl) {
+      var wrap = document.createElement('div');
+      wrap.className = 'printed-exhibit-container';
+      var h = '';
+      if (headVal) h += '<div class="exhibit-print-heading">' + headVal + '</div>';
+      h += '<img src="' + exData.dataUrl + '" class="exhibit-print-img" style="width:' + scaleVal + '%;" alt="Exhibit">';
+      if (capVal) h += '<div class="exhibit-print-caption">' + capVal + '</div>';
+      wrap.innerHTML = h;
+      outEx.appendChild(wrap);
+    }
+  });
+
+  var closing = document.getElementById('inClosing').value.trim();
+  if (closing) document.getElementById('outClosing').textContent = closing;
+
+  var sigTitle = document.getElementById('inSigTitle').value.trim();
+  if (sigTitle) document.getElementById('outSigTitle').textContent = sigTitle;
+}
+
+// ── LOAD SAVED LETTERS ──
+async function loadSavedLetters() {
+  try {
+    var res = await fetch(WORKER + '/api/list', { headers: { 'X-API-Key': API_KEY } });
+    var data = await res.json();
+    var list = document.getElementById('savedList');
+    if (!data.letters || data.letters.length === 0) {
+      list.innerHTML = '<li class="saved-item" style="border:none;background:none;"><span class="meta">No letters saved yet.</span></li>';
+      return;
+    }
+    list.innerHTML = data.letters.map(function(l) {
+      var d = new Date(l.date);
+      var ds = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      return '<li class="saved-item">' +
+        '<a href="' + WORKER + '/s/' + l.slug + '" target="_blank">' + (l.subject || l.slug) + '</a>' +
+        '<span class="meta">' + (l.to || '') + ' · ' + ds + '</span>' +
+        '<button class="btn-del" onclick="deleteLetter(\'' + l.slug + '\')">✕</button>' +
+        '</li>';
+    }).join('');
+  } catch(e) {
+    document.getElementById('savedList').innerHTML =
+      '<li class="saved-item" style="border:none;background:none;"><span class="meta" style="color:#ff6b6b;">Could not connect to worker.</span></li>';
+  }
+}
+
+// ── DELETE LETTER ──
+async function deleteLetter(slug) {
+  if (!confirm('Delete "' + slug + '"?')) return;
+  try {
+    await fetch(WORKER + '/api/delete/' + slug, {
+      method: 'DELETE',
+      headers: { 'X-API-Key': API_KEY },
+    });
+    showToast('Deleted.', 'success');
+    loadSavedLetters();
+  } catch(e) {
+    showToast('Delete failed.', 'error');
+  }
+}
+
+// ── SHARE HELPERS ──
+function copyShareUrl() {
+  var url = document.getElementById('shareUrl').textContent;
+  navigator.clipboard.writeText(url).then(function() {
+    showToast('Link copied!', 'success');
+  });
+}
+function shareNative() {
+  var url = document.getElementById('shareUrl').textContent;
+  if (navigator.share) {
+    navigator.share({ title: 'Letter from Powell Parker', url: url });
+  } else {
+    window.open('sms:?body=' + encodeURIComponent('Letter from Powell Parker: ' + url));
+  }
+}
+
+// ── TOAST ──
+function showToast(msg, type) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type + ' show';
+  if (type !== 'loading') {
+    setTimeout(function() { t.className = 'toast'; }, 3000);
+  }
+}
+</script>
+</body>
+</html>
