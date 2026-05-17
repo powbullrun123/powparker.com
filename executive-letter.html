@@ -667,6 +667,7 @@ function toggleMode() {
     tag.className = 'mode-indicator mode-edit';
     tag.innerHTML = '&#9998; EDITING';
   } else {
+    renderLetter();
     panel.classList.remove('active');
     btn.textContent = 'Edit';
     tag.className = 'mode-indicator mode-view';
