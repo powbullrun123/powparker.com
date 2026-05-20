@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Powell Parker — Executive Letter Engine</title>
+<title>Powell Parker — ParlayPen Engine</title>
 <meta name="description" content="Official correspondence — From the Desk of Powell Parker">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -16,13 +16,11 @@
   --gold-dark: #9A7A2E;
   --cream: #F5F0E8;
   --text: #1e1e1e;
-  --text-mid: #3a3a3a;
   --text-light: #5a5a5a;
   --rule: #d8d2c4;
   --mic-active: #64ffda;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { font-size: 16px; }
 body {
   font-family: 'EB Garamond', Georgia, serif;
   background: #b8b5af;
@@ -43,445 +41,298 @@ body {
   flex-wrap: wrap;
   gap: 8px;
 }
-.editor-bar .bar-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.editor-bar .bar-title {
-  font-family: 'Cormorant', serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--gold);
-  letter-spacing: 0.06em;
-}
-.editor-bar .bar-right {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  flex-wrap: wrap;
-}
 .bar-btn {
   font-family: 'Lato', sans-serif;
   font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 7px 14px;
   border: 1px solid var(--gold);
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.25s;
   background: transparent;
   color: var(--gold);
-  white-space: nowrap;
 }
-.bar-btn:hover { background: var(--gold); color: var(--deep); }
+.bar-btn:hover, .bar-btn.active { background: var(--gold); color: var(--deep); }
 .bar-btn.primary { background: var(--gold); color: var(--deep); }
-.bar-btn.primary:hover { background: var(--gold-light); }
-.bar-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* ── TOAST ── */
-.toast {
-  position: fixed;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-20px);
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  z-index: 200;
-  opacity: 0;
-  transition: all 0.3s;
-  pointer-events: none;
-  max-width: 90%;
-  text-align: center;
-}
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-.toast.success { background: #2ecc71; color: #fff; }
-.toast.error { background: #e74c3c; color: #fff; }
-.toast.loading { background: var(--gold); color: var(--deep); }
+/* ── PAPER TEXTURES ── */
+.page.scroll { background: #f2e8c9; background-image: url('https://www.transparenttextures.com/patterns/parchment.png'); }
+.page.legal { background: #fff9c4; background-image: linear-gradient(#e1d8a7 1px, transparent 1px); background-size: 100% 2rem; border-left: 5px double #ff8a8a !important; }
+.page.college { background: #fff; background-image: linear-gradient(#9ed1ff 1px, transparent 1px); background-size: 100% 1.6rem; border-left: 2px solid #ffb3b3 !important; }
+.page.executive { background: #fdfdfd; }
+.page.cream { background: var(--cream); }
 
 /* ── INPUT PANEL ── */
 .input-panel {
-  max-width: 700px;
+  max-width: 750px;
   margin: 20px auto;
   background: var(--deep);
-  border: 1px solid rgba(201,168,76,0.2);
   border-radius: 10px;
   padding: 24px;
-  display: none;
-}
-.input-panel.active { display: block; }
-.input-panel h3 {
-  font-family: 'Cormorant', serif;
-  font-size: 1.15rem;
-  color: var(--gold);
-  margin-bottom: 14px;
-  font-weight: 700;
-}
-.field-row { margin-bottom: 12px; }
-.field-row label {
   display: block;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin-bottom: 4px;
 }
+.field-row { margin-bottom: 15px; }
+.field-row label { display: block; font-family: 'Lato', sans-serif; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--gold-light); margin-bottom: 5px; }
 .field-row input, .field-row textarea, .field-row select {
-  width: 100%;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(201,168,76,0.25);
-  border-radius: 6px;
-  padding: 10px 14px;
-  font-family: 'EB Garamond', serif;
-  font-size: 1rem;
-  color: var(--cream);
-  transition: border-color 0.3s;
+  width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.25); border-radius: 6px; padding: 10px; font-family: 'EB Garamond', serif; color: var(--cream); font-size: 1rem;
 }
-.field-row input:focus, .field-row textarea:focus {
-  outline: none;
-  border-color: var(--gold);
-}
-.field-row textarea { min-height: 180px; resize: vertical; line-height: 1.8; }
+textarea { min-height: 150px; line-height: 1.6; }
 
-/* EXHIBIT CARDS */
-.exhibit-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px dashed rgba(201,168,76,0.3);
-  border-radius: 8px;
-  padding: 14px;
-  margin-bottom: 12px;
-  position: relative;
-}
-.btn-remove {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
-  border: none;
-  color: #ff6b6b;
-  cursor: pointer;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-/* ── THE LETTER PAGE ── */
-.page-container {
-  display: flex;
-  justify-content: center;
-  padding: 24px 12px 40px;
-}
+/* ── THE PAGE ── */
+.page-container { display: flex; justify-content: center; padding: 40px 15px; }
 .page {
-  width: 816px;
-  min-height: 1056px;
-  background: #fff;
-  box-shadow: 0 6px 40px rgba(0,0,0,0.3);
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  width: 816px; min-height: 1056px; background: #fff; box-shadow: 0 10px 50px rgba(0,0,0,0.4);
+  position: relative; transition: all 0.3s ease; border: 1px solid #ddd;
 }
-.top-bar, .bottom-bar {
-  height: 10px;
-  background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark));
-  flex-shrink: 0;
+
+/* OPTIMIZED LETTERHEAD */
+.letterhead { 
+  padding: 50px 60px 20px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
 }
-.letterhead {
+.lh-brand-group {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 40px 56px 24px;
 }
-.lh-brand-group { display: flex; align-items: center; }
-.lh-seal { width: 132px; height: 132px; border-radius: 50%; flex-shrink: 0; object-fit: contain; }
-.lh-text { margin-left: 24px; }
-.lh-name { font-family: 'Cormorant', serif; font-size: 1.95rem; font-weight: 700; color: var(--navy); }
-.lh-motto { font-family: 'Cormorant', serif; font-size: 0.8rem; font-weight: 500; color: var(--gold); text-transform: uppercase; letter-spacing: 0.14em; }
-.lh-contact { text-align: right; font-family: 'Lato', sans-serif; font-size: 0.75rem; color: var(--text-light); }
-.header-rule { height: 3px; margin: 0 56px; background: var(--rule); opacity: 0.5; }
-
-.letter-content {
-  padding: 40px 56px 140px;
-  font-size: 1.05rem;
-  line-height: 1.85;
-  color: var(--text);
-  flex: 1 0 auto;
+.lh-seal {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  object-fit: contain;
 }
-.hero-heading-render {
-  font-family: 'Cormorant', serif;
-  font-size: 2.4rem;
-  font-weight: 700;
-  color: var(--navy);
-  text-align: center;
-  margin-bottom: 40px;
+.lh-text-block {
+  margin-left: 20px;
+}
+.lh-name { 
+  font-family: 'Cormorant', serif; 
+  font-size: 2.2rem; 
+  color: var(--navy); 
+  font-weight: 700; 
   line-height: 1.1;
+}
+.lh-motto {
+  color: var(--gold-dark); 
+  font-family: 'Cormorant', serif; 
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
   text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* IMMERSIVE CLEAN CONTACT BLOCK */
+.lh-contact { 
+  text-align: right; 
+  font-family: 'Lato', sans-serif; 
+  font-size: 0.76rem; 
+  color: var(--text-light); 
+  line-height: 1.7;
   letter-spacing: 0.02em;
 }
-
-.l-date { font-family: 'Lato', sans-serif; font-size: 0.82rem; color: var(--text-light); margin-bottom: 28px; }
-.l-recipient { margin-bottom: 28px; line-height: 1.6; }
-.l-subject { font-family: 'Cormorant', serif; font-size: 0.92rem; font-weight: 700; color: var(--gold); text-transform: uppercase; margin-bottom: 24px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
-.l-body p { margin-bottom: 16px; text-align: justify; }
-
-.link-exhibit-output {
-  display: flex;
-  gap: 12px;
-  margin: 30px 0;
-  flex-wrap: wrap;
+.lh-contact a {
+  color: var(--text-mid);
+  text-decoration: none; /* Strips browser underlines */
+  transition: color 0.2s ease;
 }
-.link-btn {
-  text-decoration: none;
-  background: var(--navy);
-  color: var(--gold);
-  border: 1px solid var(--gold);
-  padding: 10px 20px;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.8rem;
+.lh-contact a:hover {
+  color: var(--gold-dark);
+}
+.lh-contact .web-highlight {
   font-weight: 700;
-  border-radius: 4px;
+  color: var(--gold-dark);
+  letter-spacing: 0.05em;
 }
 
-@media print {
-  .editor-bar, .input-panel { display: none !important; }
+.header-rule { 
+  height: 1px; 
+  margin: 15px 60px 0; 
+  background: var(--rule); 
+  opacity: 0.6; 
 }
-@media (max-width: 860px) {
-  .page { width: 100%; min-height: auto; }
-  .letterhead { flex-direction: column; align-items: center; text-align: center; padding: 20px; }
-  .lh-text { margin-left: 0; margin-top: 10px; }
-  .lh-contact { text-align: center; margin-top: 15px; }
+
+.hero-heading-render { font-family: 'Cormorant', serif; font-size: 2.8rem; text-align: center; color: var(--navy); margin: 40px 0; text-transform: uppercase; }
+.letter-content { padding: 35px 60px 100px; line-height: 1.85; font-size: 1.1rem; }
+.link-btn { display: inline-block; padding: 10px 20px; border: 1px solid var(--gold); color: var(--navy); text-decoration: none; font-family: 'Lato'; font-weight: 700; margin-right: 10px; border-radius: 4px; }
+
+/* ── UTILS ── */
+@media (max-width: 820px) { 
+  .page { width: 100%; min-height: auto; } 
+  .letterhead { flex-direction: column; align-items: center; text-align: center; padding: 30px 20px 10px; gap: 20px; }
+  .lh-brand-group { flex-direction: column; text-align: center; }
+  .lh-text-block { margin-left: 0; margin-top: 12px; }
+  .lh-contact { text-align: center; }
+  .header-rule { margin: 10px 20px 0; }
+  .letter-content { padding: 30px 20px 80px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ── TOOLBAR ── -->
 <div class="editor-bar">
-  <div class="bar-left">
-    <div class="bar-title">Powell Parker — ParlayPen Engine</div>
-    <select id="toneVault" class="bar-btn" style="background: var(--navy); border-color: var(--gold); color: var(--gold); text-transform: none;">
-        <option value="Executive">Profile: Executive</option>
-        <option value="Cattleman">Profile: Cattleman</option>
-        <option value="Stoic">Profile: Stoic</option>
-        <option value="Voss">Profile: Black Swan</option>
+  <div class="bar-left" style="display:flex; gap:10px;">
+    <select id="paperSelect" class="bar-btn" onchange="renderLetter()">
+      <option value="executive">Paper: Executive White</option>
+      <option value="scroll">Paper: Ancient Scroll</option>
+      <option value="legal">Paper: Legal Yellow</option>
+      <option value="college">Paper: College Ruled</option>
+      <option value="cream">Paper: Cream Stationery</option>
+    </select>
+    <select id="toneVault" class="bar-btn">
+      <option value="Executive">Profile: Executive</option>
+      <option value="Cattleman">Profile: Cattleman</option>
+      <option value="Stoic">Profile: Stoic</option>
+      <option value="Voss">Profile: Black Swan</option>
     </select>
   </div>
   <div class="bar-right">
-    <button class="bar-btn" id="btnToggle" onclick="toggleMode()">Preview</button>
-    <button class="bar-btn primary" id="btnSave" onclick="generateAndSave()">Save &amp; Share</button>
+    <button class="bar-btn" onclick="toggleMusic()" id="musicBtn">🎵 Music: Off</button>
+    <button class="bar-btn primary" onclick="generateAndSave()">Save &amp; Share</button>
   </div>
 </div>
 
-<div class="toast" id="toast"></div>
+<audio id="bgTrack" loop src=""></audio>
 
-<!-- ── EDITOR ── -->
-<div class="input-panel active" id="inputPanel">
-  <h3 style="display: flex; justify-content: space-between; align-items: center;">
-    Compose Your Letter
-    <button id="micTrigger" class="bar-btn" style="border-color: var(--mic-active); color: var(--mic-active); border-radius: 20px;">🎙️ DICTATE</button>
-  </h3>
-
-  <div class="field-row">
-    <label>Dossier Hero Heading (Big Font)</label>
-    <input type="text" id="inHeroHeading" placeholder="E.g. PROJECT 88: STRATEGIC BRIEF" style="font-family: 'Cormorant', serif; font-size: 1.3rem; color: var(--gold);">
-  </div>
-
-  <div class="field-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
-    <div class="field-row">
-      <label>Date</label>
-      <input type="text" id="inDate">
-    </div>
-    <div class="field-row">
-      <label>Internal Subject</label>
-      <input type="text" id="inSubject" placeholder="Re: Partnership Proposal">
-    </div>
+<div class="input-panel" id="inputPanel">
+  <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+    <h3 style="color:var(--gold); font-family:'Cormorant';">ParlayPen Engine v2.0</h3>
+    <button id="micBtn" class="bar-btn" style="border-color:var(--mic-active); color:var(--mic-active);">🎙️ DICTATE</button>
   </div>
 
   <div class="field-row">
-    <label>Recipient (Separate lines with commas)</label>
-    <input type="text" id="inRecipient" placeholder="Mayor Curtis Stacy, Town of Kearny, AZ">
+    <label>Big Hero Heading</label>
+    <input type="text" id="inHero" placeholder="E.G. PROJECT 88: KEARNY WATER ASSETS">
+  </div>
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+    <div class="field-row"><label>Date</label><input type="text" id="inDate"></div>
+    <div class="field-row"><label>Recipient</label><input type="text" id="inRecipient" placeholder="Name, Title, Location"></div>
   </div>
 
   <div class="field-row">
-    <label>Letter Body</label>
-    <textarea id="inBody" placeholder="Dictate your thoughts here..."></textarea>
-    <div id="dictationStatus" style="font-size: 0.65rem; color: var(--mic-active); margin-top: 5px; font-family: monospace; display: none;">Capturing live audio...</div>
+    <label>Message Body</label>
+    <textarea id="inBody" placeholder="Start dictating or typing..."></textarea>
   </div>
 
-  <!-- LINK EXHIBITS -->
-  <div style="margin-top: 18px; border-top: 1px solid rgba(201,168,76,0.2); padding-top: 14px;">
-    <label>Digital Exhibits (Links 🔗)</label>
-    <div id="linkExhibitsContainer"></div>
-    <button class="bar-btn btn-add-exhibit" type="button" onclick="addLinkExhibit()" style="width:100%; border-style:dashed;">+ Add Web Link Exhibit</button>
-  </div>
-
-  <div class="field-grid" style="display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin-top:16px;">
-    <div class="field-row">
-      <label>Closing</label>
-      <input type="text" id="inClosing" value="Respectfully,">
-    </div>
-    <div class="field-row">
-      <label>Sig Title</label>
-      <input type="text" id="inSigTitle" value="Founder — SaveKearnyAZ.org">
-    </div>
+  <div class="field-row">
+    <label>Exhibit Links 🔗</label>
+    <div id="linksContainer"></div>
+    <button class="bar-btn" onclick="addLink()" style="width:100%; border-style:dashed; margin-top:10px;">+ Add Link Exhibit</button>
   </div>
 </div>
 
-<!-- ── THE LETTER ── -->
 <div class="page-container">
-  <div class="page">
-    <div class="top-bar"></div>
+  <div class="page executive" id="letterPage">
     <div class="letterhead">
       <div class="lh-brand-group">
         <img src="https://powparker.com/powparker-logo.webp" class="lh-seal" alt="Powell Parker Seal">
-        <div class="lh-text">
+        <div class="lh-text-block">
           <div class="lh-name">Powell Parker</div>
-          <div class="lh-motto">From the Desk of Powell Parker</div>
+          <div class="lh-motto">FROM THE DESK OF POWELL PARKER</div>
         </div>
       </div>
       <div class="lh-contact">
-        <div>powell@powparker.com</div>
-        <div>(480) 788-2320</div>
-        <div>Mesa, Arizona</div>
+        <div><a href="mailto:powell@powparker.com">powell@powparker.com</a></div>
+        <div><a href="tel:4807882320">(480) 788-2320</a></div>
+        <div style="margin-top: 2px;"><a href="https://www.powparker.com" target="_blank" class="web-highlight">powparker.com</a></div>
+        <div style="font-size: 0.68rem; color: #777; text-transform: uppercase; letter-spacing: 1px; margin-top: 3px;">Mesa, Arizona</div>
       </div>
     </div>
+    
     <div class="header-rule"></div>
 
-    <div class="letter-content" id="letterContent">
-      <div id="outHeroHeading" class="hero-heading-render" style="display: none;"></div>
-      <div class="l-date" id="outDate">May 19, 2026</div>
-      <div class="l-recipient" id="outRecipient"><strong>Recipient</strong></div>
-      <div class="l-subject" id="outSubject"></div>
-      <div class="l-body" id="outBody"></div>
-      <div id="outLinkExhibits" class="link-exhibit-output"></div>
-      <div class="l-closing" id="outClosing">Respectfully,</div>
-      <div style="margin-top:20px;">
-        <div style="font-weight:700; color:var(--navy);">Powell Parker</div>
-        <div id="outSigTitle" style="font-size:0.8rem; color:var(--text-light);"></div>
-      </div>
+    <div class="letter-content">
+      <div id="outHero" class="hero-heading-render"></div>
+      <div id="outDate" style="font-family:'Lato'; font-size:0.8rem; margin-bottom:25px; color: var(--text-light);"></div>
+      <div id="outRecipient" style="margin-bottom:30px; font-size: 1rem; line-height: 1.6;"></div>
+      <div id="outBody"></div>
+      <div id="outLinks" style="margin-top:30px;"></div>
     </div>
   </div>
 </div>
 
 <script>
-// --- DICTATION ENGINE ---
-const micBtn = document.getElementById('micTrigger');
-const bodyText = document.getElementById('inBody');
-const statusText = document.getElementById('dictationStatus');
+// --- DICTATION ---
+const micBtn = document.getElementById('micBtn');
+const inBody = document.getElementById('inBody');
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 if (SpeechRecognition) {
-    const recognition = new SpeechRecognition();
-    recognition.continuous = true;
-    recognition.interimResults = true;
-    let isRecording = false;
+  const recognition = new SpeechRecognition();
+  recognition.continuous = true;
+  recognition.interimResults = true;
+  let recording = false;
 
-    micBtn.onclick = () => {
-        if (!isRecording) {
-            recognition.start();
-            isRecording = true;
-            micBtn.style.borderColor = "#ff4c4c";
-            micBtn.style.color = "#ff4c4c";
-            micBtn.innerText = "🛑 STOP";
-            statusText.style.display = "block";
-        } else {
-            recognition.stop();
-            isRecording = false;
-            micBtn.style.borderColor = "#64ffda";
-            micBtn.style.color = "#64ffda";
-            micBtn.innerText = "🎙️ DICTATE";
-            statusText.style.display = "none";
-        }
-    };
-
-    recognition.onresult = (event) => {
-        let transcript = "";
-        for (let i = event.resultIndex; i < event.results.length; i++) {
-            transcript += event.results[i][0].transcript;
-        }
-        bodyText.value = transcript;
-    };
+  micBtn.onclick = () => {
+    if(!recording) {
+      recognition.start();
+      recording = true; micBtn.style.color = "#ff4c4c"; micBtn.innerText = "🛑 STOP";
+    } else {
+      recognition.stop();
+      recording = false; micBtn.style.color = "#64ffda"; micBtn.innerText = "🎙️ DICTATE";
+    }
+  };
+  recognition.onresult = (e) => {
+    let t = ""; for (let i=e.resultIndex; i<e.results.length; i++) t += e.results[i][0].transcript;
+    inBody.value = t; renderLetter();
+  };
 }
 
-// --- LINK EXHIBIT ENGINE ---
-function addLinkExhibit() {
-    const container = document.getElementById('linkExhibitsContainer');
-    const div = document.createElement('div');
-    div.className = 'exhibit-card';
-    div.innerHTML = `
-        <button type="button" class="btn-remove" onclick="this.parentElement.remove()">✕</button>
-        <div style="display:grid; grid-template-columns: 1fr 1.5fr; gap:10px;">
-            <input type="text" class="link-label" placeholder="Label (Photos)">
-            <input type="text" class="link-url" placeholder="https://...">
-        </div>
-    `;
-    container.appendChild(div);
+// --- MUSIC ---
+let playing = false;
+function toggleMusic() {
+  const track = document.getElementById('bgTrack');
+  const btn = document.getElementById('musicBtn');
+  if(!playing) { track.play(); btn.innerText = "🎵 Music: ON"; playing = true; }
+  else { track.pause(); btn.innerText = "🎵 Music: OFF"; playing = false; }
 }
 
-// --- CORE RENDERER ---
-function toggleMode() {
-  const panel = document.getElementById('inputPanel');
-  const btn = document.getElementById('btnToggle');
-  if (panel.style.display === 'none') {
-    panel.style.display = 'block';
-    btn.innerText = 'Preview';
-  } else {
-    renderLetter();
-    panel.style.display = 'none';
-    btn.innerText = 'Edit';
-  }
+// --- LINKS ---
+function addLink() {
+  const div = document.createElement('div');
+  div.style = "display:grid; grid-template-columns: 1fr 2fr; gap:10px; margin-top:10px;";
+  div.innerHTML = `<input type="text" class="l-label" placeholder="Label"><input type="text" class="l-url" placeholder="URL">`;
+  document.getElementById('linksContainer').appendChild(div);
 }
 
+// --- RENDER ---
 function renderLetter() {
-    const hero = document.getElementById('inHeroHeading').value.trim();
-    const outHero = document.getElementById('outHeroHeading');
-    if(hero) { outHero.textContent = hero; outHero.style.display = 'block'; }
-    else { outHero.style.display = 'none'; }
-
-    document.getElementById('outDate').textContent = document.getElementById('inDate').value;
-    document.getElementById('outSubject').textContent = document.getElementById('inSubject').value;
-    document.getElementById('outClosing').textContent = document.getElementById('inClosing').value;
-    document.getElementById('outSigTitle').textContent = document.getElementById('inSigTitle').value;
-
-    const recip = document.getElementById('inRecipient').value.split(',');
-    document.getElementById('outRecipient').innerHTML = `<strong>${recip[0]}</strong><br>${recip.slice(1).join('<br>')}`;
-
-    const bodyParts = document.getElementById('inBody').value.split('\n');
-    document.getElementById('outBody').innerHTML = bodyParts.map(p => `<p>${p}</p>`).join('');
-
-    const outLinks = document.getElementById('outLinkExhibits');
-    outLinks.innerHTML = '';
-    const labels = document.querySelectorAll('.link-label');
-    const urls = document.querySelectorAll('.link-url');
-    labels.forEach((l, i) => {
-        if(l.value && urls[i].value) {
-            const a = document.createElement('a');
-            a.href = urls[i].value;
-            a.target = "_blank";
-            a.className = "link-btn";
-            a.innerText = "🔗 " + l.value;
-            outLinks.appendChild(a);
-        }
-    });
+  const page = document.getElementById('letterPage');
+  page.className = "page " + document.getElementById('paperSelect').value;
+  
+  document.getElementById('outHero').innerText = document.getElementById('inHero').value;
+  document.getElementById('outDate').innerText = document.getElementById('inDate').value;
+  
+  const recipientVal = document.getElementById('inRecipient').value;
+  if (recipientVal) {
+    document.getElementById('outRecipient').innerHTML = "<strong>" + recipientVal.replace(/,/g, '<br>') + "</strong>";
+  }
+  
+  document.getElementById('outBody').innerHTML = document.getElementById('inBody').value.split('\n').map(p => `<p style="margin-bottom:15px; text-align:justify;">${p}</p>`).join('');
+  
+  const outLinks = document.getElementById('outLinks');
+  outLinks.innerHTML = "";
+  const labels = document.querySelectorAll('.l-label');
+  const urls = document.querySelectorAll('.l-url');
+  labels.forEach((l, i) => {
+    if(l.value && urls[i].value) {
+      const a = document.createElement('a');
+      a.href = urls[i].value; a.className = "link-btn"; a.innerText = "🔗 " + l.value;
+      outLinks.appendChild(a);
+    }
+  });
 }
 
 function generateAndSave() {
-    renderLetter();
-    const toast = document.getElementById('toast');
-    toast.innerText = "Letter Saved & Formatted!";
-    toast.className = "toast success show";
-    setTimeout(() => { toast.className = "toast"; }, 3000);
+  renderLetter(); alert("Letter Saved to Engine. Ready for Sharing.");
 }
 
-// Set initial date
+// Init Date
 document.getElementById('inDate').value = new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'});
+setInterval(renderLetter, 1000);
 </script>
 </body>
 </html>
