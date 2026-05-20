@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Powell Parker — Executive Letter</title>
+<meta name="description" content="Official correspondence — From the Desk of Powell Parker">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23C9A84C' font-style='italic' font-family='Georgia,serif'>P</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1B2A40;
+  --deep: #0A1525;
+  --gold: #C9A84C;
+  --gold-light: #E8D5A3;
+  --gold-dark: #9A7A2E;
+  --cream: #F5F0E8;
+  --text: #1e1e1e;
+  --text-mid: #3a3a3a;
+  --text-light: #5a5a5a;
+  --rule: #d8d2c4;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 16px; }
+body {
+  font-family: 'EB Garamond', Georgia, serif;
+  background: #b8b5af;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── EDITOR BAR ── */
+.editor-bar {
+  background: var(--deep);
+  border-bottom: 2px solid var(--gold);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.editor-bar .bar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.editor-bar .bar-title {
+  font-family: 'Cormorant', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.06em;
+}
+.editor-bar .bar-right {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.bar-btn {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 7px 14px;
+  border: 1px solid var(--gold);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.25s;
+  background: transparent;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.bar-btn:hover { background: var(--gold); color: var(--deep); }
+.bar-btn.primary { background: var(--gold); color: var(--deep); }
+.bar-btn.primary:hover { background: var(--gold-light); }
+.bar-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.mode-indicator {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+.mode-edit { background: rgba(201,168,76,0.15); color: var(--gold); }
+.mode-view { background: rgba(45,106,79,0.15); color: #52b788; }
+
+/* ── STATUS TOAST ── */
+.toast {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  z-index: 200;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+  max-width: 90%;
+  text-align: center;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.success { background: #2ecc71; color: #fff; }
+.toast.error { background: #e74c3c; color: #fff; }
+.toast.loading { background: var(--gold); color: var(--deep); }
+
+/* ── SHARE PANEL ── */
+.share-panel {
+  max-width: 700px;
+  margin: 0 auto 16px;
+  background: var(--deep);
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  padding: 20px 24px;
+  display: none;
+  text-align: center;
+}
+.share-panel.active { display: block; }
+.share-panel h3 {
+  font-family: 'Cormorant', serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.share-url-box {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(201,168,76,0.3);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-family: monospace;
+  font-size: 0.82rem;
+  color: var(--gold-light);
+  word-break: break-all;
+  margin-bottom: 14px;
+}
+.share-btns { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.share-btns .bar-btn { font-size: 0.72rem; padding: 9px 18px; }
+
+/* ── INPUT PANEL ── */
+.input-panel {
+  max-width: 700px;
+  margin: 20px auto;
+  background: var(--deep);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 10px;
+  padding: 24px;
+  display: none;
+}
+.input-panel.active { display: block; }
+.input-panel h3 {
+  font-family: 'Cormorant', serif;
+  font-size: 1.15rem;
+  color: var(--gold);
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+.field-row { margin-bottom: 12px; }
+.field-row label {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 4px;
+}
+.field-row input, .field-row textarea, .field-row select {
+  width: 100%;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  color: var(--cream);
+  transition: border-color 0.3s;
+  -webkit-appearance: none;
+}
+.field-row input:focus, .field-row textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+.field-row textarea { min-height: 180px; resize: vertical; line-height: 1.8; }
+.field-row select { background: var(--deep); }
+.field-row .hint {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.65rem;
+  color: rgba(255,255,255,0.3);
+  margin-top: 3px;
+}
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ── NEW: HERO PHOTO SECTION ── */
+.hero-section {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(201,168,76,0.15);
+}
+.hero-upload-btn {
+  width: 100%;
+  padding: 14px;
+  border: 2px dashed rgba(201,168,76,0.3);
+  border-radius: 8px;
+  background: rgba(201,168,76,0.03);
+  color: var(--gold);
+  font-family: 'Lato', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.hero-upload-btn:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+.hero-preview-wrap { margin-top: 10px; display: none; }
+.hero-preview-wrap.active { display: block; }
+.hero-preview-wrap img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(201,168,76,0.25);
+  object-position: center 40%;
+}
+.hero-slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+}
+.hero-slider-row span {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.3);
+  white-space: nowrap;
+}
+.hero-slider-row input[type="range"] { flex: 1; accent-color: var(--gold); }
+.hero-remove {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+/* ── NEW: MUSIC SECTION ── */
+.music-section {
+  margin-top: 14px;
+  padding: 14px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 8px;
+}
+.music-section h4 {
+  font-family: 'Cormorant', serif;
+  font-size: 0.95rem;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.music-art-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+.music-art-preview {
+  width: 52px;
+  height: 52px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid rgba(201,168,76,0.3);
+  display: none;
+}
+.music-art-preview.active { display: block; }
+
+/* ── EXHIBIT CARDS ── */
+.exhibit-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px dashed rgba(201,168,76,0.3);
+  border-radius: 8px;
+  padding: 14px;
+  margin-bottom: 12px;
+  position: relative;
+}
+.exhibit-card .btn-remove {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #ff6b6b;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.exhibit-card .btn-remove:hover { text-decoration: underline; }
+.exhibit-preview {
+  margin-top: 8px;
+  text-align: center;
+}
+.exhibit-preview img {
+  max-width: 100%;
+  max-height: 180px;
+  border: 2px solid var(--gold);
+  border-radius: 4px;
+}
+.slider-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+.slider-row input[type="range"] {
+  flex: 1;
+  accent-color: var(--gold);
+}
+.slider-val {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.68rem;
+  color: var(--gold-light);
+  min-width: 32px;
+}
+.btn-add-exhibit {
+  width: 100%;
+  border-style: dashed;
+  padding: 10px;
+  background: rgba(201,168,76,0.04);
+  margin-top: 4px;
+}
+
+/* ── SAVED LETTERS ── */
+.saved-section {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(201,168,76,0.15);
+}
+.saved-section h3 {
+  font-family: 'Cormorant', serif;
+  font-size: 1rem;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.saved-list { list-style: none; }
+.saved-item {
+  padding: 9px 12px;
+  background: rgba(201,168,76,0.05);
+  border: 1px solid rgba(201,168,76,0.12);
+  border-radius: 6px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+.saved-item a {
+  color: var(--gold);
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.saved-item .meta {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.65rem;
+  color: #888;
+  white-space: nowrap;
+}
+.saved-item .btn-del {
+  background: none;
+  border: none;
+  color: #ff6b6b;
+  cursor: pointer;
+  font-size: 0.6rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+
+/* ── THE LETTER PAGE ── */
+.page-container {
+  display: flex;
+  justify-content: center;
+  padding: 24px 12px 40px;
+}
+.page {
+  width: 816px;
+  min-height: 1056px;
+  background: #fff;
+  box-shadow: 0 6px 40px rgba(0,0,0,0.3);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.top-bar, .bottom-bar {
+  height: 10px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light), var(--gold), var(--gold-dark));
+  flex-shrink: 0;
+}
+.header-rule {
+  height: 3px;
+  margin: 0 56px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold-light) 15%, var(--gold) 40%, var(--gold) 60%, var(--gold-light) 85%, transparent 100%);
+}
+.footer-rule {
+  height: 3px;
+  margin: 0 56px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold-light) 15%, var(--gold) 40%, var(--gold) 60%, var(--gold-light) 85%, transparent 100%);
+}
+.letterhead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 56px 24px;
+}
+.lh-brand-group { display: flex; align-items: center; }
+.lh-seal {
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 3px 14px rgba(0,0,0,0.15);
+  object-fit: contain;
+}
+.lh-text { margin-left: 24px; }
+.lh-name {
+  font-family: 'Cormorant', serif;
+  font-size: 1.95rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+.lh-motto {
+  font-family: 'Cormorant', serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+.lh-contact { text-align: right; flex-shrink: 0; }
+.lh-contact div {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-light);
+  line-height: 1.6;
+}
+.lh-contact a { color: var(--gold-dark); text-decoration: none; }
+
+/* ── NEW: HERO IMAGE IN LETTER ── */
+.l-hero-img {
+  width: calc(100% + 112px);
+  margin-left: -56px;
+  margin-right: -56px;
+  margin-top: -40px;
+  margin-bottom: 32px;
+  max-height: 320px;
+  object-fit: cover;
+  display: none;
+}
+.l-hero-img.active { display: block; }
+
+.letter-content {
+  padding: 40px 56px 140px;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text);
+  flex: 1 0 auto;
+}
+.l-date { font-family: 'Lato', sans-serif; font-size: 0.82rem; color: var(--text-light); margin-bottom: 28px; }
+.l-recipient { margin-bottom: 28px; line-height: 1.6; font-size: 0.98rem; }
+.l-recipient strong { font-family: 'Cormorant', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); }
+.l-subject { font-family: 'Cormorant', serif; font-size: 0.92rem; font-weight: 700; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px; padding-bottom: 10px; border-bottom: 1px solid var(--rule); }
+.l-salutation { font-family: 'Cormorant', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 20px; }
+.l-body p { margin-bottom: 16px; text-align: justify; hyphens: auto; }
+.l-body a { color: var(--gold-dark); text-decoration: underline; }
+.l-closing { margin-top: 36px; font-family: 'Cormorant', serif; font-style: italic; font-size: 1.1rem; }
+.l-sig { margin-top: 36px; page-break-inside: avoid; }
+.l-sig-name { font-family: 'Cormorant', serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+.l-sig-phones { font-family: 'Lato', sans-serif; font-size: 0.78rem; color: var(--text-light); margin-top: 4px; line-height: 1.7; }
+.l-sig-phones a { color: var(--gold-dark); text-decoration: none; }
+.l-sig-phones .phone-label { font-size: 0.68rem; color: #999; }
+.l-sig-title { font-family: 'Lato', sans-serif; font-size: 0.75rem; color: var(--text-light); margin-top: 6px; line-height: 1.6; }
+.l-sig-links { margin-top: 8px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.l-sig-links a { font-family: 'Lato', sans-serif; font-size: 0.76rem; color: var(--gold); text-decoration: none; font-weight: 700; }
+.l-sig-links .sig-divider { color: #ccc; font-size: 0.7rem; }
+.l-sig-links .sig-email a { font-weight: 400; color: var(--gold-dark); }
+
+/* ── NEW: SOCIAL LINKS IN LETTER ── */
+.l-social-links {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.l-social-links a {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  padding: 5px 12px;
+  border: 1px solid rgba(27,42,64,0.25);
+  border-radius: 4px;
+  transition: all 0.2s;
+  display: inline-block;
+}
+.l-social-links a:hover { background: var(--navy); color: #fff; }
+
+/* ── NEW: MUSIC CARD IN LETTER ── */
+.l-music-card {
+  margin-top: 28px;
+  padding: 16px 20px;
+  background: #0f1a2e;
+  border: 1px solid rgba(201,168,76,0.35);
+  border-radius: 10px;
+  display: none;
+  align-items: center;
+  gap: 18px;
+  page-break-inside: avoid;
+}
+.l-music-card.active { display: flex; }
+.l-music-art-wrap {
+  position: relative;
+  flex-shrink: 0;
+  display: block;
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+}
+.l-music-art-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.l-music-play-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.38);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.l-music-play-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #0f1a2e;
+  padding-left: 3px;
+}
+.l-music-play-circle {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2.5px solid var(--gold);
+  background: rgba(201,168,76,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--gold);
+  font-size: 20px;
+  padding-left: 4px;
+}
+.l-music-info { flex: 1; min-width: 0; }
+.l-music-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.l-music-link {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-decoration: none;
+  display: block;
+}
+.l-music-link:hover { text-decoration: underline; }
+
+/* Exhibit output in letter */
+.printed-exhibit-container { margin: 32px 0; text-align: center; page-break-inside: avoid; }
+.exhibit-print-heading { font-family: 'Cormorant', serif; font-size: 1.15rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+.exhibit-print-img { display: inline-block; border: 2px solid var(--gold); border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.exhibit-print-caption { font-style: italic; font-size: 0.9rem; color: var(--text-light); margin-top: 8px; }
+
+.letter-footer { position: absolute; bottom: 0; left: 0; right: 0; }
+.footer-content {
+  padding: 16px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.78rem;
+  color: #777;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.footer-content a { color: var(--gold-dark); text-decoration: none; font-weight: 700; }
+.footer-phones { display: flex; gap: 14px; align-items: center; }
+.footer-phones span { font-size: 0.68rem; color: #999; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ── NEW: PARLAYPEN FOOTER ── */
+.parlaypen-credit {
+  text-align: center;
+  padding: 14px 20px 6px;
+  border-top: 1px solid rgba(201,168,76,0.15);
+}
+.parlaypen-credit a {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #aaa;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.04em;
+}
+.parlaypen-credit a:hover { color: var(--gold-dark); }
+.parlaypen-credit img { height: 28px; width: auto; opacity: 0.75; }
+
+/* ── PRINT ── */
+@media print {
+  body { background: #fff; }
+  .editor-bar, .input-panel, .share-panel, .saved-section { display: none !important; }
+  .page-container { padding: 0; }
+  .page { box-shadow: none; width: 100%; min-height: 100vh; }
+  .l-hero-img.active { display: block; }
+  .l-music-card.active { display: flex; }
+}
+@media (max-width: 860px) {
+  .page { width: 100%; min-height: auto; }
+  .letterhead { padding: 24px 20px 16px; flex-direction: column; align-items: flex-start; gap: 14px; }
+  .lh-brand-group { width: 100%; }
+  .lh-seal { width: 100px; height: 100px; }
+  .lh-text { margin-left: 14px; }
+  .lh-name { font-size: 1.5rem; }
+  .lh-contact { text-align: left; width: 100%; }
+  .letter-content { padding: 20px 20px 120px; }
+  .l-hero-img { width: calc(100% + 40px); margin-left: -20px; margin-top: -20px; }
+  .header-rule, .footer-rule { margin: 0 20px; }
+  .footer-content { padding: 12px 20px; flex-direction: column; text-align: center; }
+  .field-grid { grid-template-columns: 1fr; }
+  .l-sig-links { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .l-sig-links .sig-divider { display: none; }
+  .input-panel { margin: 12px 10px; padding: 16px; }
+  .share-panel { margin: 12px 10px; }
+  .editor-bar { padding: 8px 10px; }
+  .bar-title { font-size: 0.85rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOOLBAR ── -->
+<div class="editor-bar">
+  <div class="bar-left">
+    <div class="bar-title">Powell Parker — Executive Stationery</div>
+    <span class="mode-indicator mode-edit" id="modeTag">&#9998; EDITING</span>
+  </div>
+  <div class="bar-right">
+    <button class="bar-btn" id="btnToggle" onclick="toggleMode()">Preview</button>
+    <button class="bar-btn" onclick="window.print()">&#128424; Print</button>
+    <button class="bar-btn primary" id="btnSave" onclick="generateAndSave()">Save &amp; Share</button>
+  </div>
+</div>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"></div>
+
+<!-- ── SHARE PANEL ── -->
+<div class="share-panel" id="sharePanel">
+  <h3>&#10003; Letter Saved — Share It</h3>
+  <div class="share-url-box" id="shareUrl"></div>
+  <div class="share-btns">
+    <button class="bar-btn" onclick="copyShareUrl()">&#128279; Copy Link</button>
+    <button class="bar-btn" onclick="shareNative()">&#128172; Text / Share</button>
+    <button class="bar-btn" onclick="window.open(document.getElementById('shareUrl').textContent,'_blank')">&#8599; Open</button>
+  </div>
+</div>
+
+<!-- ── EDITOR ── -->
+<div class="input-panel active" id="inputPanel">
+  <h3>Compose Your Letter</h3>
+
+  <!-- NEW: HERO PHOTO -->
+  <div class="hero-section">
+    <div class="field-row" style="margin-bottom:8px;">
+      <label>Cover / Header Photo (optional)</label>
+    </div>
+    <button class="hero-upload-btn" type="button" onclick="document.getElementById('heroFileInput').click()">+ Add Cover Photo</button>
+    <input type="file" id="heroFileInput" accept="image/*" style="display:none">
+    <div class="hero-preview-wrap" id="heroPrevWrap">
+      <img id="heroPrevImg" src="" alt="Cover preview" style="object-position:center 40%;">
+      <div class="hero-slider-row">
+        <span>Top</span>
+        <input type="range" id="heroSlider" min="0" max="100" value="40" oninput="adjustHeroPos(this.value)">
+        <span>Bottom</span>
+      </div>
+      <div style="font-family:'Lato',sans-serif;font-size:0.62rem;color:rgba(255,255,255,0.3);margin-top:3px;">Slide to reframe — shows faces, not waists.</div>
+      <button class="hero-remove" onclick="removeHero()">&#10005; Remove Photo</button>
+    </div>
+  </div>
+
+  <div class="field-grid">
+    <div class="field-row">
+      <label>Date</label>
+      <input type="text" id="inDate" placeholder="May 16, 2026">
+    </div>
+    <div class="field-row">
+      <label>Subject (optional)</label>
+      <input type="text" id="inSubject" placeholder="Re: Water Infrastructure Partnership">
+    </div>
+  </div>
+
+  <div class="field-row">
+    <label>Recipient</label>
+    <input type="text" id="inRecipient" placeholder="Mayor Curtis Stacy, Town of Kearny, PO Box 639, Kearny, AZ 85137">
+    <div class="hint">Separate lines with commas. First entry = bold name.</div>
+  </div>
+
+  <div class="field-row">
+    <label>Salutation</label>
+    <input type="text" id="inSalutation" placeholder="Dear Mayor Stacy,">
+  </div>
+
+  <div class="field-row">
+    <label>Letter Body</label>
+    <textarea id="inBody" placeholder="Write your letter here. Use a blank line between paragraphs.&#10;&#10;Wrap text in *asterisks* for bold emphasis.&#10;Use [display text](https://url.com) to insert links."></textarea>
+    <div class="hint">Blank line = new paragraph &nbsp;|&nbsp; *text* = bold &nbsp;|&nbsp; [text](url) = link</div>
+  </div>
+
+  <!-- EXHIBITS (unchanged) -->
+  <div style="margin-top: 18px; border-top: 1px solid rgba(201,168,76,0.2); padding-top: 14px;">
+    <h3 style="margin-bottom: 8px;">Visual Exhibits &amp; Photos</h3>
+    <div id="exhibitsContainer"></div>
+    <button class="bar-btn btn-add-exhibit" type="button" onclick="addExhibit()">+ Add Photo Exhibit</button>
+  </div>
+
+  <div class="field-grid" style="margin-top: 16px;">
+    <div class="field-row">
+      <label>Closing</label>
+      <input type="text" id="inClosing" value="Respectfully,">
+    </div>
+    <div class="field-row">
+      <label>Signature Title</label>
+      <input type="text" id="inSigTitle" value="Founder — SaveKearnyAZ.org · Project 88">
+    </div>
+  </div>
+
+  <!-- NEW: MUSIC SECTION -->
+  <div class="music-section">
+    <h4>&#9835; Music Attachment (optional)</h4>
+    <div class="field-row" style="margin-bottom:8px;">
+      <label>Music URL</label>
+      <input type="text" id="inMusic" placeholder="Paste Apple Music, Spotify, or YouTube link">
+      <div class="hint">Shows a player card with a play button at the bottom of the letter.</div>
+    </div>
+    <div class="field-row" style="margin-bottom:0;">
+      <label>Album / Track Artwork (optional)</label>
+      <div class="music-art-row">
+        <button class="bar-btn" type="button" onclick="document.getElementById('musicArtInput').click()" style="font-size:0.62rem;padding:6px 12px;">+ Upload Art</button>
+        <input type="file" id="musicArtInput" accept="image/*" style="display:none">
+        <img id="musicArtPrev" class="music-art-preview" src="" alt="Art">
+      </div>
+    </div>
+  </div>
+
+  <div class="field-row" style="margin-top: 12px;">
+    <label>Password Protection (optional)</label>
+    <input type="text" id="inPassword" placeholder="Leave blank for public, or enter an access code">
+    <div class="hint">If set, recipients must enter this code to view the letter.</div>
+  </div>
+
+  <div class="field-row" style="margin-top: 4px;">
+    <label>Letter Slug (URL)</label>
+    <input type="text" id="inSlug" placeholder="stacy-kearny-water">
+    <div class="hint">Auto-generated from subject. This becomes the shareable link.</div>
+  </div>
+
+  <!-- SAVED LETTERS (unchanged) -->
+  <div class="saved-section">
+    <h3>Saved Letters</h3>
+    <ul class="saved-list" id="savedList">
+      <li class="saved-item" style="border:none;background:none;"><span class="meta">Loading...</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ── THE LETTER ── -->
+<div class="page-container">
+  <div class="page">
+    <div class="top-bar"></div>
+
+    <div class="letterhead">
+      <div class="lh-brand-group">
+        <img src="https://powparker.com/powparker-logo.webp" class="lh-seal" id="outSeal" alt="Powell Parker Seal">
+        <div class="lh-text">
+          <div class="lh-name">Powell Parker</div>
+          <div class="lh-motto">From the Desk of Powell Parker</div>
+        </div>
+      </div>
+      <div class="lh-contact">
+        <div><a href="mailto:powell@powparker.com">powell@powparker.com</a></div>
+        <div><a href="mailto:info@powparker.com">info@powparker.com</a></div>
+        <div><span class="phone-label">AZ:</span> <a href="tel:4807882320">(480) 788-2320</a></div>
+        <div><a href="https://www.powparker.com">powparker.com</a></div>
+        <div>Mesa, Arizona</div>
+      </div>
+    </div>
+
+    <div class="header-rule"></div>
+
+    <div class="letter-content" id="letterContent">
+      <!-- NEW: Hero image renders here -->
+      <img class="l-hero-img" id="outHeroImg" src="" alt="Cover Photo" style="object-position:center 40%;">
+
+      <div class="l-date" id="outDate">May 17, 2026</div>
+      <div class="l-recipient" id="outRecipient">
+        <strong>Recipient Name</strong><br>Title / Organization<br>Address
+      </div>
+      <div class="l-subject" id="outSubject" style="display:none;"></div>
+      <div class="l-salutation" id="outSalutation">Dear Colleague,</div>
+      <div class="l-body" id="outBody">
+        <p style="color:#999;font-style:italic;">Your letter will appear here. Fill in the fields above and click &ldquo;Save &amp; Share&rdquo; to generate it.</p>
+      </div>
+      <div id="outExhibits"></div>
+      <div class="l-closing" id="outClosing">Respectfully,</div>
+      <div class="l-sig">
+        <div class="l-sig-name">Powell Parker</div>
+        <div class="l-sig-title" id="outSigTitle">Founder &mdash; SaveKearnyAZ.org &middot; Project 88</div>
+        <div class="l-sig-phones">
+          <span class="phone-label">AZ:</span> <a href="tel:4807882320">(480) 788-2320</a>
+          &nbsp;&middot;&nbsp;
+          <span class="phone-label">TX:</span> <a href="tel:2148381883">(214) 838-1883</a>
+        </div>
+        <div class="l-sig-links">
+          <a href="https://www.powparker.com">www.powparker.com</a>
+          <span class="sig-divider">|</span>
+          <a href="https://www.rightfulreturnsrecovery.com">www.rightfulreturnsrecovery.com</a>
+          <span class="sig-divider">|</span>
+          <span class="sig-email"><a href="mailto:powell@powparker.com">powell@powparker.com</a></span>
+        </div>
+        <!-- NEW: Social media links -->
+        <div class="l-social-links" id="outSocialLinks" style="display:none;">
+          <a href="https://www.facebook.com/powparker" target="_blank">Facebook</a>
+          <a href="https://www.instagram.com/powparker" target="_blank">Instagram</a>
+          <a href="https://www.linkedin.com/in/powellparker" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+
+      <!-- NEW: Music card renders here -->
+      <div class="l-music-card" id="outMusicCard">
+        <div id="outMusicLeft"></div>
+        <div class="l-music-info">
+          <div class="l-music-label">&#9835; Now Playing</div>
+          <a href="" id="outMusicLink" class="l-music-link" target="_blank">Listen to the attached track &#8599;</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="letter-footer">
+      <div class="footer-rule"></div>
+      <div class="footer-content">
+        <div class="footer-phones">
+          <span>Dallas</span> <a href="tel:2148381883">(214) 838-1883</a>
+          &nbsp;|&nbsp;
+          <span>Toll Free</span> <a href="tel:18004282022">1-800-428-2022</a>
+        </div>
+        <div><a href="https://www.powparker.com">www.powparker.com</a></div>
+      </div>
+      <!-- NEW: ParlayPen credit -->
+      <div class="parlaypen-credit">
+        <a href="https://parlaypen.com" target="_blank">
+          <img src="https://parlaypen.com/parlay-logo-pen.webp" alt="ParlayPen">
+          <span>Built by ParlayPen</span>
+        </a>
+      </div>
+      <div class="bottom-bar"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG (unchanged) ──
+var WORKER = 'https://letters.powparker.com';
+var API_KEY = 'Parker-letters-062878!';
+
+var editMode = true;
+var exhibitCounter = 0;
+var exhibitFiles = {};
+
+// ── NEW: Hero & music variables ──
+var heroDataUrl = null;
+var musicArtDataUrl = null;
+
+// ── INIT ──
+(function() {
+  var m = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var d = new Date();
+  var today = m[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+  document.getElementById('inDate').value = today;
+  document.getElementById('outDate').textContent = today;
+
+  document.getElementById('inSubject').addEventListener('input', function(e) {
+    var slug = e.target.value.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').substring(0, 60);
+    document.getElementById('inSlug').value = slug;
+  });
+
+  // NEW: Hero file handler
+  document.getElementById('heroFileInput').addEventListener('change', function(e) {
+    if (!e.target.files[0]) return;
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      heroDataUrl = ev.target.result;
+      document.getElementById('heroPrevImg').src = ev.target.result;
+      document.getElementById('heroPrevImg').style.objectPosition = 'center 40%';
+      document.getElementById('heroSlider').value = 40;
+      document.getElementById('heroPrevWrap').classList.add('active');
+    };
+    reader.readAsDataURL(e.target.files[0]);
+    e.target.value = '';
+  });
+
+  // NEW: Music art file handler
+  document.getElementById('musicArtInput').addEventListener('change', function(e) {
+    if (!e.target.files[0]) return;
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      musicArtDataUrl = ev.target.result;
+      var prev = document.getElementById('musicArtPrev');
+      prev.src = ev.target.result;
+      prev.classList.add('active');
+    };
+    reader.readAsDataURL(e.target.files[0]);
+    e.target.value = '';
+  });
+
+  loadSavedLetters();
+})();
+
+// ── NEW: Hero controls ──
+function adjustHeroPos(val) {
+  var pos = 'center ' + val + '%';
+  document.getElementById('heroPrevImg').style.objectPosition = pos;
+  document.getElementById('outHeroImg').style.objectPosition = pos;
+}
+function removeHero() {
+  heroDataUrl = null;
+  document.getElementById('heroPrevWrap').classList.remove('active');
+  document.getElementById('outHeroImg').classList.remove('active');
+  document.getElementById('outHeroImg').src = '';
+}
+
+// ── TOGGLE MODE (unchanged) ──
+function toggleMode() {
+  editMode = !editMode;
+  var panel = document.getElementById('inputPanel');
+  var btn = document.getElementById('btnToggle');
+  var tag = document.getElementById('modeTag');
+  if (editMode) {
+    panel.classList.add('active');
+    btn.textContent = 'Preview';
+    tag.className = 'mode-indicator mode-edit';
+    tag.innerHTML = '&#9998; EDITING';
+  } else {
+    renderLetter();
+    panel.classList.remove('active');
+    btn.textContent = 'Edit';
+    tag.className = 'mode-indicator mode-view';
+    tag.textContent = '\u2713 PREVIEW';
+  }
+}
+
+// ── ADD EXHIBIT (unchanged) ──
+function addExhibit() {
+  exhibitCounter++;
+  var id = 'ex_' + exhibitCounter;
+  var card = document.createElement('div');
+  card.className = 'exhibit-card';
+  card.id = 'card_' + id;
+  card.innerHTML =
+    '<button type="button" class="btn-remove" onclick="removeExhibit(\'' + id + '\')">&#10005; Remove</button>' +
+    '<div class="field-row">' +
+      '<label>Exhibit Heading</label>' +
+      '<input type="text" id="heading_' + id + '" placeholder="e.g., Exhibit A: Site Overview">' +
+    '</div>' +
+    '<div class="field-row">' +
+      '<label>Photo</label>' +
+      '<input type="file" id="file_' + id + '" accept="image/*" onchange="handleExFile(this,\'' + id + '\')" ' +
+      'style="padding:5px;font-size:0.85rem;">' +
+    '</div>' +
+    '<div class="exhibit-preview" id="preview_' + id + '"></div>' +
+    '<div class="field-row">' +
+      '<label>Size</label>' +
+      '<div class="slider-row">' +
+        '<input type="range" id="scale_' + id + '" min="20" max="100" value="80" oninput="document.getElementById(\'sv_' + id + '\').textContent=this.value+\'%\'">' +
+        '<span class="slider-val" id="sv_' + id + '">80%</span>' +
+      '</div>' +
+    '</div>' +
+    '<div class="field-row" style="margin-bottom:0;">' +
+      '<label>Caption</label>' +
+      '<input type="text" id="caption_' + id + '" placeholder="e.g., Taken on site May 2026">' +
+    '</div>';
+  document.getElementById('exhibitsContainer').appendChild(card);
+}
+
+function removeExhibit(id) {
+  var el = document.getElementById('card_' + id);
+  if (el) el.remove();
+  delete exhibitFiles[id];
+}
+
+function handleExFile(input, id) {
+  if (!input.files || !input.files[0]) return;
+  var file = input.files[0];
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    exhibitFiles[id] = { file: file, dataUrl: e.target.result };
+    document.getElementById('preview_' + id).innerHTML =
+      '<img src="' + e.target.result + '" alt="Preview">';
+  };
+  reader.readAsDataURL(file);
+}
+
+// ── GENERATE & SAVE (unchanged core, added music URL to letter object) ──
+async function generateAndSave() {
+  renderLetter();
+
+  var slug = document.getElementById('inSlug').value.trim();
+  if (!slug) {
+    slug = 'letter-' + Date.now();
+    document.getElementById('inSlug').value = slug;
+  }
+
+  var btn = document.getElementById('btnSave');
+  btn.disabled = true;
+  showToast('Saving letter...', 'loading');
+
+  try {
+    var exhibits = [];
+    var cards = document.querySelectorAll('.exhibit-card');
+    for (var i = 0; i < cards.length; i++) {
+      var id = cards[i].id.replace('card_', '');
+      var heading = document.getElementById('heading_' + id).value.trim();
+      var scale = document.getElementById('scale_' + id).value;
+      var caption = document.getElementById('caption_' + id).value.trim();
+      var exData = exhibitFiles[id];
+
+      if (exData && exData.file) {
+        showToast('Uploading photo ' + (i+1) + '...', 'loading');
+        var formData = new FormData();
+        formData.append('photo', exData.file);
+        formData.append('letterId', slug);
+        var pRes = await fetch(WORKER + '/api/photo', {
+          method: 'POST',
+          headers: { 'X-API-Key': API_KEY },
+          body: formData,
+        });
+        var pData = await pRes.json();
+        if (pData.success) {
+          exhibits.push({ photoKey: pData.key, heading: heading, scale: scale, caption: caption });
+        }
+      }
+    }
+
+    var recip = document.getElementById('inRecipient').value.trim();
+    var recipParts = recip.split(',').map(function(s) { return s.trim(); });
+    var recipHtml = '<strong>' + recipParts[0] + '</strong>';
+    for (var j = 1; j < recipParts.length; j++) { recipHtml += '<br>' + recipParts[j]; }
+
+    var letter = {
+      date: document.getElementById('inDate').value.trim(),
+      recipientName: recipParts[0],
+      recipientHtml: recipHtml,
+      subject: document.getElementById('inSubject').value.trim(),
+      salutation: document.getElementById('inSalutation').value.trim(),
+      body: document.getElementById('inBody').value.trim(),
+      closing: document.getElementById('inClosing').value.trim(),
+      sigTitle: document.getElementById('inSigTitle').value.trim(),
+      password: document.getElementById('inPassword').value.trim() || null,
+      musicUrl: document.getElementById('inMusic').value.trim() || null,
+      exhibits: exhibits,
+    };
+
+    showToast('Saving to cloud...', 'loading');
+    var res = await fetch(WORKER + '/api/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
+      body: JSON.stringify({ slug: slug, letter: letter }),
+    });
+    var data = await res.json();
+
+    if (data.success) {
+      var fullUrl = WORKER + '/s/' + data.slug;
+      document.getElementById('shareUrl').textContent = fullUrl;
+      document.getElementById('sharePanel').classList.add('active');
+      showToast('Letter saved! Link ready.', 'success');
+      loadSavedLetters();
+      if (editMode) toggleMode();
+    } else {
+      throw new Error(data.error || 'Save failed');
+    }
+  } catch(e) {
+    showToast('Error: ' + e.message, 'error');
+  }
+
+  btn.disabled = false;
+}
+
+// ── RENDER LETTER LOCALLY (updated to include hero, music, social, links) ──
+function renderLetter() {
+  var date = document.getElementById('inDate').value.trim();
+  if (date) document.getElementById('outDate').textContent = date;
+
+  // Hero photo
+  var heroImg = document.getElementById('outHeroImg');
+  if (heroDataUrl) {
+    heroImg.src = heroDataUrl;
+    var posVal = document.getElementById('heroSlider').value;
+    heroImg.style.objectPosition = 'center ' + posVal + '%';
+    heroImg.classList.add('active');
+  } else {
+    heroImg.classList.remove('active');
+  }
+
+  var recip = document.getElementById('inRecipient').value.trim();
+  if (recip) {
+    var parts = recip.split(',').map(function(s) { return s.trim(); });
+    var html = '<strong>' + parts[0] + '</strong>';
+    for (var i = 1; i < parts.length; i++) { html += '<br>' + parts[i]; }
+    document.getElementById('outRecipient').innerHTML = html;
+  }
+
+  var subj = document.getElementById('inSubject').value.trim();
+  var subjEl = document.getElementById('outSubject');
+  if (subj) { subjEl.textContent = subj; subjEl.style.display = 'block'; }
+  else { subjEl.style.display = 'none'; }
+
+  var sal = document.getElementById('inSalutation').value.trim();
+  if (sal) document.getElementById('outSalutation').textContent = sal;
+
+  var body = document.getElementById('inBody').value.trim();
+  if (body) {
+    var paragraphs = body.split(/\n\s*\n/);
+    var bodyHtml = '';
+    paragraphs.forEach(function(p) {
+      p = p.trim();
+      if (!p) return;
+      p = p.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      p = p.replace(/\*([^*]+)\*/g, '<strong>$1</strong>');
+      p = p.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+      p = p.replace(/\n/g, ' ');
+      bodyHtml += '<p>' + p + '</p>';
+    });
+    document.getElementById('outBody').innerHTML = bodyHtml;
+  }
+
+  var outEx = document.getElementById('outExhibits');
+  outEx.innerHTML = '';
+  var cards = document.querySelectorAll('.exhibit-card');
+  cards.forEach(function(card) {
+    var id = card.id.replace('card_', '');
+    var headVal = document.getElementById('heading_' + id).value.trim();
+    var scaleVal = document.getElementById('scale_' + id).value;
+    var capVal = document.getElementById('caption_' + id).value.trim();
+    var exData = exhibitFiles[id];
+    if (exData && exData.dataUrl) {
+      var wrap = document.createElement('div');
+      wrap.className = 'printed-exhibit-container';
+      var h = '';
+      if (headVal) h += '<div class="exhibit-print-heading">' + headVal + '</div>';
+      h += '<img src="' + exData.dataUrl + '" class="exhibit-print-img" style="width:' + scaleVal + '%;" alt="Exhibit">';
+      if (capVal) h += '<div class="exhibit-print-caption">' + capVal + '</div>';
+      wrap.innerHTML = h;
+      outEx.appendChild(wrap);
+    }
+  });
+
+  var closing = document.getElementById('inClosing').value.trim();
+  if (closing) document.getElementById('outClosing').textContent = closing;
+
+  var sigTitle = document.getElementById('inSigTitle').value.trim();
+  if (sigTitle) document.getElementById('outSigTitle').textContent = sigTitle;
+
+  // Social links — show them
+  document.getElementById('outSocialLinks').style.display = 'flex';
+
+  // Music card
+  var musicUrl = document.getElementById('inMusic').value.trim();
+  var musicCard = document.getElementById('outMusicCard');
+  var musicLeft = document.getElementById('outMusicLeft');
+  var musicLink = document.getElementById('outMusicLink');
+  if (musicUrl) {
+    musicLink.href = musicUrl;
+    if (musicArtDataUrl) {
+      musicLeft.innerHTML =
+        '<div class="l-music-art-wrap" style="position:relative;flex-shrink:0;display:block;width:72px;height:72px;border-radius:8px;overflow:hidden;">' +
+        '<img src="' + musicArtDataUrl + '" style="width:100%;height:100%;object-fit:cover;display:block;">' +
+        '<div class="l-music-play-overlay" style="position:absolute;inset:0;background:rgba(0,0,0,0.38);display:flex;align-items:center;justify-content:center;">' +
+        '<div class="l-music-play-btn" style="width:32px;height:32px;border-radius:50%;background:#C9A84C;display:flex;align-items:center;justify-content:center;font-size:12px;color:#0f1a2e;padding-left:3px;">&#9654;</div>' +
+        '</div></div>';
+    } else {
+      musicLeft.innerHTML =
+        '<div class="l-music-play-circle" style="flex-shrink:0;width:56px;height:56px;border-radius:50%;border:2.5px solid #C9A84C;background:rgba(201,168,76,0.1);display:flex;align-items:center;justify-content:center;color:#C9A84C;font-size:20px;padding-left:4px;">&#9654;</div>';
+    }
+    musicCard.classList.add('active');
+  } else {
+    musicCard.classList.remove('active');
+    musicLeft.innerHTML = '';
+  }
+}
+
+// ── LOAD SAVED LETTERS (unchanged) ──
+async function loadSavedLetters() {
+  try {
+    var res = await fetch(WORKER + '/api/list', { headers: { 'X-API-Key': API_KEY } });
+    var data = await res.json();
+    var list = document.getElementById('savedList');
+    if (!data.letters || data.letters.length === 0) {
+      list.innerHTML = '<li class="saved-item" style="border:none;background:none;"><span class="meta">No letters saved yet.</span></li>';
+      return;
+    }
+    list.innerHTML = data.letters.map(function(l) {
+      var d = new Date(l.date);
+      var ds = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      return '<li class="saved-item">' +
+        '<a href="' + WORKER + '/s/' + l.slug + '" target="_blank">' + (l.subject || l.slug) + '</a>' +
+        '<span class="meta">' + (l.to || '') + ' · ' + ds + '</span>' +
+        '<button class="btn-del" onclick="deleteLetter(\'' + l.slug + '\')">&#10005;</button>' +
+        '</li>';
+    }).join('');
+  } catch(e) {
+    document.getElementById('savedList').innerHTML =
+      '<li class="saved-item" style="border:none;background:none;"><span class="meta" style="color:#ff6b6b;">Could not connect to worker.</span></li>';
+  }
+}
+
+// ── DELETE LETTER (unchanged) ──
+async function deleteLetter(slug) {
+  if (!confirm('Delete "' + slug + '"?')) return;
+  try {
+    await fetch(WORKER + '/api/delete/' + slug, {
+      method: 'DELETE',
+      headers: { 'X-API-Key': API_KEY },
+    });
+    showToast('Deleted.', 'success');
+    loadSavedLetters();
+  } catch(e) {
+    showToast('Delete failed.', 'error');
+  }
+}
+
+// ── SHARE HELPERS (unchanged) ──
+function copyShareUrl() {
+  var url = document.getElementById('shareUrl').textContent;
+  navigator.clipboard.writeText(url).then(function() {
+    showToast('Link copied!', 'success');
+  });
+}
+function shareNative() {
+  var url = document.getElementById('shareUrl').textContent;
+  if (navigator.share) {
+    navigator.share({ title: 'Letter from Powell Parker', url: url });
+  } else {
+    window.open('sms:?body=' + encodeURIComponent('Letter from Powell Parker: ' + url));
+  }
+}
+
+// ── TOAST (unchanged) ──
+function showToast(msg, type) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast ' + type + ' show';
+  if (type !== 'loading') {
+    setTimeout(function() { t.className = 'toast'; }, 3000);
+  }
+}
+</script>
+</body>
+</html>
