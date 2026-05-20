@@ -42,54 +42,12 @@ body {
   flex-wrap: wrap;
   gap: 8px;
 }
-.editor-bar .bar-left {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.editor-bar .bar-title {
-  font-family: 'Cormorant', serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--gold);
-  letter-spacing: 0.06em;
-}
-.editor-bar .bar-right {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.bar-btn {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 7px 14px;
-  border: 1px solid var(--gold);
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.25s;
-  background: transparent;
-  color: var(--gold);
-  white-space: nowrap;
-}
+.editor-bar .bar-left { display: flex; align-items: center; gap: 12px; }
+.editor-bar .bar-title { font-family: 'Cormorant', serif; font-size: 1rem; font-weight: 700; color: var(--gold); letter-spacing: 0.06em; }
+.editor-bar .bar-right { display: flex; gap: 6px; align-items: center; }
+.bar-btn { font-family: 'Lato', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 7px 14px; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; transition: all 0.25s; background: transparent; color: var(--gold); }
 .bar-btn:hover { background: var(--gold); color: var(--deep); }
 .bar-btn.primary { background: var(--gold); color: var(--deep); }
-.bar-btn.primary:hover { background: var(--gold-light); }
-.bar-btn:disabled { opacity: 0.4; cursor: not-allowed; }
-.mode-indicator {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-weight: 700;
-}
-.mode-edit { background: rgba(201,168,76,0.15); color: var(--gold); }
-.mode-view { background: rgba(45,106,79,0.15); color: #52b788; }
 
 /* ── PAPER TEXTURES ── */
 .page.scroll { background: #f2e8c9; background-image: url('https://www.transparenttextures.com/patterns/parchment.png'); }
@@ -97,154 +55,182 @@ body {
 .page.college { background: #fff; background-image: linear-gradient(#9ed1ff 1px, transparent 1px); background-size: 100% 1.6rem; border-left: 2px solid #ffb3b3; }
 .page.executive { background: #fff; }
 
-/* ── STATUS TOAST ── */
-.toast {
-  position: fixed;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%) translateY(-20px);
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  z-index: 200;
-  opacity: 0;
-  transition: all 0.3s;
-  pointer-events: none;
-  max-width: 90%;
-  text-align: center;
-}
-.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-.toast.success { background: #2ecc71; color: #fff; }
-.toast.error { background: #e74c3c; color: #fff; }
-.toast.loading { background: var(--gold); color: var(--deep); }
-
-/* ── SHARE PANEL ── */
-.share-panel {
-  max-width: 700px;
-  margin: 0 auto 16px;
-  background: var(--deep);
-  border: 2px solid var(--gold);
-  border-radius: 10px;
-  padding: 20px 24px;
-  display: none;
-  text-align: center;
-}
-.share-panel.active { display: block; }
-.share-panel h3 {
-  font-family: 'Cormorant', serif;
-  font-size: 1.1rem;
-  color: var(--gold);
-  margin-bottom: 12px;
-}
-.share-url-box {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(201,168,76,0.3);
-  border-radius: 6px;
-  padding: 10px 14px;
-  font-family: monospace;
-  font-size: 0.82rem;
-  color: var(--gold-light);
-  word-break: break-all;
-  margin-bottom: 14px;
-}
-.share-btns { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-.share-btns .bar-btn { font-size: 0.72rem; padding: 9px 18px; }
-
 /* ── INPUT PANEL ── */
-.input-panel {
-  max-width: 700px;
-  margin: 20px auto;
-  background: var(--deep);
-  border: 1px solid rgba(201,168,76,0.2);
-  border-radius: 10px;
-  padding: 24px;
-  display: none;
-}
-.input-panel.active { display: block; }
-.input-panel h3 {
-  font-family: 'Cormorant', serif;
-  font-size: 1.15rem;
-  color: var(--gold);
-  margin-bottom: 14px;
-  font-weight: 700;
-}
+.input-panel { max-width: 700px; margin: 20px auto; background: var(--deep); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px; padding: 24px; color: white; display: block; }
+.input-panel.hidden { display: none; }
 .field-row { margin-bottom: 12px; }
-.field-row label {
-  display: block;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin-bottom: 4px;
+.field-row label { display: block; font-family: 'Lato', sans-serif; font-size: 0.68rem; font-weight: 700; color: var(--gold-light); margin-bottom: 4px; text-transform: uppercase; }
+.field-row input, .field-row textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.25); border-radius: 6px; padding: 10px; color: var(--cream); font-family: 'EB Garamond', serif; font-size: 1rem; }
+.field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+/* ── LETTER PAGE ── */
+.page-container { display: flex; justify-content: center; padding: 24px 12px 40px; }
+.page { width: 816px; min-height: 1056px; box-shadow: 0 6px 40px rgba(0,0,0,0.3); position: relative; display: flex; flex-direction: column; }
+.top-bar { height: 10px; background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light)); }
+.letterhead { display: flex; align-items: center; justify-content: space-between; padding: 40px 56px 24px; }
+.lh-seal { width: 120px; height: 120px; border-radius: 50%; object-fit: contain; }
+.lh-name { font-family: 'Cormorant', serif; font-size: 2rem; font-weight: 700; color: var(--navy); }
+.lh-motto { font-size: 0.8rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+
+.music-embed { margin: 0 56px 20px; border-radius: 12px; overflow: hidden; }
+
+.letter-content { padding: 20px 56px 140px; font-size: 1.1rem; line-height: 1.7; color: var(--text); flex-grow: 1; }
+.l-recipient { margin-bottom: 25px; }
+.l-recipient strong { display: block; font-size: 1.2rem; color: var(--navy); }
+.l-body p { margin-bottom: 1.2em; text-align: justify; }
+
+/* EXHIBITS */
+.print-exhibit { margin: 40px 0; text-align: center; break-inside: avoid; }
+.print-exhibit img { max-width: 80%; border: 3px solid var(--gold); }
+.print-exhibit-cap { font-style: italic; color: var(--text-light); margin-top: 10px; }
+
+@media print {
+  .editor-bar, .input-panel { display: none !important; }
+  body { background: #fff; }
+  .page { box-shadow: none; width: 100%; }
 }
-.field-row input, .field-row textarea, .field-row select {
-  width: 100%;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(201,168,76,0.25);
-  border-radius: 6px;
-  padding: 10px 14px;
-  font-family: 'EB Garamond', serif;
-  font-size: 1rem;
-  color: var(--cream);
-  transition: border-color 0.3s;
-  -webkit-appearance: none;
-}
-.field-row input:focus, .field-row textarea:focus {
-  outline: none;
-  border-color: var(--gold);
-}
-.field-row textarea { min-height: 180px; resize: vertical; line-height: 1.8; }
-.field-row select { background: var(--deep); }
-.field-row .hint {
-  font-family: 'Lato', sans-serif;
-  font-size: 0.65rem;
-  color: rgba(255,255,255,0.3);
-  margin-top: 3px;
-}
-.field-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
+</style>
+</head>
+<body>
+
+<div class="editor-bar">
+  <div class="bar-left">
+    <div class="bar-title">POWELL PARKER</div>
+    <select id="paperSelect" class="bar-btn" onchange="updatePaper()" style="background: var(--navy);">
+      <option value="executive">Executive White</option>
+      <option value="scroll">Ancient Scroll</option>
+      <option value="legal">Legal Yellow</option>
+      <option value="college">College Ruled</option>
+    </select>
+  </div>
+  <div class="bar-right">
+    <button class="bar-btn" onclick="toggleEdit()">Toggle Editor</button>
+    <button class="bar-btn primary" onclick="window.print()">Print PDF</button>
+  </div>
+</div>
+
+<div class="input-panel" id="inputPanel">
+  <div class="field-row">
+    <label>Dossier Title (Hero Heading)</label>
+    <input type="text" id="inHero" oninput="render()" placeholder="STRATEGIC UPDATE: KEARNY WATER">
+  </div>
+  <div class="field-grid">
+    <div class="field-row"><label>Date</label><input type="text" id="inDate" oninput="render()" placeholder="May 19, 2026"></div>
+    <div class="field-row"><label>Subject</label><input type="text" id="inSubject" oninput="render()" placeholder="Re: Water Rights"></div>
+  </div>
+  <div class="field-row">
+    <label>Recipient (Separate lines with commas)</label>
+    <input type="text" id="inRecipient" oninput="render()" placeholder="Mayor Curtis Stacy, Town Hall, AZ">
+  </div>
+  <div class="field-row">
+    <label>Apple Music Link</label>
+    <input type="text" id="inMusic" oninput="render()" placeholder="https://music.apple.com/...">
+  </div>
+  <div class="field-row">
+    <label>Letter Body</label>
+    <textarea id="inBody" oninput="render()" placeholder="Dear Mayor..."></textarea>
+  </div>
+  <div class="field-row">
+    <label>Photo URL (Exhibit)</label>
+    <input type="text" id="inPhoto" oninput="render()" placeholder="https://example.com/image.jpg">
+  </div>
+</div>
+
+<div class="page-container">
+  <article class="page executive" id="letterPage">
+    <div class="top-bar"></div>
+    
+    <header class="letterhead">
+      <div style="display:flex; align-items:center;">
+        <img src="https://powparker.com/powparker-logo.webp" class="lh-seal" alt="Seal">
+        <div style="margin-left:20px;">
+          <div class="lh-name">Powell Parker</div>
+          <div class="lh-motto">Executive Correspondence</div>
+        </div>
+      </div>
+      <div style="text-align:right; font-family:'Lato'; font-size:0.7rem; color:#666;">
+        POWPARKER.COM<br>PO BOX 888, KEARNY AZ
+      </div>
+    </header>
+
+    <div id="musicContainer" class="music-embed"></div>
+
+    <main class="letter-content">
+      <h1 id="outHero" style="text-align:center; font-family:'Cormorant'; margin-bottom:30px; display:none;"></h1>
+      <div id="outDate" class="l-date"></div>
+      <div id="outRecipient" class="l-recipient"></div>
+      <div id="outSubject" style="font-weight:700; border-bottom:1px solid #ccc; margin-bottom:20px; display:none;"></div>
+      <div id="outBody" class="l-body"></div>
+      
+      <div id="exhibitArea"></div>
+
+      <div class="l-closing" style="margin-top:40px;">
+        Respectfully,<br><br>
+        <strong>Powell Parker</strong><br>
+        <span style="font-size:0.8rem; color:#666;">Founder, SaveKearnyAZ.org</span>
+      </div>
+    </main>
+  </article>
+</div>
+
+<script>
+function updatePaper() {
+  const p = document.getElementById('letterPage');
+  p.className = 'page ' + document.getElementById('paperSelect').value;
 }
 
-/* ── EXHIBIT CARDS ── */
-.exhibit-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px dashed rgba(201,168,76,0.3);
-  border-radius: 8px;
-  padding: 14px;
-  margin-bottom: 12px;
-  position: relative;
+function toggleEdit() {
+  document.getElementById('inputPanel').classList.toggle('hidden');
 }
-.exhibit-card .btn-remove {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: transparent;
-  border: none;
-  color: #ff6b6b;
-  cursor: pointer;
-  font-family: 'Lato', sans-serif;
-  font-size: 0.62rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.exhibit-card .btn-remove:hover { text-decoration: underline; }
-.exhibit-preview { margin-top: 8px; text-align: center; }
-.exhibit-preview img { max-width: 100%; max-height: 180px; border: 2px solid var(--gold); border-radius: 4px; }
-.slider-row { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
-.slider-row input[type="range"] { flex: 1; accent-color: var(--gold); }
-.slider-val { font-family: 'Lato', sans-serif; font-size: 0.68rem; color: var(--gold-light); min-width: 32px; }
-.btn-add-exhibit { width: 100%; border-style: dashed; padding: 10px; background: rgba(201,168,76,0.04); margin-top: 4px; }
 
-/* ── SAVED LETTERS ── */
-.saved-section { margin-top: 18px; padding-top: 16px; border-top: 1px solid rgba(201,168,76,0.15); }
-.saved-section h3 { font-family: 'Cormorant', serif; font-size: 1rem; color: var(--gold); margin-bottom: 10px; }
-.saved-list { list-style: none; }
-.saved-item { padding: 9px 12px; background: rgba(201,168,76,0.05); border: 1px solid rgba(201,168,76,0.12); border-radius: 6px; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-.saved-item a { color: var(--gold); text-decoration: none; font-family: 'Lato', sans-serif; font-size: 0.78rem; font-weight: 700; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.saved-item .meta { font-family: 'Lato', sans-serif; font-size: 0.65rem; color
+function render() {
+  // Simple Fields
+  document.getElementById('outDate').innerText = document.getElementById('inDate').value;
+  
+  const hero = document.getElementById('inHero').value;
+  const outHero = document.getElementById('outHero');
+  outHero.innerText = hero;
+  outHero.style.display = hero ? 'block' : 'none';
+
+  const sub = document.getElementById('inSubject').value;
+  const outSub = document.getElementById('outSubject');
+  outSub.innerText = sub;
+  outSub.style.display = sub ? 'block' : 'none';
+
+  // Recipient Logic
+  const recips = document.getElementById('inRecipient').value.split(',');
+  let recipHTML = '';
+  recips.forEach((line, i) => {
+    recipHTML += i === 0 ? `<strong>${line.trim()}</strong>` : `<div>${line.trim()}</div>`;
+  });
+  document.getElementById('outRecipient').innerHTML = recipHTML;
+
+  // Body Logic
+  const body = document.getElementById('inBody').value;
+  document.getElementById('outBody').innerHTML = body.split('\n').map(p => p.trim() ? `<p>${p}</p>` : '').join('');
+
+  // Apple Music Fix
+  const musicUrl = document.getElementById('inMusic').value;
+  const musicCont = document.getElementById('musicContainer');
+  if (musicUrl.includes('music.apple.com')) {
+    const embedUrl = musicUrl.replace('music.apple.com', 'embed.music.apple.com');
+    musicCont.innerHTML = `<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="${embedUrl}"></iframe>`;
+  } else {
+    musicCont.innerHTML = '';
+  }
+
+  // Exhibit Logic
+  const photo = document.getElementById('inPhoto').value;
+  const exArea = document.getElementById('exhibitArea');
+  if (photo) {
+    exArea.innerHTML = `<div class="print-exhibit"><img src="${photo}"><div class="print-exhibit-cap">Digital Exhibit A</div></div>`;
+  } else {
+    exArea.innerHTML = '';
+  }
+}
+
+// Initial Run
+render();
+</script>
+</body>
+</html>
