@@ -3,303 +3,467 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Powell Parker — Executive Letter</title>
-<meta name="description" content="Official correspondence — From the Desk of Powell Parker">
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<title>Powell Parker - Executive Correspondence</title>
 <style>
-:root {
-  --navy: #1B2A40;
-  --deep: #0A1525;
-  --gold: #C9A84C;
-  --gold-light: #E8D5A3;
-  --gold-dark: #9A7A2E;
-  --cream: #F5F0E8;
-  --text: #1e1e1e;
-  --text-mid: #3a3a3a;
-  --text-light: #5a5a5a;
-  --rule: #d8d2c4;
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { font-size: 16px; }
-body {
-  font-family: 'EB Garamond', Georgia, serif;
-  background: #b8b5af;
-  -webkit-font-smoothing: antialiased;
-}
+    /* Base Styles & Navigation Bar */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+    .top-bar {
+        background-color: #0B162C; /* Navy */
+        color: #C5A880; /* Gold */
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    .top-bar h2 {
+        margin: 0;
+        font-family: 'Times New Roman', serif;
+        font-size: 1.2rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+    .btn {
+        background: transparent;
+        border: 1px solid #C5A880;
+        color: #C5A880;
+        padding: 8px 15px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+    .btn.solid {
+        background: #C5A880;
+        color: #0B162C;
+    }
 
-/* ── EDITOR BAR ── */
-.editor-bar {
-  background: var(--deep);
-  border-bottom: 2px solid var(--gold);
-  padding: 10px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.editor-bar .bar-left { display: flex; align-items: center; gap: 12px; }
-.editor-bar .bar-title { font-family: 'Cormorant', serif; font-size: 1rem; font-weight: 700; color: var(--gold); letter-spacing: 0.06em; }
-.editor-bar .bar-right { display: flex; gap: 6px; align-items: center; }
-.bar-btn { font-family: 'Lato', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 7px 14px; border: 1px solid var(--gold); border-radius: 4px; cursor: pointer; transition: all 0.25s; background: transparent; color: var(--gold); }
-.bar-btn:hover { background: var(--gold); color: var(--deep); }
-.bar-btn.primary { background: var(--gold); color: var(--deep); }
+    /* Editor Section */
+    .editor-container {
+        background-color: #0B162C;
+        padding: 20px;
+        margin: 0 auto;
+        border-bottom: 5px solid #C5A880;
+    }
+    .form-group {
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+    .form-group label {
+        color: #C5A880;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    .form-group input, .form-group textarea {
+        background: #152238;
+        border: 1px solid #1F304A;
+        color: #fff;
+        padding: 10px;
+        font-family: Arial, sans-serif;
+    }
+    .form-group textarea {
+        resize: vertical;
+        min-height: 80px;
+    }
+    .two-col {
+        display: flex;
+        gap: 15px;
+    }
+    .two-col .form-group {
+        flex: 1;
+    }
+    .mic-wrapper {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .mic-wrapper textarea {
+        flex: 1;
+    }
+    .mic-btn {
+        background: #C5A880;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: background 0.2s;
+    }
+    .mic-btn.recording {
+        background: #ff4444;
+        animation: pulse 1.5s infinite;
+    }
 
-/* ── PAPER TEXTURES ── */
-.page.scroll { background: #f2e8c9; background-image: url('https://www.transparenttextures.com/patterns/parchment.png'); }
-.page.legal { background: #fff9c4; background-image: linear-gradient(#e1d8a7 1px, transparent 1px); background-size: 100% 2rem; border-left: 5px double #ff8a8a; }
-.page.college { background: #fff; background-image: linear-gradient(#9ed1ff 1px, transparent 1px); background-size: 100% 1.6rem; border-left: 2px solid #ffb3b3; }
-.page.executive { background: #fff; }
+    @keyframes pulse {
+        0% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.7); }
+        70% { box-shadow: 0 0 0 10px rgba(255, 68, 68, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(255, 68, 68, 0); }
+    }
 
-/* ── INPUT PANEL ── */
-.input-panel { max-width: 700px; margin: 20px auto; background: var(--deep); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px; padding: 24px; color: white; display: block; }
-.input-panel.hidden { display: none; }
-.field-row { margin-bottom: 12px; }
-.field-row label { display: block; font-family: 'Lato', sans-serif; font-size: 0.68rem; font-weight: 700; color: var(--gold-light); margin-bottom: 4px; text-transform: uppercase; }
-.field-row input, .field-row textarea { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.25); border-radius: 6px; padding: 10px; color: var(--cream); font-family: 'EB Garamond', serif; font-size: 1rem; }
-.field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    /* Document Preview Section */
+    .document-preview {
+        background: #fff;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 60px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        font-family: 'Times New Roman', serif;
+    }
+    .doc-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+    .doc-header-left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .seal {
+        width: 120px;
+        height: 120px;
+        /* PLACE YOUR SEAL IMAGE HERE: */
+        background: url('your-seal-image.jpg') no-repeat center center/cover;
+        border-radius: 50%;
+    }
+    .header-titles h1 {
+        margin: 0;
+        color: #112244;
+        font-size: 2.2rem;
+        font-weight: normal;
+    }
+    .header-titles h3 {
+        margin: 5px 0 0 0;
+        color: #C5A880;
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+    .doc-header-right {
+        text-align: right;
+        color: #666;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        font-family: Arial, sans-serif;
+    }
+    .music-embed {
+        margin-bottom: 40px;
+    }
+    .doc-hero-title {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        color: #111;
+        text-transform: uppercase;
+    }
+    .doc-meta {
+        margin-bottom: 20px;
+    }
+    .doc-meta p {
+        margin: 10px 0;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+    .doc-meta .subject-line {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 30px;
+    }
+    .doc-body {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 40px;
+        white-space: pre-wrap;
+    }
+    .doc-exhibit {
+        margin-bottom: 40px;
+        max-width: 100%;
+        display: none; /* Hidden until loaded */
+    }
+    .doc-exhibit img {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #eee;
+    }
+    .doc-closing p {
+        margin: 5px 0;
+        font-size: 1.1rem;
+    }
+    .doc-closing .signature {
+        font-weight: bold;
+        margin-top: 30px;
+    }
+    .doc-closing .title {
+        color: #666;
+        font-size: 0.9rem;
+        font-family: Arial, sans-serif;
+    }
 
-/* ── LETTER PAGE ── */
-.page-container { display: flex; justify-content: center; padding: 24px 12px 40px; }
-.page { width: 816px; min-height: 1056px; box-shadow: 0 6px 40px rgba(0,0,0,0.3); position: relative; display: flex; flex-direction: column; }
-.top-bar { height: 10px; background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light)); }
-.letterhead { display: flex; align-items: center; justify-content: space-between; padding: 40px 56px 24px; }
-.lh-seal { width: 120px; height: 120px; border-radius: 50%; object-fit: contain; }
-.lh-name { font-family: 'Cormorant', serif; font-size: 2rem; font-weight: 700; color: var(--navy); }
-.lh-motto { font-size: 0.8rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
-
-.music-embed { margin: 0 56px 20px; border-radius: 12px; overflow: hidden; }
-
-.letter-content { padding: 20px 56px 140px; font-size: 1.1rem; line-height: 1.7; color: var(--text); flex-grow: 1; }
-.l-recipient { margin-bottom: 25px; }
-.l-recipient strong { display: block; font-size: 1.2rem; color: var(--navy); }
-.l-body p { margin-bottom: 1.2em; text-align: justify; }
-
-/* EXHIBITS */
-.print-exhibit { margin: 40px 0; text-align: center; break-inside: avoid; }
-.print-exhibit img { max-width: 80%; border: 3px solid var(--gold); }
-.print-exhibit-cap { font-style: italic; color: var(--text-light); margin-top: 10px; }
-
-@media print {
-  .editor-bar, .input-panel { display: none !important; }
-  body { background: #fff; }
-  .page { box-shadow: none; width: 100%; }
-}
+    @media print {
+        .top-bar, .editor-container { display: none; }
+        .document-preview { box-shadow: none; margin: 0; padding: 0; }
+    }
 </style>
 </head>
 <body>
 
-<div class="editor-bar">
-  <div class="bar-left">
-    <div class="bar-title">POWELL PARKER</div>
-    <select id="paperSelect" class="bar-btn" onchange="updatePaper()" style="background: var(--navy);">
-      <option value="executive">Executive White</option>
-      <option value="scroll">Ancient Scroll</option>
-      <option value="legal">Legal Yellow</option>
-      <option value="college">College Ruled</option>
+<div class="top-bar" id="topBar">
+    <h2>Powell Parker</h2>
+    <select class="btn" style="background: #0B162C;">
+        <option>EXECUTIVE WHITE</option>
     </select>
-  </div>
-  <div class="bar-right">
-    <button class="bar-btn" id="shareBtn" onclick="copyShareLink()">Copy Share Link</button>
-    <button class="bar-btn" onclick="toggleEdit()">Toggle Editor</button>
-    <button class="bar-btn primary" onclick="window.print()">Print PDF</button>
-  </div>
+    <button class="btn" onclick="copyShareLink()">Copy Share Link</button>
+    <button class="btn" onclick="toggleEditor()">Toggle Editor</button>
+    <button class="btn solid" onclick="window.print()">Print PDF</button>
 </div>
 
-<div class="input-panel" id="inputPanel">
-  <div class="field-row">
-    <label>Dossier Title (Hero Heading)</label>
-    <input type="text" id="inHero" oninput="render()" placeholder="STRATEGIC UPDATE: KEARNY WATER">
-  </div>
-  <div class="field-grid">
-    <div class="field-row"><label>Date</label><input type="text" id="inDate" oninput="render()" placeholder="May 19, 2026"></div>
-    <div class="field-row"><label>Subject</label><input type="text" id="inSubject" oninput="render()" placeholder="Re: Water Rights"></div>
-  </div>
-  <div class="field-row">
-    <label>Recipient (Separate lines with commas)</label>
-    <input type="text" id="inRecipient" oninput="render()" placeholder="Mayor Curtis Stacy, Town Hall, AZ">
-  </div>
-  <div class="field-row">
-    <label>Apple Music Link</label>
-    <input type="text" id="inMusic" oninput="render()" placeholder="https://music.apple.com/...">
-  </div>
-  <div class="field-row">
-    <label>Letter Body</label>
-    <textarea id="inBody" oninput="render()" placeholder="Dear Mayor..."></textarea>
-  </div>
-  <div class="field-row">
-    <label>Photo URL (Exhibit)</label>
-    <input type="text" id="inPhoto" oninput="render()" placeholder="https://example.com/image.jpg">
-  </div>
-</div>
-
-<div class="page-container">
-  <article class="page executive" id="letterPage">
-    <div class="top-bar"></div>
-    
-    <header class="letterhead">
-      <div style="display:flex; align-items:center;">
-        <img src="https://powparker.com/powparker-logo.webp" class="lh-seal" alt="Seal">
-        <div style="margin-left:20px;">
-          <div class="lh-name">Powell Parker</div>
-          <div class="lh-motto">Executive Correspondence</div>
+<div class="editor-container" id="editorContainer">
+    <div class="form-group">
+        <label>Dossier Title (Hero Heading)</label>
+        <input type="text" id="inHero" value="BUDDY FOR A WALK">
+    </div>
+    <div class="two-col">
+        <div class="form-group">
+            <label>Date</label>
+            <input type="text" id="inDate" value="May 19, 2026">
         </div>
-      </div>
-      <div style="text-align:right; font-family:'Lato'; font-size:0.7rem; color:#666;">
-        POWPARKER.COM<br>PO BOX 888, KEARNY AZ
-      </div>
-    </header>
+        <div class="form-group">
+            <label>Subject</label>
+            <input type="text" id="inSubject" value="Walking Buddy">
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Recipient</label>
+        <input type="text" id="inRecipient" value="Terry ((Mom))">
+    </div>
+    <div class="form-group">
+        <label>Apple Music Embed URL / Iframe Code</label>
+        <input type="text" id="inMusic" placeholder="Paste Apple Music Embed Code here...">
+    </div>
+    
+    <div class="form-group">
+        <label>Letter Body</label>
+        <div class="mic-wrapper">
+            <textarea id="inBody">Buddy and I had the best walk. We met three dogs at the park...</textarea>
+            <button class="mic-btn" id="micBtn" title="Speech to Text">🎤</button>
+        </div>
+    </div>
 
-    <div id="musicContainer" class="music-embed"></div>
+    <div class="two-col">
+        <div class="form-group">
+            <label>Closing Name (Signature)</label>
+            <input type="text" id="inClosingName" value="Powell Parker">
+        </div>
+        <div class="form-group">
+            <label>Closing Title</label>
+            <input type="text" id="inClosingTitle" value="Founder, SaveKearnyAZ.org">
+        </div>
+    </div>
 
-    <main class="letter-content">
-      <h1 id="outHero" style="text-align:center; font-family:'Cormorant'; margin-bottom:30px; display:none;"></h1>
-      <div id="outDate" class="l-date"></div>
-      <div id="outRecipient" class="l-recipient"></div>
-      <div id="outSubject" style="font-weight:700; border-bottom:1px solid #ccc; margin-bottom:20px; display:none;"></div>
-      <div id="outBody" class="l-body"></div>
-      
-      <div id="exhibitArea"></div>
+    <div class="two-col">
+        <div class="form-group">
+            <label>Photo Share (Upload from device)</label>
+            <input type="file" id="inFileUpload" accept="image/*" style="background: transparent; border: none; padding: 0;">
+        </div>
+        <div class="form-group">
+            <label>Or Photo URL (Exhibit)</label>
+            <input type="text" id="inPhotoUrl" placeholder="https://...">
+        </div>
+    </div>
+</div>
 
-      <div class="l-closing" style="margin-top:40px;">
-        Respectfully,<br><br>
-        <strong>Powell Parker</strong><br>
-        <span style="font-size:0.8rem; color:#666;">Founder, SaveKearnyAZ.org</span>
-      </div>
-    </main>
-  </article>
+<div class="document-preview" id="documentPreview">
+    <div class="doc-header">
+        <div class="doc-header-left">
+            <img class="seal" src="your-logo.png" alt="Seal" onerror="this.style.display='none'"> 
+            <div class="header-titles">
+                <h1>Powell<br>Parker</h1>
+                <h3>Executive<br>Correspondence</h3>
+            </div>
+        </div>
+        <div class="doc-header-right">
+            POWPARKER.COM<br>
+            PO BOX 888,<br>
+            KEARNY AZ
+        </div>
+    </div>
+
+    <div class="music-embed" id="outMusic">
+        </div>
+
+    <h2 class="doc-hero-title" id="outHero">BUDDY FOR A WALK</h2>
+
+    <div class="doc-meta">
+        <p id="outRecipient">Terry ((Mom))</p>
+        <p class="subject-line" id="outSubject">Walking Buddy</p>
+    </div>
+
+    <div class="doc-body" id="outBody">Buddy and I had the best walk...</div>
+
+    <div class="doc-exhibit" id="outExhibitContainer">
+        <img id="outExhibitImg" src="" alt="Exhibit">
+    </div>
+
+    <div class="doc-closing">
+        <p>Respectfully,</p>
+        <p class="signature" id="outClosingName">Powell Parker</p>
+        <p class="title" id="outClosingTitle">Founder, SaveKearnyAZ.org</p>
+    </div>
 </div>
 
 <script>
-let urlTimeout;
+    // 1. Data Binding Functionality
+    const inputs = ['inHero', 'inDate', 'inSubject', 'inRecipient', 'inBody', 'inClosingName', 'inClosingTitle'];
+    const outputs = ['outHero', 'outDate', 'outSubject', 'outRecipient', 'outBody', 'outClosingName', 'outClosingTitle'];
 
-function updatePaper() {
-  const p = document.getElementById('letterPage');
-  p.className = 'page ' + document.getElementById('paperSelect').value;
-  queueUrlUpdate();
-}
+    function updatePreview() {
+        // Text Inputs
+        document.getElementById('outHero').innerText = document.getElementById('inHero').value;
+        document.getElementById('outRecipient').innerText = document.getElementById('inRecipient').value;
+        document.getElementById('outSubject').innerText = document.getElementById('inSubject').value;
+        document.getElementById('outBody').innerText = document.getElementById('inBody').value;
+        document.getElementById('outClosingName').innerText = document.getElementById('inClosingName').value;
+        document.getElementById('outClosingTitle').innerText = document.getElementById('inClosingTitle').value;
 
-function toggleEdit() {
-  document.getElementById('inputPanel').classList.toggle('hidden');
-}
+        // Music (Basic iframe handling)
+        const musicVal = document.getElementById('inMusic').value;
+        if(musicVal.includes('<iframe')) {
+            document.getElementById('outMusic').innerHTML = musicVal;
+        }
 
-// Generates the shareable URL and updates the browser address bar silently
-function updateUrl() {
-  const params = new URLSearchParams();
-  const fields = ['inHero', 'inDate', 'inSubject', 'inRecipient', 'inMusic', 'inBody', 'inPhoto'];
-  
-  fields.forEach(id => {
-    const val = document.getElementById(id).value;
-    if (val) params.set(id, val);
-  });
-  
-  const paper = document.getElementById('paperSelect').value;
-  if (paper !== 'executive') params.set('paper', paper);
-
-  const newUrl = window.location.pathname + '?' + params.toString();
-  window.history.replaceState(null, '', newUrl);
-}
-
-// Delays URL generation slightly so it doesn't freeze while typing fast
-function queueUrlUpdate() {
-  clearTimeout(urlTimeout);
-  urlTimeout = setTimeout(updateUrl, 500);
-}
-
-// Loads data from the URL when someone clicks a shared link
-function loadFromUrl() {
-  const params = new URLSearchParams(window.location.search);
-  const fields = ['inHero', 'inDate', 'inSubject', 'inRecipient', 'inMusic', 'inBody', 'inPhoto'];
-  let hasData = false;
-  
-  fields.forEach(id => {
-    if (params.has(id)) {
-      document.getElementById(id).value = params.get(id);
-      hasData = true;
+        // Photo URL handling
+        const photoUrl = document.getElementById('inPhotoUrl').value;
+        if (photoUrl) {
+            document.getElementById('outExhibitImg').src = photoUrl;
+            document.getElementById('outExhibitContainer').style.display = 'block';
+        }
     }
-  });
-  
-  if (params.has('paper')) {
-    document.getElementById('paperSelect').value = params.get('paper');
-    const p = document.getElementById('letterPage');
-    p.className = 'page ' + params.get('paper');
-  }
 
-  // If they loaded from a share link, auto-hide the editor so they see the clean letter
-  if (hasData) {
-    document.getElementById('inputPanel').classList.add('hidden');
-  }
-}
+    // Attach event listeners to all text inputs
+    inputs.forEach(id => {
+        const el = document.getElementById(id);
+        if(el) el.addEventListener('input', updatePreview);
+    });
+    document.getElementById('inPhotoUrl').addEventListener('input', updatePreview);
+    document.getElementById('inMusic').addEventListener('input', updatePreview);
 
-function copyShareLink() {
-  updateUrl(); // Force immediate update just in case
-  navigator.clipboard.writeText(window.location.href).then(() => {
-    const btn = document.getElementById('shareBtn');
-    const originalText = btn.innerText;
-    btn.innerText = 'Copied!';
-    btn.classList.add('primary'); // Make it flash gold
-    setTimeout(() => {
-      btn.innerText = originalText;
-      btn.classList.remove('primary');
-    }, 2000);
-  });
-}
+    // 2. Local Photo Upload Functionality
+    document.getElementById('inFileUpload').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                document.getElementById('outExhibitImg').src = event.target.result;
+                document.getElementById('outExhibitContainer').style.display = 'block';
+                // Clear URL input if file is uploaded
+                document.getElementById('inPhotoUrl').value = ''; 
+            };
+            reader.readAsDataURL(file);
+        }
+    });
 
-function render() {
-  // Simple Fields
-  document.getElementById('outDate').innerText = document.getElementById('inDate').value;
-  
-  const hero = document.getElementById('inHero').value;
-  const outHero = document.getElementById('outHero');
-  outHero.innerText = hero;
-  outHero.style.display = hero ? 'block' : 'none';
+    // 3. Toggle Editor Visibility
+    function toggleEditor() {
+        const editor = document.getElementById('editorContainer');
+        editor.style.display = editor.style.display === 'none' ? 'block' : 'none';
+    }
 
-  const sub = document.getElementById('inSubject').value;
-  const outSub = document.getElementById('outSubject');
-  outSub.innerText = sub;
-  outSub.style.display = sub ? 'block' : 'none';
+    // 4. Speech to Text (Web Speech API)
+    const micBtn = document.getElementById('micBtn');
+    const inBody = document.getElementById('inBody');
+    
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        
+        recognition.continuous = true;
+        recognition.interimResults = true;
 
-  // Recipient Logic
-  const recips = document.getElementById('inRecipient').value.split(',');
-  let recipHTML = '';
-  recips.forEach((line, i) => {
-    recipHTML += i === 0 ? `<strong>${line.trim()}</strong>` : `<div>${line.trim()}</div>`;
-  });
-  document.getElementById('outRecipient').innerHTML = recipHTML;
+        let isRecording = false;
 
-  // Body Logic
-  const body = document.getElementById('inBody').value;
-  document.getElementById('outBody').innerHTML = body.split('\n').map(p => p.trim() ? `<p>${p}</p>` : '').join('');
+        micBtn.onclick = () => {
+            if (isRecording) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        };
 
-  // Apple Music Fix
-  const musicUrl = document.getElementById('inMusic').value;
-  const musicCont = document.getElementById('musicContainer');
-  if (musicUrl.includes('music.apple.com')) {
-    const embedUrl = musicUrl.replace('music.apple.com', 'embed.music.apple.com');
-    musicCont.innerHTML = `<iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="${embedUrl}"></iframe>`;
-  } else {
-    musicCont.innerHTML = '';
-  }
+        recognition.onstart = () => {
+            isRecording = true;
+            micBtn.classList.add('recording');
+        };
 
-  // Exhibit Logic
-  const photo = document.getElementById('inPhoto').value;
-  const exArea = document.getElementById('exhibitArea');
-  if (photo) {
-    exArea.innerHTML = `<div class="print-exhibit"><img src="${photo}"><div class="print-exhibit-cap">Digital Exhibit A</div></div>`;
-  } else {
-    exArea.innerHTML = '';
-  }
+        recognition.onresult = (event) => {
+            let finalTranscript = '';
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    finalTranscript += event.results[i][0].transcript + ' ';
+                }
+            }
+            if (finalTranscript) {
+                // Append text to current text
+                const currentText = inBody.value.trim();
+                inBody.value = currentText ? currentText + ' ' + finalTranscript : finalTranscript;
+                updatePreview();
+            }
+        };
 
-  queueUrlUpdate();
-}
+        recognition.onerror = (event) => console.error("Speech Recognition Error", event.error);
+        
+        recognition.onend = () => {
+            isRecording = false;
+            micBtn.classList.remove('recording');
+        };
+    } else {
+        micBtn.onclick = () => alert("Microphone not supported in this browser. Try Chrome or Safari.");
+    }
 
-// Initial Run Sequence
-loadFromUrl();
-render();
+    // 5. Copy Share Link (Generates a URL with form data as query parameters)
+    function copyShareLink() {
+        const url = new URL(window.location.href.split('?')[0]); // Base URL
+        inputs.forEach(id => {
+            const val = document.getElementById(id).value;
+            if(val) url.searchParams.set(id, encodeURIComponent(val));
+        });
+        
+        // Copy to clipboard
+        navigator.clipboard.writeText(url.toString()).then(() => {
+            alert('Share link generated and copied to clipboard!\n\n' + url.toString());
+        }).catch(err => {
+            console.error('Failed to copy', err);
+        });
+    }
+
+    // 6. On Load: Check if URL has query parameters to populate form (for shared links)
+    window.onload = function() {
+        const params = new URLSearchParams(window.location.search);
+        let hasData = false;
+        inputs.forEach(id => {
+            if (params.has(id)) {
+                document.getElementById(id).value = decodeURIComponent(params.get(id));
+                hasData = true;
+            }
+        });
+        if (hasData) updatePreview();
+    };
+
+    // Initialize Preview on page load
+    updatePreview();
 </script>
 </body>
 </html>
