@@ -104,6 +104,7 @@ body {
     </select>
   </div>
   <div class="bar-right">
+    <button class="bar-btn" id="shareBtn" onclick="copyShareLink()">Copy Share Link</button>
     <button class="bar-btn" onclick="toggleEdit()">Toggle Editor</button>
     <button class="bar-btn primary" onclick="window.print()">Print PDF</button>
   </div>
@@ -174,13 +175,78 @@ body {
 </div>
 
 <script>
+let urlTimeout;
+
 function updatePaper() {
   const p = document.getElementById('letterPage');
   p.className = 'page ' + document.getElementById('paperSelect').value;
+  queueUrlUpdate();
 }
 
 function toggleEdit() {
   document.getElementById('inputPanel').classList.toggle('hidden');
+}
+
+// Generates the shareable URL and updates the browser address bar silently
+function updateUrl() {
+  const params = new URLSearchParams();
+  const fields = ['inHero', 'inDate', 'inSubject', 'inRecipient', 'inMusic', 'inBody', 'inPhoto'];
+  
+  fields.forEach(id => {
+    const val = document.getElementById(id).value;
+    if (val) params.set(id, val);
+  });
+  
+  const paper = document.getElementById('paperSelect').value;
+  if (paper !== 'executive') params.set('paper', paper);
+
+  const newUrl = window.location.pathname + '?' + params.toString();
+  window.history.replaceState(null, '', newUrl);
+}
+
+// Delays URL generation slightly so it doesn't freeze while typing fast
+function queueUrlUpdate() {
+  clearTimeout(urlTimeout);
+  urlTimeout = setTimeout(updateUrl, 500);
+}
+
+// Loads data from the URL when someone clicks a shared link
+function loadFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const fields = ['inHero', 'inDate', 'inSubject', 'inRecipient', 'inMusic', 'inBody', 'inPhoto'];
+  let hasData = false;
+  
+  fields.forEach(id => {
+    if (params.has(id)) {
+      document.getElementById(id).value = params.get(id);
+      hasData = true;
+    }
+  });
+  
+  if (params.has('paper')) {
+    document.getElementById('paperSelect').value = params.get('paper');
+    const p = document.getElementById('letterPage');
+    p.className = 'page ' + params.get('paper');
+  }
+
+  // If they loaded from a share link, auto-hide the editor so they see the clean letter
+  if (hasData) {
+    document.getElementById('inputPanel').classList.add('hidden');
+  }
+}
+
+function copyShareLink() {
+  updateUrl(); // Force immediate update just in case
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('shareBtn');
+    const originalText = btn.innerText;
+    btn.innerText = 'Copied!';
+    btn.classList.add('primary'); // Make it flash gold
+    setTimeout(() => {
+      btn.innerText = originalText;
+      btn.classList.remove('primary');
+    }, 2000);
+  });
 }
 
 function render() {
@@ -227,9 +293,12 @@ function render() {
   } else {
     exArea.innerHTML = '';
   }
+
+  queueUrlUpdate();
 }
 
-// Initial Run
+// Initial Run Sequence
+loadFromUrl();
 render();
 </script>
 </body>
