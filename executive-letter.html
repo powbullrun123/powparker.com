@@ -163,6 +163,21 @@ body { font-family: 'EB Garamond', Georgia, serif; background: #b8b5af; -webkit-
 .field-row .hint { font-family: 'Lato', sans-serif; font-size: 0.65rem; color: rgba(255,255,255,0.3); margin-top: 3px; }
 .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
+/* ── SETTINGS PANEL ── */
+.settings-panel {
+  max-width: 700px;
+  margin: 0 auto 0;
+  background: var(--deep);
+  border: 2px solid var(--gold);
+  border-radius: 10px;
+  padding: 20px 24px 24px;
+  display: none;
+}
+.settings-panel.active { display: block; }
+.settings-panel h3 { font-family: 'Cormorant', serif; font-size: 1.1rem; color: var(--gold); margin-bottom: 4px; }
+.settings-panel .settings-sub { font-family: 'Lato', sans-serif; font-size: 0.65rem; color: rgba(255,255,255,0.3); margin-bottom: 14px; }
+.settings-save-row { margin-top: 14px; display: flex; justify-content: flex-end; }
+
 /* ── LOGO SWAP (editor) ── */
 .logo-section {
   margin-bottom: 16px;
@@ -227,6 +242,32 @@ body { font-family: 'EB Garamond', Georgia, serif; background: #b8b5af; -webkit-
 .hero-slider-row span { font-family: 'Lato', sans-serif; font-size: 0.62rem; color: rgba(255,255,255,0.3); white-space: nowrap; }
 .hero-slider-row input[type="range"] { flex: 1; accent-color: var(--gold); }
 .hero-remove { background: none; border: none; color: #ff6b6b; font-family: 'Lato', sans-serif; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; cursor: pointer; margin-top: 4px; }
+
+/* ── LINK TOOL ── */
+.link-tool-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.link-tool-btn {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 5px 12px;
+  border: 1px solid rgba(201,168,76,0.4);
+  border-radius: 4px;
+  background: rgba(201,168,76,0.06);
+  color: var(--gold);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+.link-tool-btn:hover { background: var(--gold); color: var(--deep); }
+.link-tool-hint { font-family: 'Lato', sans-serif; font-size: 0.62rem; color: rgba(255,255,255,0.25); }
 
 /* ── MUSIC SECTION (editor) ── */
 .music-section {
@@ -346,7 +387,7 @@ body { font-family: 'EB Garamond', Georgia, serif; background: #b8b5af; -webkit-
 .l-sig-links .sig-divider { color: #ccc; font-size: 0.7rem; }
 .l-sig-links .sig-email a { font-weight: 400; color: var(--gold-dark); }
 
-/* ── SOCIAL LINKS (signature block) ── */
+/* ── SOCIAL LINKS (footer only — removed from sig block) ── */
 .l-social-links {
   margin-top: 10px;
   display: flex;
@@ -488,6 +529,7 @@ body { font-family: 'EB Garamond', Georgia, serif; background: #b8b5af; -webkit-
     <span class="mode-indicator mode-edit" id="modeTag">&#9998; EDITING</span>
   </div>
   <div class="bar-right">
+    <button class="bar-btn" id="btnSettings" onclick="toggleSettings()">&#9881; Settings</button>
     <button class="bar-btn" id="btnToggle" onclick="toggleMode()">Preview</button>
     <button class="bar-btn" onclick="window.print()">&#128424; Print</button>
     <button class="bar-btn primary" id="btnSave" onclick="generateAndSave()">Save &amp; Share</button>
@@ -505,6 +547,31 @@ body { font-family: 'EB Garamond', Georgia, serif; background: #b8b5af; -webkit-
     <button class="bar-btn" onclick="copyShareUrl()">&#128279; Copy Link</button>
     <button class="bar-btn" onclick="shareNative()">&#128172; Text / Share</button>
     <button class="bar-btn" onclick="window.open(document.getElementById('shareUrl').textContent,'_blank')">&#8599; Open</button>
+  </div>
+</div>
+
+<!-- ── SETTINGS PANEL ── -->
+<div class="settings-panel" id="settingsPanel">
+  <h3>&#9881; Settings &amp; Social Links</h3>
+  <div class="settings-sub">Updates apply to the letter signature, footer, and share page.</div>
+  <div class="field-row">
+    <label>Email Address</label>
+    <input type="text" id="cfgEmail" value="powell@powparker.com">
+  </div>
+  <div class="field-row">
+    <label>Facebook URL</label>
+    <input type="text" id="cfgFacebook" value="https://www.facebook.com/powparker">
+  </div>
+  <div class="field-row">
+    <label>Instagram URL</label>
+    <input type="text" id="cfgInstagram" value="https://www.instagram.com/powparker">
+  </div>
+  <div class="field-row" style="margin-bottom:0;">
+    <label>LinkedIn URL</label>
+    <input type="text" id="cfgLinkedIn" value="https://www.linkedin.com/in/powell-p-bab40414">
+  </div>
+  <div class="settings-save-row">
+    <button class="bar-btn primary" onclick="applySettings()">&#10003; Apply &amp; Close</button>
   </div>
 </div>
 
@@ -563,6 +630,10 @@ body { font-family: 'EB Garamond', Georgia, serif; background: #b8b5af; -webkit-
 
   <div class="field-row">
     <label>Letter Body</label>
+    <div class="link-tool-row">
+      <button class="link-tool-btn" type="button" onclick="insertLink()">&#128279; Insert Link</button>
+      <span class="link-tool-hint">Select text first, then click to wrap it as a link</span>
+    </div>
     <textarea id="inBody" placeholder="Write your letter here. Use a blank line between paragraphs.&#10;&#10;Wrap text in *asterisks* for bold emphasis.&#10;Use [display text](https://url.com) to insert links."></textarea>
     <div class="hint">Blank line = new paragraph &nbsp;|&nbsp; *text* = bold &nbsp;|&nbsp; [text](url) = link</div>
   </div>
@@ -677,13 +748,7 @@ body { font-family: 'EB Garamond', Georgia, serif; background: #b8b5af; -webkit-
         <div class="l-sig-links">
           <a href="https://www.powparker.com">www.powparker.com</a>
           <span class="sig-divider">|</span>
-          <span class="sig-email"><a href="mailto:powell@powparker.com">powell@powparker.com</a></span>
-        </div>
-        <!-- Social buttons — always visible -->
-        <div class="l-social-links">
-          <a href="https://www.facebook.com/powparker" target="_blank">Facebook</a>
-          <a href="https://www.instagram.com/powparker" target="_blank">Instagram</a>
-          <a href="https://www.linkedin.com/in/powell-p-bab40414" target="_blank">LinkedIn</a>
+          <span class="sig-email"><a id="outSigEmail" href="mailto:powell@powparker.com">powell@powparker.com</a></span>
         </div>
       </div>
     </div>
@@ -701,9 +766,9 @@ body { font-family: 'EB Garamond', Georgia, serif; background: #b8b5af; -webkit-
     <div class="letter-footer">
       <div class="footer-rule"></div>
       <div class="footer-social">
-        <a href="https://www.facebook.com/powparker" target="_blank">Facebook</a>
-        <a href="https://www.instagram.com/powparker" target="_blank">Instagram</a>
-        <a href="https://www.linkedin.com/in/powell-p-bab40414" target="_blank">LinkedIn</a>
+        <a id="footerFacebook" href="https://www.facebook.com/powparker" target="_blank">Facebook</a>
+        <a id="footerInstagram" href="https://www.instagram.com/powparker" target="_blank">Instagram</a>
+        <a id="footerLinkedIn" href="https://www.linkedin.com/in/powell-p-bab40414" target="_blank">LinkedIn</a>
       </div>
       <div class="footer-content">
         <div class="footer-phones">
@@ -810,6 +875,55 @@ function removeHero() {
   document.getElementById('heroPrevWrap').classList.remove('active');
   document.getElementById('outHeroImg').classList.remove('active');
   document.getElementById('outHeroImg').src = '';
+}
+
+// ── SETTINGS ──
+function toggleSettings() {
+  var panel = document.getElementById('settingsPanel');
+  var isOpen = panel.classList.contains('active');
+  // Close editor when settings opens and vice versa
+  panel.classList.toggle('active');
+  document.getElementById('btnSettings').textContent = isOpen ? '\u2699 Settings' : '\u2715 Close';
+}
+
+function applySettings() {
+  var email   = document.getElementById('cfgEmail').value.trim() || 'powell@powparker.com';
+  var fb      = document.getElementById('cfgFacebook').value.trim();
+  var ig      = document.getElementById('cfgInstagram').value.trim();
+  var li      = document.getElementById('cfgLinkedIn').value.trim();
+
+  // Update signature email
+  var sigEmail = document.getElementById('outSigEmail');
+  sigEmail.href = 'mailto:' + email;
+  sigEmail.textContent = email;
+
+  // Update footer social links
+  document.getElementById('footerFacebook').href  = fb;
+  document.getElementById('footerInstagram').href = ig;
+  document.getElementById('footerLinkedIn').href  = li;
+
+  // Close panel
+  document.getElementById('settingsPanel').classList.remove('active');
+  document.getElementById('btnSettings').innerHTML = '&#9881; Settings';
+  showToast('Settings applied!', 'success');
+}
+
+// ── INSERT LINK (body textarea) ──
+function insertLink() {
+  var ta = document.getElementById('inBody');
+  var start = ta.selectionStart;
+  var end   = ta.selectionEnd;
+  var selected = ta.value.substring(start, end);
+  var url = prompt('Enter the URL:', 'https://');
+  if (!url || url === 'https://') return;
+  var display = selected || prompt('Enter display text:', url) || url;
+  var linkText = '[' + display + '](' + url + ')';
+  ta.value = ta.value.substring(0, start) + linkText + ta.value.substring(end);
+  // Re-position cursor after insertion
+  var newPos = start + linkText.length;
+  ta.selectionStart = newPos;
+  ta.selectionEnd   = newPos;
+  ta.focus();
 }
 
 // ── TOGGLE MODE ──
