@@ -6,11 +6,12 @@
 <title>Powell Parker — Executive Letter</title>
 <meta name="description" content="Official correspondence — From the Desk of Powell Parker">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23C9A84C' font-style='italic' font-family='Georgia,serif'>P</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700&family=Libre+Baskerville:wght@400;700&family=Crimson+Text:wght@400;600&family=Source+Serif+4:wght@400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root {
   --navy:#1B2A40; --deep:#0A1525; --gold:#C9A84C; --gold-light:#E8D5A3; --gold-dark:#9A7A2E;
   --cream:#F5F0E8; --text:#1e1e1e; --text-mid:#3a3a3a; --text-light:#5a5a5a; --rule:#d8d2c4;
+  --body-font:'EB Garamond',Georgia,serif;
 }
 *,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
 html { font-size:16px; }
@@ -194,6 +195,146 @@ body { font-family:'EB Garamond',Georgia,serif; background:#b8b5af; -webkit-font
 .parlaypen-credit a:hover { color:var(--gold-dark); }
 .parlaypen-credit img { height:28px; width:auto; opacity:.75; }
 
+/* ── SETTINGS PANEL ── */
+.settings-panel { max-width:700px; margin:0 auto 16px; background:var(--deep); border:2px solid var(--gold); border-radius:10px; padding:24px; display:none; }
+.settings-panel.active { display:block; }
+.settings-panel h3 { font-family:'Cormorant',serif; font-size:1.1rem; color:var(--gold); margin-bottom:4px; font-weight:700; }
+.settings-sub { font-family:'Lato',sans-serif; font-size:.65rem; color:rgba(255,255,255,.3); margin-bottom:16px; }
+.font-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-bottom:4px; }
+.font-btn { padding:10px 8px; border:1px solid rgba(201,168,76,.2); border-radius:6px; background:rgba(255,255,255,.03); color:var(--gold-light); font-size:.82rem; cursor:pointer; transition:all .2s; text-align:center; }
+.font-btn:hover { border-color:var(--gold); background:rgba(201,168,76,.08); }
+.font-btn.active { border-color:var(--gold); background:rgba(201,168,76,.15); color:var(--gold); font-weight:700; }
+
+/* ── MUSIC GRAM STICKY PLAYER ── */
+.music-gram-bar {
+  position:fixed;
+  bottom:0; left:0; right:0;
+  z-index:300;
+  background:linear-gradient(135deg,rgba(10,21,37,0.97),rgba(27,42,64,0.97));
+  backdrop-filter:blur(20px);
+  border-top:2px solid rgba(201,168,76,0.4);
+  padding:12px 24px;
+  display:none;
+  align-items:center;
+  gap:16px;
+  box-shadow:0 -8px 40px rgba(0,0,0,0.5);
+  transform:translateY(100%);
+  transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.music-gram-bar.visible { display:flex; }
+.music-gram-bar.slide-up { transform:translateY(0); }
+.mgb-art {
+  width:54px; height:54px;
+  border-radius:8px;
+  object-fit:cover;
+  border:1.5px solid rgba(201,168,76,0.35);
+  flex-shrink:0;
+  background:rgba(201,168,76,0.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.mgb-art img { width:100%; height:100%; object-fit:cover; display:block; border-radius:6px; }
+.mgb-art-placeholder { font-size:1.4rem; color:rgba(201,168,76,0.5); }
+.mgb-info { flex:1; min-width:0; }
+.mgb-label {
+  font-family:'Cormorant',serif;
+  font-size:.72rem;
+  font-style:italic;
+  color:rgba(201,168,76,0.7);
+  letter-spacing:.08em;
+  margin-bottom:3px;
+}
+.mgb-title {
+  font-family:'Lato',sans-serif;
+  font-size:.88rem;
+  font-weight:700;
+  color:#fff;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-bottom:2px;
+}
+.mgb-artist {
+  font-family:'Lato',sans-serif;
+  font-size:.72rem;
+  color:rgba(255,255,255,.5);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.mgb-play-btn {
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  background:url('https://letters.powparker.com/water-play.png') center/cover;
+  border:none;
+  cursor:pointer;
+  flex-shrink:0;
+  transition:transform .2s, box-shadow .2s;
+  box-shadow:0 4px 20px rgba(201,168,76,0.3);
+  display:block;
+  text-decoration:none;
+  position:relative;
+  overflow:hidden;
+}
+.mgb-play-btn::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:rgba(0,0,0,0);
+  transition:background .2s;
+}
+.mgb-play-btn:hover { transform:scale(1.08); box-shadow:0 6px 28px rgba(201,168,76,0.5); }
+.mgb-play-btn:hover::after { background:rgba(255,255,255,0.08); }
+.mgb-platform {
+  font-family:'Lato',sans-serif;
+  font-size:.58rem;
+  color:rgba(201,168,76,0.5);
+  text-align:center;
+  margin-top:3px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.mgb-right { display:flex; flex-direction:column; align-items:center; flex-shrink:0; }
+.mgb-close {
+  position:absolute;
+  top:8px; right:12px;
+  background:none;
+  border:none;
+  color:rgba(255,255,255,.3);
+  font-size:.7rem;
+  cursor:pointer;
+  font-family:'Lato',sans-serif;
+  letter-spacing:.06em;
+}
+.mgb-close:hover { color:rgba(255,255,255,.6); }
+/* Music fetch preview in composer */
+.music-fetch-preview {
+  margin-top:10px;
+  padding:12px 14px;
+  background:rgba(201,168,76,0.06);
+  border:1px solid rgba(201,168,76,0.25);
+  border-radius:8px;
+  display:none;
+  align-items:center;
+  gap:12px;
+}
+.music-fetch-preview.active { display:flex; }
+.mfp-art { width:48px; height:48px; border-radius:6px; object-fit:cover; border:1px solid rgba(201,168,76,0.3); flex-shrink:0; }
+.mfp-info { flex:1; min-width:0; }
+.mfp-title { font-family:'Lato',sans-serif; font-size:.82rem; font-weight:700; color:var(--cream); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.mfp-artist { font-family:'Lato',sans-serif; font-size:.72rem; color:rgba(255,255,255,.5); margin-top:2px; }
+.mfp-source { font-family:'Lato',sans-serif; font-size:.62rem; color:var(--gold); margin-top:2px; text-transform:uppercase; letter-spacing:.06em; }
+/* Add bottom padding to page container when music gram is visible */
+body.has-music-gram .page-container { padding-bottom:110px; }
+@media(max-width:600px) {
+  .music-gram-bar { padding:10px 16px; gap:12px; }
+  .mgb-play-btn { width:58px; height:58px; }
+  .mgb-art { width:44px; height:44px; }
+}
 /* ── PRINT ── */
 @media print {
   body { background:#fff; }
@@ -232,6 +373,7 @@ body { font-family:'EB Garamond',Georgia,serif; background:#b8b5af; -webkit-font
     <span class="mode-indicator mode-edit" id="modeTag">&#9998; EDITING</span>
   </div>
   <div class="bar-right">
+    <button class="bar-btn" id="btnSettings" onclick="toggleSettings()">&#9881; Settings</button>
     <button class="bar-btn" id="btnToggle" onclick="toggleMode()">Preview</button>
     <button class="bar-btn" onclick="window.print()">&#128424; Print</button>
     <button class="bar-btn primary" id="btnSave" onclick="generateAndSave()">&#9670; Save &amp; Share</button>
@@ -256,7 +398,76 @@ body { font-family:'EB Garamond',Georgia,serif; background:#b8b5af; -webkit-font
   </div>
 </div>
 
-<!-- ── EDITOR ── -->
+<!-- ── SETTINGS PANEL ── -->
+<div class="settings-panel" id="settingsPanel">
+  <h3>&#9881; Settings</h3>
+  <div class="settings-sub">Saved locally — applies to all letters on this device.</div>
+
+  <div class="field-row">
+    <label>Body Font</label>
+    <div class="font-grid" id="fontGrid">
+      <button class="font-btn active" data-font="'EB Garamond',Georgia,serif" onclick="setFont(this)" style="font-family:'EB Garamond',Georgia,serif;">EB Garamond</button>
+      <button class="font-btn" data-font="'Merriweather',serif" onclick="setFont(this)" style="font-family:'Merriweather',serif;">Merriweather</button>
+      <button class="font-btn" data-font="'Cormorant',serif" onclick="setFont(this)" style="font-family:'Cormorant',serif;">Cormorant</button>
+      <button class="font-btn" data-font="'Playfair Display',serif" onclick="setFont(this)" style="font-family:'Playfair Display',serif;">Playfair</button>
+      <button class="font-btn" data-font="'Libre Baskerville',serif" onclick="setFont(this)" style="font-family:'Libre Baskerville',serif;">Libre Baskerville</button>
+      <button class="font-btn" data-font="'Crimson Text',serif" onclick="setFont(this)" style="font-family:'Crimson Text',serif;">Crimson Text</button>
+      <button class="font-btn" data-font="'Source Serif 4',serif" onclick="setFont(this)" style="font-family:'Source Serif 4',serif;">Source Serif</button>
+      <button class="font-btn" data-font="'Lora',serif" onclick="setFont(this)" style="font-family:'Lora',serif;">Lora</button>
+      <button class="font-btn" data-font="'Cinzel',serif" onclick="setFont(this)" style="font-family:'Cinzel',serif;">Cinzel</button>
+    </div>
+  </div>
+
+  <div class="field-row" style="margin-top:16px;border-top:1px solid rgba(201,168,76,.15);padding-top:16px;">
+    <label>Social Links</label>
+  </div>
+  <div class="field-grid">
+    <div class="field-row">
+      <label>Facebook</label>
+      <input type="text" id="cfgFacebook" placeholder="https://facebook.com/powparker">
+    </div>
+    <div class="field-row">
+      <label>Instagram</label>
+      <input type="text" id="cfgInstagram" placeholder="https://instagram.com/powparker">
+    </div>
+  </div>
+  <div class="field-grid">
+    <div class="field-row">
+      <label>LinkedIn</label>
+      <input type="text" id="cfgLinkedIn" placeholder="https://linkedin.com/in/pow-parker">
+    </div>
+    <div class="field-row">
+      <label>X (Twitter)</label>
+      <input type="text" id="cfgTwitter" placeholder="https://x.com/powparker">
+    </div>
+  </div>
+  <div class="field-row">
+    <label>Medium</label>
+    <input type="text" id="cfgMedium" placeholder="https://medium.com/@powellparker">
+  </div>
+
+  <div style="display:flex;gap:8px;margin-top:14px;">
+    <button class="bar-btn primary" onclick="saveSettings()" style="flex:1;">&#10003; Save Settings</button>
+    <button class="bar-btn" onclick="toggleSettings()">Close</button>
+  </div>
+</div>
+
+<!-- ── MUSIC GRAM STICKY PLAYER ── -->
+<div class="music-gram-bar" id="musicGramBar">
+  <button class="mgb-close" onclick="closeMusicGram()">&#10005; dismiss</button>
+  <div class="mgb-art" id="mgbArt">
+    <span class="mgb-art-placeholder">&#9835;</span>
+  </div>
+  <div class="mgb-info">
+    <div class="mgb-label">&#9835; A Song For This Moment</div>
+    <div class="mgb-title" id="mgbTitle">Now Playing</div>
+    <div class="mgb-artist" id="mgbArtist">Tap to listen</div>
+  </div>
+  <div class="mgb-right">
+    <a class="mgb-play-btn" id="mgbPlayBtn" href="#" target="_blank" rel="noopener" title="Play on Apple Music / Spotify"></a>
+    <div class="mgb-platform" id="mgbPlatform">tap to play</div>
+  </div>
+</div>
 <div class="input-panel active" id="inputPanel">
   <h3>Compose Your Letter</h3>
 
@@ -365,13 +576,23 @@ body { font-family:'EB Garamond',Georgia,serif; background:#b8b5af; -webkit-font
 
   <!-- MUSIC -->
   <div class="music-section">
-    <h4>&#9835; Music Attachment (optional)</h4>
+    <h4>&#9835; Music Gram (optional)</h4>
     <div class="field-row" style="margin-bottom:8px;">
-      <label>Music URL</label>
-      <input type="text" id="inMusic" placeholder="Paste Apple Music, Spotify, or YouTube link">
+      <label>Music URL — Apple Music, Spotify, or YouTube</label>
+      <input type="text" id="inMusic" placeholder="Paste link — song title and art auto-fetches" oninput="scheduleMusicFetch()">
+      <div class="hint">Creates a "A Song For This Moment" sticky player at the bottom of the shared letter.</div>
     </div>
-    <div class="field-row" style="margin-bottom:0;">
-      <label>Album / Track Artwork (optional)</label>
+    <!-- Auto-fetch preview -->
+    <div class="music-fetch-preview" id="musicFetchPreview">
+      <img class="mfp-art" id="mfpArt" src="" alt="Album art">
+      <div class="mfp-info">
+        <div class="mfp-title" id="mfpTitle"></div>
+        <div class="mfp-artist" id="mfpArtist"></div>
+        <div class="mfp-source" id="mfpSource"></div>
+      </div>
+    </div>
+    <div class="field-row" style="margin-bottom:0;margin-top:8px;">
+      <label>Override Album Art (optional)</label>
       <div class="music-art-row">
         <button class="bar-btn" type="button" onclick="document.getElementById('musicArtInput').click()" style="font-size:.62rem;padding:6px 12px;">+ Upload Art</button>
         <input type="file" id="musicArtInput" accept="image/*" style="display:none">
@@ -474,8 +695,11 @@ body { font-family:'EB Garamond',Georgia,serif; background:#b8b5af; -webkit-font
         <a href="https://x.com/powparker" target="_blank" title="X (Twitter)" aria-label="X">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
-        <a href="https://medium.com/@powellparker" target="_blank" title="Medium" aria-label="Medium">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+        <a href="https://medium.com/@powellparker" target="_blank" title="Medium" aria-label="Medium" id="footerMedium">
+          <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="6" fill="currentColor" opacity="0.15"/>
+            <text x="4" y="30" font-family="Georgia,serif" font-size="22" font-weight="700" fill="currentColor" letter-spacing="-1">Me</text>
+          </svg>
         </a>
       </div>
       <div class="footer-content">
@@ -804,6 +1028,7 @@ async function generateAndSave() {
       sigTitle: document.getElementById('inSigTitle').value.trim(),
       password: document.getElementById('inPassword').value.trim() || null,
       musicUrl: document.getElementById('inMusic').value.trim() || null,
+      musicMeta: currentMusicMeta || null,
       exhibits: allExhibits,
       logoKey: logoKey || null,
     };
@@ -891,6 +1116,7 @@ window.reParlay = async function() {
       sigTitle: document.getElementById('inSigTitle').value.trim(),
       password: document.getElementById('inPassword').value.trim() || null,
       musicUrl: document.getElementById('inMusic').value.trim() || null,
+      musicMeta: currentMusicMeta || null,
       exhibits: allExhibits,
       logoKey: logoKey || null,
     };
@@ -918,14 +1144,9 @@ window.reParlay = async function() {
 window.editLetter = async function(slug) {
   showToast('Loading letter...', 'loading');
   try {
-    var res = await fetch(WORKER + '/s/' + slug + '?__raw=1', { headers:{'X-API-Key':API_KEY} });
-    // Fallback — fetch from list and then get raw data
-    var listRes = await fetch(WORKER + '/api/list', { headers:{'X-API-Key':API_KEY} });
-    var listData = await listRes.json();
-    // We need a raw letter endpoint — use /api/get/:slug
     var rawRes = await fetch(WORKER + '/api/get/' + slug, { headers:{'X-API-Key':API_KEY} });
     var letter = await rawRes.json();
-    if (letter.error) { showToast('Could not load letter', 'error'); return; }
+    if (letter.error) { showToast('Could not load letter: ' + letter.error, 'error'); return; }
 
     editingSlug = slug;
 
@@ -944,6 +1165,8 @@ window.editLetter = async function(slug) {
     if (letter.recipientHtml) {
       var plain = letter.recipientHtml.replace(/<strong>/gi,'').replace(/<\/strong>/gi,'').replace(/<br>/gi,', ');
       document.getElementById('inRecipient').value = plain;
+    } else if (letter.recipientName) {
+      document.getElementById('inRecipient').value = letter.recipientName;
     }
 
     // Logo
@@ -954,7 +1177,7 @@ window.editLetter = async function(slug) {
     document.getElementById('logoPreviewEditor').src = logoSrc;
     document.getElementById('logoStatus').style.display = 'none';
 
-    // Existing exhibits → existingPhotos
+    // Existing exhibits
     existingPhotos = [];
     if (letter.exhibits && letter.exhibits.length > 0) {
       letter.exhibits.forEach(function(ex) {
@@ -1146,6 +1369,231 @@ function copyShareUrl() {
     showToast('Link copied!', 'success');
   });
 }
+
+// ── SETTINGS ──
+var musicFetchTimer = null;
+var currentMusicMeta = null;
+
+function toggleSettings() {
+  var panel = document.getElementById('settingsPanel');
+  var isOpen = panel.classList.contains('active');
+  panel.classList.toggle('active');
+  document.getElementById('btnSettings').innerHTML = isOpen ? '&#9881; Settings' : '&#10005; Close';
+  if (!isOpen) loadSettingsIntoPanel();
+}
+
+function loadSettingsIntoPanel() {
+  var s = loadSettings();
+  document.getElementById('cfgFacebook').value = s.facebook || 'https://www.facebook.com/powparker/';
+  document.getElementById('cfgInstagram').value = s.instagram || 'https://www.instagram.com/powparker/';
+  document.getElementById('cfgLinkedIn').value = s.linkedin || 'https://www.linkedin.com/in/pow-parker/';
+  document.getElementById('cfgTwitter').value = s.twitter || 'https://x.com/powparker';
+  document.getElementById('cfgMedium').value = s.medium || 'https://medium.com/@powellparker';
+  // Mark active font
+  var activeFont = s.font || "'EB Garamond',Georgia,serif";
+  document.querySelectorAll('.font-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.dataset.font === activeFont);
+  });
+}
+
+function loadSettings() {
+  try { return JSON.parse(localStorage.getItem('pp_letter_settings') || '{}'); } catch(e) { return {}; }
+}
+
+function saveSettings() {
+  var font = document.querySelector('.font-btn.active');
+  var settings = {
+    font: font ? font.dataset.font : "'EB Garamond',Georgia,serif",
+    facebook: document.getElementById('cfgFacebook').value.trim(),
+    instagram: document.getElementById('cfgInstagram').value.trim(),
+    linkedin: document.getElementById('cfgLinkedIn').value.trim(),
+    twitter: document.getElementById('cfgTwitter').value.trim(),
+    medium: document.getElementById('cfgMedium').value.trim()
+  };
+  localStorage.setItem('pp_letter_settings', JSON.stringify(settings));
+  applySettings(settings);
+  toggleSettings();
+  showToast('Settings saved!', 'success');
+}
+
+function applySettings(settings) {
+  if (!settings) settings = loadSettings();
+  // Apply font
+  if (settings.font) {
+    document.documentElement.style.setProperty('--body-font', settings.font);
+    document.querySelectorAll('.l-body, .letter-content, .l-recipient, .l-salutation').forEach(function(el) {
+      el.style.fontFamily = settings.font;
+    });
+  }
+  // Apply social links
+  if (settings.facebook) { var fb = document.getElementById('footerFacebook'); if (fb) fb.href = settings.facebook; }
+  if (settings.instagram) { var ig = document.getElementById('footerInstagram'); if (ig) ig.href = settings.instagram; }
+  if (settings.linkedin) { var li = document.getElementById('footerLinkedIn'); if (li) li.href = settings.linkedin; }
+  if (settings.twitter) { var tw = document.getElementById('footerTwitter'); if (tw) tw.href = settings.twitter; }
+  if (settings.medium) { var md = document.getElementById('footerMedium'); if (md) md.href = settings.medium; }
+}
+
+function setFont(btn) {
+  document.querySelectorAll('.font-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+}
+
+// ── MUSIC GRAM — oEmbed auto-fetch ──
+function scheduleMusicFetch() {
+  clearTimeout(musicFetchTimer);
+  var url = document.getElementById('inMusic').value.trim();
+  if (!url) {
+    document.getElementById('musicFetchPreview').classList.remove('active');
+    currentMusicMeta = null;
+    return;
+  }
+  musicFetchTimer = setTimeout(function() { fetchMusicMeta(url); }, 800);
+}
+
+async function fetchMusicMeta(url) {
+  currentMusicMeta = null;
+  try {
+    var oembedUrl = '';
+    var platform = '';
+    if (url.includes('music.apple.com')) {
+      oembedUrl = 'https://music.apple.com/oembed?url=' + encodeURIComponent(url);
+      platform = 'Apple Music';
+    } else if (url.includes('open.spotify.com') || url.includes('spotify.com')) {
+      oembedUrl = 'https://open.spotify.com/oembed?url=' + encodeURIComponent(url);
+      platform = 'Spotify';
+    } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
+      oembedUrl = 'https://www.youtube.com/oembed?url=' + encodeURIComponent(url) + '&format=json';
+      platform = 'YouTube';
+    } else {
+      // Unknown platform — show minimal card with manual entry
+      document.getElementById('mfpTitle').textContent = 'Music link attached';
+      document.getElementById('mfpArtist').textContent = 'Tap to play';
+      document.getElementById('mfpSource').textContent = 'External link';
+      document.getElementById('mfpArt').style.display = 'none';
+      document.getElementById('musicFetchPreview').classList.add('active');
+      currentMusicMeta = { title: 'Music', artist: '', artUrl: '', platform: 'Link', url: url };
+      return;
+    }
+
+    // Use a CORS proxy for oEmbed (needed since we're on powparker.com)
+    var proxyUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(oembedUrl);
+    var res = await fetch(proxyUrl);
+    var data = await res.json();
+
+    // Extract title and artist from oEmbed response
+    var title = data.title || 'Unknown Track';
+    var artist = '';
+    var artUrl = data.thumbnail_url || '';
+
+    // Apple Music / Spotify often format as "Song Name — Artist"
+    if (title.includes(' — ')) {
+      var parts = title.split(' — ');
+      title = parts[0].trim();
+      artist = parts[1] ? parts[1].trim() : '';
+    } else if (data.author_name) {
+      artist = data.author_name;
+    }
+
+    currentMusicMeta = { title: title, artist: artist, artUrl: artUrl, platform: platform, url: url };
+
+    // Show preview in composer
+    document.getElementById('mfpTitle').textContent = title;
+    document.getElementById('mfpArtist').textContent = artist;
+    document.getElementById('mfpSource').textContent = platform;
+    if (artUrl) {
+      document.getElementById('mfpArt').src = artUrl;
+      document.getElementById('mfpArt').style.display = 'block';
+    } else {
+      document.getElementById('mfpArt').style.display = 'none';
+    }
+    document.getElementById('musicFetchPreview').classList.add('active');
+
+  } catch(e) {
+    // Fetch failed — show generic preview
+    currentMusicMeta = { title: 'Music attached', artist: '', artUrl: '', platform: 'External', url: url };
+    document.getElementById('mfpTitle').textContent = 'Music link attached';
+    document.getElementById('mfpArtist').textContent = url.length > 40 ? url.substring(0,40) + '...' : url;
+    document.getElementById('mfpSource').textContent = 'Tap to play';
+    document.getElementById('mfpArt').style.display = 'none';
+    document.getElementById('musicFetchPreview').classList.add('active');
+  }
+}
+
+// ── MUSIC GRAM PLAYER (shown on live letter) ──
+function initMusicGram(musicUrl, metaJson) {
+  if (!musicUrl) return;
+  var bar = document.getElementById('musicGramBar');
+  if (!bar) return;
+
+  var meta = null;
+  try { meta = JSON.parse(metaJson || 'null'); } catch(e) {}
+
+  // Set play button link
+  document.getElementById('mgbPlayBtn').href = musicUrl;
+
+  // Set platform label
+  var platform = 'tap to play';
+  if (musicUrl.includes('music.apple.com')) platform = '▶ Open in Apple Music';
+  else if (musicUrl.includes('spotify.com')) platform = '▶ Open in Spotify';
+  else if (musicUrl.includes('youtube.com') || musicUrl.includes('youtu.be')) platform = '▶ Open in YouTube';
+  document.getElementById('mgbPlatform').textContent = platform;
+
+  if (meta && meta.title) {
+    document.getElementById('mgbTitle').textContent = meta.title;
+    document.getElementById('mgbArtist').textContent = meta.artist || '';
+    if (meta.artUrl) {
+      document.getElementById('mgbArt').innerHTML = '<img src="' + meta.artUrl + '" alt="Album art">';
+    }
+  } else {
+    document.getElementById('mgbTitle').textContent = 'A Song For This Moment';
+    document.getElementById('mgbArtist').textContent = 'Tap to listen';
+    // Try fetching metadata live on the share page too
+    fetchMusicMetaForPlayer(musicUrl);
+  }
+
+  // Show bar with slide-up animation
+  document.body.classList.add('has-music-gram');
+  bar.classList.add('visible');
+  setTimeout(function() { bar.classList.add('slide-up'); }, 100);
+}
+
+async function fetchMusicMetaForPlayer(url) {
+  try {
+    var oembedUrl = '';
+    if (url.includes('music.apple.com')) oembedUrl = 'https://music.apple.com/oembed?url=' + encodeURIComponent(url);
+    else if (url.includes('spotify.com')) oembedUrl = 'https://open.spotify.com/oembed?url=' + encodeURIComponent(url);
+    else if (url.includes('youtube.com') || url.includes('youtu.be')) oembedUrl = 'https://www.youtube.com/oembed?url=' + encodeURIComponent(url) + '&format=json';
+    else return;
+    var res = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(oembedUrl));
+    var data = await res.json();
+    var title = data.title || 'A Song For This Moment';
+    var artist = data.author_name || '';
+    if (title.includes(' — ')) { var p = title.split(' — '); title = p[0].trim(); artist = p[1] ? p[1].trim() : artist; }
+    document.getElementById('mgbTitle').textContent = title;
+    document.getElementById('mgbArtist').textContent = artist;
+    if (data.thumbnail_url) {
+      document.getElementById('mgbArt').innerHTML = '<img src="' + data.thumbnail_url + '" alt="Album art">';
+    }
+  } catch(e) {}
+}
+
+function closeMusicGram() {
+  var bar = document.getElementById('musicGramBar');
+  bar.classList.remove('slide-up');
+  setTimeout(function() { bar.classList.remove('visible'); document.body.classList.remove('has-music-gram'); }, 500);
+}
+
+// ── INIT SETTINGS ON LOAD ──
+(function initSettingsOnLoad() {
+  var s = loadSettings();
+  if (s.font || s.facebook) applySettings(s);
+  // Mark active font button
+  if (s.font) {
+    document.querySelectorAll('.font-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.dataset.font === s.font);
+    });
+  }
+})();
 
 function showToast(msg, type) {
   var t = document.getElementById('toast');
