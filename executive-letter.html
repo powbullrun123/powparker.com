@@ -6,7 +6,7 @@
 <title>Powell Parker - Executive Letter</title>
 <meta name="description" content="Official correspondence - From the Desk of Powell Parker">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23C9A84C' font-style='italic' font-family='Georgia,serif'>P</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,700;1,6..96,400&family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700&family=Libre+Baskerville:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,700;1,6..96,400&family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700&family=Libre+Baskerville:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&family=Cinzel+Decorative:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 :root {
   --navy:#1B2A40; --deep:#0A1525; --gold:#C9A84C; --gold-light:#E8D5A3; --gold-dark:#9A7A2E;
@@ -113,6 +113,16 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .slider-val{font-family:'Lato',sans-serif;font-size:.68rem;color:var(--gold-light);min-width:32px}
 .btn-add-exhibit{width:100%;border-style:dashed;padding:10px;background:rgba(201,168,76,.04);margin-top:4px}
 
+/* TONE SELECTOR */
+.tone-row{margin-top:10px;padding:10px 12px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:7px;}
+.tone-label{font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:8px;}
+.tone-btns{display:flex;gap:7px;flex-wrap:wrap;}
+.tone-btn{font-family:'Lato',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:7px 13px;border:1px solid rgba(201,168,76,.3);border-radius:20px;background:transparent;color:rgba(201,168,76,.6);cursor:pointer;transition:all .2s;}
+.tone-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.08);}
+.tone-btn.active{background:rgba(201,168,76,.2);border-color:var(--gold);color:var(--gold);}
+.tone-status{font-family:'Lato',sans-serif;font-size:.68rem;color:rgba(255,255,255,.5);margin-top:6px;padding:7px 12px;background:rgba(255,255,255,.04);border-radius:4px;border-left:2px solid var(--gold);display:none;}
+.tone-status.active{display:block;}
+
 /* MUSIC GRAM TOGGLE — big and readable */
 .music-section{margin-top:14px;padding:16px;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.2);border-radius:8px}
 .music-section h4{font-family:'Cormorant',serif;font-size:1.05rem;color:var(--gold);margin-bottom:14px;letter-spacing:.04em}
@@ -137,15 +147,7 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .link-tool-btn{font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:5px 12px;border:1px solid rgba(201,168,76,.4);border-radius:4px;background:rgba(201,168,76,.06);color:var(--gold);cursor:pointer;transition:all .2s}
 .link-tool-btn:hover{background:var(--gold);color:var(--deep)}
 
-/* VOICE DICTATION */
-.voice-btn{font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:5px 13px;border:1px solid rgba(201,168,76,.4);border-radius:4px;background:rgba(201,168,76,.06);color:var(--gold);cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:5px;flex-shrink:0}
-.voice-btn:hover{background:rgba(201,168,76,.15);border-color:var(--gold)}
-.voice-btn.recording{background:rgba(231,76,60,.15);border-color:#e74c3c;color:#e74c3c;animation:pulse-rec 1.2s ease-in-out infinite}
-@keyframes pulse-rec{0%,100%{box-shadow:0 0 0 0 rgba(231,76,60,.4)}50%{box-shadow:0 0 0 8px rgba(231,76,60,0)}}
-.body-label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
-.body-label-row label{margin-bottom:0}
-.voice-status{display:none;font-family:'Lato',sans-serif;font-size:.68rem;color:rgba(255,255,255,.55);margin-top:6px;padding:8px 12px;background:rgba(255,255,255,.04);border-radius:4px;border-left:2px solid var(--gold);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.voice-status.active{display:block}
+
 
 /* MUSIC FETCH PREVIEW */
 .music-fetch-preview{margin-top:10px;padding:12px 14px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.25);border-radius:8px;display:none;align-items:center;gap:12px}
@@ -191,7 +193,19 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .l-subject{font-family:'Cormorant',serif;font-size:.92rem;font-weight:700;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px;padding-bottom:10px;border-bottom:1px solid var(--rule);display:none}
 .l-salutation{font-family:'Cormorant',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:20px}
 .l-body p{margin-bottom:16px;text-align:justify;hyphens:auto}
-.l-body a{color:var(--gold-dark);text-decoration:underline}
+.l-body a{color:var(--gold);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;font-weight:600}
+/* Drop cap - first letter of body, 3 lines tall */
+.l-body p:first-of-type::first-letter{
+  font-family:'Cinzel Decorative',serif;
+  font-size:3.8rem;
+  font-weight:700;
+  color:var(--gold);
+  float:left;
+  line-height:0.72;
+  margin-right:7px;
+  margin-top:5px;
+  text-shadow:0 1px 8px rgba(201,168,76,0.25);
+}
 .l-closing{margin-top:36px;font-family:'Cormorant',serif;font-style:italic;font-size:1.1rem}
 .l-sig{margin-top:36px}
 .l-sig-name{font-family:'Cormorant',serif;font-size:1.25rem;font-weight:700;color:var(--navy)}
@@ -338,6 +352,7 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <button class="font-btn" data-font="'Libre Baskerville',serif" onclick="setFont(this)" style="font-family:'Libre Baskerville',serif;">Libre Baskerville</button>
       <button class="font-btn" data-font="'Lora',serif" onclick="setFont(this)" style="font-family:'Lora',serif;">Lora</button>
       <button class="font-btn" data-font="'Cinzel',serif" onclick="setFont(this)" style="font-family:'Cinzel',serif;">Cinzel</button>
+      <button class="font-btn" data-font="'Cinzel Decorative',serif" onclick="setFont(this)" style="font-family:'Cinzel Decorative',serif;">Cinzel Decorative</button>
     </div>
   </div>
   <div class="field-row" style="margin-top:16px;border-top:1px solid rgba(201,168,76,.15);padding-top:16px;"><label>Social Links</label></div>
@@ -412,17 +427,24 @@ body.has-music-gram .page-container{padding-bottom:120px}
     <input type="text" id="inSalutation" placeholder="Dear Mayor Stacy,">
   </div>
   <div class="field-row">
-    <div class="body-label-row">
-      <label>Letter Body</label>
-      <button class="voice-btn" id="voiceBtn" type="button" onclick="toggleVoice()">&#127908; Dictate</button>
-    </div>
     <div class="link-tool-row">
       <button class="link-tool-btn" type="button" onclick="insertLink()">&#128279; Insert Link</button>
       <span style="font-family:'Lato',sans-serif;font-size:.62rem;color:rgba(255,255,255,.25);">Select text first, then click</span>
     </div>
-    <textarea id="inBody" placeholder="Write your letter here. Blank line = new paragraph.&#10;&#10;*wrap in asterisks* for bold.&#10;[display text](https://url.com) for links."></textarea>
-    <div id="voiceStatus" class="voice-status"></div>
-    <div class="hint">Blank line = new paragraph &nbsp;|&nbsp; *text* = bold &nbsp;|&nbsp; [text](url) = link &nbsp;|&nbsp; &#127908; tap mic to dictate</div>
+    <textarea id="inBody" oninput="showToneRow()" placeholder="Write your letter here. Blank line = new paragraph.&#10;&#10;*wrap in asterisks* for bold.&#10;((url))<Label> = gold link"></textarea>
+    <!-- TONE SELECTOR -->
+    <div class="tone-row" id="toneRow" style="display:none;">
+      <div class="tone-label">&#9998; Rewrite tone:</div>
+      <div class="tone-btns">
+        <button class="tone-btn active" data-tone="none" onclick="applyTone(this)">No Edit</button>
+        <button class="tone-btn" data-tone="professional" onclick="applyTone(this)">Professional</button>
+        <button class="tone-btn" data-tone="warm" onclick="applyTone(this)">Warm &amp; Personal</button>
+        <button class="tone-btn" data-tone="bold" onclick="applyTone(this)">Direct &amp; Bold</button>
+        <button class="tone-btn" data-tone="blackswan" onclick="applyTone(this)">Black Swan</button>
+      </div>
+    </div>
+    <div id="toneStatus" class="tone-status"></div>
+    <div class="hint">Blank line = new paragraph &nbsp;|&nbsp; *text* = bold &nbsp;|&nbsp; ((url))&lt;Label&gt; = gold link &nbsp;|&nbsp; type to show tone options</div>
   </div>
   <div style="margin-top:18px;border-top:1px solid rgba(201,168,76,.2);padding-top:14px;">
     <h3 style="margin-bottom:8px;">Visual Exhibits &amp; Photos</h3>
@@ -579,59 +601,7 @@ var API_KEY='Parker-letters-062878!';
 var editMode=true,editingSlug=null,exhibitCounter=0,exhibitFiles={},existingPhotos=[],editingPhotoIndex=-1;
 var heroDataUrl=null,heroExistingUrl=null,musicArtDataUrl=null,logoDataUrl=null,logoFile=null,logoExistingKey=null;
 var currentMusicMeta=null,musicFetchTimer=null,mgramMode='song';
-var voiceActive=false,voiceRecognition=null,voiceFinalTranscript='';
 
-// ── VOICE ──
-function toggleVoice(){
-  if(voiceActive){if(voiceRecognition)voiceRecognition.stop();return;}
-  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(!SR){showToast('Voice needs Chrome or Edge.','error');return;}
-  voiceRecognition=new SR();voiceRecognition.continuous=true;voiceRecognition.interimResults=true;voiceRecognition.lang='en-US';
-  voiceActive=true;voiceFinalTranscript='';
-  var btn=document.getElementById('voiceBtn'),status=document.getElementById('voiceStatus');
-  btn.classList.add('recording');btn.innerHTML='&#9209; Stop';
-  status.textContent='Listening -- speak your letter...';status.classList.add('active');
-  voiceRecognition.onresult=function(e){
-    var interim='';
-    for(var i=e.resultIndex;i<e.results.length;i++){
-      if(e.results[i].isFinal)voiceFinalTranscript+=e.results[i][0].transcript+' ';
-      else interim+=e.results[i][0].transcript;
-    }
-    status.textContent=(interim||voiceFinalTranscript.slice(-80)||'Listening...');
-  };
-  voiceRecognition.onend=async function(){
-    voiceActive=false;
-    var btn=document.getElementById('voiceBtn'),status=document.getElementById('voiceStatus');
-    btn.classList.remove('recording');btn.innerHTML='&#127908; Dictate';
-    var raw=voiceFinalTranscript.trim();
-    if(!raw){status.textContent='No speech detected.';setTimeout(function(){status.classList.remove('active');},3000);return;}
-    status.textContent='Formatting with AI...';
-    try{
-      var res=await fetch(WORKER+'/api/format',{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':API_KEY},body:JSON.stringify({text:raw})});
-      var data=await res.json();
-      if(data.formatted){
-        var ta=document.getElementById('inBody');
-        ta.value=ta.value?ta.value+'\n\n'+data.formatted:data.formatted;
-        status.textContent='Added to letter';renderLetter();
-      }else throw new Error('no result');
-    }catch(e){
-      var cleaned=raw.trim().replace(/\s+/g,' ');
-      var ta=document.getElementById('inBody');
-      ta.value=ta.value?ta.value+'\n\n'+cleaned:cleaned;
-      status.textContent='Added (basic cleanup)';renderLetter();
-    }
-    setTimeout(function(){status.classList.remove('active');},3000);
-  };
-  voiceRecognition.onerror=function(ev){
-    voiceActive=false;
-    document.getElementById('voiceBtn').classList.remove('recording');
-    document.getElementById('voiceBtn').innerHTML='&#127908; Dictate';
-    var msg=ev.error==='not-allowed'?'Microphone access denied.':ev.error==='no-speech'?'No speech detected.':'Error: '+ev.error;
-    document.getElementById('voiceStatus').textContent=msg;
-    setTimeout(function(){document.getElementById('voiceStatus').classList.remove('active');},4000);
-  };
-  voiceRecognition.start();
-}
 
 // ── MUSIC/PODCAST TOGGLE ──
 function setMgramMode(mode){
@@ -698,11 +668,17 @@ async function generateAndSave(){renderLetter();var slug=document.getElementById
 
 window.reParlay=async function(){if(!editingSlug){showToast('No letter selected','error');return;}var btn=document.getElementById('btnReParlay');btn.disabled=true;showToast('Updating...','loading');try{var logoKey=logoExistingKey||null;if(logoFile){var lfd=new FormData();lfd.append('logo',logoFile);lfd.append('slug',editingSlug);var lRes=await fetch(WORKER+'/api/logo',{method:'POST',headers:{'X-API-Key':API_KEY},body:lfd});var lData=await lRes.json();if(lData.success){logoKey=lData.key;logoFile=null;logoExistingKey=logoKey;}}var newExhibits=[];var cards=document.querySelectorAll('.exhibit-card');for(var i=0;i<cards.length;i++){var id=cards[i].id.replace('card_',''),exData=exhibitFiles[id];if(exData&&exData.file){var fd=new FormData();fd.append('photo',exData.file);fd.append('letterId',editingSlug);showToast('Uploading...','loading');var pRes=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var pData=await pRes.json();if(pData.success)newExhibits.push({photoKey:pData.key,heading:document.getElementById('heading_'+id).value.trim(),scale:document.getElementById('scale_'+id).value,caption:document.getElementById('caption_'+id).value.trim()});}}var allExhibits=existingPhotos.map(function(p){if(typeof p==='string')return{photoUrl:p,heading:'',scale:80,caption:''};return{photoUrl:p.url,heading:p.heading||'',scale:p.scale||80,caption:p.caption||''};}).concat(newExhibits);var letter=buildLetterObj();letter.exhibits=allExhibits;letter.logoKey=logoKey;var res=await fetch(WORKER+'/api/save',{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':API_KEY},body:JSON.stringify({slug:editingSlug,letter:letter})});var data=await res.json();if(data.success){setSharePanel(WORKER+'/s/'+editingSlug,true);showToast('Updated! Same link.','success');renderLetter();loadSavedLetters();}else showToast(data.error||'Failed','error');}catch(e){showToast('Error: '+e.message,'error');}btn.disabled=false;};
 
-window.editLetter=async function(slug){showToast('Loading...','loading');try{var rawRes=await fetch(WORKER+'/api/get/'+slug,{headers:{'X-API-Key':API_KEY}});var letter=await rawRes.json();if(letter.error){showToast('Error: '+letter.error,'error');return;}editingSlug=slug;document.getElementById('inDate').value=letter.date||'';document.getElementById('inSubject').value=letter.subject||'';document.getElementById('inSlug').value=slug;document.getElementById('inSalutation').value=letter.salutation||'';document.getElementById('inBody').value=letter.body||'';document.getElementById('inClosing').value=letter.closing||'Respectfully,';document.getElementById('inSigTitle').value=letter.sigTitle||'';document.getElementById('inPassword').value=letter.password||'';document.getElementById('inMusic').value=letter.musicUrl||'';if(letter.musicMeta&&letter.musicMeta.isPodcast)setMgramMode('podcast');else setMgramMode('song');if(letter.recipientHtml)document.getElementById('inRecipient').value=letter.recipientHtml.replace(/<strong>/gi,'').replace(/<\/strong>/gi,'').replace(/<br>/gi,', ');else if(letter.recipientName)document.getElementById('inRecipient').value=letter.recipientName;logoFile=null;logoExistingKey=letter.logoKey||null;var logoSrc=letter.logoKey?WORKER+'/photos/'+letter.logoKey:'https://powparker.com/powparker-logo.webp';document.getElementById('outSeal').src=logoSrc;document.getElementById('logoPreviewEditor').src=logoSrc;document.getElementById('logoStatus').style.display='none';existingPhotos=[];if(letter.exhibits&&letter.exhibits.length>0)letter.exhibits.forEach(function(ex){var url=ex.photoUrl||(ex.photoKey?WORKER+'/photos/'+ex.photoKey:'');if(url)existingPhotos.push({url:url,heading:ex.heading||'',caption:ex.caption||'',scale:ex.scale||80});});renderExistingPhotos();document.getElementById('exhibitsContainer').innerHTML='';exhibitCounter=0;exhibitFiles={};document.getElementById('btnSave').style.display='none';document.getElementById('btnReParlay').classList.add('active');document.getElementById('btnCancelEdit').style.display='inline-block';document.getElementById('editModeBanner').classList.add('active');if(!editMode)toggleMode();document.getElementById('inputPanel').scrollIntoView({behavior:'smooth',block:'start'});showToast('Loaded -- make edits then ReParLay It','success');}catch(e){showToast('Error: '+e.message,'error');}};
+window.editLetter=async function(slug){showToast('Loading...','loading');try{var rawRes=await fetch(WORKER+'/api/get/'+slug,{headers:{'X-API-Key':API_KEY}});var letter=await rawRes.json();if(letter.error){showToast('Error: '+letter.error,'error');return;}editingSlug=slug;document.getElementById('inDate').value=letter.date||'';document.getElementById('inSubject').value=letter.subject||'';document.getElementById('inSlug').value=slug;document.getElementById('inSalutation').value=letter.salutation||'';document.getElementById('inBody').value=letter.body||'';document.getElementById('inClosing').value=letter.closing||'Respectfully,';document.getElementById('inSigTitle').value=letter.sigTitle||'';document.getElementById('inPassword').value=letter.password||'';document.getElementById('inMusic').value=letter.musicUrl||'';
+    // Restore music meta so it doesn't fall off on ReParLay
+    if(letter.musicMeta){currentMusicMeta=letter.musicMeta;showMusicPreview(letter.musicMeta.title||'Music attached',letter.musicMeta.artist||'',letter.musicMeta.artUrl||'',letter.musicMeta.platform||'');}
+    else if(letter.musicUrl){scheduleMusicFetch();}if(letter.musicMeta&&letter.musicMeta.isPodcast)setMgramMode('podcast');else setMgramMode('song');if(letter.recipientHtml)document.getElementById('inRecipient').value=letter.recipientHtml.replace(/<strong>/gi,'').replace(/<\/strong>/gi,'').replace(/<br>/gi,', ');else if(letter.recipientName)document.getElementById('inRecipient').value=letter.recipientName;logoFile=null;logoExistingKey=letter.logoKey||null;var logoSrc=letter.logoKey?WORKER+'/photos/'+letter.logoKey:'https://powparker.com/powparker-logo.webp';document.getElementById('outSeal').src=logoSrc;document.getElementById('logoPreviewEditor').src=logoSrc;document.getElementById('logoStatus').style.display='none';
+    // Restore hero photo
+    if(letter.heroUrl){heroExistingUrl=letter.heroUrl;heroDataUrl=null;document.getElementById('heroPrevImg').src=letter.heroUrl;document.getElementById('heroPrevWrap').classList.add('active');document.getElementById('outHeroImg').src=letter.heroUrl;document.getElementById('outHeroImg').classList.add('active');}
+    else{heroDataUrl=null;heroExistingUrl=null;document.getElementById('heroPrevWrap').classList.remove('active');}existingPhotos=[];if(letter.exhibits&&letter.exhibits.length>0)letter.exhibits.forEach(function(ex){var url=ex.photoUrl||(ex.photoKey?WORKER+'/photos/'+ex.photoKey:'');if(url)existingPhotos.push({url:url,heading:ex.heading||'',caption:ex.caption||'',scale:ex.scale||80});});renderExistingPhotos();document.getElementById('exhibitsContainer').innerHTML='';exhibitCounter=0;exhibitFiles={};document.getElementById('btnSave').style.display='none';document.getElementById('btnReParlay').classList.add('active');document.getElementById('btnCancelEdit').style.display='inline-block';document.getElementById('editModeBanner').classList.add('active');if(!editMode)toggleMode();document.getElementById('inputPanel').scrollIntoView({behavior:'smooth',block:'start'});showToast('Loaded -- make edits then ReParLay It','success');}catch(e){showToast('Error: '+e.message,'error');}};
 
 window.cancelEdit=function(){editingSlug=null;existingPhotos=[];logoFile=null;logoExistingKey=null;logoDataUrl=null;document.getElementById('outSeal').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoPreviewEditor').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoStatus').style.display='none';['inDate','inSubject','inSlug','inRecipient','inSalutation','inBody','inPassword','inMusic'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('inClosing').value='Respectfully,';document.getElementById('inSigTitle').value='Founder -- SaveKearnyAZ.org - Project 88';document.getElementById('exhibitsContainer').innerHTML='';document.getElementById('existingPhotosWrap').style.display='none';closeExistingPhotoEdit();exhibitCounter=0;exhibitFiles={};removeHero();document.getElementById('btnSave').style.display='inline-block';document.getElementById('btnReParlay').classList.remove('active');document.getElementById('btnCancelEdit').style.display='none';document.getElementById('editModeBanner').classList.remove('active');document.getElementById('sharePanel').classList.remove('active');setMgramMode('song');showToast('Cleared','success');document.getElementById('inputPanel').scrollIntoView({behavior:'smooth',block:'start'});};
 
-function renderLetter(){var date=document.getElementById('inDate').value.trim();if(date)document.getElementById('outDate').textContent=date;var heroImg=document.getElementById('outHeroImg');if(heroDataUrl){heroImg.src=heroDataUrl;heroImg.style.objectPosition='center '+document.getElementById('heroSlider').value+'%';heroImg.classList.add('active');}else if(heroExistingUrl){heroImg.src=heroExistingUrl;heroImg.classList.add('active');}else heroImg.classList.remove('active');var recip=document.getElementById('inRecipient').value.trim();if(recip){var parts=recip.split(',').map(function(s){return s.trim();}),html='<strong>'+parts[0]+'</strong>';for(var i=1;i<parts.length;i++)html+='<br>'+parts[i];document.getElementById('outRecipient').innerHTML=html;}var subj=document.getElementById('inSubject').value.trim(),subjEl=document.getElementById('outSubject');if(subj){subjEl.textContent=subj;subjEl.style.display='block';}else subjEl.style.display='none';var sal=document.getElementById('inSalutation').value.trim();if(sal)document.getElementById('outSalutation').textContent=sal;var body=document.getElementById('inBody').value.trim();if(body){var bodyHtml='';body.split(/\n\s*\n/).forEach(function(p){p=p.trim();if(!p)return;p=p.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');p=p.replace(/\*([^*]+)\*/g,'<strong>$1</strong>');p=p.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank">$1</a>');p=p.replace(/\n/g,' ');bodyHtml+='<p>'+p+'</p>';});document.getElementById('outBody').innerHTML=bodyHtml;}var outEx=document.getElementById('outExhibits');outEx.innerHTML='';document.querySelectorAll('.exhibit-card').forEach(function(card){var id=card.id.replace('card_',''),headVal=document.getElementById('heading_'+id).value.trim(),scaleVal=document.getElementById('scale_'+id).value,capVal=document.getElementById('caption_'+id).value.trim(),exData=exhibitFiles[id];if(exData&&exData.dataUrl){var wrap=document.createElement('div');wrap.className='printed-exhibit-container';var h='';if(headVal)h+='<div class="exhibit-print-heading">'+headVal+'</div><div class="exhibit-heading-rule"></div>';h+='<img src="'+exData.dataUrl+'" class="exhibit-print-img" style="width:'+scaleVal+'%;" alt="Exhibit">';if(capVal)h+='<div class="exhibit-print-caption">'+capVal+'</div>';wrap.innerHTML=h;outEx.appendChild(wrap);}});var closing=document.getElementById('inClosing').value.trim();if(closing)document.getElementById('outClosing').textContent=closing;var sigTitle=document.getElementById('inSigTitle').value.trim();if(sigTitle)document.getElementById('outSigTitle').textContent=sigTitle;var musicUrl=document.getElementById('inMusic').value.trim(),musicCard=document.getElementById('outMusicCard'),musicLeft=document.getElementById('outMusicLeft');if(musicUrl){document.getElementById('outMusicLink').href=musicUrl;if(musicArtDataUrl){musicLeft.innerHTML='<div style="position:relative;flex-shrink:0;width:72px;height:72px;border-radius:8px;overflow:hidden;"><img src="'+musicArtDataUrl+'" style="width:100%;height:100%;object-fit:cover;"><div style="position:absolute;inset:0;background:rgba(0,0,0,.38);display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;border-radius:50%;background:#C9A84C;display:flex;align-items:center;justify-content:center;font-size:12px;color:#0f1a2e;padding-left:3px;">&#9654;</div></div></div>';}else{musicLeft.innerHTML='<div style="flex-shrink:0;width:56px;height:56px;border-radius:50%;border:2.5px solid #C9A84C;background:rgba(201,168,76,.1);display:flex;align-items:center;justify-content:center;color:#C9A84C;font-size:20px;padding-left:4px;">&#9654;</div>';}musicCard.classList.add('active');}else{musicCard.classList.remove('active');musicLeft.innerHTML='';}}
+function renderLetter(){var date=document.getElementById('inDate').value.trim();if(date)document.getElementById('outDate').textContent=date;var heroImg=document.getElementById('outHeroImg');if(heroDataUrl){heroImg.src=heroDataUrl;heroImg.style.objectPosition='center '+document.getElementById('heroSlider').value+'%';heroImg.classList.add('active');}else if(heroExistingUrl){heroImg.src=heroExistingUrl;heroImg.classList.add('active');}else heroImg.classList.remove('active');var recip=document.getElementById('inRecipient').value.trim();if(recip){var parts=recip.split(',').map(function(s){return s.trim();}),html='<strong>'+parts[0]+'</strong>';for(var i=1;i<parts.length;i++)html+='<br>'+parts[i];document.getElementById('outRecipient').innerHTML=html;}var subj=document.getElementById('inSubject').value.trim(),subjEl=document.getElementById('outSubject');if(subj){subjEl.textContent=subj;subjEl.style.display='block';}else subjEl.style.display='none';var sal=document.getElementById('inSalutation').value.trim();if(sal)document.getElementById('outSalutation').textContent=sal;var body=document.getElementById('inBody').value.trim();if(body){var bodyHtml='';body.split(/\n\s*\n/).forEach(function(p){p=p.trim();if(!p)return;p=p.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');p=p.replace(/\*([^*]+)\*/g,'<strong>$1</strong>');var gs='color:var(--gold);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;font-weight:600;';p=p.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" style="'+gs+'">$1</a>');p=p.replace(/\(\(([^)]+)\)\)<([^>]+)>/g,function(m,u,l){if(u.indexOf('http')<0)u='https://'+u;return '<a href="'+u+'" target="_blank" style="'+gs+'">'+l+'</a>';});p=p.replace(/\(\(([^)]+)\)\)(?!<)/g,function(m,u){if(u.indexOf('http')<0)u='https://'+u;return '<a href="'+u+'" target="_blank" style="'+gs+'">'+u+'</a>';});p=p.replace(/\n/g,' ');bodyHtml+='<p>'+p+'</p>';});document.getElementById('outBody').innerHTML=bodyHtml;}var outEx=document.getElementById('outExhibits');outEx.innerHTML='';document.querySelectorAll('.exhibit-card').forEach(function(card){var id=card.id.replace('card_',''),headVal=document.getElementById('heading_'+id).value.trim(),scaleVal=document.getElementById('scale_'+id).value,capVal=document.getElementById('caption_'+id).value.trim(),exData=exhibitFiles[id];if(exData&&exData.dataUrl){var wrap=document.createElement('div');wrap.className='printed-exhibit-container';var h='';if(headVal)h+='<div class="exhibit-print-heading">'+headVal+'</div><div class="exhibit-heading-rule"></div>';h+='<img src="'+exData.dataUrl+'" class="exhibit-print-img" style="width:'+scaleVal+'%;" alt="Exhibit">';if(capVal)h+='<div class="exhibit-print-caption">'+capVal+'</div>';wrap.innerHTML=h;outEx.appendChild(wrap);}});var closing=document.getElementById('inClosing').value.trim();if(closing)document.getElementById('outClosing').textContent=closing;var sigTitle=document.getElementById('inSigTitle').value.trim();if(sigTitle)document.getElementById('outSigTitle').textContent=sigTitle;var musicUrl=document.getElementById('inMusic').value.trim(),musicCard=document.getElementById('outMusicCard'),musicLeft=document.getElementById('outMusicLeft');if(musicUrl){document.getElementById('outMusicLink').href=musicUrl;if(musicArtDataUrl){musicLeft.innerHTML='<div style="position:relative;flex-shrink:0;width:72px;height:72px;border-radius:8px;overflow:hidden;"><img src="'+musicArtDataUrl+'" style="width:100%;height:100%;object-fit:cover;"><div style="position:absolute;inset:0;background:rgba(0,0,0,.38);display:flex;align-items:center;justify-content:center;"><div style="width:32px;height:32px;border-radius:50%;background:#C9A84C;display:flex;align-items:center;justify-content:center;font-size:12px;color:#0f1a2e;padding-left:3px;">&#9654;</div></div></div>';}else{musicLeft.innerHTML='<div style="flex-shrink:0;width:56px;height:56px;border-radius:50%;border:2.5px solid #C9A84C;background:rgba(201,168,76,.1);display:flex;align-items:center;justify-content:center;color:#C9A84C;font-size:20px;padding-left:4px;">&#9654;</div>';}musicCard.classList.add('active');}else{musicCard.classList.remove('active');musicLeft.innerHTML='';}}
 
 async function loadSavedLetters(){try{var res=await fetch(WORKER+'/api/list',{headers:{'X-API-Key':API_KEY}});var data=await res.json();var list=document.getElementById('savedList');if(!data.letters||data.letters.length===0){list.innerHTML='<li class="saved-item" style="border:none;background:none;"><span class="meta">No letters saved yet.</span></li>';return;}list.innerHTML=data.letters.map(function(l){var d=new Date(l.date),ds=d.toLocaleDateString('en-US',{month:'short',day:'numeric'});return'<li class="saved-item"><a href="'+WORKER+'/s/'+l.slug+'" target="_blank">'+(l.subject||l.slug)+'</a><span class="meta">'+(l.to||'')+' &middot; '+ds+'</span><button class="btn-edit" onclick="editLetter(\''+l.slug+'\')">&#9998; Edit</button><button class="btn-del" onclick="deleteLetter(\''+l.slug+'\')">&#10005;</button></li>';}).join('');}catch(e){document.getElementById('savedList').innerHTML='<li class="saved-item" style="border:none;background:none;"><span class="meta" style="color:#ff6b6b;">Could not connect.</span></li>';}}
 async function deleteLetter(slug){if(!confirm('Delete "'+slug+'"?'))return;try{await fetch(WORKER+'/api/delete/'+slug,{method:'DELETE',headers:{'X-API-Key':API_KEY}});showToast('Deleted.','success');loadSavedLetters();}catch(e){showToast('Delete failed.','error');}}
@@ -735,7 +711,12 @@ async function fetchMusicMeta(url){
         platform='Apple Podcasts';
       }else if(url.includes('spotify.com')){oembedUrl='https://open.spotify.com/oembed?url='+encodeURIComponent(url);platform='Spotify Podcast';}
       else{currentMusicMeta={title:'Podcast attached',artist:'',artUrl:'',platform:'Podcast',url:url,isPodcast:true};showMusicPreview('Podcast attached','Tap to listen','','Podcast');return;}
-    }else if(url.includes('music.apple.com')){oembedUrl='https://music.apple.com/oembed?url='+encodeURIComponent(url);platform='Apple Music';}
+    }else if(url.includes('music.apple.com')){
+      // iTunes Option A - direct, no CORS proxy needed
+      var meta = await fetchAppleMusicMeta(url);
+      if(meta){currentMusicMeta=meta;showMusicPreview(meta.title,meta.artist,meta.artUrl,'Apple Music');return;}
+      oembedUrl='https://music.apple.com/oembed?url='+encodeURIComponent(url);platform='Apple Music';
+    }
     else if(url.includes('spotify.com')){oembedUrl='https://open.spotify.com/oembed?url='+encodeURIComponent(url);platform='Spotify';}
     else if(url.includes('youtube.com')||url.includes('youtu.be')){oembedUrl='https://www.youtube.com/oembed?url='+encodeURIComponent(url)+'&format=json';platform='YouTube';}
     else{currentMusicMeta={title:'Link attached',artist:'',artUrl:'',platform:'External',url:url,isPodcast:false};showMusicPreview('Link attached','Tap to play','','External');return;}
@@ -790,6 +771,62 @@ async function fetchMusicMetaForPlayer(url){
   }catch(e){}
 }
 function closeMusicGram(){var bar=document.getElementById('musicGramBar');bar.classList.remove('slide-up');setTimeout(function(){bar.classList.remove('visible');document.body.classList.remove('has-music-gram');},500);}
+
+// ── TONE SELECTOR ──
+var selectedTone = 'none';
+function showToneRow(){
+  var row = document.getElementById('toneRow');
+  var body = document.getElementById('inBody').value.trim();
+  if(body.length > 10) row.style.display = 'block';
+}
+function applyTone(btn){
+  document.querySelectorAll('.tone-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  selectedTone = btn.dataset.tone;
+  if(selectedTone === 'none') return;
+  var body = document.getElementById('inBody').value.trim();
+  if(!body){ showToast('Write something first.','error'); return; }
+  var status = document.getElementById('toneStatus');
+  status.textContent = 'Rewriting in ' + btn.textContent + ' tone...';
+  status.classList.add('active');
+  var prompts = {
+    professional: 'Rewrite this letter in a polished, professional business tone. Clear, confident, respectful. Fix grammar and punctuation. Return ONLY the rewritten text:',
+    warm: 'Rewrite this letter in a warm, personal, heartfelt tone. Conversational, genuine, caring. Fix grammar and punctuation. Return ONLY the rewritten text:',
+    bold: 'Rewrite this letter in a direct, bold, confident tone. Short punchy sentences. No fluff. Strong verbs. Fix grammar and punctuation. Return ONLY the rewritten text:',
+    blackswan: 'Rewrite this letter using Black Swan / Chris Voss negotiation principles. Use tactical empathy, short declarative sentences, calm authority, labeling emotions ("It seems like...", "It sounds like..."). Never pushy. Pull the reader toward YES. Fix grammar and punctuation. Return ONLY the rewritten text:'
+  };
+  fetch(WORKER+'/api/format',{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':API_KEY},body:JSON.stringify({text:body,tone:prompts[selectedTone]})})
+    .then(function(r){return r.json();})
+    .then(function(data){
+      if(data.formatted){document.getElementById('inBody').value=data.formatted;renderLetter();status.textContent='Rewritten in '+btn.textContent+' tone';setTimeout(function(){status.classList.remove('active');selectedTone='none';document.querySelectorAll('.tone-btn').forEach(function(b){b.classList.toggle('active',b.dataset.tone==='none');});},3000);}
+      else throw new Error('no result');
+    })
+    .catch(function(){status.textContent='Could not connect to AI -- try again.';setTimeout(function(){status.classList.remove('active');},3000);});
+}
+
+// ── iTunes OPTION A - Apple Music metadata ──
+async function fetchAppleMusicMeta(url){
+  try{
+    // Extract track/album ID from Apple Music URL
+    var trackMatch = url.match(/[?&]i=(\d+)/);
+    var albumMatch = url.match(/\/album\/[^/]+\/(\d+)/);
+    var id = trackMatch ? trackMatch[1] : (albumMatch ? albumMatch[1] : null);
+    if(!id) return null;
+    var entity = trackMatch ? 'song' : 'album';
+    var apiUrl = 'https://itunes.apple.com/lookup?id='+id+'&entity='+entity;
+    var res = await fetch(apiUrl);
+    var data = await res.json();
+    if(data.results && data.results.length > 0){
+      var item = data.results[0];
+      var title = item.trackName || item.collectionName || 'Unknown';
+      var artist = item.artistName || '';
+      var artUrl = (item.artworkUrl100||'').replace('100x100','600x600');
+      return {title:title, artist:artist, artUrl:artUrl, platform:'Apple Music', isPodcast:false};
+    }
+  }catch(e){}
+  return null;
+}
+
 function showToast(msg,type){var t=document.getElementById('toast');t.textContent=msg;t.className='toast '+type+' show';if(type!=='loading')setTimeout(function(){t.className='toast';},3000);}
 </script>
 </body>
