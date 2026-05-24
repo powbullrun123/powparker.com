@@ -183,16 +183,15 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .page{width:816px;min-height:1056px;background:#fff;box-shadow:0 6px 40px rgba(0,0,0,.3);display:flex;flex-direction:column}
 .top-bar,.bottom-bar{height:10px;background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-light),var(--gold),var(--gold-dark));flex-shrink:0}
 .header-rule,.footer-rule{height:3px;margin:0;background:linear-gradient(90deg,transparent 0%,var(--gold-light) 15%,var(--gold) 40%,var(--gold) 60%,var(--gold-light) 85%,transparent 100%)}
-.letterhead{display:flex;align-items:center;justify-content:space-between;padding:40px 56px 24px}
-.lh-brand-group{display:flex;align-items:center}
-.lh-seal{width:132px;height:132px;border-radius:50%;flex-shrink:0;box-shadow:0 3px 14px rgba(0,0,0,.15);object-fit:contain;cursor:pointer;transition:opacity .2s}
+.letterhead{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:32px 56px 20px}
+.lh-brand-group{display:flex;flex-direction:column;align-items:center;text-align:center}
+.lh-seal{width:158px;height:158px;border-radius:50%;flex-shrink:0;box-shadow:0 3px 14px rgba(0,0,0,.15);object-fit:contain;cursor:pointer;transition:opacity .2s}
 .lh-seal:hover{opacity:.85}
-.lh-text{margin-left:24px}
-.lh-name{font-family:'Cormorant',serif;font-size:1.95rem;font-weight:700;color:var(--navy);letter-spacing:.04em;line-height:1.1}
-.lh-motto{font-family:'Cormorant',serif;font-size:.8rem;font-weight:500;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-top:6px}
+.lh-text{margin-top:10px;text-align:center}
+.lh-motto{font-family:'Cormorant',serif;font-size:.93rem;font-weight:600;color:var(--navy);-webkit-text-stroke:.6px var(--gold);paint-order:stroke fill;letter-spacing:.1em;text-transform:uppercase}
 .lh-contact{text-align:right;flex-shrink:0}
-.lh-contact div{font-family:'Lato',sans-serif;font-size:.75rem;color:var(--text-light);line-height:1.6}
-.lh-contact a{color:var(--gold-dark);text-decoration:none}
+.lh-contact div{font-family:'Lato',sans-serif;font-size:.75rem;color:var(--navy);line-height:1.6}
+.lh-contact a{color:var(--navy);text-decoration:none}
 .l-hero-wrap{position:relative;margin-bottom:32px;display:none;line-height:0}
 .l-hero-wrap.active{display:block}
 .l-hero-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,1));pointer-events:none}
@@ -236,7 +235,7 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .exhibit-print-heading{font-family:'Cormorant',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:8px}
 .exhibit-heading-rule{height:2px;background:linear-gradient(90deg,transparent,#C9A84C,transparent);width:120px;margin:0 auto 16px}
 .exhibit-print-img{display:inline-block;border:3px solid var(--gold);box-shadow:0 4px 20px rgba(0,0,0,.12)}
-.exhibit-print-caption{font-style:italic;font-size:.9rem;color:var(--text-light);margin-top:10px}
+.exhibit-print-caption{font-style:italic;font-size:1.02rem;color:var(--text-light);margin-top:10px}
 .l-music-card{margin:28px 56px 0;padding:16px 20px;background:#0f1a2e;border:1px solid rgba(201,168,76,.35);border-radius:10px;display:none;align-items:center;gap:18px;page-break-inside:avoid;flex-shrink:0}
 .l-music-card.active{display:flex}
 .l-music-info{flex:1;min-width:0}
@@ -307,11 +306,9 @@ body.has-music-gram .page-container{padding-bottom:120px}
 /* MOBILE */
 @media(max-width:860px){
   .page{width:100%;min-height:auto}
-  .letterhead{padding:24px 20px 16px;flex-direction:column;align-items:flex-start;gap:14px}
-  .lh-seal{width:100px;height:100px}
-  .lh-text{margin-left:14px}
-  .lh-name{font-size:1.5rem}
-  .lh-contact{text-align:left;width:100%}
+  .letterhead{padding:24px 20px 16px;grid-template-columns:1fr;justify-items:center;gap:10px}
+  .lh-seal{width:120px;height:120px}
+  .lh-contact{text-align:center;width:100%}
   .letter-content{padding:20px 20px 24px}
   .l-music-card{margin:20px 20px 0}
   .footer-social{padding:12px 20px 8px}
@@ -513,6 +510,17 @@ body.has-music-gram .page-container{padding-bottom:120px}
     <div class="field-row"><label>Closing</label><input type="text" id="inClosing" value="Respectfully,"></div>
     <div class="field-row"><label>Signature Title</label><input type="text" id="inSigTitle" value="Founder &mdash; SaveKearnyAZ.org &middot; Project 88"></div>
   </div>
+  <div style="margin-top:12px;padding:14px 16px;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.2);border-radius:8px;">
+    <div style="font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;">&#9998; Signature Contact Details</div>
+    <div class="field-grid">
+      <div class="field-row"><label>AZ Phone</label><input type="text" id="inSigAZPhone" value="(480) 788-2320" oninput="renderLetter()"></div>
+      <div class="field-row"><label>TX Phone</label><input type="text" id="inSigTXPhone" value="(214) 838-1883" oninput="renderLetter()"></div>
+    </div>
+    <div class="field-grid">
+      <div class="field-row"><label>Website</label><input type="text" id="inSigWebsite" value="www.powparker.com" oninput="renderLetter()"></div>
+      <div class="field-row"><label>Email</label><input type="text" id="inSigEmail" value="powell@powparker.com" oninput="renderLetter()"></div>
+    </div>
+  </div>
 
   <!-- MUSIC / PODCAST SECTION -->
   <div class="music-section">
@@ -557,17 +565,17 @@ body.has-music-gram .page-container{padding-bottom:120px}
   <div class="page">
     <div class="top-bar"></div>
     <div class="letterhead">
+      <div></div>
       <div class="lh-brand-group">
         <img src="https://powparker.com/powparker-logo.webp" class="lh-seal" id="outSeal" alt="Powell Parker Seal" onclick="document.getElementById('logoFileInput').click()" title="Click to upload logo">
         <div class="lh-text">
-          <div class="lh-name">Powell Parker</div>
           <div class="lh-motto">From the Desk of Powell Parker</div>
         </div>
       </div>
       <div class="lh-contact">
-        <div><a href="mailto:powell@powparker.com">powell@powparker.com</a></div>
-        <div><span style="font-size:.68rem;color:#999;">AZ:</span> <a href="tel:4807882320">(480) 788-2320</a></div>
-        <div><a href="https://www.powparker.com">powparker.com</a></div>
+        <div><a href="mailto:powell@powparker.com" id="lhContactEmail">powell@powparker.com</a></div>
+        <div>AZ: <a href="tel:4807882320" id="lhContactAZ">(480) 788-2320</a></div>
+        <div><a href="https://www.powparker.com" id="lhContactWeb">powparker.com</a></div>
         <div>Mesa, Arizona</div>
       </div>
     </div>
@@ -585,13 +593,13 @@ body.has-music-gram .page-container{padding-bottom:120px}
         <div class="l-sig-name" id="outSigName">Powell Parker</div>
         <div class="l-sig-title" id="outSigTitle">Founder &mdash; SaveKearnyAZ.org &middot; Project 88</div>
         <div class="l-sig-phones">
-          <span style="font-size:.68rem;color:#999;">AZ:</span> <a href="tel:4807882320">(480) 788-2320</a> &nbsp;&middot;&nbsp;
-          <span style="font-size:.68rem;color:#999;">TX:</span> <a href="tel:2148381883">(214) 838-1883</a>
+          <span id="outSigAZPhone">AZ: <a href="tel:4807882320" style="color:var(--gold-dark);text-decoration:none;">(480) 788-2320</a></span> &nbsp;&middot;&nbsp;
+          <span id="outSigTXPhone">TX: <a href="tel:2148381883" style="color:var(--gold-dark);text-decoration:none;">(214) 838-1883</a></span>
         </div>
         <div class="l-sig-links">
-          <a href="https://www.powparker.com">www.powparker.com</a>
+          <a href="https://www.powparker.com" id="outSigWebLink">www.powparker.com</a>
           <span class="sig-divider">|</span>
-          <a href="mailto:powell@powparker.com">powell@powparker.com</a>
+          <a href="mailto:powell@powparker.com" id="outSigEmailLink">powell@powparker.com</a>
         </div>
       </div>
     </div>
@@ -701,7 +709,7 @@ function openExistingPhotoEdit(index){editingPhotoIndex=index;var p=existingPhot
 function closeExistingPhotoEdit(){editingPhotoIndex=-1;document.getElementById('existingPhotoEditPanel').classList.remove('open');document.querySelectorAll('.existing-photo-item').forEach(function(el){el.classList.remove('editing');});}
 window.saveExistingPhotoEdit=async function(){if(editingPhotoIndex<0)return;var p=existingPhotos[editingPhotoIndex],url=typeof p==='string'?p:(p.url||p),heading=document.getElementById('editPanelHeading').value.trim(),caption=document.getElementById('editPanelCaption').value.trim(),fileInput=document.getElementById('editPanelPhotoFile');if(fileInput.files&&fileInput.files[0]){showToast('Uploading...','loading');var fd=new FormData();fd.append('photo',fileInput.files[0]);fd.append('letterId',editingSlug||'general');try{var res=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var data=await res.json();if(data.success){url=WORKER+'/photos/'+data.key;document.getElementById('editPanelPreview').src=url;}else{showToast('Upload failed','error');return;}}catch(e){showToast('Upload error','error');return;}}existingPhotos[editingPhotoIndex]={url:url,heading:heading,caption:caption};renderExistingPhotos();closeExistingPhotoEdit();showToast('Photo updated -- ReParLay to save','success');};
 
-function buildLetterObj(){var recip=document.getElementById('inRecipient').value.trim(),recipParts=recip.split(',').map(function(s){return s.trim();}),recipHtml='<strong>'+recipParts[0]+'</strong>';for(var j=1;j<recipParts.length;j++)recipHtml+='<br>'+recipParts[j];return{date:document.getElementById('inDate').value.trim(),recipientName:recipParts[0],recipientHtml:recipHtml,subject:document.getElementById('inSubject').value.trim(),salutation:document.getElementById('inSalutation').value.trim(),body:document.getElementById('inBody').value.trim(),closing:document.getElementById('inClosing').value.trim(),sigTitle:document.getElementById('inSigTitle').value.trim(),password:document.getElementById('inPassword').value.trim()||null,musicUrl:document.getElementById('inMusic').value.trim()||null,musicMeta:currentMusicMeta||null,sigFont:currentSigFont||null,sigFontSize:currentSigSize||null,exhibits:[],logoKey:null};}
+function buildLetterObj(){var recip=document.getElementById('inRecipient').value.trim(),recipParts=recip.split(',').map(function(s){return s.trim();}),recipHtml='<strong>'+recipParts[0]+'</strong>';for(var j=1;j<recipParts.length;j++)recipHtml+='<br>'+recipParts[j];return{date:document.getElementById('inDate').value.trim(),recipientName:recipParts[0],recipientHtml:recipHtml,subject:document.getElementById('inSubject').value.trim(),salutation:document.getElementById('inSalutation').value.trim(),body:document.getElementById('inBody').value.trim(),closing:document.getElementById('inClosing').value.trim(),sigTitle:document.getElementById('inSigTitle').value.trim(),password:document.getElementById('inPassword').value.trim()||null,musicUrl:document.getElementById('inMusic').value.trim()||null,musicMeta:currentMusicMeta||null,sigFont:currentSigFont||null,sigFontSize:currentSigSize||null,heroPosition:document.getElementById('heroSlider').value||'40',sigAZPhone:document.getElementById('inSigAZPhone').value.trim()||'(480) 788-2320',sigTXPhone:document.getElementById('inSigTXPhone').value.trim()||'(214) 838-1883',sigWebsite:document.getElementById('inSigWebsite').value.trim()||'www.powparker.com',sigEmail:document.getElementById('inSigEmail').value.trim()||'powell@powparker.com',exhibits:[],logoKey:null};}
 
 async function generateAndSave(){renderLetter();var slug=document.getElementById('inSlug').value.trim()||'letter-'+Date.now();document.getElementById('inSlug').value=slug;var btn=document.getElementById('btnSave');btn.disabled=true;showToast('Saving...','loading');try{var logoKey=logoExistingKey||null;if(logoFile){var lfd=new FormData();lfd.append('logo',logoFile);lfd.append('slug',slug);var lRes=await fetch(WORKER+'/api/logo',{method:'POST',headers:{'X-API-Key':API_KEY},body:lfd});var lData=await lRes.json();if(lData.success){logoKey=lData.key;logoFile=null;logoExistingKey=logoKey;}}var exhibits=[];var cards=document.querySelectorAll('.exhibit-card');for(var i=0;i<cards.length;i++){var id=cards[i].id.replace('card_',''),heading=document.getElementById('heading_'+id).value.trim(),scale=document.getElementById('scale_'+id).value,caption=document.getElementById('caption_'+id).value.trim(),exData=exhibitFiles[id];if(exData&&exData.file){showToast('Uploading photo '+(i+1)+'...','loading');var fd=new FormData();fd.append('photo',exData.file);fd.append('letterId',slug);var pRes=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var pData=await pRes.json();if(pData.success)exhibits.push({photoKey:pData.key,heading:heading,scale:scale,caption:caption});}}var allExhibits=existingPhotos.map(function(p){if(typeof p==='string')return{photoUrl:p,heading:'',scale:80,caption:''};return{photoUrl:p.url,heading:p.heading||'',scale:p.scale||80,caption:p.caption||''};}).concat(exhibits);if(heroDataUrl){showToast('Uploading cover photo...','loading');try{var hBlob=await(await fetch(heroDataUrl)).blob();var hFd=new FormData();hFd.append('photo',hBlob,'hero.jpg');hFd.append('letterId',slug);var hR=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:hFd});var hD=await hR.json();if(hD.success){heroExistingUrl=WORKER+'/photos/'+hD.key;heroDataUrl=null;}}catch(e){}}var heroKey=heroExistingUrl?heroExistingUrl.split('/photos/').pop():null;var letter=buildLetterObj();letter.exhibits=allExhibits;letter.logoKey=logoKey;letter.heroUrl=heroExistingUrl||null;letter.heroKey=heroKey;showToast('Saving to cloud...','loading');var res=await fetch(WORKER+'/api/save',{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':API_KEY},body:JSON.stringify({slug:slug,letter:letter})});var data=await res.json();if(data.success){setSharePanel(WORKER+'/s/'+data.slug,false);showToast('Letter saved!','success');loadSavedLetters();if(editMode)toggleMode();}else throw new Error(data.error||'Save failed');}catch(e){showToast('Error: '+e.message,'error');}btn.disabled=false;}
 
@@ -713,7 +721,7 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
       var activeBtn=document.querySelector('.sig-font-btn[data-sigfont="'+letter.sigFont+'"]');
       if(activeBtn){document.querySelectorAll('.sig-font-btn').forEach(function(b){b.classList.remove('active');});activeBtn.classList.add('active');}
       var sn=document.getElementById('outSigName');if(sn){sn.style.fontFamily=letter.sigFont;sn.style.fontSize=letter.sigFontSize||'1.9rem';}
-    }document.getElementById('inPassword').value=letter.password||'';// Set toggle first (clears input), then restore after
+    }document.getElementById('inPassword').value=letter.password||'';document.getElementById('inSigAZPhone').value=letter.sigAZPhone||'(480) 788-2320';document.getElementById('inSigTXPhone').value=letter.sigTXPhone||'(214) 838-1883';document.getElementById('inSigWebsite').value=letter.sigWebsite||'www.powparker.com';document.getElementById('inSigEmail').value=letter.sigEmail||'powell@powparker.com';// Set toggle first (clears input), then restore after
     if(letter.musicMeta&&letter.musicMeta.isPodcast)setMgramMode('podcast');else setMgramMode('song');
     document.getElementById('inMusic').value=letter.musicUrl||'';
     if(letter.musicMeta&&letter.musicMeta.title){currentMusicMeta=letter.musicMeta;showMusicPreview(letter.musicMeta.title,letter.musicMeta.artist||'',letter.musicMeta.artUrl||'',letter.musicMeta.platform||'');}
@@ -726,15 +734,19 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
       document.getElementById('heroPrevWrap').classList.add('active');
       document.getElementById('outHeroImg').src=heroExistingUrl;
       document.getElementById('outHeroImg').classList.add('active');
+      var heroPos=letter.heroPosition||'40';
+      document.getElementById('heroSlider').value=heroPos;
+      document.getElementById('heroPrevImg').style.objectPosition='center '+heroPos+'%';
+      document.getElementById('outHeroImg').style.objectPosition='center '+heroPos+'%';
     } else {
       heroExistingUrl=null;
       document.getElementById('heroPrevWrap').classList.remove('active');
       document.getElementById('outHeroImg').classList.remove('active');
     }existingPhotos=[];if(letter.exhibits&&letter.exhibits.length>0)letter.exhibits.forEach(function(ex){var url=ex.photoUrl||(ex.photoKey?WORKER+'/photos/'+ex.photoKey:'');if(url)existingPhotos.push({url:url,heading:ex.heading||'',caption:ex.caption||'',scale:ex.scale||80});});renderExistingPhotos();document.getElementById('exhibitsContainer').innerHTML='';exhibitCounter=0;exhibitFiles={};document.getElementById('btnSave').style.display='none';document.getElementById('btnReParlay').classList.add('active');document.getElementById('btnCancelEdit').style.display='inline-block';document.getElementById('editModeBanner').classList.add('active');if(!editMode)toggleMode();document.getElementById('inputPanel').scrollIntoView({behavior:'smooth',block:'start'});showToast('Loaded -- make edits then ReParLay It','success');showToneRow();}catch(e){showToast('Error: '+e.message,'error');}};
 
-window.cancelEdit=function(){editingSlug=null;existingPhotos=[];logoFile=null;logoExistingKey=null;logoDataUrl=null;document.getElementById('outSeal').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoPreviewEditor').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoStatus').style.display='none';['inDate','inSubject','inSlug','inRecipient','inSalutation','inBody','inPassword','inMusic'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('inClosing').value='Respectfully,';document.getElementById('inSigTitle').value='Founder -- SaveKearnyAZ.org - Project 88';document.getElementById('exhibitsContainer').innerHTML='';document.getElementById('existingPhotosWrap').style.display='none';closeExistingPhotoEdit();exhibitCounter=0;exhibitFiles={};removeHero();document.getElementById('btnSave').style.display='inline-block';document.getElementById('btnReParlay').classList.remove('active');document.getElementById('btnCancelEdit').style.display='none';document.getElementById('editModeBanner').classList.remove('active');document.getElementById('sharePanel').classList.remove('active');setMgramMode('song');currentSigFont="'Pinyon Script',cursive";currentSigSize='1.9rem';document.querySelectorAll('.sig-font-btn').forEach(function(b,i){b.classList.toggle('active',i===0);});var sn=document.getElementById('outSigName');if(sn){sn.style.fontFamily="'Pinyon Script',cursive";sn.style.fontSize='1.9rem';}showToast('Cleared','success');document.getElementById('inputPanel').scrollIntoView({behavior:'smooth',block:'start'});};
+window.cancelEdit=function(){editingSlug=null;existingPhotos=[];logoFile=null;logoExistingKey=null;logoDataUrl=null;document.getElementById('outSeal').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoPreviewEditor').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoStatus').style.display='none';['inDate','inSubject','inSlug','inRecipient','inSalutation','inBody','inPassword','inMusic'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('inClosing').value='Respectfully,';document.getElementById('inSigTitle').value='Founder -- SaveKearnyAZ.org - Project 88';document.getElementById('inSigAZPhone').value='(480) 788-2320';document.getElementById('inSigTXPhone').value='(214) 838-1883';document.getElementById('inSigWebsite').value='www.powparker.com';document.getElementById('inSigEmail').value='powell@powparker.com';document.getElementById('exhibitsContainer').innerHTML='';document.getElementById('existingPhotosWrap').style.display='none';closeExistingPhotoEdit();exhibitCounter=0;exhibitFiles={};removeHero();document.getElementById('btnSave').style.display='inline-block';document.getElementById('btnReParlay').classList.remove('active');document.getElementById('btnCancelEdit').style.display='none';document.getElementById('editModeBanner').classList.remove('active');document.getElementById('sharePanel').classList.remove('active');setMgramMode('song');currentSigFont="'Pinyon Script',cursive";currentSigSize='1.9rem';document.querySelectorAll('.sig-font-btn').forEach(function(b,i){b.classList.toggle('active',i===0);});var sn=document.getElementById('outSigName');if(sn){sn.style.fontFamily="'Pinyon Script',cursive";sn.style.fontSize='1.9rem';}showToast('Cleared','success');document.getElementById('inputPanel').scrollIntoView({behavior:'smooth',block:'start'});};
 
-function renderLetter(){var date=document.getElementById('inDate').value.trim();if(date)document.getElementById('outDate').textContent=date;var heroImg=document.getElementById('outHeroImg');var heroWrap=document.getElementById('outHeroWrap');if(heroDataUrl){heroImg.src=heroDataUrl;heroImg.style.objectPosition='center '+document.getElementById('heroSlider').value+'%';heroWrap.classList.add('active');}else if(heroExistingUrl){heroImg.src=heroExistingUrl;heroImg.style.objectPosition='center 40%';heroWrap.classList.add('active');}else{heroWrap.classList.remove('active');}var recip=document.getElementById('inRecipient').value.trim();if(recip){var parts=recip.split(',').map(function(s){return s.trim();}),html='<strong>'+parts[0]+'</strong>';for(var i=1;i<parts.length;i++)html+='<br>'+parts[i];document.getElementById('outRecipient').innerHTML=html;}var subj=document.getElementById('inSubject').value.trim(),subjEl=document.getElementById('outSubject');if(subj){subjEl.textContent=subj;subjEl.style.display='block';}else subjEl.style.display='none';var sal=document.getElementById('inSalutation').value.trim();if(sal)document.getElementById('outSalutation').textContent=sal;var body=document.getElementById('inBody').value.trim();if(body){var bodyHtml='';body.split(/\n\s*\n/).forEach(function(p){p=p.trim();if(!p)return;var gs='color:var(--gold);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;font-weight:600;';
+function renderLetter(){var date=document.getElementById('inDate').value.trim();if(date)document.getElementById('outDate').textContent=date;var heroImg=document.getElementById('outHeroImg');var heroWrap=document.getElementById('outHeroWrap');if(heroDataUrl){heroImg.src=heroDataUrl;heroImg.style.objectPosition='center '+document.getElementById('heroSlider').value+'%';heroWrap.classList.add('active');}else if(heroExistingUrl){heroImg.src=heroExistingUrl;heroImg.style.objectPosition='center '+document.getElementById('heroSlider').value+'%';heroWrap.classList.add('active');}else{heroWrap.classList.remove('active');}var recip=document.getElementById('inRecipient').value.trim();if(recip){var parts=recip.split(',').map(function(s){return s.trim();}),html='<strong>'+parts[0]+'</strong>';for(var i=1;i<parts.length;i++)html+='<br>'+parts[i];document.getElementById('outRecipient').innerHTML=html;}var subj=document.getElementById('inSubject').value.trim(),subjEl=document.getElementById('outSubject');if(subj){subjEl.textContent=subj;subjEl.style.display='block';}else subjEl.style.display='none';var sal=document.getElementById('inSalutation').value.trim();if(sal)document.getElementById('outSalutation').textContent=sal;var body=document.getElementById('inBody').value.trim();if(body){var bodyHtml='';body.split(/\n\s*\n/).forEach(function(p){p=p.trim();if(!p)return;var gs='color:var(--gold);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;font-weight:600;';
         var lm={};var li=0;
         function sl(u,l){var k='__K'+li+'__';li++;if(u.indexOf('http')<0)u='https://'+u;lm[k]={url:u,label:l};return k;}
         p=p.replace(/\(\(([^)]+)\)\) ?<([^>]+)>/g,function(m,u,l){return sl(u,l);});
@@ -749,7 +761,19 @@ function renderLetter(){var date=document.getElementById('inDate').value.trim();
         if(/^>>/.test(p)&&/<<$/.test(p)){var qt=p.replace(/^>>/,'').replace(/<<$/,'').trim();bodyHtml+='<div class="l-pull-quote">'+qt+'</div>';}
         else{bodyHtml+='<p>'+p+'</p>';}
       });document.getElementById('outBody').innerHTML=bodyHtml;}var outEx=document.getElementById('outExhibits');outEx.innerHTML='';document.querySelectorAll('.exhibit-card').forEach(function(card){var id=card.id.replace('card_',''),headVal=document.getElementById('heading_'+id).value.trim(),scaleVal=document.getElementById('scale_'+id).value,capVal=document.getElementById('caption_'+id).value.trim(),exData=exhibitFiles[id];if(exData&&exData.dataUrl){var wrap=document.createElement('div');wrap.className='printed-exhibit-container';var h='';if(headVal)h+='<div class="exhibit-print-heading">'+headVal+'</div><div class="exhibit-heading-rule"></div>';h+='<img src="'+exData.dataUrl+'" class="exhibit-print-img" style="width:'+scaleVal+'%;" alt="Exhibit">';if(capVal)h+='<div class="exhibit-print-caption">'+capVal+'</div>';wrap.innerHTML=h;outEx.appendChild(wrap);}});var closing=document.getElementById('inClosing').value.trim();if(closing)document.getElementById('outClosing').textContent=closing;var sigTitle=document.getElementById('inSigTitle').value.trim();if(sigTitle)document.getElementById('outSigTitle').textContent=sigTitle;
-  var sn=document.getElementById('outSigName');if(sn&&currentSigFont){sn.style.fontFamily=currentSigFont;sn.style.fontSize=currentSigSize||'1.9rem';}var musicUrl=document.getElementById('inMusic').value.trim(),musicCard=document.getElementById('outMusicCard'),musicLeft=document.getElementById('outMusicLeft');if(musicUrl){
+  var sn=document.getElementById('outSigName');if(sn&&currentSigFont){sn.style.fontFamily=currentSigFont;sn.style.fontSize=currentSigSize||'1.9rem';}
+  var azPh=document.getElementById('inSigAZPhone').value.trim()||'(480) 788-2320';
+  var txPh=document.getElementById('inSigTXPhone').value.trim()||'(214) 838-1883';
+  var sigWb=document.getElementById('inSigWebsite').value.trim()||'www.powparker.com';
+  var sigEm=document.getElementById('inSigEmail').value.trim()||'powell@powparker.com';
+  var outAZ=document.getElementById('outSigAZPhone');if(outAZ)outAZ.innerHTML='AZ: <a href="tel:'+azPh.replace(/\D/g,'')+'" style="color:var(--gold-dark);text-decoration:none;">'+azPh+'</a>';
+  var outTX=document.getElementById('outSigTXPhone');if(outTX)outTX.innerHTML='TX: <a href="tel:'+txPh.replace(/\D/g,'')+'" style="color:var(--gold-dark);text-decoration:none;">'+txPh+'</a>';
+  var swl=document.getElementById('outSigWebLink');if(swl){swl.href='https://'+sigWb.replace(/^https?:\/\//,'');swl.textContent=sigWb;}
+  var sel=document.getElementById('outSigEmailLink');if(sel){sel.href='mailto:'+sigEm;sel.textContent=sigEm;}
+  var lhWeb=document.getElementById('lhContactWeb');if(lhWeb){lhWeb.href='https://'+sigWb.replace(/^https?:\/\//,'');lhWeb.textContent=sigWb.replace(/^www\./,'');}
+  var lhEmail=document.getElementById('lhContactEmail');if(lhEmail){lhEmail.href='mailto:'+sigEm;lhEmail.textContent=sigEm;}
+  var lhAZ=document.getElementById('lhContactAZ');if(lhAZ){lhAZ.href='tel:'+azPh.replace(/\D/g,'');lhAZ.textContent=azPh;}
+  var musicUrl=document.getElementById('inMusic').value.trim(),musicCard=document.getElementById('outMusicCard'),musicLeft=document.getElementById('outMusicLeft');if(musicUrl){
     document.getElementById('outMusicLink').href=musicUrl;
     var meta=currentMusicMeta;
     var artSrc=musicArtDataUrl||(meta&&meta.artUrl?meta.artUrl:null);
