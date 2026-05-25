@@ -241,7 +241,7 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .l-music-info{flex:1;min-width:0}
 .l-music-label{font-family:'Lato',sans-serif;font-size:.62rem;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
 .l-music-link{font-family:'Lato',sans-serif;font-size:.88rem;font-weight:700;color:var(--gold);text-decoration:none;display:block}
-.letter-footer{flex-shrink:0;margin-top:28px}
+.letter-footer{flex-shrink:0;margin-top:0}
 .footer-social{padding:14px 56px 10px;display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap}
 .footer-social a{color:var(--gold);text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px}
 .footer-social a svg{width:26px;height:26px}
@@ -629,12 +629,15 @@ body.has-music-gram .page-container{padding-bottom:120px}
       </div>
     </div>
     <div class="l-music-card" id="outMusicCard">
-      <div id="outMusicLeft"></div>
-      <div class="l-music-info" style="width:100%">
+      <div id="outMusicLeft" style="width:60px;height:60px;border-radius:7px;flex-shrink:0;overflow:hidden;background:rgba(201,168,76,.08);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:rgba(201,168,76,.4);">&#9835;</div>
+      <div class="l-music-info" style="flex:1;min-width:0;">
         <div class="l-music-label">&#9835; Now Playing</div>
-        <div id="outMusicEmbed"></div>
+        <div id="outMusicTitle" style="font-family:'Lato',sans-serif;font-size:.9rem;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></div>
+        <div id="outMusicArtist" style="font-family:'Lato',sans-serif;font-size:.72rem;color:rgba(255,255,255,.5);margin-top:2px;"></div>
       </div>
+      <button id="outMusicPlayBtn" onclick="previewPlay(this)" style="width:130px;height:54px;flex-shrink:0;background:url('https://letters.powparker.com/water-play.webp') center/cover;background-size:cover;border:none;border-radius:8px;cursor:pointer;box-shadow:0 4px 14px rgba(201,168,76,.3);transition:opacity .2s;"></button>
     </div>
+    <div id="outMusicEmbed" style="display:none;margin:0 56px 8px;"></div>
     <div class="letter-footer">
       <div class="footer-rule"></div>
       <div class="footer-social">
@@ -809,8 +812,12 @@ function renderLetter(){var date=document.getElementById('inDate').value.trim();
   var lhAZ=document.getElementById('lhContactAZ');if(lhAZ){lhAZ.href='tel:'+azPh.replace(/\D/g,'');lhAZ.textContent=azPh;}
   var musicUrl=document.getElementById('inMusic').value.trim(),musicCard=document.getElementById('outMusicCard'),musicLeft=document.getElementById('outMusicLeft');if(musicUrl){
     _currentMusicUrl=musicUrl;
-    var embedDiv=document.getElementById('outMusicEmbed');
-    if(embedDiv)embedDiv.innerHTML=buildEmbedIframe(musicUrl);
+    // Update title/artist in compact card
+    var mt=document.getElementById('outMusicTitle');
+    var ma=document.getElementById('outMusicArtist');
+    if(mt&&currentMusicMeta&&currentMusicMeta.title)mt.textContent=currentMusicMeta.title;
+    if(ma&&currentMusicMeta&&currentMusicMeta.artist)ma.textContent=currentMusicMeta.artist;
+    if(currentMusicMeta&&currentMusicMeta.artUrl){var al=document.getElementById('outMusicLeft');if(al)al.innerHTML='<img src="'+currentMusicMeta.artUrl+'" style="width:100%;height:100%;object-fit:cover;border-radius:7px;" alt="Art">';}
     var meta=currentMusicMeta;
     var artSrc=musicArtDataUrl||(meta&&meta.artUrl?meta.artUrl:null);
     if(artSrc){
@@ -948,6 +955,23 @@ window.playMusicNow=function(){
   var btn=document.getElementById('mgbPlayBtn');if(btn){btn.style.opacity='0.55';btn.title='Now Playing - tap to stop';}
 };
 window.openMusicPlayer=window.playMusicNow;
+window.previewPlay=function(btn){
+  var mu=_currentMusicUrl;if(!mu)return;
+  var pr=document.getElementById('outMusicEmbed');
+  if(!pr)return;
+  if(pr.dataset.playing==='1'){pr.innerHTML='';pr.style.display='none';pr.dataset.playing='0';btn.style.opacity='1';return;}
+  var eu=convertToEmbedUrl(mu);if(!eu){window.open(mu);return;}
+  var h=eu.includes('spotify')?80:eu.includes('youtube')?200:175;
+  var ifr=document.createElement('iframe');
+  ifr.src=eu+(eu.includes('?')?'&autoplay=1':'?autoplay=1');
+  ifr.height=h;ifr.frameBorder='0';
+  ifr.allow='autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture';
+  ifr.style.cssText='width:100%;border:none;border-radius:8px;display:block;';
+  pr.innerHTML='';pr.appendChild(ifr);
+  pr.style.display='block';pr.dataset.playing='1';btn.style.opacity='0.5';
+  // make embed visible by expanding card
+  pr.style.gridColumn='1/-1';
+};
 window.closeMusicPlayer=function(){window.playMusicNow();};
 function initMusicGram(musicUrl,metaJson){
   if(!musicUrl)return;
