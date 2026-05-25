@@ -192,7 +192,7 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .lh-contact{text-align:right;flex-shrink:0}
 .lh-contact div{font-family:'Lato',sans-serif;font-size:.75rem;color:var(--navy);line-height:1.6}
 .lh-contact a{color:var(--navy);text-decoration:none}
-.l-hero-wrap{position:relative;margin-bottom:32px;display:none;line-height:0}
+.l-hero-wrap{position:relative;margin-bottom:32px;display:none;line-height:0;overflow:hidden}
 .l-hero-wrap.active{display:block}
 .l-hero-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,1));pointer-events:none}
 .l-hero-img{width:100%;max-height:360px;object-fit:cover;display:block}
@@ -236,7 +236,7 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .exhibit-heading-rule{height:2px;background:linear-gradient(90deg,transparent,#C9A84C,transparent);width:120px;margin:0 auto 16px}
 .exhibit-print-img{display:inline-block;border:3px solid var(--gold);box-shadow:0 4px 20px rgba(0,0,0,.12)}
 .exhibit-print-caption{font-style:italic;font-size:1.02rem;color:var(--text-light);margin-top:10px}
-.l-music-card{margin:28px 56px 0;padding:16px 20px;background:#0f1a2e;border:1px solid rgba(201,168,76,.35);border-radius:10px;display:none;align-items:center;gap:18px;page-break-inside:avoid;flex-shrink:0}
+.l-music-card{margin:14px 56px 0;padding:8px 12px;background:#0f1a2e;border:1px solid rgba(201,168,76,.35);border-radius:8px;display:none;align-items:center;gap:10px;page-break-inside:avoid;flex-shrink:0}
 .l-music-card.active{display:flex}
 .l-music-info{flex:1;min-width:0}
 .l-music-label{font-family:'Lato',sans-serif;font-size:.62rem;color:rgba(255,255,255,.4);letter-spacing:.12em;text-transform:uppercase;margin-bottom:5px}
@@ -445,7 +445,7 @@ body.has-music-gram .page-container{padding-bottom:120px}
       </div>
       <div class="hero-slider-row" style="margin-top:6px;">
         <span>&#128269;&#8722;</span>
-        <input type="range" id="heroZoom" min="100" max="250" value="100" oninput="adjustHeroZoom(this.value)">
+        <input type="range" id="heroZoom" min="50" max="150" value="100" oninput="adjustHeroZoom(this.value)">
         <span>&#128269;&#43;</span>
       </div>
       <div style="text-align:center;font-family:'Lato',sans-serif;font-size:.58rem;color:rgba(255,255,255,.25);margin-top:2px;letter-spacing:.06em;">ZOOM: <span id="heroZoomVal">100</span>%</div>
@@ -722,7 +722,7 @@ function setMgramMode(mode){
 })();
 
 function adjustHeroPos(val){var pos='center '+val+'%';document.getElementById('heroPrevImg').style.objectPosition=pos;document.getElementById('outHeroImg').style.objectPosition=pos;}
-function adjustHeroZoom(val){var scale=val/100;var zoomStyle='scale('+scale+')';document.getElementById('heroPrevImg').style.transform=zoomStyle;document.getElementById('outHeroImg').style.transform=zoomStyle;document.getElementById('heroZoomVal').textContent=val;}
+function adjustHeroZoom(val){var scale=val/100;document.getElementById('heroPrevImg').style.transform='scale('+scale+')';document.getElementById('outHeroImg').style.transform='scale('+scale+')';document.getElementById('heroZoomVal').textContent=val;}
 function removeHero(){heroDataUrl=null;heroExistingUrl=null;document.getElementById('heroPrevWrap').classList.remove('active');document.getElementById('outHeroImg').classList.remove('active');document.getElementById('outHeroImg').src='';document.getElementById('heroZoom').value=100;document.getElementById('heroZoomVal').textContent='100';document.getElementById('heroPrevImg').style.transform='scale(1)';document.getElementById('outHeroImg').style.transform='scale(1)';}
 function insertLink(){var ta=document.getElementById('inBody'),start=ta.selectionStart,end=ta.selectionEnd,selected=ta.value.substring(start,end),url=prompt('Enter the URL:','https://');if(!url||url==='https://')return;var display=selected||prompt('Enter display text:',url)||url,linkText='['+display+']('+url+')';ta.value=ta.value.substring(0,start)+linkText+ta.value.substring(end);ta.selectionStart=ta.selectionEnd=start+linkText.length;ta.focus();}
 function toggleMode(){editMode=!editMode;var panel=document.getElementById('inputPanel'),btn=document.getElementById('btnToggle'),tag=document.getElementById('modeTag');if(editMode){panel.classList.add('active');btn.textContent='Preview';tag.className='mode-indicator mode-edit';tag.innerHTML='&#9998; EDITING';}else{renderLetter();panel.classList.remove('active');btn.textContent='Edit';tag.className='mode-indicator mode-view';tag.textContent='\u2713 PREVIEW';}}
@@ -910,11 +910,11 @@ function convertToEmbedUrl(url){
   return null;
 }
 function getEmbedHeight(embedUrl){
-  if(!embedUrl)return 80;
+  if(!embedUrl)return 52;
   if(embedUrl.includes('spotify.com/embed'))return 80;
-  if(embedUrl.includes('youtube.com/embed'))return 200;
-  if(embedUrl.includes('soundcloud.com/player'))return 166;
-  if(embedUrl.includes('embed.music.apple.com'))return 175;
+  if(embedUrl.includes('youtube.com/embed'))return 110;
+  if(embedUrl.includes('soundcloud.com/player'))return 84;
+  if(embedUrl.includes('embed.music.apple.com'))return 90;
   return 100;
 }
 function buildEmbedIframe(url){
