@@ -6,7 +6,7 @@
 <title>Powell Parker - Executive Letter</title>
 <meta name="description" content="Official correspondence - From the Desk of Powell Parker">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23C9A84C' font-style='italic' font-family='Georgia,serif'>P</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,700;1,6..96,400&family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700&family=Libre+Baskerville:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&family=Cinzel+Decorative:wght@400;700;900&family=Pinyon+Script&family=Alex+Brush&family=Great+Vibes&family=Dancing+Script:wght@400;600;700&family=Parisienne&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,700;1,6..96,400&family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700&family=Libre+Baskerville:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&family=Cinzel+Decorative:wght@400;700;900&family=Pinyon+Script&family=Alex+Brush&family=Great+Vibes&family=Dancing+Script:wght@400;600;700&family=Parisienne&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
 <style>
 :root {
   --navy:#1B2A40; --deep:#0A1525; --gold:#C9A84C; --gold-light:#E8D5A3; --gold-dark:#9A7A2E;
@@ -213,15 +213,21 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 
 /* Drop cap - first letter of body, 3 lines tall */
 .l-body p:first-of-type::first-letter{
-  font-family:'Cinzel Decorative',serif;
-  font-size:4.1rem;
-  font-weight:700;
-  color:var(--gold);
+  font-family:'UnifrakturMaguntia',cursive;
+  font-size:5.2rem;
+  font-weight:400;
+  color:#C9A84C;
   float:left;
   line-height:0.72;
-  margin-right:7px;
-  margin-top:5px;
-  text-shadow:0 1px 8px rgba(201,168,76,0.25);
+  margin-right:8px;
+  margin-top:4px;
+  /* Layered shadow: dark gold emboss + black depth + bright gold highlight */
+  text-shadow:
+    2px 2px 0px #7a5a1a,
+    3px 3px 0px rgba(100,70,10,0.6),
+    4px 5px 10px rgba(0,0,0,0.45),
+    -1px -1px 0px rgba(255,230,120,0.55);
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 .l-closing{margin-top:36px;font-family:'Cormorant',serif;font-style:italic;font-size:1.1rem}
 .l-sig{margin-top:36px}
