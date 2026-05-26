@@ -183,7 +183,7 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .page{width:816px;min-height:1056px;background:#fff;box-shadow:0 6px 40px rgba(0,0,0,.3);display:flex;flex-direction:column}
 .top-bar,.bottom-bar{height:10px;background:linear-gradient(90deg,var(--gold-dark),var(--gold),var(--gold-light),var(--gold),var(--gold-dark));flex-shrink:0}
 .header-rule,.footer-rule{height:3px;margin:0;background:linear-gradient(90deg,transparent 0%,var(--gold-light) 15%,var(--gold) 40%,var(--gold) 60%,var(--gold-light) 85%,transparent 100%)}
-.letterhead{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:32px 56px 20px}
+.letterhead{display:flex;justify-content:center;align-items:center;padding:32px 56px 20px}
 .lh-brand-group{display:flex;flex-direction:column;align-items:center;text-align:center}
 .lh-seal{width:158px;height:158px;border-radius:50%;flex-shrink:0;box-shadow:0 3px 14px rgba(0,0,0,.15);object-fit:contain;cursor:pointer;transition:opacity .2s}
 .lh-seal:hover{opacity:.85}
@@ -212,22 +212,21 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .l-pull-quote::before{content:'"';position:absolute;top:-8px;left:16px;font-size:3rem;color:var(--gold);opacity:.4;font-family:'Cormorant',serif;line-height:1}
 
 /* Drop cap - first letter of body, 3 lines tall */
+.l-body p:first-of-type{padding-top:2.8rem;}
 .l-body p:first-of-type::first-letter{
-  font-family:'UnifrakturMaguntia',cursive;
-  font-size:5.2rem;
+  font-family:'Snell Roundhand','Pinyon Script','Alex Brush',cursive;
+  font-size:5.5rem;
   font-weight:400;
   color:#C9A84C;
   float:left;
-  line-height:0.72;
-  margin-right:8px;
-  margin-top:4px;
-  /* Layered shadow: dark gold emboss + black depth + bright gold highlight */
+  line-height:0.85;
+  margin-right:10px;
+  margin-top:-2.8rem;
   text-shadow:
     2px 2px 0px #7a5a1a,
     3px 3px 0px rgba(100,70,10,0.6),
     4px 5px 10px rgba(0,0,0,0.45),
     -1px -1px 0px rgba(255,230,120,0.55);
-  filter:drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 .l-closing{margin-top:36px;font-family:'Cormorant',serif;font-style:italic;font-size:1.1rem}
 .l-sig{margin-top:36px}
@@ -617,19 +616,13 @@ body.has-music-gram .page-container{padding-bottom:120px}
   <div class="page">
     <div class="top-bar"></div>
     <div class="letterhead">
-      <div></div>
       <div class="lh-brand-group">
         <img src="https://powparker.com/powparker-logo.webp" class="lh-seal" id="outSeal" alt="Powell Parker Seal" onclick="document.getElementById('logoFileInput').click()" title="Click to upload logo">
         <div class="lh-text">
           <div class="lh-motto">From the Desk of Powell Parker</div>
         </div>
       </div>
-      <div class="lh-contact">
-        <div><a href="mailto:powell@powparker.com" id="lhContactEmail">powell@powparker.com</a></div>
-        <div>AZ: <a href="tel:4807882320" id="lhContactAZ">(480) 788-2320</a></div>
-        <div><a href="https://www.powparker.com" id="lhContactWeb">powparker.com</a></div>
-        <div>Mesa, Arizona</div>
-      </div>
+
     </div>
     <div class="header-rule"></div>
     <div class="letter-content" id="letterContent">
