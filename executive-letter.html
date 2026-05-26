@@ -214,7 +214,7 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 /* Drop cap - first letter of body, 3 lines tall */
 .l-body p:first-of-type::first-letter{
   font-family:'Cinzel Decorative',serif;
-  font-size:3.8rem;
+  font-size:4.1rem;
   font-weight:700;
   color:var(--gold);
   float:left;
@@ -260,6 +260,10 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .settings-panel h3{font-family:'Cormorant',serif;font-size:1.1rem;color:var(--gold);margin-bottom:4px;font-weight:700}
 .settings-sub{font-family:'Lato',sans-serif;font-size:.65rem;color:rgba(255,255,255,.3);margin-bottom:16px}
 .font-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px}
+.size-btn{padding:5px 10px;border:1px solid rgba(201,168,76,.2);border-radius:5px;background:rgba(255,255,255,.03);color:var(--gold-light);font-size:.78rem;font-family:'Lato',sans-serif;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.04em;}
+.size-btn.active,.size-btn:hover{background:var(--gold);color:var(--deep);border-color:var(--gold);}
+.size-row{display:flex;gap:6px;align-items:center;margin-top:8px;}
+.size-row label{font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);flex-shrink:0;min-width:60px;}
 .font-btn{padding:10px 8px;border:1px solid rgba(201,168,76,.2);border-radius:6px;background:rgba(255,255,255,.03);color:var(--gold-light);font-size:1.05rem;cursor:pointer;transition:all .2s;text-align:center}
 .font-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.08)}
 .font-btn.active{border-color:var(--gold);background:rgba(201,168,76,.15);color:var(--gold);font-weight:700}
@@ -381,6 +385,13 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <button class="font-btn" data-font="'Pinyon Script',cursive" onclick="setFont(this)" style="font-family:'Pinyon Script',cursive;">Bickham Script</button>
       <button class="font-btn" data-font="'Alex Brush',cursive" onclick="setFont(this)" style="font-family:'Alex Brush',cursive;">Burgues Script</button>
     </div>
+    <div class="size-row">
+      <label>Body Size</label>
+      <button class="size-btn active" data-bodysize="1.05rem" onclick="setBodySize(this)">Base</button>
+      <button class="size-btn" data-bodysize="1.12rem" onclick="setBodySize(this)">+1pt</button>
+      <button class="size-btn" data-bodysize="1.18rem" onclick="setBodySize(this)">+2pt</button>
+      <button class="size-btn" data-bodysize="1.25rem" onclick="setBodySize(this)">+3pt</button>
+    </div>
   </div>
   <div class="field-row" style="margin-top:16px;border-top:1px solid rgba(201,168,76,.15);padding-top:16px;"><label>Social Links</label></div>
   <div class="field-grid">
@@ -496,7 +507,14 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <button class="sig-font-btn" data-sigfont="'Great Vibes',cursive" onclick="setSigFont(this)" style="font-family:'Great Vibes',cursive;font-size:1.1rem;">Powell Parker</button>
       <button class="sig-font-btn" data-sigfont="'Dancing Script',cursive" onclick="setSigFont(this)" style="font-family:'Dancing Script',cursive;">Powell Parker</button>
       <button class="sig-font-btn" data-sigfont="'Parisienne',cursive" onclick="setSigFont(this)" style="font-family:'Parisienne',cursive;font-size:1.05rem;">Powell Parker</button>
-      <div class="sig-script-divider">&#8212; Body Fonts &#8212;</div>
+      <div class="size-row" style="margin:8px 0 14px;">
+      <label>Sig Size</label>
+      <button class="size-btn active" data-sigsize="1.9rem" onclick="setSigSize(this)">Base</button>
+      <button class="size-btn" data-sigsize="2.05rem" onclick="setSigSize(this)">+1pt</button>
+      <button class="size-btn" data-sigsize="2.2rem" onclick="setSigSize(this)">+2pt</button>
+      <button class="size-btn" data-sigsize="2.35rem" onclick="setSigSize(this)">+3pt</button>
+    </div>
+  <div class="sig-script-divider">&#8212; Body Fonts &#8212;</div>
       <button class="sig-font-btn" data-sigfont="'EB Garamond',Georgia,serif" onclick="setSigFont(this)" style="font-family:'EB Garamond',Georgia,serif;">Powell Parker</button>
       <button class="sig-font-btn" data-sigfont="'Cormorant Garamond',serif" onclick="setSigFont(this)" style="font-family:'Cormorant Garamond',serif;">Powell Parker</button>
       <button class="sig-font-btn" data-sigfont="'Cormorant',serif" onclick="setSigFont(this)" style="font-family:'Cormorant',serif;">Powell Parker</button>
@@ -744,7 +762,7 @@ function openExistingPhotoEdit(index){editingPhotoIndex=index;var p=existingPhot
 function closeExistingPhotoEdit(){editingPhotoIndex=-1;document.getElementById('existingPhotoEditPanel').classList.remove('open');document.querySelectorAll('.existing-photo-item').forEach(function(el){el.classList.remove('editing');});}
 window.saveExistingPhotoEdit=async function(){if(editingPhotoIndex<0)return;var p=existingPhotos[editingPhotoIndex],url=typeof p==='string'?p:(p.url||p),heading=document.getElementById('editPanelHeading').value.trim(),caption=document.getElementById('editPanelCaption').value.trim(),fileInput=document.getElementById('editPanelPhotoFile');if(fileInput.files&&fileInput.files[0]){showToast('Uploading...','loading');var fd=new FormData();fd.append('photo',fileInput.files[0]);fd.append('letterId',editingSlug||'general');try{var res=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var data=await res.json();if(data.success){url=WORKER+'/photos/'+data.key;document.getElementById('editPanelPreview').src=url;}else{showToast('Upload failed','error');return;}}catch(e){showToast('Upload error','error');return;}}existingPhotos[editingPhotoIndex]={url:url,heading:heading,caption:caption};renderExistingPhotos();closeExistingPhotoEdit();showToast('Photo updated -- ReParLay to save','success');};
 
-function buildLetterObj(){var recip=document.getElementById('inRecipient').value.trim(),recipParts=recip.split(',').map(function(s){return s.trim();}),recipHtml='<strong>'+recipParts[0]+'</strong>';for(var j=1;j<recipParts.length;j++)recipHtml+='<br>'+recipParts[j];return{date:document.getElementById('inDate').value.trim(),recipientName:recipParts[0],recipientHtml:recipHtml,subject:document.getElementById('inSubject').value.trim(),salutation:document.getElementById('inSalutation').value.trim(),body:document.getElementById('inBody').value.trim(),closing:document.getElementById('inClosing').value.trim(),sigTitle:document.getElementById('inSigTitle').value.trim(),password:document.getElementById('inPassword').value.trim()||null,musicUrl:document.getElementById('inMusic').value.trim()||null,musicMeta:null,bodyFont:(document.querySelector('.font-btn.active')?document.querySelector('.font-btn.active').getAttribute('data-font'):''),sigFont:currentSigFont||null,heroPosition:document.getElementById('heroSlider').value||'40',heroZoom:document.getElementById('heroZoom').value||'100',sigAZPhone:document.getElementById('inSigAZPhone').value.trim()||'(480) 788-2320',sigTXPhone:document.getElementById('inSigTXPhone').value.trim()||'(214) 838-1883',sigTollFree:document.getElementById('inSigTollFree')?document.getElementById('inSigTollFree').value.trim()||'1-800-428-2022':'1-800-428-2022',sigWebsite:document.getElementById('inSigWebsite').value.trim()||'www.powparker.com',sigEmail:document.getElementById('inSigEmail').value.trim()||'powell@powparker.com',exhibits:[],logoKey:null};}
+function buildLetterObj(){var recip=document.getElementById('inRecipient').value.trim(),recipParts=recip.split(',').map(function(s){return s.trim();}),recipHtml='<strong>'+recipParts[0]+'</strong>';for(var j=1;j<recipParts.length;j++)recipHtml+='<br>'+recipParts[j];return{date:document.getElementById('inDate').value.trim(),recipientName:recipParts[0],recipientHtml:recipHtml,subject:document.getElementById('inSubject').value.trim(),salutation:document.getElementById('inSalutation').value.trim(),body:document.getElementById('inBody').value.trim(),closing:document.getElementById('inClosing').value.trim(),sigTitle:document.getElementById('inSigTitle').value.trim(),password:document.getElementById('inPassword').value.trim()||null,musicUrl:document.getElementById('inMusic').value.trim()||null,musicMeta:null,bodyFont:(document.querySelector('.font-btn.active')?document.querySelector('.font-btn.active').getAttribute('data-font'):''),bodyFontSize:(document.querySelector('.size-btn[data-bodysize].active')?document.querySelector('.size-btn[data-bodysize].active').getAttribute('data-bodysize'):'1.05rem'),sigFontSizeCustom:(document.querySelector('.size-btn[data-sigsize].active')?document.querySelector('.size-btn[data-sigsize].active').getAttribute('data-sigsize'):'1.9rem'),sigFont:currentSigFont||null,heroPosition:document.getElementById('heroSlider').value||'40',heroZoom:document.getElementById('heroZoom').value||'100',sigAZPhone:document.getElementById('inSigAZPhone').value.trim()||'(480) 788-2320',sigTXPhone:document.getElementById('inSigTXPhone').value.trim()||'(214) 838-1883',sigTollFree:document.getElementById('inSigTollFree')?document.getElementById('inSigTollFree').value.trim()||'1-800-428-2022':'1-800-428-2022',sigWebsite:document.getElementById('inSigWebsite').value.trim()||'www.powparker.com',sigEmail:document.getElementById('inSigEmail').value.trim()||'powell@powparker.com',exhibits:[],logoKey:null};}
 
 async function generateAndSave(){renderLetter();var slug=document.getElementById('inSlug').value.trim()||'letter-'+Date.now();document.getElementById('inSlug').value=slug;var btn=document.getElementById('btnSave');btn.disabled=true;showToast('Saving...','loading');try{var logoKey=logoExistingKey||null;if(logoFile){var lfd=new FormData();lfd.append('logo',logoFile);lfd.append('slug',slug);var lRes=await fetch(WORKER+'/api/logo',{method:'POST',headers:{'X-API-Key':API_KEY},body:lfd});var lData=await lRes.json();if(lData.success){logoKey=lData.key;logoFile=null;logoExistingKey=logoKey;}}var exhibits=[];var cards=document.querySelectorAll('.exhibit-card');for(var i=0;i<cards.length;i++){var id=cards[i].id.replace('card_',''),heading=document.getElementById('heading_'+id).value.trim(),scale=document.getElementById('scale_'+id).value,caption=document.getElementById('caption_'+id).value.trim(),exData=exhibitFiles[id];if(exData&&exData.file){showToast('Uploading photo '+(i+1)+'...','loading');var fd=new FormData();fd.append('photo',exData.file);fd.append('letterId',slug);var pRes=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var pData=await pRes.json();if(pData.success)exhibits.push({photoKey:pData.key,heading:heading,scale:scale,caption:caption});}}var allExhibits=existingPhotos.map(function(p){if(typeof p==='string')return{photoUrl:p,heading:'',scale:80,caption:''};return{photoUrl:p.url,heading:p.heading||'',scale:p.scale||80,caption:p.caption||''};}).concat(exhibits);if(heroDataUrl){showToast('Uploading cover photo...','loading');try{var hBlob=await(await fetch(heroDataUrl)).blob();var hFd=new FormData();hFd.append('photo',hBlob,'hero.jpg');hFd.append('letterId',slug);var hR=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:hFd});var hD=await hR.json();if(hD.success){heroExistingUrl=WORKER+'/photos/'+hD.key;heroDataUrl=null;}}catch(e){}}var heroKey=heroExistingUrl?heroExistingUrl.split('/photos/').pop():null;var letter=buildLetterObj();letter.exhibits=allExhibits;letter.logoKey=logoKey;letter.heroUrl=heroExistingUrl||null;letter.heroKey=heroKey;showToast('Saving to cloud...','loading');var res=await fetch(WORKER+'/api/save',{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':API_KEY},body:JSON.stringify({slug:slug,letter:letter})});var data=await res.json();if(data.success){setSharePanel(WORKER+'/s/'+data.slug,false);showToast('Letter saved!','success');loadSavedLetters();if(editMode)toggleMode();}else throw new Error(data.error||'Save failed');}catch(e){showToast('Error: '+e.message,'error');}btn.disabled=false;}
 
@@ -757,6 +775,20 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
       if(activeBtn){document.querySelectorAll('.sig-font-btn').forEach(function(b){b.classList.remove('active');});activeBtn.classList.add('active');}
       var sn=document.getElementById('outSigName');if(sn){sn.style.fontFamily=letter.sigFont;sn.style.fontSize=letter.sigFontSize||'1.9rem';}
     }document.getElementById('inPassword').value=letter.password||'';document.getElementById('inSigAZPhone').value=letter.sigAZPhone||'(480) 788-2320';document.getElementById('inSigTXPhone').value=letter.sigTXPhone||'(214) 838-1883';var tfEl=document.getElementById('inSigTollFree');if(tfEl)tfEl.value=letter.sigTollFree||'1-800-428-2022';
+    // Restore body size
+    if(letter.bodyFontSize){
+      document.querySelectorAll('.size-btn[data-bodysize]').forEach(function(b){
+        b.classList.toggle('active', b.getAttribute('data-bodysize')===letter.bodyFontSize);
+      });
+    }
+    // Restore sig size
+    if(letter.sigFontSizeCustom){
+      document.querySelectorAll('.size-btn[data-sigsize]').forEach(function(b){
+        b.classList.toggle('active', b.getAttribute('data-sigsize')===letter.sigFontSizeCustom);
+      });
+      currentSigSize=letter.sigFontSizeCustom;
+      var sn=document.getElementById('outSigName');if(sn)sn.style.fontSize=letter.sigFontSizeCustom;
+    }
     // Restore body font
     if(letter.bodyFont){
       var fontBtns=document.querySelectorAll('.font-btn');
@@ -900,6 +932,32 @@ function loadSettingsIntoPanel(){var s=loadSettings();document.getElementById('c
 function loadSettings(){try{return JSON.parse(localStorage.getItem('pp_letter_settings')||'{}');}catch(e){return{};}}
 function saveSettings(){var font=document.querySelector('.font-btn.active'),settings={font:font?font.dataset.font:"'EB Garamond',Georgia,serif",facebook:document.getElementById('cfgFacebook').value.trim(),instagram:document.getElementById('cfgInstagram').value.trim(),linkedin:document.getElementById('cfgLinkedIn').value.trim(),twitter:document.getElementById('cfgTwitter').value.trim(),medium:document.getElementById('cfgMedium').value.trim()};localStorage.setItem('pp_letter_settings',JSON.stringify(settings));applySettings(settings);toggleSettings();showToast('Settings saved!','success');}
 function applySettings(settings){if(!settings)settings=loadSettings();if(settings.font){document.documentElement.style.setProperty('--body-font',settings.font);document.querySelectorAll('.l-body,.letter-content,.l-recipient,.l-salutation').forEach(function(el){el.style.fontFamily=settings.font;});}if(settings.facebook){var fb=document.getElementById('footerFacebook');if(fb)fb.href=settings.facebook;}if(settings.instagram){var ig=document.getElementById('footerInstagram');if(ig)ig.href=settings.instagram;}if(settings.linkedin){var li=document.getElementById('footerLinkedIn');if(li)li.href=settings.linkedin;}if(settings.twitter){var tw=document.getElementById('footerTwitter');if(tw)tw.href=settings.twitter;}if(settings.medium){var md=document.getElementById('footerMedium');if(md)md.href=settings.medium;}}
+function setBodySize(btn){
+  document.querySelectorAll('.size-btn[data-bodysize]').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  var size=btn.getAttribute('data-bodysize');
+  if(!size)return;
+  // Apply via dynBodyFont style tag - append to existing font rule
+  var dynStyle=document.getElementById('dynBodyFont');
+  if(!dynStyle){dynStyle=document.createElement('style');dynStyle.id='dynBodyFont';document.head.appendChild(dynStyle);}
+  var activeFont=document.querySelector('.font-btn.active');
+  var font=activeFont?activeFont.getAttribute('data-font'):"'EB Garamond',Georgia,serif";
+  dynStyle.textContent=
+    '.l-body,.l-body p,.l-body div,.l-body li,.l-body ul,.letter-content,.l-salutation,.l-recipient,.l-date{font-family:'+font+' !important;font-size:'+size+' !important;}';
+  var settings=loadSettings()||{};settings.bodySize=size;saveSettings(settings);
+}
+
+function setSigSize(btn){
+  document.querySelectorAll('.size-btn[data-sigsize]').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  var size=btn.getAttribute('data-sigsize');
+  if(!size)return;
+  currentSigSize=size;
+  var sn=document.getElementById('outSigName');
+  if(sn)sn.style.fontSize=size;
+  var settings=loadSettings()||{};settings.sigSize=size;saveSettings(settings);
+}
+
 function setFont(btn){
   // Mark active button
   document.querySelectorAll('.font-btn').forEach(function(b){b.classList.remove('active');});
@@ -913,11 +971,11 @@ function setFont(btn){
     dynStyle.id='dynBodyFont';
     document.head.appendChild(dynStyle);
   }
+  var activeSizeBtn=document.querySelector('.size-btn[data-bodysize].active');
+  var bSize=activeSizeBtn?activeSizeBtn.getAttribute('data-bodysize'):'1.05rem';
   dynStyle.textContent=
-    '.l-body,.l-body p,.l-body div,.l-body li,.l-body ul,.letter-content,.l-salutation,.l-recipient,.l-date{font-family:'+font+' !important;}';
-  // Update CSS variable as well
+    '.l-body,.l-body p,.l-body div,.l-body li,.l-body ul,.letter-content,.l-salutation,.l-recipient,.l-date{font-family:'+font+' !important;font-size:'+bSize+' !important;}';
   document.documentElement.style.setProperty('--body-font',font);
-  // Save with settings so it persists across sessions
   var settings=loadSettings()||{};settings.font=font;saveSettings(settings);
 }
 
