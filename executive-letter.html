@@ -269,6 +269,17 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .size-btn.active,.size-btn:hover{background:var(--gold);color:var(--deep);border-color:var(--gold);}
 .size-row{display:flex;gap:6px;align-items:center;margin-top:8px;}
 .size-row label{font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);flex-shrink:0;min-width:60px;}
+.media-tabs{display:flex;gap:0;margin-bottom:12px;border-radius:6px;overflow:hidden;border:1px solid rgba(201,168,76,.2);}
+.media-tab{flex:1;padding:10px 8px;background:rgba(255,255,255,.03);color:var(--gold-light);font-family:'Lato',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border:none;cursor:pointer;transition:all .2s;}
+.media-tab.active{background:var(--gold);color:var(--deep);}
+.cal-toggle-row{display:flex;align-items:center;gap:12px;padding:12px 0;}
+.cal-toggle{position:relative;width:48px;height:26px;flex-shrink:0;}
+.cal-toggle input{opacity:0;width:0;height:0;}
+.cal-slider{position:absolute;cursor:pointer;inset:0;background:rgba(255,255,255,.1);border-radius:26px;transition:.3s;}
+.cal-slider:before{content:"";position:absolute;height:20px;width:20px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s;}
+.cal-toggle input:checked+.cal-slider{background:var(--gold);}
+.cal-toggle input:checked+.cal-slider:before{transform:translateX(22px);}
+.cal-toggle-label{font-family:'Lato',sans-serif;font-size:.8rem;font-weight:700;color:var(--gold-light);letter-spacing:.04em;}
 .font-btn{padding:10px 8px;border:1px solid rgba(201,168,76,.2);border-radius:6px;background:rgba(255,255,255,.03);color:var(--gold-light);font-size:1.05rem;cursor:pointer;transition:all .2s;text-align:center}
 .font-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.08)}
 .font-btn.active{border-color:var(--gold);background:rgba(201,168,76,.15);color:var(--gold);font-weight:700}
@@ -469,6 +480,18 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <div style="text-align:center;font-family:'Lato',sans-serif;font-size:.58rem;color:rgba(255,255,255,.25);margin-top:2px;letter-spacing:.06em;">PHOTO HEIGHT: <span id="heroZoomVal">100</span></div>
       <button class="hero-remove" onclick="removeHero()">&#10005; Remove Photo</button>
     </div>
+    </div><!-- end mediaPhotoSection -->
+    <div id="mediaVideoSection" style="display:none;">
+      <div class="field-row" style="flex-direction:column;gap:8px;">
+        <label>Upload Video Clip (MP4, max 50MB)</label>
+        <input type="file" id="inVideoFile" accept="video/mp4,video/mov,video/webm" onchange="handleVideoUpload(this)" style="color:var(--gold-light);font-size:.8rem;">
+        <div id="videoPreviewWrap" style="display:none;margin-top:8px;border-radius:6px;overflow:hidden;position:relative;">
+          <video id="videoPreview" autoplay loop muted playsinline style="width:100%;display:block;max-height:200px;object-fit:cover;border-radius:6px;"></video>
+          <button onclick="clearVideo()" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.8rem;">✕</button>
+        </div>
+        <p style="font-size:.7rem;color:var(--text-dim);margin-top:4px;">🎬 Video starts muted — viewer can tap 🔇 to unmute</p>
+      </div>
+    </div><!-- end mediaVideoSection -->
   </div>
   <div class="field-grid">
     <div class="field-row"><label>Date</label><input type="text" id="inDate" placeholder="May 20, 2026"></div>
@@ -585,6 +608,20 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <input type="text" id="inMusic" placeholder="Paste Apple Music or Spotify link" oninput="scheduleMusicFetch()">
       <div class="hint" id="inMusicHint">Attaches a sticky music player to the bottom of the shared letter.</div>
     </div>
+    <!-- Calendar Invite Toggle -->
+    <div class="field-row" style="flex-direction:column;gap:6px;">
+      <div class="cal-toggle-row">
+        <label class="cal-toggle">
+          <input type="checkbox" id="inCalToggle" onchange="toggleCal(this)">
+          <span class="cal-slider"></span>
+        </label>
+        <span class="cal-toggle-label">📅 Include Calendar Invite</span>
+      </div>
+      <div id="calendarFields" style="display:none;">
+        <input type="text" id="inCalUrl" value="https://calendly.com/powparker" oninput="renderLetter()" placeholder="https://calendly.com/yourname" style="width:100%;margin-top:6px;">
+        <div class="hint">Adds a premium "Book a Call" button above the footer.</div>
+      </div>
+    </div>
     <div class="music-fetch-preview" id="musicFetchPreview">
       <img class="mfp-art" id="mfpArt" src="" alt="Album art">
       <div class="mfp-info">
@@ -643,7 +680,23 @@ body.has-music-gram .page-container{padding-bottom:120px}
           <span id="outSigTollFree">Toll-Free: <a href="tel:18004282022" style="color:var(--gold-dark);text-decoration:none;">1-800-428-2022</a></span>
         </div>
         <div class="l-sig-links">
-          <a href="https://www.powparker.com" id="outSigWebLink">www.powparker.com</a>
+          <!-- Calendar invite preview -->
+      <div id="outCalSection" style="display:none;margin:28px 56px 0;padding:24px 28px;border:1px solid rgba(201,168,76,.25);border-radius:8px;background:linear-gradient(135deg,rgba(201,168,76,.04),transparent);">
+        <div style="font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.14em;color:rgba(201,168,76,.7);text-transform:uppercase;margin-bottom:8px;">&#128197; Executive Scheduling</div>
+        <div style="font-family:'Cormorant',serif;font-size:1.5rem;font-weight:700;color:#1B2A40;margin-bottom:6px;">Schedule a Private Consultation</div>
+        <div style="font-family:'Lato',sans-serif;font-size:.8rem;color:#5a5a5a;margin-bottom:18px;">Select a time that works — powered by Calendly.</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:#1B2A40;border-radius:6px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="font-size:1.3rem;">&#128338;</span>
+            <div>
+              <div style="font-family:'Lato',sans-serif;font-size:.85rem;font-weight:700;color:#fff;">Book a Call with Powell Parker</div>
+              <div style="font-family:'Lato',sans-serif;font-size:.7rem;color:rgba(255,255,255,.6);margin-top:2px;">Click to view available times</div>
+            </div>
+          </div>
+          <span style="color:rgba(201,168,76,.8);font-size:1.1rem;">&#8594;</span>
+        </div>
+      </div>
+      <a href="https://www.powparker.com" id="outSigWebLink">www.powparker.com</a>
           <span class="sig-divider">|</span>
           <a href="mailto:powell@powparker.com" id="outSigEmailLink">powell@powparker.com</a>
         </div>
@@ -761,7 +814,7 @@ function openExistingPhotoEdit(index){editingPhotoIndex=index;var p=existingPhot
 function closeExistingPhotoEdit(){editingPhotoIndex=-1;document.getElementById('existingPhotoEditPanel').classList.remove('open');document.querySelectorAll('.existing-photo-item').forEach(function(el){el.classList.remove('editing');});}
 window.saveExistingPhotoEdit=async function(){if(editingPhotoIndex<0)return;var p=existingPhotos[editingPhotoIndex],url=typeof p==='string'?p:(p.url||p),heading=document.getElementById('editPanelHeading').value.trim(),caption=document.getElementById('editPanelCaption').value.trim(),fileInput=document.getElementById('editPanelPhotoFile');if(fileInput.files&&fileInput.files[0]){showToast('Uploading...','loading');var fd=new FormData();fd.append('photo',fileInput.files[0]);fd.append('letterId',editingSlug||'general');try{var res=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var data=await res.json();if(data.success){url=WORKER+'/photos/'+data.key;document.getElementById('editPanelPreview').src=url;}else{showToast('Upload failed','error');return;}}catch(e){showToast('Upload error','error');return;}}existingPhotos[editingPhotoIndex]={url:url,heading:heading,caption:caption};renderExistingPhotos();closeExistingPhotoEdit();showToast('Photo updated -- ReParLay to save','success');};
 
-function buildLetterObj(){var recip=document.getElementById('inRecipient').value.trim(),recipParts=recip.split(',').map(function(s){return s.trim();}),recipHtml='<strong>'+recipParts[0]+'</strong>';for(var j=1;j<recipParts.length;j++)recipHtml+='<br>'+recipParts[j];return{date:document.getElementById('inDate').value.trim(),recipientName:recipParts[0],recipientHtml:recipHtml,subject:document.getElementById('inSubject').value.trim(),salutation:document.getElementById('inSalutation').value.trim(),body:document.getElementById('inBody').value.trim(),closing:document.getElementById('inClosing').value.trim(),sigTitle:document.getElementById('inSigTitle').value.trim(),password:document.getElementById('inPassword').value.trim()||null,musicUrl:document.getElementById('inMusic').value.trim()||null,musicMeta:null,bodyFont:(document.querySelector('.font-btn.active')?document.querySelector('.font-btn.active').getAttribute('data-font'):''),bodyFontSize:(document.querySelector('.size-btn[data-bodysize].active')?document.querySelector('.size-btn[data-bodysize].active').getAttribute('data-bodysize'):'1.05rem'),sigFontSizeCustom:(document.querySelector('.size-btn[data-sigsize].active')?document.querySelector('.size-btn[data-sigsize].active').getAttribute('data-sigsize'):'1.9rem'),sigFont:currentSigFont||null,heroPosition:document.getElementById('heroSlider').value||'40',heroZoom:document.getElementById('heroZoom').value||'100',sigAZPhone:document.getElementById('inSigAZPhone').value.trim()||'(480) 788-2320',sigTXPhone:document.getElementById('inSigTXPhone').value.trim()||'(214) 838-1883',sigTollFree:document.getElementById('inSigTollFree')?document.getElementById('inSigTollFree').value.trim()||'1-800-428-2022':'1-800-428-2022',sigWebsite:document.getElementById('inSigWebsite').value.trim()||'www.powparker.com',sigEmail:document.getElementById('inSigEmail').value.trim()||'powell@powparker.com',exhibits:[],logoKey:null};}
+function buildLetterObj(){var recip=document.getElementById('inRecipient').value.trim(),recipParts=recip.split(',').map(function(s){return s.trim();}),recipHtml='<strong>'+recipParts[0]+'</strong>';for(var j=1;j<recipParts.length;j++)recipHtml+='<br>'+recipParts[j];return{date:document.getElementById('inDate').value.trim(),recipientName:recipParts[0],recipientHtml:recipHtml,subject:document.getElementById('inSubject').value.trim(),salutation:document.getElementById('inSalutation').value.trim(),body:document.getElementById('inBody').value.trim(),closing:document.getElementById('inClosing').value.trim(),sigTitle:document.getElementById('inSigTitle').value.trim(),password:document.getElementById('inPassword').value.trim()||null,musicUrl:document.getElementById('inMusic').value.trim()||null,musicMeta:null,calendarUrl:(document.getElementById('inCalToggle')&&document.getElementById('inCalToggle').checked&&document.getElementById('inCalUrl'))?document.getElementById('inCalUrl').value.trim()||null:null,bodyFont:(document.querySelector('.font-btn.active')?document.querySelector('.font-btn.active').getAttribute('data-font'):''),bodyFontSize:(document.querySelector('.size-btn[data-bodysize].active')?document.querySelector('.size-btn[data-bodysize].active').getAttribute('data-bodysize'):'1.05rem'),sigFontSizeCustom:(document.querySelector('.size-btn[data-sigsize].active')?document.querySelector('.size-btn[data-sigsize].active').getAttribute('data-sigsize'):'1.9rem'),sigFont:currentSigFont||null,heroPosition:document.getElementById('heroSlider').value||'40',heroZoom:document.getElementById('heroZoom').value||'100',sigAZPhone:document.getElementById('inSigAZPhone').value.trim()||'(480) 788-2320',sigTXPhone:document.getElementById('inSigTXPhone').value.trim()||'(214) 838-1883',sigTollFree:document.getElementById('inSigTollFree')?document.getElementById('inSigTollFree').value.trim()||'1-800-428-2022':'1-800-428-2022',sigWebsite:document.getElementById('inSigWebsite').value.trim()||'www.powparker.com',sigEmail:document.getElementById('inSigEmail').value.trim()||'powell@powparker.com',exhibits:[],logoKey:null};}
 
 async function generateAndSave(){renderLetter();var slug=document.getElementById('inSlug').value.trim()||'letter-'+Date.now();document.getElementById('inSlug').value=slug;var btn=document.getElementById('btnSave');btn.disabled=true;showToast('Saving...','loading');try{var logoKey=logoExistingKey||null;if(logoFile){var lfd=new FormData();lfd.append('logo',logoFile);lfd.append('slug',slug);var lRes=await fetch(WORKER+'/api/logo',{method:'POST',headers:{'X-API-Key':API_KEY},body:lfd});var lData=await lRes.json();if(lData.success){logoKey=lData.key;logoFile=null;logoExistingKey=logoKey;}}var exhibits=[];var cards=document.querySelectorAll('.exhibit-card');for(var i=0;i<cards.length;i++){var id=cards[i].id.replace('card_',''),heading=document.getElementById('heading_'+id).value.trim(),scale=document.getElementById('scale_'+id).value,caption=document.getElementById('caption_'+id).value.trim(),exData=exhibitFiles[id];if(exData&&exData.file){showToast('Uploading photo '+(i+1)+'...','loading');var fd=new FormData();fd.append('photo',exData.file);fd.append('letterId',slug);var pRes=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var pData=await pRes.json();if(pData.success)exhibits.push({photoKey:pData.key,heading:heading,scale:scale,caption:caption});}}var allExhibits=existingPhotos.map(function(p){if(typeof p==='string')return{photoUrl:p,heading:'',scale:80,caption:''};return{photoUrl:p.url,heading:p.heading||'',scale:p.scale||80,caption:p.caption||''};}).concat(exhibits);if(heroDataUrl){showToast('Uploading cover photo...','loading');try{var hBlob=await(await fetch(heroDataUrl)).blob();var hFd=new FormData();hFd.append('photo',hBlob,'hero.jpg');hFd.append('letterId',slug);var hR=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:hFd});var hD=await hR.json();if(hD.success){heroExistingUrl=WORKER+'/photos/'+hD.key;heroDataUrl=null;}}catch(e){}}var heroKey=heroExistingUrl?heroExistingUrl.split('/photos/').pop():null;var letter=buildLetterObj();letter.exhibits=allExhibits;letter.logoKey=logoKey;letter.heroUrl=heroExistingUrl||null;letter.heroKey=heroKey;showToast('Saving to cloud...','loading');var res=await fetch(WORKER+'/api/save',{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':API_KEY},body:JSON.stringify({slug:slug,letter:letter})});var data=await res.json();if(data.success){setSharePanel(WORKER+'/s/'+data.slug,false);showToast('Letter saved!','success');loadSavedLetters();if(editMode)toggleMode();}else throw new Error(data.error||'Save failed');}catch(e){showToast('Error: '+e.message,'error');}btn.disabled=false;}
 
@@ -774,6 +827,13 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
       if(activeBtn){document.querySelectorAll('.sig-font-btn').forEach(function(b){b.classList.remove('active');});activeBtn.classList.add('active');}
       var sn=document.getElementById('outSigName');if(sn){sn.style.fontFamily=letter.sigFont;sn.style.fontSize=letter.sigFontSize||'1.9rem';}
     }document.getElementById('inPassword').value=letter.password||'';document.getElementById('inSigAZPhone').value=letter.sigAZPhone||'(480) 788-2320';document.getElementById('inSigTXPhone').value=letter.sigTXPhone||'(214) 838-1883';var tfEl=document.getElementById('inSigTollFree');if(tfEl)tfEl.value=letter.sigTollFree||'1-800-428-2022';
+    // Restore calendar toggle
+    var calToggle=document.getElementById('inCalToggle');
+    if(calToggle){
+      calToggle.checked=!!(letter.calendarUrl);
+      document.getElementById('calendarFields').style.display=letter.calendarUrl?'':'none';
+      if(letter.calendarUrl&&document.getElementById('inCalUrl'))document.getElementById('inCalUrl').value=letter.calendarUrl;
+    }
     // Restore body size
     if(letter.bodyFontSize){
       document.querySelectorAll('.size-btn[data-bodysize]').forEach(function(b){
@@ -880,7 +940,11 @@ function renderLetter(){var date=document.getElementById('inDate').value.trim();
     else{bodyHtml+='<p style="margin-top:12px;">'+blockHtml+'</p>';}
   });
   document.getElementById('outBody').innerHTML=bodyHtml;
-}var outEx=document.getElementById('outExhibits');outEx.innerHTML='';document.querySelectorAll('.exhibit-card').forEach(function(card){var id=card.id.replace('card_',''),headVal=document.getElementById('heading_'+id).value.trim(),scaleVal=document.getElementById('scale_'+id).value,capVal=document.getElementById('caption_'+id).value.trim(),exData=exhibitFiles[id];if(exData&&exData.dataUrl){var wrap=document.createElement('div');wrap.className='printed-exhibit-container';var h='';if(headVal)h+='<div class="exhibit-print-heading">'+headVal+'</div><div class="exhibit-heading-rule"></div>';h+='<img src="'+exData.dataUrl+'" class="exhibit-print-img" style="width:'+scaleVal+'%;" alt="Exhibit">';if(capVal)h+='<div class="exhibit-print-caption">'+capVal+'</div>';wrap.innerHTML=h;outEx.appendChild(wrap);}});var closing=document.getElementById('inClosing').value.trim();if(closing)document.getElementById('outClosing').textContent=closing;var sigTitle=document.getElementById('inSigTitle').value.trim();if(sigTitle)document.getElementById('outSigTitle').textContent=sigTitle;
+// Show/hide calendar preview
+  var calPrev=document.getElementById('outCalSection');
+  var calOn=document.getElementById('inCalToggle')&&document.getElementById('inCalToggle').checked;
+  if(calPrev)calPrev.style.display=calOn?'':'none';
+  }var outEx=document.getElementById('outExhibits');outEx.innerHTML='';document.querySelectorAll('.exhibit-card').forEach(function(card){var id=card.id.replace('card_',''),headVal=document.getElementById('heading_'+id).value.trim(),scaleVal=document.getElementById('scale_'+id).value,capVal=document.getElementById('caption_'+id).value.trim(),exData=exhibitFiles[id];if(exData&&exData.dataUrl){var wrap=document.createElement('div');wrap.className='printed-exhibit-container';var h='';if(headVal)h+='<div class="exhibit-print-heading">'+headVal+'</div><div class="exhibit-heading-rule"></div>';h+='<img src="'+exData.dataUrl+'" class="exhibit-print-img" style="width:'+scaleVal+'%;" alt="Exhibit">';if(capVal)h+='<div class="exhibit-print-caption">'+capVal+'</div>';wrap.innerHTML=h;outEx.appendChild(wrap);}});var closing=document.getElementById('inClosing').value.trim();if(closing)document.getElementById('outClosing').textContent=closing;var sigTitle=document.getElementById('inSigTitle').value.trim();if(sigTitle)document.getElementById('outSigTitle').textContent=sigTitle;
   var sn=document.getElementById('outSigName');if(sn&&currentSigFont){sn.style.fontFamily=currentSigFont;sn.style.fontSize=currentSigSize||'1.9rem';}
   var azPh=document.getElementById('inSigAZPhone').value.trim()||'(480) 788-2320';
   var txPh=document.getElementById('inSigTXPhone').value.trim()||'(214) 838-1883';
@@ -955,6 +1019,45 @@ function setSigSize(btn){
   var sn=document.getElementById('outSigName');
   if(sn)sn.style.fontSize=size;
   var settings=loadSettings()||{};settings.sigSize=size;saveSettings(settings);
+}
+
+function setMediaTab(tab){
+  document.getElementById('mediaPhotoSection').style.display = tab==='photo' ? '' : 'none';
+  document.getElementById('mediaVideoSection').style.display = tab==='video' ? '' : 'none';
+  document.getElementById('tabPhoto').classList.toggle('active', tab==='photo');
+  document.getElementById('tabVideo').classList.toggle('active', tab==='video');
+  renderLetter();
+}
+
+var _videoDataUrl = null;
+var _videoFile = null;
+
+function handleVideoUpload(input){
+  var file = input.files[0];
+  if(!file) return;
+  _videoFile = file;
+  var url = URL.createObjectURL(file);
+  var preview = document.getElementById('videoPreview');
+  var wrap = document.getElementById('videoPreviewWrap');
+  preview.src = url;
+  wrap.style.display = '';
+  renderLetter();
+}
+
+function clearVideo(){
+  _videoDataUrl = null;
+  _videoFile = null;
+  var preview = document.getElementById('videoPreview');
+  var wrap = document.getElementById('videoPreviewWrap');
+  preview.src = '';
+  wrap.style.display = 'none';
+  document.getElementById('inVideoFile').value = '';
+  renderLetter();
+}
+
+function toggleCal(chk){
+  document.getElementById('calendarFields').style.display = chk.checked ? '' : 'none';
+  renderLetter();
 }
 
 function setFont(btn){
