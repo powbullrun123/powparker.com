@@ -462,7 +462,12 @@ body.has-music-gram .page-container{padding-bottom:120px}
     </div>
   </div>
   <div class="hero-section">
-    <div class="field-row" style="margin-bottom:8px;"><label>Cover / Header Photo (optional)</label></div>
+    <div class="field-row" style="margin-bottom:8px;"><label>Cover / Header Media</label></div>
+    <div class="media-tabs">
+      <button class="media-tab active" id="tabPhoto" onclick="setMediaTab('photo')">📷 Static Photo</button>
+      <button class="media-tab" id="tabVideo" onclick="setMediaTab('video')">🎬 Cinematic Video</button>
+    </div>
+    <div id="mediaPhotoSection">
     <button class="hero-upload-btn" type="button" onclick="document.getElementById('heroFileInput').click()">+ Add Cover Photo</button>
     <input type="file" id="heroFileInput" accept="image/*" style="display:none">
     <div class="hero-preview-wrap" id="heroPrevWrap">
