@@ -488,13 +488,13 @@ body.has-music-gram .page-container{padding-bottom:120px}
     </div><!-- end mediaPhotoSection -->
     <div id="mediaVideoSection" style="display:none;">
       <div class="field-row" style="flex-direction:column;gap:8px;">
-        <label>Upload Video Clip (MP4, max 50MB)</label>
-        <input type="file" id="inVideoFile" accept="video/mp4,video/mov,video/webm" onchange="handleVideoUpload(this)" style="color:var(--gold-light);font-size:.8rem;">
+        <label>Upload Video Clip (iPhone .mov, MP4 — max 50MB)</label>
+        <input type="file" id="inVideoFile" accept="video/mp4,video/quicktime,video/mov,.mov,.mp4,.m4v,.hevc,video/webm" onchange="handleVideoUpload(this)" style="color:var(--gold-light);font-size:.8rem;">
         <div id="videoPreviewWrap" style="display:none;margin-top:8px;border-radius:6px;overflow:hidden;position:relative;">
           <video id="videoPreview" autoplay loop muted playsinline style="width:100%;display:block;max-height:200px;object-fit:cover;border-radius:6px;"></video>
           <button onclick="clearVideo()" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.8rem;">✕</button>
         </div>
-        <p style="font-size:.7rem;color:var(--text-dim);margin-top:4px;">🎬 Video starts muted — viewer can tap 🔇 to unmute</p>
+        <p style="font-size:.7rem;color:var(--text-dim);margin-top:4px;">🎬 iPhone .mov, MP4, M4V all supported. Starts muted — viewer taps 🔇 to unmute</p>
       </div>
     </div><!-- end mediaVideoSection -->
   </div>
