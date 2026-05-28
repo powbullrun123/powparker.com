@@ -495,11 +495,23 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <div class="field-row" style="flex-direction:column;gap:8px;">
         <label>Upload Video Clip (iPhone .mov, MP4 — max 50MB)</label>
         <input type="file" id="inVideoFile" accept="video/mp4,video/quicktime,video/mov,.mov,.mp4,.m4v,.hevc,video/webm" onchange="handleVideoUpload(this)" style="color:var(--gold-light);font-size:.8rem;">
-        <div id="videoPreviewWrap" style="display:none;margin-top:8px;border-radius:6px;overflow:hidden;position:relative;">
-          <video id="videoPreview" autoplay loop muted playsinline style="width:100%;display:block;max-height:200px;object-fit:cover;border-radius:6px;"></video>
+        <div id="videoPreviewWrap" style="display:none;margin-top:8px;border-radius:6px;overflow:hidden;position:relative;height:280px;background:#000;">
+          <video id="videoPreview" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;border-radius:6px;transform-origin:center center;"></video>
           <button onclick="clearVideo()" style="position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:50%;width:28px;height:28px;cursor:pointer;font-size:.8rem;">✕</button>
         </div>
-        <p style="font-size:.7rem;color:var(--text-dim);margin-top:4px;">🎬 iPhone .mov, MP4, M4V all supported. Starts muted — viewer taps 🔇 to unmute</p>
+        <div id="vidCropControls" style="display:none;margin-top:10px;">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <label style="font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-light);flex-shrink:0;width:80px;">Top / Bottom</label>
+            <input type="range" id="videoPositionSlider" min="0" max="100" value="50" oninput="applyVideoTransform();document.getElementById('vidPosVal').textContent=this.value+'%'" style="flex:1;accent-color:#C9A84C;">
+            <span id="vidPosVal" style="font-family:'Lato',sans-serif;font-size:.68rem;color:var(--text-dim);width:36px;text-align:right;">50%</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <label style="font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-light);flex-shrink:0;width:80px;">Zoom</label>
+            <input type="range" id="videoZoomSlider" min="100" max="220" value="100" oninput="applyVideoTransform();document.getElementById('vidZoomVal').textContent=Math.round((this.value-100)/1.2)+'%'" style="flex:1;accent-color:#C9A84C;">
+            <span id="vidZoomVal" style="font-family:'Lato',sans-serif;font-size:.68rem;color:var(--text-dim);width:36px;text-align:right;">0%</span>
+          </div>
+        </div>
+        <p style="font-size:.7rem;color:var(--text-dim);margin-top:8px;">🎬 iPhone .mov, MP4, M4V all supported. Starts muted — viewer taps 🔇 to unmute</p>
       </div>
     </div><!-- end mediaVideoSection -->
   </div>
@@ -673,7 +685,10 @@ body.has-music-gram .page-container{padding-bottom:120px}
     </div>
     <div class="header-rule"></div>
     <div class="letter-content" id="letterContent">
-      <div class="l-hero-wrap" id="outHeroWrap"><img class="l-hero-img" id="outHeroImg" src="" alt="Cover Photo" style="object-position:center 40%;"></div>
+      <div class="l-hero-wrap" id="outHeroWrap">
+        <img class="l-hero-img" id="outHeroImg" src="" alt="Cover Photo" style="object-position:center 40%;">
+        <video id="outHeroVideo" autoplay loop muted playsinline style="display:none;width:100%;height:340px;object-fit:cover;transform-origin:center center;"></video>
+      </div>
       <div class="l-date" id="outDate">May 23, 2026</div>
       <div class="l-recipient" id="outRecipient"><strong>Recipient Name</strong><br>Title / Organization<br>Address</div>
       <div class="l-subject" id="outSubject"></div>
@@ -924,7 +939,24 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
 
 window.cancelEdit=function(){editingSlug=null;window._existingVideoKey=null;existingPhotos=[];logoFile=null;logoExistingKey=null;logoDataUrl=null;document.getElementById('outSeal').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoPreviewEditor').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoStatus').style.display='none';['inDate','inSubject','inSlug','inRecipient','inSalutation','inBody','inPassword','inMusic'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('inClosing').value='Respectfully,';document.getElementById('inSigTitle').value='Founder -- SaveKearnyAZ.org - Project 88';document.getElementById('inSigAZPhone').value='(480) 788-2320';document.getElementById('inSigTXPhone').value='(214) 838-1883';document.getElementById('inSigWebsite').value='www.powparker.com';document.getElementById('inSigEmail').value='powell@powparker.com';document.getElementById('exhibitsContainer').innerHTML='';document.getElementById('existingPhotosWrap').style.display='none';closeExistingPhotoEdit();exhibitCounter=0;exhibitFiles={};removeHero();document.getElementById('btnSave').style.display='inline-block';document.getElementById('btnReParlay').classList.remove('active');document.getElementById('btnCancelEdit').style.display='none';document.getElementById('editModeBanner').classList.remove('active');document.getElementById('sharePanel').classList.remove('active');setMgramMode('song');currentSigFont="'Pinyon Script',cursive";currentSigSize='1.9rem';document.querySelectorAll('.sig-font-btn').forEach(function(b,i){b.classList.toggle('active',i===0);});var sn=document.getElementById('outSigName');if(sn){sn.style.fontFamily="'Pinyon Script',cursive";sn.style.fontSize='1.9rem';}showToast('Cleared','success');document.getElementById('inputPanel').scrollIntoView({behavior:'smooth',block:'start'});};
 
-function renderLetter(){var date=document.getElementById('inDate').value.trim();var outDateEl=document.getElementById('outDate');if(outDateEl){if(date&&date!=='-'){outDateEl.textContent=date;outDateEl.style.display='';}else outDateEl.style.display='none';}var heroImg=document.getElementById('outHeroImg');var heroWrap=document.getElementById('outHeroWrap');if(heroDataUrl){heroImg.src=heroDataUrl;heroImg.style.objectPosition='center '+document.getElementById('heroSlider').value+'%';heroImg.style.height=zoomToHeight(parseInt(document.getElementById('heroZoom').value))+'px';heroImg.style.transform='';heroWrap.classList.add('active');}else if(heroExistingUrl){heroImg.src=heroExistingUrl;heroImg.style.objectPosition='center '+document.getElementById('heroSlider').value+'%';heroImg.style.height=zoomToHeight(parseInt(document.getElementById('heroZoom').value))+'px';heroImg.style.transform='';heroWrap.classList.add('active');}else{heroWrap.classList.remove('active');}var recip=document.getElementById('inRecipient').value.trim();var outRecipEl=document.getElementById('outRecipient');if(outRecipEl){if(recip&&recip!=='-'){var parts=recip.split(',').map(function(s){return s.trim();}),html='<strong>'+parts[0]+'</strong>';for(var i=1;i<parts.length;i++)html+='<br>'+parts[i];outRecipEl.innerHTML=html;outRecipEl.style.display='';}else outRecipEl.style.display='none';}var subj=document.getElementById('inSubject').value.trim(),subjEl=document.getElementById('outSubject');if(subj){subjEl.textContent=subj;subjEl.style.display='block';}else subjEl.style.display='none';var sal=document.getElementById('inSalutation').value.trim();var outSalEl=document.getElementById('outSalutation');if(outSalEl){if(sal&&sal!=='-'){outSalEl.textContent=sal;outSalEl.style.display='';}else outSalEl.style.display='none';}var body=document.getElementById('inBody').value.trim();if(body){
+function renderLetter(){var date=document.getElementById('inDate').value.trim();var outDateEl=document.getElementById('outDate');if(outDateEl){if(date&&date!=='-'){outDateEl.textContent=date;outDateEl.style.display='';}else outDateEl.style.display='none';}var heroImg=document.getElementById('outHeroImg');var heroVid=document.getElementById('outHeroVideo');var heroWrap=document.getElementById('outHeroWrap');
+  // Show video OR photo in letter preview
+  var isVideoTab=document.getElementById('tabVideo')&&document.getElementById('tabVideo').classList.contains('active');
+  var videoSrc=window._existingVideoKey?(WORKER+'/photos/'+window._existingVideoKey):(_videoFile&&document.getElementById('videoPreview').src?document.getElementById('videoPreview').src:null);
+  if(isVideoTab&&videoSrc){
+    if(heroImg)heroImg.style.display='none';
+    if(heroVid){
+      if(heroVid.getAttribute('data-src')!==videoSrc){heroVid.src=videoSrc;heroVid.load();heroVid.setAttribute('data-src',videoSrc);}
+      var pos=document.getElementById('videoPositionSlider')?document.getElementById('videoPositionSlider').value:50;
+      var zm=document.getElementById('videoZoomSlider')?document.getElementById('videoZoomSlider').value:100;
+      var sc=zm/100;var yp=((pos-50)*-1*(sc-1)/sc*50);
+      heroVid.style.transform=sc>1?'scale('+sc+') translateY('+yp+'%)':'none';
+      heroVid.style.display='block';heroWrap.classList.add('active');
+    }
+  } else {
+    if(heroVid){heroVid.style.display='none';}
+    if(heroImg)heroImg.style.display='';
+    if(heroDataUrl){heroImg.src=heroDataUrl;heroImg.style.objectPosition='center '+document.getElementById('heroSlider').value+'%';heroImg.style.height=zoomToHeight(parseInt(document.getElementById('heroZoom').value))+'px';heroImg.style.transform='';heroWrap.classList.add('active');}else if(heroExistingUrl){heroImg.src=heroExistingUrl;heroImg.style.objectPosition='center '+document.getElementById('heroSlider').value+'%';heroImg.style.height=zoomToHeight(parseInt(document.getElementById('heroZoom').value))+'px';heroImg.style.transform='';heroWrap.classList.add('active');}else{heroWrap.classList.remove('active');}}var recip=document.getElementById('inRecipient').value.trim();var outRecipEl=document.getElementById('outRecipient');if(outRecipEl){if(recip&&recip!=='-'){var parts=recip.split(',').map(function(s){return s.trim();}),html='<strong>'+parts[0]+'</strong>';for(var i=1;i<parts.length;i++)html+='<br>'+parts[i];outRecipEl.innerHTML=html;outRecipEl.style.display='';}else outRecipEl.style.display='none';}var subj=document.getElementById('inSubject').value.trim(),subjEl=document.getElementById('outSubject');if(subj){subjEl.textContent=subj;subjEl.style.display='block';}else subjEl.style.display='none';var sal=document.getElementById('inSalutation').value.trim();var outSalEl=document.getElementById('outSalutation');if(outSalEl){if(sal&&sal!=='-'){outSalEl.textContent=sal;outSalEl.style.display='';}else outSalEl.style.display='none';}var body=document.getElementById('inBody').value.trim();if(body){
   // ── formatBody: preserves line breaks, converts >>> to bullets ──
   var processLine=function(p){
     var gs='color:var(--gold);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;font-weight:600;';
@@ -1071,14 +1103,17 @@ window._existingVideoKey = null;
 // _existingVideoKey lives on window global — see editLetter/cancelEdit
 
 function applyVideoTransform(){
-  var preview = document.getElementById('videoPreview');
-  if(!preview) return;
   var pos = document.getElementById('videoPositionSlider') ? document.getElementById('videoPositionSlider').value : 50;
   var zoom = document.getElementById('videoZoomSlider') ? document.getElementById('videoZoomSlider').value : 100;
   var scale = zoom / 100;
   var yPct = ((pos - 50) * -1 * (scale - 1) / scale * 50);
-  preview.style.transform = 'scale(' + scale + ') translateY(' + yPct + '%)';
-  preview.style.transformOrigin = 'center center';
+  var t = scale > 1 ? 'scale(' + scale + ') translateY(' + yPct + '%)' : 'none';
+  // Apply to editor preview thumbnail
+  var preview = document.getElementById('videoPreview');
+  if(preview){ preview.style.transform = t; preview.style.transformOrigin = 'center center'; }
+  // Also live-update the letter preview pane
+  var outVid = document.getElementById('outHeroVideo');
+  if(outVid){ outVid.style.transform = t; outVid.style.transformOrigin = 'center center'; }
 }
 
 function handleVideoUpload(input){
