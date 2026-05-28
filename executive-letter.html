@@ -123,12 +123,132 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .sig-script-divider{grid-column:1/-1;font-family:'Lato',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);text-align:center;padding:6px 0 2px;border-top:1px solid rgba(201,168,76,.1);margin-top:4px}
 
 /* TONE SELECTOR */
+ead>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Powell Parker - Executive Letter</title>
+<meta name="description" content="Official correspondence - From the Desk of Powell Parker">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23C9A84C' font-style='italic' font-family='Georgia,serif'>P</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,700;1,6..96,400&family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700&family=Libre+Baskerville:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&family=Cinzel+Decorative:wght@400;700;900&family=Pinyon+Script&family=Alex+Brush&family=Great+Vibes&family=Dancing+Script:wght@400;600;700&family=Parisienne&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#1B2A40; --deep:#0A1525; --gold:#C9A84C; --gold-light:#E8D5A3; --gold-dark:#9A7A2E;
+  --cream:#F5F0E8; --text:#1e1e1e; --text-mid:#3a3a3a; --text-light:#5a5a5a; --rule:#d8d2c4;
+  --body-font:'EB Garamond',Georgia,serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px}
+body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:antialiased}
+
+/* EDITOR BAR */
+.editor-bar{background:var(--deep);border-bottom:2px solid var(--gold);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;flex-wrap:wrap;gap:8px}
+.bar-left{display:flex;align-items:center;gap:12px}
+.bar-title{font-family:'Cormorant',serif;font-size:1rem;font-weight:700;color:var(--gold);letter-spacing:.06em}
+.bar-right{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.bar-btn{font-family:'Lato',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--gold);border-radius:4px;cursor:pointer;transition:all .25s;background:transparent;color:var(--gold);white-space:nowrap}
+.bar-btn:hover{background:var(--gold);color:var(--deep)}
+.bar-btn.primary{background:var(--gold);color:var(--deep)}
+.bar-btn.primary:hover{background:var(--gold-light)}
+.bar-btn.reparlay{background:#1a7a3a;border-color:#2ecc71;color:#fff;display:none}
+.bar-btn.reparlay.active{display:inline-block}
+.bar-btn:disabled{opacity:.4;cursor:not-allowed}
+.mode-indicator{font-family:'Lato',sans-serif;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:12px;font-weight:700}
+.mode-edit{background:rgba(201,168,76,.15);color:var(--gold)}
+.mode-view{background:rgba(45,106,79,.15);color:#52b788}
+.edit-mode-banner{display:none;background:rgba(26,122,58,.15);border-bottom:1px solid rgba(46,204,113,.3);padding:7px 16px;font-family:'Lato',sans-serif;font-size:.72rem;font-weight:700;color:#2ecc71;letter-spacing:.04em;text-align:center}
+.edit-mode-banner.active{display:block}
+
+/* TOAST */
+.toast{position:fixed;top:60px;left:50%;transform:translateX(-50%) translateY(-20px);padding:12px 24px;border-radius:8px;font-family:'Lato',sans-serif;font-size:.82rem;font-weight:700;z-index:200;opacity:0;transition:all .3s;pointer-events:none;max-width:90%;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.success{background:#2ecc71;color:#fff}
+.toast.error{background:#e74c3c;color:#fff}
+.toast.loading{background:var(--gold);color:var(--deep)}
+
+/* SHARE PANEL */
+.share-panel{max-width:700px;margin:0 auto 16px;background:var(--deep);border:2px solid var(--gold);border-radius:10px;padding:20px 24px;display:none;text-align:center}
+.share-panel.active{display:block}
+.share-panel h3{font-family:'Cormorant',serif;font-size:1.1rem;color:var(--gold);margin-bottom:12px}
+.share-url-box{background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.3);border-radius:6px;padding:10px 14px;font-family:monospace;font-size:.82rem;color:var(--gold-light);word-break:break-all;margin-bottom:14px}
+.share-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.share-btns .bar-btn{font-size:.72rem;padding:9px 18px}
+.share-btns a.bar-btn{text-decoration:none}
+
+/* INPUT PANEL */
+.input-panel{max-width:700px;margin:20px auto;background:var(--deep);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:24px;display:none}
+.input-panel.active{display:block}
+.input-panel h3{font-family:'Cormorant',serif;font-size:1.15rem;color:var(--gold);margin-bottom:14px;font-weight:700}
+.field-row{margin-bottom:12px}
+.field-row label{display:block;font-family:'Lato',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:4px}
+.field-row input,.field-row textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.25);border-radius:6px;padding:10px 14px;font-family:'EB Garamond',serif;font-size:1rem;color:var(--cream);transition:border-color .3s;-webkit-appearance:none}
+.field-row input:focus,.field-row textarea:focus{outline:none;border-color:var(--gold)}
+.field-row textarea{min-height:180px;resize:vertical;line-height:1.8}
+.field-row .hint{font-family:'Lato',sans-serif;font-size:.65rem;color:rgba(255,255,255,.3);margin-top:3px}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+/* LOGO */
+.logo-section{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(201,168,76,.15)}
+.logo-section-top{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.logo-preview-circle{width:64px;height:64px;border-radius:50%;object-fit:contain;border:2px solid rgba(201,168,76,.3);flex-shrink:0;background:rgba(255,255,255,.04)}
+.logo-swap-btn{padding:8px 16px;border:1px dashed rgba(201,168,76,.4);border-radius:6px;background:rgba(201,168,76,.04);color:var(--gold);font-family:'Lato',sans-serif;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:all .2s}
+.logo-swap-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.1)}
+.logo-lock-info{font-family:'Lato',sans-serif;font-size:.65rem;color:rgba(255,255,255,.3);margin-top:4px}
+.logo-lock-info strong{color:#e67e22}
+
+/* HERO */
+.hero-section{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(201,168,76,.15)}
+.hero-upload-btn{width:100%;padding:14px;border:2px dashed rgba(201,168,76,.3);border-radius:8px;background:rgba(201,168,76,.03);color:var(--gold);font-family:'Lato',sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:all .2s;text-align:center}
+.hero-upload-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.06)}
+.hero-preview-wrap{margin-top:10px;display:none}
+.hero-preview-wrap.active{display:block}
+.hero-preview-wrap img{width:100%;height:280px;object-fit:cover;border-radius:6px;border:1px solid rgba(201,168,76,.25);transition:height .2s}
+.hero-slider-row{display:flex;align-items:center;gap:10px;margin-top:8px}
+.hero-slider-row span{font-family:'Lato',sans-serif;font-size:.62rem;color:rgba(255,255,255,.3);white-space:nowrap}
+.hero-slider-row input[type="range"]{flex:1;accent-color:var(--gold)}
+.hero-remove{background:none;border:none;color:#ff6b6b;font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;text-transform:uppercase;cursor:pointer;margin-top:4px}
+
+/* EXISTING PHOTOS */
+.existing-photo-strip{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
+.existing-photo-item{position:relative;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.25);border-radius:6px;padding:6px;width:120px;flex-shrink:0;cursor:pointer;transition:border-color .2s}
+.existing-photo-item.editing{border-color:var(--gold);background:rgba(201,168,76,.08)}
+.existing-photo-item img{width:100%;height:80px;object-fit:cover;border-radius:4px;border:1px solid rgba(201,168,76,.2);display:block}
+.existing-photo-caption{font-family:'Lato',sans-serif;font-size:.6rem;color:rgba(255,255,255,.4);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.existing-photo-heading{font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;color:var(--gold-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}
+.existing-photo-remove{position:absolute;top:4px;right:4px;background:rgba(231,76,60,.85);border:none;color:#fff;cursor:pointer;border-radius:50%;width:18px;height:18px;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
+.btn-edit-photo{width:100%;margin-top:5px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-family:'Lato',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 0;border-radius:3px;cursor:pointer;transition:all .2s}
+.btn-edit-photo:hover{background:rgba(201,168,76,.2)}
+.existing-photos-label{font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-light);margin-bottom:6px}
+.existing-photo-edit-panel{display:none;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:14px 16px;margin-top:10px;margin-bottom:4px}
+.existing-photo-edit-panel.open{display:block}
+.existing-photo-edit-panel label{font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);display:block;margin-bottom:5px;margin-top:10px}
+.existing-photo-edit-panel label:first-child{margin-top:0}
+.existing-photo-edit-panel input[type="text"]{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.2);color:var(--cream);padding:8px 10px;font-size:.85rem;border-radius:4px;font-family:'Lato',sans-serif}
+.existing-photo-edit-panel input[type="text"]:focus{outline:none;border-color:var(--gold)}
+.edit-panel-preview{width:100%;max-height:160px;object-fit:cover;border-radius:4px;border:1px solid rgba(201,168,76,.3);display:block;margin:8px 0 6px}
+
+/* EXHIBITS */
+.exhibit-card{background:rgba(255,255,255,.03);border:1px dashed rgba(201,168,76,.3);border-radius:8px;padding:14px;margin-bottom:12px;position:relative}
+.exhibit-card .btn-remove{position:absolute;top:10px;right:10px;background:transparent;border:none;color:#ff6b6b;cursor:pointer;font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;text-transform:uppercase}
+.exhibit-preview{margin-top:8px;text-align:center}
+.exhibit-preview img{max-width:100%;max-height:180px;border:2px solid var(--gold);border-radius:4px}
+.slider-row{display:flex;align-items:center;gap:10px;margin-top:6px}
+.slider-row input[type="range"]{flex:1;accent-color:var(--gold)}
+.slider-val{font-family:'Lato',sans-serif;font-size:.68rem;color:var(--gold-light);min-width:32px}
+.btn-add-exhibit{width:100%;border-style:dashed;padding:10px;background:rgba(201,168,76,.04);margin-top:4px}
+
+/* SIGNATURE FONT PICKER */
+.sig-picker-section{margin-top:14px;padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.18);border-radius:8px}
+.sig-picker-section h4{font-family:'Cormorant',serif;font-size:1rem;color:var(--gold);margin-bottom:12px;letter-spacing:.04em}
+.sig-font-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.sig-font-btn{padding:10px 8px;border:1px solid rgba(201,168,76,.2);border-radius:6px;background:rgba(255,255,255,.03);color:var(--gold-light);font-size:.95rem;cursor:pointer;transition:all .2s;text-align:center;line-height:1.2}
+.sig-font-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.08)}
+.sig-font-btn.active{border-color:var(--gold);background:rgba(201,168,76,.15);color:var(--gold)}
+.sig-script-divider{grid-column:1/-1;font-family:'Lato',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);text-align:center;padding:6px 0 2px;border-top:1px solid rgba(201,168,76,.1);margin-top:4px}
+
+/* TONE SELECTOR */
 .tone-row{margin-top:10px;padding:10px 12px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:7px;}
 .tone-label{font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:8px;}
-.tone-btns{display:flex;gap:7px;flex-wrap:wrap;}
-.tone-btn{font-family:'Lato',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.04em;padding:7px 13px;border:1px solid rgba(201,168,76,.3);border-radius:20px;background:transparent;color:rgba(201,168,76,.6);cursor:pointer;transition:all .2s;}
-.tone-btn:hover{border-color:var(--gold);color:var(--gold);background:rgba(201,168,76,.08);}
-.tone-btn.active{background:rgba(201,168,76,.2);border-color:var(--gold);color:var(--gold);}
+
 .tone-status{font-family:'Lato',sans-serif;font-size:.68rem;color:rgba(255,255,255,.5);margin-top:6px;padding:7px 12px;background:rgba(255,255,255,.04);border-radius:4px;border-left:2px solid var(--gold);display:none;}
 .tone-status.active{display:block;}
 
@@ -534,18 +654,11 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <span style="font-family:'Lato',sans-serif;font-size:.62rem;color:rgba(255,255,255,.25);">Select text first, then click</span>
     </div>
     <textarea id="inBody" oninput="showToneRow()" placeholder="Write your letter here. Blank line = new paragraph.&#10;&#10;*wrap in asterisks* for bold.&#10;((url))<Label> = gold link"></textarea>
-    <!-- TONE SELECTOR -->
-    <div class="tone-row" id="toneRow" style="display:none;">
-      <div class="tone-label">&#9998; Rewrite tone:</div>
-      <div class="tone-btns">
-        <button class="tone-btn active" data-tone="none" onclick="applyTone(this)">No Edit</button>
-        <button class="tone-btn" data-tone="professional" onclick="applyTone(this)">Professional</button>
-        <button class="tone-btn" data-tone="warm" onclick="applyTone(this)">Warm &amp; Personal</button>
-        <button class="tone-btn" data-tone="bold" onclick="applyTone(this)">Direct &amp; Bold</button>
-        <button class="tone-btn" data-tone="blackswan" onclick="applyTone(this)">Black Swan</button>
-      </div>
+    <!-- GRAMMAR & SPELL CHECK -->
+    <div id="grammarRow" style="margin-top:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <button id="btnGrammar" onclick="runGrammarCheck()" style="background:#1B2A40;border:1px solid rgba(201,168,76,.4);color:#C9A84C;font-family:'Lato',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:9px 16px;border-radius:5px;cursor:pointer;transition:all .2s;white-space:nowrap;" onmouseover="this.style.background='#C9A84C';this.style.color='#071018';" onmouseout="this.style.background='#1B2A40';this.style.color='#C9A84C';">&#10003; Fix Grammar &amp; Spelling</button>
+      <span id="grammarStatus" style="font-family:'Lato',sans-serif;font-size:.72rem;color:rgba(201,168,76,.6);display:none;">Checking...</span>
     </div>
-    <div id="toneStatus" class="tone-status"></div>
     <div class="hint">Blank line = new paragraph &nbsp;|&nbsp; *text* = bold &nbsp;|&nbsp; ((url))&lt;Label&gt; = gold link &nbsp;|&nbsp; type to show tone options</div>
   </div>
 
@@ -1336,36 +1449,42 @@ async function fetchMusicMetaForPlayer(url){
 function closeMusicGram(){var bar=document.getElementById('musicGramBar');bar.classList.remove('slide-up');setTimeout(function(){bar.classList.remove('visible');document.body.classList.remove('has-music-gram');},500);}
 
 // ── TONE SELECTOR ──
-var selectedTone = 'none';
-function showToneRow(){
-  var row = document.getElementById('toneRow');
-  var body = document.getElementById('inBody').value.trim();
-  if(body.length > 10) row.style.display = 'block';
+var selectedTone = 'none'; // kept for legacy compatibility
+
+function runGrammarCheck(){
+  var body = document.getElementById('inBody');
+  var text = body.value.trim();
+  if(!text){ showToast('Write something first.', 'error'); return; }
+  var btn = document.getElementById('btnGrammar');
+  var status = document.getElementById('grammarStatus');
+  btn.disabled = true;
+  btn.textContent = 'Checking...';
+  status.style.display = 'inline';
+  status.textContent = 'Fixing grammar & spelling...';
+  var prompt = 'Fix all grammar, spelling, and punctuation errors in this letter body. Preserve the author's voice, style, and meaning exactly. Fix only errors — do not rewrite, rephrase, or change the tone. Return ONLY the corrected text with no explanation, no preamble, no quotes:';
+  fetch(WORKER + '/api/format', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
+    body: JSON.stringify({ text: text, tone: prompt })
+  }).then(function(r){ return r.json(); })
+  .then(function(data){
+    if(data.formatted){
+      body.value = data.formatted;
+      renderLetter();
+      showToast('Grammar & spelling fixed!', 'success');
+    } else {
+      showToast('Could not fix — try again.', 'error');
+    }
+  }).catch(function(){
+    showToast('Connection error — try again.', 'error');
+  }).finally(function(){
+    btn.disabled = false;
+    btn.textContent = '✓ Fix Grammar & Spelling';
+    status.style.display = 'none';
+  });
 }
-function applyTone(btn){
-  document.querySelectorAll('.tone-btn').forEach(function(b){b.classList.remove('active');});
-  btn.classList.add('active');
-  selectedTone = btn.dataset.tone;
-  if(selectedTone === 'none') return;
-  var body = document.getElementById('inBody').value.trim();
-  if(!body){ showToast('Write something first.','error'); return; }
-  var status = document.getElementById('toneStatus');
-  status.textContent = 'Rewriting in ' + btn.textContent + ' tone...';
-  status.classList.add('active');
-  var prompts = {
-    professional: 'Rewrite this letter in a polished, professional business tone. Clear, confident, respectful. Fix grammar and punctuation. Return ONLY the rewritten text:',
-    warm: 'Rewrite this letter in a warm, personal, heartfelt tone. Conversational, genuine, caring. Fix grammar and punctuation. Return ONLY the rewritten text:',
-    bold: 'Rewrite this letter in a direct, bold, confident tone. Short punchy sentences. No fluff. Strong verbs. Fix grammar and punctuation. Return ONLY the rewritten text:',
-    blackswan: 'Rewrite this letter using Black Swan / Chris Voss negotiation principles. Use tactical empathy, short declarative sentences, calm authority, labeling emotions ("It seems like...", "It sounds like..."). Never pushy. Pull the reader toward YES. Fix grammar and punctuation. Return ONLY the rewritten text:'
-  };
-  fetch(WORKER+'/api/format',{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':API_KEY},body:JSON.stringify({text:body,tone:prompts[selectedTone]})})
-    .then(function(r){return r.json();})
-    .then(function(data){
-      if(data.formatted){document.getElementById('inBody').value=data.formatted;renderLetter();status.textContent='Rewritten in '+btn.textContent+' tone';setTimeout(function(){status.classList.remove('active');selectedTone='none';document.querySelectorAll('.tone-btn').forEach(function(b){b.classList.toggle('active',b.dataset.tone==='none');});},3000);}
-      else throw new Error('no result');
-    })
-    .catch(function(){status.textContent='Could not connect to AI -- try again.';setTimeout(function(){status.classList.remove('active');},3000);});
-}
+
+
 
 // ── iTunes OPTION A - Apple Music metadata ──
 async function fetchAppleMusicMeta(url){
