@@ -333,15 +333,12 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .mgb-close:hover{color:#fff;background:rgba(255,255,255,.1)}
 body.has-music-gram .page-container{padding-bottom:120px}
 
-/* WATER BANNER HEADER */
-.lh-water-banner{position:relative;width:100%;overflow:hidden;background:linear-gradient(180deg,#03111f 0%,#061a30 12%,#0a2a48 25%,#0d3860 38%,#0f4474 48%,#124e82 56%,#186788 64%,#1f8299 72%,#289db0 80%,#34b4c0 88%,#45c8c8 95%,#5bd6ca 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px 20px 30px;cursor:default;}
-.lhw-shimmer{position:absolute;inset:0;background:repeating-linear-gradient(-50deg,transparent 0,transparent 38px,rgba(255,255,255,.028) 38px,rgba(255,255,255,.028) 76px);animation:lhwShimmer 10s ease-in-out infinite;pointer-events:none;}
-@keyframes lhwShimmer{0%,100%{opacity:.5;transform:translateX(0);}50%{opacity:1;transform:translateX(18px);}}
-.lhw-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:340px;height:200px;background:radial-gradient(ellipse at center,rgba(201,168,76,.22) 0%,transparent 70%);pointer-events:none;}
-.lhw-seal{width:148px;height:148px;border-radius:50%;object-fit:contain;border:3px solid rgba(201,168,76,.65);box-shadow:0 0 0 7px rgba(201,168,76,.12),0 0 28px rgba(201,168,76,.35),0 0 60px rgba(201,168,76,.18),0 10px 36px rgba(0,0,0,.55);position:relative;z-index:2;transition:opacity .2s;}
-.lhw-seal:hover{opacity:.88;}
-.lhw-name{font-family:'Cinzel',serif;font-size:.84rem;letter-spacing:.24em;color:rgba(232,213,163,.92);text-transform:uppercase;margin-top:14px;position:relative;z-index:2;text-shadow:0 1px 10px rgba(0,0,0,.7);}
-.lhw-sub{font-family:'Cormorant',serif;font-size:.76rem;font-style:italic;letter-spacing:.12em;color:rgba(201,168,76,.6);margin-top:5px;position:relative;z-index:2;}
+/* HEADER IMAGE — full bleed, edge to edge */
+.lh-water-banner{width:100%;line-height:0;overflow:hidden;display:block;cursor:pointer;margin:0;padding:0;}
+.lh-water-banner img{width:100%;display:block;height:auto;transition:opacity .2s;}
+.lh-water-banner:hover img{opacity:.94;}
+/* GOLD FOIL BAR — matches top bar, sits directly below header image */
+.lh-gold-foil{height:10px;background:linear-gradient(90deg,#7a5c1e 0%,#9A7A2E 8%,#C9A84C 22%,#E8D5A3 38%,#F0E5B5 50%,#E8D5A3 62%,#C9A84C 78%,#9A7A2E 92%,#7a5c1e 100%);box-shadow:0 1px 4px rgba(201,168,76,.4),inset 0 1px 0 rgba(255,255,255,.18);}
 /* GEM SEPARATOR */
 .lh-gem-sep{width:100%;line-height:0;display:block;margin:0;}
 .lh-gem-sep svg{width:100%;height:28px;display:block;}
@@ -710,14 +707,12 @@ body.has-music-gram .page-container{padding-bottom:120px}
 <div class="page-container">
   <div class="page">
     <div class="top-bar"></div>
-    <!-- CINEMATIC WATER HEADER -->
-    <div class="lh-water-banner" id="waterBanner">
-      <div class="lhw-shimmer"></div>
-      <div class="lhw-glow"></div>
-      <img src="https://powparker.com/powparker-logo.webp" class="lhw-seal" id="outSeal" alt="Powell Parker Seal" onclick="document.getElementById('logoFileInput').click()" title="Click to swap logo">
-      <div class="lhw-name">Powell Parker</div>
-      <div class="lhw-sub">Official Correspondence</div>
+    <!-- HEADER IMAGE — full bleed edge to edge -->
+    <div class="lh-water-banner" id="waterBanner" onclick="document.getElementById('logoFileInput').click()" title="Click to swap header image">
+      <img src="https://powparker.com/parker-water-seal.webp" id="outSeal" alt="Powell Parker" style="width:100%;display:block;">
     </div>
+    <!-- GOLD FOIL BAR -->
+    <div class="lh-gold-foil"></div>
     <!-- GEM SEPARATOR -->
     <div class="lh-gem-sep">
       <svg viewBox="0 0 816 28" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
