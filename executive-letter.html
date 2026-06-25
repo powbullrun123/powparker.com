@@ -123,129 +123,6 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .sig-script-divider{grid-column:1/-1;font-family:'Lato',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);text-align:center;padding:6px 0 2px;border-top:1px solid rgba(201,168,76,.1);margin-top:4px}
 
 /* TONE SELECTOR */
-ead>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Powell Parker - Executive Letter</title>
-<meta name="description" content="Official correspondence - From the Desk of Powell Parker">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23C9A84C' font-style='italic' font-family='Georgia,serif'>P</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,700;1,6..96,400&family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700&family=Libre+Baskerville:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&family=Cinzel+Decorative:wght@400;700;900&family=Pinyon+Script&family=Alex+Brush&family=Great+Vibes&family=Dancing+Script:wght@400;600;700&family=Parisienne&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-<style>
-:root {
-  --navy:#1B2A40; --deep:#0A1525; --gold:#C9A84C; --gold-light:#E8D5A3; --gold-dark:#9A7A2E;
-  --cream:#F5F0E8; --text:#1e1e1e; --text-mid:#3a3a3a; --text-light:#5a5a5a; --rule:#d8d2c4;
-  --body-font:'EB Garamond',Georgia,serif;
-}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{font-size:16px}
-body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:antialiased}
-
-/* EDITOR BAR */
-.editor-bar{background:var(--deep);border-bottom:2px solid var(--gold);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;flex-wrap:wrap;gap:8px}
-.bar-left{display:flex;align-items:center;gap:12px}
-.bar-title{font-family:'Cormorant',serif;font-size:1rem;font-weight:700;color:var(--gold);letter-spacing:.06em}
-.bar-right{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.bar-btn{font-family:'Lato',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--gold);border-radius:4px;cursor:pointer;transition:all .25s;background:transparent;color:var(--gold);white-space:nowrap}
-.bar-btn:hover{background:var(--gold);color:var(--deep)}
-.bar-btn.primary{background:var(--gold);color:var(--deep)}
-.bar-btn.primary:hover{background:var(--gold-light)}
-.bar-btn.reparlay{background:#1a7a3a;border-color:#2ecc71;color:#fff;display:none}
-.bar-btn.reparlay.active{display:inline-block}
-.bar-btn:disabled{opacity:.4;cursor:not-allowed}
-.mode-indicator{font-family:'Lato',sans-serif;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:12px;font-weight:700}
-.mode-edit{background:rgba(201,168,76,.15);color:var(--gold)}
-.mode-view{background:rgba(45,106,79,.15);color:#52b788}
-.edit-mode-banner{display:none;background:rgba(26,122,58,.15);border-bottom:1px solid rgba(46,204,113,.3);padding:7px 16px;font-family:'Lato',sans-serif;font-size:.72rem;font-weight:700;color:#2ecc71;letter-spacing:.04em;text-align:center}
-.edit-mode-banner.active{display:block}
-
-/* TOAST */
-.toast{position:fixed;top:60px;left:50%;transform:translateX(-50%) translateY(-20px);padding:12px 24px;border-radius:8px;font-family:'Lato',sans-serif;font-size:.82rem;font-weight:700;z-index:200;opacity:0;transition:all .3s;pointer-events:none;max-width:90%;text-align:center}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.toast.success{background:#2ecc71;color:#fff}
-.toast.error{background:#e74c3c;color:#fff}
-.toast.loading{background:var(--gold);color:var(--deep)}
-
-/* SHARE PANEL */
-.share-panel{max-width:700px;margin:0 auto 16px;background:var(--deep);border:2px solid var(--gold);border-radius:10px;padding:20px 24px;display:none;text-align:center}
-.share-panel.active{display:block}
-.share-panel h3{font-family:'Cormorant',serif;font-size:1.1rem;color:var(--gold);margin-bottom:12px}
-.share-url-box{background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.3);border-radius:6px;padding:10px 14px;font-family:monospace;font-size:.82rem;color:var(--gold-light);word-break:break-all;margin-bottom:14px}
-.share-btns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.share-btns .bar-btn{font-size:.72rem;padding:9px 18px}
-.share-btns a.bar-btn{text-decoration:none}
-
-/* INPUT PANEL */
-.input-panel{max-width:700px;margin:20px auto;background:var(--deep);border:1px solid rgba(201,168,76,.2);border-radius:10px;padding:24px;display:none}
-.input-panel.active{display:block}
-.input-panel h3{font-family:'Cormorant',serif;font-size:1.15rem;color:var(--gold);margin-bottom:14px;font-weight:700}
-.field-row{margin-bottom:12px}
-.field-row label{display:block;font-family:'Lato',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:4px}
-.field-row input,.field-row textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.25);border-radius:6px;padding:10px 14px;font-family:'EB Garamond',serif;font-size:1rem;color:var(--cream);transition:border-color .3s;-webkit-appearance:none}
-.field-row input:focus,.field-row textarea:focus{outline:none;border-color:var(--gold)}
-.field-row textarea{min-height:180px;resize:vertical;line-height:1.8}
-.field-row .hint{font-family:'Lato',sans-serif;font-size:.65rem;color:rgba(255,255,255,.3);margin-top:3px}
-.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-
-/* LOGO */
-.logo-section{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(201,168,76,.15)}
-.logo-section-top{display:flex;align-items:center;gap:14px;margin-bottom:8px}
-.logo-preview-circle{width:64px;height:64px;border-radius:50%;object-fit:contain;border:2px solid rgba(201,168,76,.3);flex-shrink:0;background:rgba(255,255,255,.04)}
-.logo-swap-btn{padding:8px 16px;border:1px dashed rgba(201,168,76,.4);border-radius:6px;background:rgba(201,168,76,.04);color:var(--gold);font-family:'Lato',sans-serif;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:all .2s}
-.logo-swap-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.1)}
-.logo-lock-info{font-family:'Lato',sans-serif;font-size:.65rem;color:rgba(255,255,255,.3);margin-top:4px}
-.logo-lock-info strong{color:#e67e22}
-
-/* HERO */
-.hero-section{margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid rgba(201,168,76,.15)}
-.hero-upload-btn{width:100%;padding:14px;border:2px dashed rgba(201,168,76,.3);border-radius:8px;background:rgba(201,168,76,.03);color:var(--gold);font-family:'Lato',sans-serif;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;transition:all .2s;text-align:center}
-.hero-upload-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.06)}
-.hero-preview-wrap{margin-top:10px;display:none}
-.hero-preview-wrap.active{display:block}
-.hero-preview-wrap img{width:100%;height:280px;object-fit:cover;border-radius:6px;border:1px solid rgba(201,168,76,.25);transition:height .2s}
-.hero-slider-row{display:flex;align-items:center;gap:10px;margin-top:8px}
-.hero-slider-row span{font-family:'Lato',sans-serif;font-size:.62rem;color:rgba(255,255,255,.3);white-space:nowrap}
-.hero-slider-row input[type="range"]{flex:1;accent-color:var(--gold)}
-.hero-remove{background:none;border:none;color:#ff6b6b;font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;text-transform:uppercase;cursor:pointer;margin-top:4px}
-
-/* EXISTING PHOTOS */
-.existing-photo-strip{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:12px}
-.existing-photo-item{position:relative;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.25);border-radius:6px;padding:6px;width:120px;flex-shrink:0;cursor:pointer;transition:border-color .2s}
-.existing-photo-item.editing{border-color:var(--gold);background:rgba(201,168,76,.08)}
-.existing-photo-item img{width:100%;height:80px;object-fit:cover;border-radius:4px;border:1px solid rgba(201,168,76,.2);display:block}
-.existing-photo-caption{font-family:'Lato',sans-serif;font-size:.6rem;color:rgba(255,255,255,.4);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.existing-photo-heading{font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;color:var(--gold-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px}
-.existing-photo-remove{position:absolute;top:4px;right:4px;background:rgba(231,76,60,.85);border:none;color:#fff;cursor:pointer;border-radius:50%;width:18px;height:18px;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
-.btn-edit-photo{width:100%;margin-top:5px;background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--gold);font-family:'Lato',sans-serif;font-size:.58rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 0;border-radius:3px;cursor:pointer;transition:all .2s}
-.btn-edit-photo:hover{background:rgba(201,168,76,.2)}
-.existing-photos-label{font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-light);margin-bottom:6px}
-.existing-photo-edit-panel{display:none;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.3);border-radius:8px;padding:14px 16px;margin-top:10px;margin-bottom:4px}
-.existing-photo-edit-panel.open{display:block}
-.existing-photo-edit-panel label{font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);display:block;margin-bottom:5px;margin-top:10px}
-.existing-photo-edit-panel label:first-child{margin-top:0}
-.existing-photo-edit-panel input[type="text"]{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.2);color:var(--cream);padding:8px 10px;font-size:.85rem;border-radius:4px;font-family:'Lato',sans-serif}
-.existing-photo-edit-panel input[type="text"]:focus{outline:none;border-color:var(--gold)}
-.edit-panel-preview{width:100%;max-height:160px;object-fit:cover;border-radius:4px;border:1px solid rgba(201,168,76,.3);display:block;margin:8px 0 6px}
-
-/* EXHIBITS */
-.exhibit-card{background:rgba(255,255,255,.03);border:1px dashed rgba(201,168,76,.3);border-radius:8px;padding:14px;margin-bottom:12px;position:relative}
-.exhibit-card .btn-remove{position:absolute;top:10px;right:10px;background:transparent;border:none;color:#ff6b6b;cursor:pointer;font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;text-transform:uppercase}
-.exhibit-preview{margin-top:8px;text-align:center}
-.exhibit-preview img{max-width:100%;max-height:180px;border:2px solid var(--gold);border-radius:4px}
-.slider-row{display:flex;align-items:center;gap:10px;margin-top:6px}
-.slider-row input[type="range"]{flex:1;accent-color:var(--gold)}
-.slider-val{font-family:'Lato',sans-serif;font-size:.68rem;color:var(--gold-light);min-width:32px}
-.btn-add-exhibit{width:100%;border-style:dashed;padding:10px;background:rgba(201,168,76,.04);margin-top:4px}
-
-/* SIGNATURE FONT PICKER */
-.sig-picker-section{margin-top:14px;padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.18);border-radius:8px}
-.sig-picker-section h4{font-family:'Cormorant',serif;font-size:1rem;color:var(--gold);margin-bottom:12px;letter-spacing:.04em}
-.sig-font-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
-.sig-font-btn{padding:10px 8px;border:1px solid rgba(201,168,76,.2);border-radius:6px;background:rgba(255,255,255,.03);color:var(--gold-light);font-size:.95rem;cursor:pointer;transition:all .2s;text-align:center;line-height:1.2}
-.sig-font-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.08)}
-.sig-font-btn.active{border-color:var(--gold);background:rgba(201,168,76,.15);color:var(--gold)}
-.sig-script-divider{grid-column:1/-1;font-family:'Lato',sans-serif;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);text-align:center;padding:6px 0 2px;border-top:1px solid rgba(201,168,76,.1);margin-top:4px}
-
-/* TONE SELECTOR */
 .tone-row{margin-top:10px;padding:10px 12px;background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.2);border-radius:7px;}
 .tone-label{font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:8px;}
 
@@ -312,9 +189,9 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .lh-contact{text-align:right;flex-shrink:0}
 .lh-contact div{font-family:'Lato',sans-serif;font-size:.75rem;color:var(--navy);line-height:1.6}
 .lh-contact a{color:var(--navy);text-decoration:none}
-.l-hero-wrap{position:relative;margin-bottom:32px;display:none;line-height:0;overflow:hidden}
+.l-hero-wrap{position:relative;margin-bottom:0;margin-left:-56px;margin-right:-56px;width:calc(100% + 112px);display:none;line-height:0;overflow:hidden}
 .l-hero-wrap.active{display:block}
-.l-hero-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,1));pointer-events:none}
+.l-hero-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:160px;background:linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,0.65) 55%,rgba(255,255,255,1) 100%);pointer-events:none}
 .l-hero-img{width:100%;object-fit:cover;display:block;transition:height .2s}
 @media(max-width:768px){.l-hero-img{height:auto!important;object-fit:contain;object-position:center center!important;}}
 .l-hero-img.active{display:block}
@@ -357,6 +234,11 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .l-sig-links{margin-top:8px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
 .l-sig-links a{font-family:'Lato',sans-serif;font-size:.76rem;color:var(--gold);text-decoration:none;font-weight:700}
 .l-sig-links .sig-divider{color:#ccc;font-size:.7rem}
+/* CO-SIGNER */
+.l-cosig-wrap{display:none;margin-top:32px;padding-top:24px;border-top:1px dashed rgba(201,168,76,.25);}
+.l-cosig-wrap.active{display:block;}
+.l-cosig-name{font-family:'Pinyon Script',cursive;font-size:1.9rem;font-weight:400;color:var(--navy);line-height:1.2;transition:font-family .2s;}
+.l-cosig-title{font-family:'Lato',sans-serif;font-size:.75rem;color:var(--text-light);margin-top:6px;line-height:1.6;}
 .printed-exhibit-container{margin:32px 0;text-align:center;page-break-inside:avoid}
 .exhibit-print-heading{font-family:'Cormorant',serif;font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:8px}
 .exhibit-heading-rule{height:2px;background:linear-gradient(90deg,transparent,#C9A84C,transparent);width:120px;margin:0 auto 16px}
@@ -451,6 +333,18 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .mgb-close:hover{color:#fff;background:rgba(255,255,255,.1)}
 body.has-music-gram .page-container{padding-bottom:120px}
 
+/* WATER BANNER HEADER */
+.lh-water-banner{position:relative;width:100%;overflow:hidden;background:linear-gradient(180deg,#03111f 0%,#061a30 12%,#0a2a48 25%,#0d3860 38%,#0f4474 48%,#124e82 56%,#186788 64%,#1f8299 72%,#289db0 80%,#34b4c0 88%,#45c8c8 95%,#5bd6ca 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:36px 20px 30px;cursor:default;}
+.lhw-shimmer{position:absolute;inset:0;background:repeating-linear-gradient(-50deg,transparent 0,transparent 38px,rgba(255,255,255,.028) 38px,rgba(255,255,255,.028) 76px);animation:lhwShimmer 10s ease-in-out infinite;pointer-events:none;}
+@keyframes lhwShimmer{0%,100%{opacity:.5;transform:translateX(0);}50%{opacity:1;transform:translateX(18px);}}
+.lhw-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:340px;height:200px;background:radial-gradient(ellipse at center,rgba(201,168,76,.22) 0%,transparent 70%);pointer-events:none;}
+.lhw-seal{width:148px;height:148px;border-radius:50%;object-fit:contain;border:3px solid rgba(201,168,76,.65);box-shadow:0 0 0 7px rgba(201,168,76,.12),0 0 28px rgba(201,168,76,.35),0 0 60px rgba(201,168,76,.18),0 10px 36px rgba(0,0,0,.55);position:relative;z-index:2;transition:opacity .2s;}
+.lhw-seal:hover{opacity:.88;}
+.lhw-name{font-family:'Cinzel',serif;font-size:.84rem;letter-spacing:.24em;color:rgba(232,213,163,.92);text-transform:uppercase;margin-top:14px;position:relative;z-index:2;text-shadow:0 1px 10px rgba(0,0,0,.7);}
+.lhw-sub{font-family:'Cormorant',serif;font-size:.76rem;font-style:italic;letter-spacing:.12em;color:rgba(201,168,76,.6);margin-top:5px;position:relative;z-index:2;}
+/* GEM SEPARATOR */
+.lh-gem-sep{width:100%;line-height:0;display:block;margin:0;}
+.lh-gem-sep svg{width:100%;height:28px;display:block;}
 /* PRINT */
 @media print{
   body{background:#fff}
@@ -459,9 +353,9 @@ body.has-music-gram .page-container{padding-bottom:120px}
   .page{box-shadow:none;width:100%;min-height:100vh}
   .l-hero-img.active{display:block}
   .l-music-card.active{display:flex}
-  .print-cont-header{display:block;position:running(contHeader);text-align:center;padding:8px 0 4px;}
-  .print-cont-header img{width:50px;height:50px;border-radius:50%;object-fit:contain;}
-  .print-cont-rule{height:2px;margin:4px 56px 0;background:linear-gradient(90deg,transparent 0%,#E8D5A3 15%,#C9A84C 50%,#E8D5A3 85%,transparent 100%);}
+  .print-cont-header{display:block;position:running(contHeader);text-align:center;padding:10px 0 0;}
+  .print-cont-header img{width:114px;height:114px;border-radius:50%;object-fit:contain;}
+  .print-cont-rule{height:3px;margin:8px 0 0;background:linear-gradient(90deg,transparent 0%,rgba(232,213,163,0.4) 6%,#E8D5A3 20%,#C9A84C 40%,#C9A84C 60%,#E8D5A3 80%,rgba(232,213,163,0.4) 94%,transparent 100%);width:100%;}
   @page{@top-center{content:element(contHeader);}}
   @page :first{@top-center{content:none;}}
 }
@@ -632,8 +526,8 @@ body.has-music-gram .page-container{padding-bottom:120px}
           </div>
           <div style="display:flex;align-items:center;gap:10px;">
             <label style="font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-light);flex-shrink:0;width:80px;">Zoom</label>
-            <input type="range" id="videoZoomSlider" min="100" max="220" value="100" oninput="applyVideoTransform();document.getElementById('vidZoomVal').textContent=Math.round((this.value-100)/1.2)+'%'" style="flex:1;accent-color:#C9A84C;">
-            <span id="vidZoomVal" style="font-family:'Lato',sans-serif;font-size:.68rem;color:var(--text-dim);width:36px;text-align:right;">0%</span>
+            <input type="range" id="videoZoomSlider" min="100" max="220" value="130" oninput="applyVideoTransform();document.getElementById('vidZoomVal').textContent=Math.round((this.value-100)/1.2)+'%'" style="flex:1;accent-color:#C9A84C;">
+            <span id="vidZoomVal" style="font-family:'Lato',sans-serif;font-size:.68rem;color:var(--text-dim);width:36px;text-align:right;">25%</span>
           </div>
         </div>
         <p style="font-size:.7rem;color:var(--text-dim);margin-top:8px;">🎬 iPhone .mov, MP4, M4V all supported. Starts muted — viewer taps 🔇 to unmute</p>
@@ -723,6 +617,24 @@ body.has-music-gram .page-container{padding-bottom:120px}
     <div class="field-row"><label>Closing</label><input type="text" id="inClosing" value="Respectfully,"></div>
     <div class="field-row"><label>Signature Title</label><input type="text" id="inSigTitle" value="Founder &mdash; SaveKearnyAZ.org &middot; Project 88"></div>
   </div>
+
+  <!-- CO-SIGNER SECTION -->
+  <div style="margin-top:14px;padding:14px 16px;background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.18);border-radius:8px;">
+    <div style="font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;">&#9998; Co-Signer (optional)</div>
+    <div class="field-grid">
+      <div class="field-row"><label>Co-Signer Name</label><input type="text" id="inCoSigName" placeholder="Jane Doe" oninput="renderLetter()"></div>
+      <div class="field-row"><label>Co-Signer Title</label><input type="text" id="inCoSigTitle" placeholder="General Counsel" oninput="renderLetter()"></div>
+    </div>
+    <div style="font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.3);margin:10px 0 6px;">Signature Font</div>
+    <div class="sig-font-grid" id="coSigFontGrid">
+      <button class="sig-font-btn active" data-cosigfont="'Pinyon Script',cursive" onclick="setCoSigFont(this)" style="font-family:'Pinyon Script',cursive;font-size:1.15rem;">Co-Signer</button>
+      <button class="sig-font-btn" data-cosigfont="'Great Vibes',cursive" onclick="setCoSigFont(this)" style="font-family:'Great Vibes',cursive;font-size:1.1rem;">Co-Signer</button>
+      <button class="sig-font-btn" data-cosigfont="'Dancing Script',cursive" onclick="setCoSigFont(this)" style="font-family:'Dancing Script',cursive;">Co-Signer</button>
+      <button class="sig-font-btn" data-cosigfont="'Parisienne',cursive" onclick="setCoSigFont(this)" style="font-family:'Parisienne',cursive;font-size:1.05rem;">Co-Signer</button>
+      <button class="sig-font-btn" data-cosigfont="'Alex Brush',cursive" onclick="setCoSigFont(this)" style="font-family:'Alex Brush',cursive;font-size:1.1rem;">Co-Signer</button>
+      <button class="sig-font-btn" data-cosigfont="'Cormorant',serif" onclick="setCoSigFont(this)" style="font-family:'Cormorant',serif;font-size:.9rem;">Co-Signer</button>
+    </div>
+  </div>
   <div style="margin-top:12px;padding:14px 16px;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.2);border-radius:8px;">
     <div style="font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;">&#9998; Signature Contact Details</div>
     <div class="field-grid">
@@ -788,9 +700,9 @@ body.has-music-gram .page-container{padding-bottom:120px}
   </div>
 </div>
 
-<!-- Print continuation header: pages 2+ show just seal + gold rule, hidden on screen -->
+<!-- Print continuation header: pages 2+ show scaled seal + full-width gold ribbon, no motto -->
 <div class="print-cont-header" style="display:none;" aria-hidden="true">
-  <img src="https://powparker.com/powparker-logo.webp" alt="">
+  <img src="https://powparker.com/powparker-logo.webp" id="printContSeal" alt="">
   <div class="print-cont-rule"></div>
 </div>
 
@@ -798,16 +710,44 @@ body.has-music-gram .page-container{padding-bottom:120px}
 <div class="page-container">
   <div class="page">
     <div class="top-bar"></div>
-    <div class="letterhead">
-      <div class="lh-brand-group">
-        <img src="https://powparker.com/powparker-logo.webp" class="lh-seal" id="outSeal" alt="Powell Parker Seal" onclick="document.getElementById('logoFileInput').click()" title="Click to upload logo">
-        <div class="lh-text">
-          <div class="lh-motto">From the Desk of Powell Parker</div>
-        </div>
-      </div>
-
+    <!-- CINEMATIC WATER HEADER -->
+    <div class="lh-water-banner" id="waterBanner">
+      <div class="lhw-shimmer"></div>
+      <div class="lhw-glow"></div>
+      <img src="https://powparker.com/powparker-logo.webp" class="lhw-seal" id="outSeal" alt="Powell Parker Seal" onclick="document.getElementById('logoFileInput').click()" title="Click to swap logo">
+      <div class="lhw-name">Powell Parker</div>
+      <div class="lhw-sub">Official Correspondence</div>
     </div>
-    <div class="header-rule"></div>
+    <!-- GEM SEPARATOR -->
+    <div class="lh-gem-sep">
+      <svg viewBox="0 0 816 28" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="gemRuleL" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#C9A84C" stop-opacity="0"/><stop offset="85%" stop-color="#C9A84C" stop-opacity=".85"/><stop offset="100%" stop-color="#C9A84C" stop-opacity=".85"/></linearGradient>
+          <linearGradient id="gemRuleR" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#C9A84C" stop-opacity=".85"/><stop offset="15%" stop-color="#C9A84C" stop-opacity=".85"/><stop offset="100%" stop-color="#C9A84C" stop-opacity="0"/></linearGradient>
+          <filter id="gemGlow"><feGaussianBlur stdDeviation="1.2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <!-- Left rule -->
+        <rect x="0" y="13" width="318" height="1.8" fill="url(#gemRuleL)"/>
+        <!-- Left trio gems -->
+        <circle cx="334" cy="14" r="2.2" fill="#3ecec4" stroke="#C9A84C" stroke-width=".5" filter="url(#gemGlow)"/>
+        <polygon points="346,14 353,9.5 360,14 353,18.5" fill="#2ABFB8" stroke="#C9A84C" stroke-width=".6" filter="url(#gemGlow)"/>
+        <circle cx="372" cy="14" r="2.2" fill="#3ecec4" stroke="#C9A84C" stroke-width=".5" filter="url(#gemGlow)"/>
+        <!-- Thin connectors -->
+        <rect x="375" y="13.4" width="30" height="1.2" fill="rgba(201,168,76,.5)"/>
+        <!-- Gold Latin cross -->
+        <rect x="405.5" y="6" width="5" height="16" fill="#C9A84C" rx=".8"/>
+        <rect x="399" y="11" width="18" height="5" fill="#C9A84C" rx=".8"/>
+        <rect x="405.5" y="6" width="5" height="16" fill="url(#crossShine)" rx=".8" opacity=".4"/>
+        <!-- Thin connectors right -->
+        <rect x="411" y="13.4" width="30" height="1.2" fill="rgba(201,168,76,.5)"/>
+        <!-- Right trio gems (mirror) -->
+        <circle cx="444" cy="14" r="2.2" fill="#3ecec4" stroke="#C9A84C" stroke-width=".5" filter="url(#gemGlow)"/>
+        <polygon points="456,14 463,9.5 470,14 463,18.5" fill="#2ABFB8" stroke="#C9A84C" stroke-width=".6" filter="url(#gemGlow)"/>
+        <circle cx="482" cy="14" r="2.2" fill="#3ecec4" stroke="#C9A84C" stroke-width=".5" filter="url(#gemGlow)"/>
+        <!-- Right rule -->
+        <rect x="498" y="13" width="318" height="1.8" fill="url(#gemRuleR)"/>
+      </svg>
+    </div>
     <div class="letter-content" id="letterContent">
       <div class="l-hero-wrap" id="outHeroWrap">
         <img class="l-hero-img" id="outHeroImg" src="" alt="Cover Photo" style="object-position:center 40%;">
@@ -850,6 +790,11 @@ body.has-music-gram .page-container{padding-bottom:120px}
           <a href="mailto:powell@powparker.com" id="outSigEmailLink">powell@powparker.com</a>
         </div>
       </div>
+    </div>
+    <!-- CO-SIGNER SIGNATURE -->
+    <div class="l-cosig-wrap" id="outCoSigWrap">
+      <div class="l-cosig-name" id="outCoSigName"></div>
+      <div class="l-cosig-title" id="outCoSigTitle"></div>
     </div>
     <div class="l-music-card" id="outMusicCard">
       <div id="outMusicLeft" style="width:60px;height:60px;border-radius:7px;flex-shrink:0;overflow:hidden;background:rgba(201,168,76,.08);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:rgba(201,168,76,.4);">&#9835;</div>
@@ -898,7 +843,7 @@ var WORKER='https://letters.powparker.com';
 var API_KEY='Parker-letters-062878!';
 var editMode=true,editingSlug=null,exhibitCounter=0,exhibitFiles={},existingPhotos=[],editingPhotoIndex=-1;
 var heroDataUrl=null,heroExistingUrl=null,musicArtDataUrl=null,logoDataUrl=null,logoFile=null,logoExistingKey=null;
-var currentMusicMeta=null,musicFetchTimer=null,mgramMode='song';var currentSigFont="'Pinyon Script',cursive";var currentSigSize='1.9rem';
+var currentMusicMeta=null,musicFetchTimer=null,mgramMode='song';var currentSigFont="'Pinyon Script',cursive";var currentSigSize='1.9rem';var currentCoSigFont="'Pinyon Script',cursive";
 
 
 // ── MUSIC/PODCAST TOGGLE ──
@@ -931,7 +876,7 @@ function setMgramMode(mode){
   });
   document.getElementById('logoFileInput').addEventListener('change',function(e){
     if(!e.target.files[0])return;logoFile=e.target.files[0];
-    var r=new FileReader();r.onload=function(ev){logoDataUrl=ev.target.result;document.getElementById('outSeal').src=ev.target.result;document.getElementById('logoPreviewEditor').src=ev.target.result;document.getElementById('logoStatus').style.display='block';};r.readAsDataURL(e.target.files[0]);e.target.value='';
+    var r=new FileReader();r.onload=function(ev){logoDataUrl=ev.target.result;document.getElementById('outSeal').src=ev.target.result;document.getElementById('logoPreviewEditor').src=ev.target.result;var ps=document.getElementById('printContSeal');if(ps)ps.src=ev.target.result;document.getElementById('logoStatus').style.display='block';};r.readAsDataURL(e.target.files[0]);e.target.value='';
   });
   document.getElementById('heroFileInput').addEventListener('change',function(e){
     if(!e.target.files[0])return;var r=new FileReader();r.onload=function(ev){heroDataUrl=ev.target.result;heroExistingUrl=null;document.getElementById('heroPrevImg').src=ev.target.result;document.getElementById('heroPrevImg').style.objectPosition='center 40%';document.getElementById('heroPrevImg').style.height='280px';document.getElementById('heroSlider').value=40;document.getElementById('heroZoom').value=100;document.getElementById('heroZoomVal').textContent='100';document.getElementById('heroPrevWrap').classList.add('active');};r.readAsDataURL(e.target.files[0]);e.target.value='';
@@ -963,7 +908,7 @@ function openExistingPhotoEdit(index){editingPhotoIndex=index;var p=existingPhot
 function closeExistingPhotoEdit(){editingPhotoIndex=-1;document.getElementById('existingPhotoEditPanel').classList.remove('open');document.querySelectorAll('.existing-photo-item').forEach(function(el){el.classList.remove('editing');});}
 window.saveExistingPhotoEdit=async function(){if(editingPhotoIndex<0)return;var p=existingPhotos[editingPhotoIndex],url=typeof p==='string'?p:(p.url||p),heading=document.getElementById('editPanelHeading').value.trim(),caption=document.getElementById('editPanelCaption').value.trim(),fileInput=document.getElementById('editPanelPhotoFile');if(fileInput.files&&fileInput.files[0]){showToast('Uploading...','loading');var fd=new FormData();fd.append('photo',fileInput.files[0]);fd.append('letterId',editingSlug||'general');try{var res=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var data=await res.json();if(data.success){url=WORKER+'/photos/'+data.key;document.getElementById('editPanelPreview').src=url;}else{showToast('Upload failed','error');return;}}catch(e){showToast('Upload error','error');return;}}existingPhotos[editingPhotoIndex]={url:url,heading:heading,caption:caption};renderExistingPhotos();closeExistingPhotoEdit();showToast('Photo updated -- ReParLay to save','success');};
 
-function buildLetterObj(){var recip=document.getElementById('inRecipient').value.trim(),recipParts=recip.split(',').map(function(s){return s.trim();}),recipHtml='<strong>'+recipParts[0]+'</strong>';for(var j=1;j<recipParts.length;j++)recipHtml+='<br>'+recipParts[j];return{date:document.getElementById('inDate').value.trim(),recipientName:recipParts[0],recipientHtml:recipHtml,subject:document.getElementById('inSubject').value.trim(),salutation:document.getElementById('inSalutation').value.trim(),body:document.getElementById('inBody').value.trim(),closing:document.getElementById('inClosing').value.trim(),sigTitle:document.getElementById('inSigTitle').value.trim(),password:document.getElementById('inPassword').value.trim()||null,musicUrl:document.getElementById('inMusic').value.trim()||null,musicMeta:null,calendarUrl:(document.getElementById('inCalToggle')&&document.getElementById('inCalToggle').checked&&document.getElementById('inCalUrl'))?document.getElementById('inCalUrl').value.trim()||null:null,bodyFont:(document.querySelector('.font-btn.active')?document.querySelector('.font-btn.active').getAttribute('data-font'):''),bodyFontSize:(document.querySelector('.size-btn[data-bodysize].active')?document.querySelector('.size-btn[data-bodysize].active').getAttribute('data-bodysize'):'1.05rem'),sigFontSizeCustom:(document.querySelector('.size-btn[data-sigsize].active')?document.querySelector('.size-btn[data-sigsize].active').getAttribute('data-sigsize'):'1.9rem'),sigFont:currentSigFont||null,heroPosition:document.getElementById('heroSlider').value||'40',heroZoom:document.getElementById('heroZoom').value||'100',sigAZPhone:document.getElementById('inSigAZPhone').value.trim()||'(480) 788-2320',sigTXPhone:document.getElementById('inSigTXPhone').value.trim()||'(214) 838-1883',sigTollFree:document.getElementById('inSigTollFree')?document.getElementById('inSigTollFree').value.trim()||'1-800-428-2022':'1-800-428-2022',sigWebsite:document.getElementById('inSigWebsite').value.trim()||'www.powparker.com',sigEmail:document.getElementById('inSigEmail').value.trim()||'powell@powparker.com',videoKey:window._existingVideoKey||null,videoPosition:(document.getElementById('videoPositionSlider')?document.getElementById('videoPositionSlider').value:'50'),videoZoom:(document.getElementById('videoZoomSlider')?document.getElementById('videoZoomSlider').value:'100'),exhibits:[],logoKey:null};}
+function buildLetterObj(){var recip=document.getElementById('inRecipient').value.trim(),recipParts=recip.split(',').map(function(s){return s.trim();}),recipHtml='<strong>'+recipParts[0]+'</strong>';for(var j=1;j<recipParts.length;j++)recipHtml+='<br>'+recipParts[j];return{date:document.getElementById('inDate').value.trim(),recipientName:recipParts[0],recipientHtml:recipHtml,subject:document.getElementById('inSubject').value.trim(),salutation:document.getElementById('inSalutation').value.trim(),body:document.getElementById('inBody').value.trim(),closing:document.getElementById('inClosing').value.trim(),sigTitle:document.getElementById('inSigTitle').value.trim(),password:document.getElementById('inPassword').value.trim()||null,musicUrl:document.getElementById('inMusic').value.trim()||null,musicMeta:null,calendarUrl:(document.getElementById('inCalToggle')&&document.getElementById('inCalToggle').checked&&document.getElementById('inCalUrl'))?document.getElementById('inCalUrl').value.trim()||null:null,bodyFont:(document.querySelector('.font-btn.active')?document.querySelector('.font-btn.active').getAttribute('data-font'):''),bodyFontSize:(document.querySelector('.size-btn[data-bodysize].active')?document.querySelector('.size-btn[data-bodysize].active').getAttribute('data-bodysize'):'1.05rem'),sigFontSizeCustom:(document.querySelector('.size-btn[data-sigsize].active')?document.querySelector('.size-btn[data-sigsize].active').getAttribute('data-sigsize'):'1.9rem'),sigFont:currentSigFont||null,heroPosition:document.getElementById('heroSlider').value||'40',heroZoom:document.getElementById('heroZoom').value||'100',sigAZPhone:document.getElementById('inSigAZPhone').value.trim()||'(480) 788-2320',sigTXPhone:document.getElementById('inSigTXPhone').value.trim()||'(214) 838-1883',sigTollFree:document.getElementById('inSigTollFree')?document.getElementById('inSigTollFree').value.trim()||'1-800-428-2022':'1-800-428-2022',sigWebsite:document.getElementById('inSigWebsite').value.trim()||'www.powparker.com',sigEmail:document.getElementById('inSigEmail').value.trim()||'powell@powparker.com',videoKey:window._existingVideoKey||null,videoPosition:(document.getElementById('videoPositionSlider')?document.getElementById('videoPositionSlider').value:'50'),videoZoom:(document.getElementById('videoZoomSlider')?document.getElementById('videoZoomSlider').value:'130'),exhibits:[],logoKey:null,coSigName:document.getElementById('inCoSigName')?document.getElementById('inCoSigName').value.trim():'',coSigTitle:document.getElementById('inCoSigTitle')?document.getElementById('inCoSigTitle').value.trim():'',coSigFont:currentCoSigFont||null};}
 
 async function generateAndSave(){renderLetter();var slug=document.getElementById('inSlug').value.trim()||'letter-'+Date.now();document.getElementById('inSlug').value=slug;var btn=document.getElementById('btnSave');btn.disabled=true;showToast('Saving...','loading');try{var logoKey=logoExistingKey||null;if(logoFile){var lfd=new FormData();lfd.append('logo',logoFile);lfd.append('slug',slug);var lRes=await fetch(WORKER+'/api/logo',{method:'POST',headers:{'X-API-Key':API_KEY},body:lfd});var lData=await lRes.json();if(lData.success){logoKey=lData.key;logoFile=null;logoExistingKey=logoKey;}}var exhibits=[];var cards=document.querySelectorAll('.exhibit-card');for(var i=0;i<cards.length;i++){var id=cards[i].id.replace('card_',''),heading=document.getElementById('heading_'+id).value.trim(),scale=document.getElementById('scale_'+id).value,caption=document.getElementById('caption_'+id).value.trim(),exData=exhibitFiles[id];if(exData&&exData.file){showToast('Uploading photo '+(i+1)+'...','loading');var fd=new FormData();fd.append('photo',exData.file);fd.append('letterId',slug);var pRes=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var pData=await pRes.json();if(pData.success)exhibits.push({photoKey:pData.key,heading:heading,scale:scale,caption:caption});}}var allExhibits=existingPhotos.map(function(p){if(typeof p==='string')return{photoUrl:p,heading:'',scale:80,caption:''};return{photoUrl:p.url,heading:p.heading||'',scale:p.scale||80,caption:p.caption||''};}).concat(exhibits);if(heroDataUrl){showToast('Uploading cover photo...','loading');try{var hBlob=await(await fetch(heroDataUrl)).blob();var hFd=new FormData();hFd.append('photo',hBlob,'hero.jpg');hFd.append('letterId',slug);var hR=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:hFd});var hD=await hR.json();if(hD.success){heroExistingUrl=WORKER+'/photos/'+hD.key;heroDataUrl=null;}}catch(e){}}var heroKey=heroExistingUrl?heroExistingUrl.split('/photos/').pop():null;var videoKey=null;if(_videoFile){showToast('Uploading video...','loading');try{var vFd=new FormData();vFd.append('video',_videoFile);vFd.append('slug',slug);var vR=await fetch(WORKER+'/api/video',{method:'POST',headers:{'X-API-Key':API_KEY},body:vFd});var vD=await vR.json();if(vD.success){videoKey=vD.key;window._existingVideoKey=vD.key;}}catch(e){}}var letter=buildLetterObj();letter.exhibits=allExhibits;letter.logoKey=logoKey;letter.heroUrl=heroExistingUrl||null;letter.heroKey=heroKey;if(videoKey)letter.videoKey=videoKey;else if(window._existingVideoKey)letter.videoKey=window._existingVideoKey;showToast('Saving to cloud...','loading');var res=await fetch(WORKER+'/api/save',{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':API_KEY},body:JSON.stringify({slug:slug,letter:letter})});var data=await res.json();if(data.success){setSharePanel(WORKER+'/s/'+data.slug,false);showToast('Letter saved!','success');loadSavedLetters();if(editMode)toggleMode();}else throw new Error(data.error||'Save failed');}catch(e){showToast('Error: '+e.message,'error');}btn.disabled=false;}
 
@@ -996,6 +941,15 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
       });
       currentSigSize=letter.sigFontSizeCustom;
       var sn=document.getElementById('outSigName');if(sn)sn.style.fontSize=letter.sigFontSizeCustom;
+    }
+    // Restore co-signer
+    if(document.getElementById('inCoSigName'))document.getElementById('inCoSigName').value=letter.coSigName||'';
+    if(document.getElementById('inCoSigTitle'))document.getElementById('inCoSigTitle').value=letter.coSigTitle||'';
+    if(letter.coSigFont){
+      currentCoSigFont=letter.coSigFont;
+      document.querySelectorAll('#coSigFontGrid .sig-font-btn').forEach(function(b){
+        b.classList.toggle('active',b.dataset.cosigfont===letter.coSigFont);
+      });
     }
     // Restore body font
     if(letter.bodyFont){
@@ -1051,7 +1005,7 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
       var vSlider = document.getElementById('videoPositionSlider');
       var vZoom = document.getElementById('videoZoomSlider');
       if(vSlider) vSlider.value = letter.videoPosition || '50';
-      if(vZoom) vZoom.value = letter.videoZoom || '100';
+      if(vZoom) vZoom.value = letter.videoZoom || '130';
       applyVideoTransform();
       var cropCtrl = document.getElementById('vidCropControls');
       if(cropCtrl) cropCtrl.style.display = '';
@@ -1062,7 +1016,11 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
       setMediaTab('photo');
     }existingPhotos=[];if(letter.exhibits&&letter.exhibits.length>0)letter.exhibits.forEach(function(ex){var url=ex.photoUrl||(ex.photoKey?WORKER+'/photos/'+ex.photoKey:'');if(url)existingPhotos.push({url:url,heading:ex.heading||'',caption:ex.caption||'',scale:ex.scale||80});});renderExistingPhotos();document.getElementById('exhibitsContainer').innerHTML='';exhibitCounter=0;exhibitFiles={};document.getElementById('btnSave').style.display='none';document.getElementById('btnReParlay').classList.add('active');document.getElementById('btnCancelEdit').style.display='inline-block';document.getElementById('editModeBanner').classList.add('active');if(!editMode)toggleMode();document.getElementById('inputPanel').scrollIntoView({behavior:'smooth',block:'start'});showToast('Loaded -- make edits then ReParLay It','success');showToneRow();}catch(e){showToast('Error: '+e.message,'error');}};
 
-window.cancelEdit=function(){editingSlug=null;window._existingVideoKey=null;existingPhotos=[];logoFile=null;logoExistingKey=null;logoDataUrl=null;document.getElementById('outSeal').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoPreviewEditor').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoStatus').style.display='none';['inDate','inSubject','inSlug','inRecipient','inSalutation','inBody','inPassword','inMusic'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('inClosing').value='Respectfully,';document.getElementById('inSigTitle').value='Founder -- SaveKearnyAZ.org - Project 88';document.getElementById('inSigAZPhone').value='(480) 788-2320';document.getElementById('inSigTXPhone').value='(214) 838-1883';document.getElementById('inSigWebsite').value='www.powparker.com';document.getElementById('inSigEmail').value='powell@powparker.com';document.getElementById('exhibitsContainer').innerHTML='';document.getElementById('existingPhotosWrap').style.display='none';closeExistingPhotoEdit();exhibitCounter=0;exhibitFiles={};removeHero();document.getElementById('btnSave').style.display='inline-block';document.getElementById('btnReParlay').classList.remove('active');document.getElementById('btnCancelEdit').style.display='none';document.getElementById('editModeBanner').classList.remove('active');document.getElementById('sharePanel').classList.remove('active');setMgramMode('song');currentSigFont="'Pinyon Script',cursive";currentSigSize='1.9rem';document.querySelectorAll('.sig-font-btn').forEach(function(b,i){b.classList.toggle('active',i===0);});var sn=document.getElementById('outSigName');if(sn){sn.style.fontFamily="'Pinyon Script',cursive";sn.style.fontSize='1.9rem';}showToast('Cleared','success');document.getElementById('inputPanel').scrollIntoView({behavior:'smooth',block:'start'});};
+window.cancelEdit=function(){editingSlug=null;window._existingVideoKey=null;existingPhotos=[];logoFile=null;logoExistingKey=null;logoDataUrl=null;document.getElementById('outSeal').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoPreviewEditor').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoStatus').style.display='none';['inDate','inSubject','inSlug','inRecipient','inSalutation','inBody','inPassword','inMusic'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('inClosing').value='Respectfully,';document.getElementById('inSigTitle').value='Founder -- SaveKearnyAZ.org - Project 88';document.getElementById('inSigAZPhone').value='(480) 788-2320';document.getElementById('inSigTXPhone').value='(214) 838-1883';document.getElementById('inSigWebsite').value='www.powparker.com';document.getElementById('inSigEmail').value='powell@powparker.com';document.getElementById('exhibitsContainer').innerHTML='';document.getElementById('existingPhotosWrap').style.display='none';closeExistingPhotoEdit();exhibitCounter=0;exhibitFiles={};removeHero();document.getElementById('btnSave').style.display='inline-block';document.getElementById('btnReParlay').classList.remove('active');document.getElementById('btnCancelEdit').style.display='none';document.getElementById('editModeBanner').classList.remove('active');document.getElementById('sharePanel').classList.remove('active');setMgramMode('song');currentSigFont="'Pinyon Script',cursive";currentSigSize='1.9rem';currentCoSigFont="'Pinyon Script',cursive";
+  if(document.getElementById('inCoSigName'))document.getElementById('inCoSigName').value='';
+  if(document.getElementById('inCoSigTitle'))document.getElementById('inCoSigTitle').value='';
+  var csw=document.getElementById('outCoSigWrap');if(csw)csw.classList.remove('active');
+  document.querySelectorAll('#coSigFontGrid .sig-font-btn').forEach(function(b,i){b.classList.toggle('active',i===0);});document.querySelectorAll('.sig-font-btn').forEach(function(b,i){b.classList.toggle('active',i===0);});var sn=document.getElementById('outSigName');if(sn){sn.style.fontFamily="'Pinyon Script',cursive";sn.style.fontSize='1.9rem';}showToast('Cleared','success');document.getElementById('inputPanel').scrollIntoView({behavior:'smooth',block:'start'});};
 
 function renderLetter(){var date=document.getElementById('inDate').value.trim();var outDateEl=document.getElementById('outDate');if(outDateEl){if(date&&date!=='-'){outDateEl.textContent=date;outDateEl.style.display='';}else outDateEl.style.display='none';}var heroImg=document.getElementById('outHeroImg');var heroVid=document.getElementById('outHeroVideo');var heroWrap=document.getElementById('outHeroWrap');
   // Show video OR photo in letter preview
@@ -1139,6 +1097,21 @@ function renderLetter(){var date=document.getElementById('inDate').value.trim();
   if(calPrev)calPrev.style.display=calOn?'':'none';
   }var outEx=document.getElementById('outExhibits');outEx.innerHTML='';document.querySelectorAll('.exhibit-card').forEach(function(card){var id=card.id.replace('card_',''),headVal=document.getElementById('heading_'+id).value.trim(),scaleVal=document.getElementById('scale_'+id).value,capVal=document.getElementById('caption_'+id).value.trim(),exData=exhibitFiles[id];if(exData&&exData.dataUrl){var wrap=document.createElement('div');wrap.className='printed-exhibit-container';var h='';if(headVal)h+='<div class="exhibit-print-heading">'+headVal+'</div><div class="exhibit-heading-rule"></div>';h+='<img src="'+exData.dataUrl+'" class="exhibit-print-img" style="width:'+scaleVal+'%;" alt="Exhibit">';if(capVal)h+='<div class="exhibit-print-caption">'+capVal+'</div>';wrap.innerHTML=h;outEx.appendChild(wrap);}});var closing=document.getElementById('inClosing').value.trim();if(closing)document.getElementById('outClosing').textContent=closing;var sigTitle=document.getElementById('inSigTitle').value.trim();if(sigTitle)document.getElementById('outSigTitle').textContent=sigTitle;
   var sn=document.getElementById('outSigName');if(sn&&currentSigFont){sn.style.fontFamily=currentSigFont;sn.style.fontSize=currentSigSize||'1.9rem';}
+  // CO-SIGNER
+  var csName=document.getElementById('inCoSigName')?document.getElementById('inCoSigName').value.trim():'';
+  var csTitle=document.getElementById('inCoSigTitle')?document.getElementById('inCoSigTitle').value.trim():'';
+  var csWrap=document.getElementById('outCoSigWrap');
+  var csNameEl=document.getElementById('outCoSigName');
+  var csTitleEl=document.getElementById('outCoSigTitle');
+  if(csWrap){
+    if(csName){
+      csWrap.classList.add('active');
+      if(csNameEl){csNameEl.textContent=csName;csNameEl.style.fontFamily=currentCoSigFont;}
+      if(csTitleEl)csTitleEl.textContent=csTitle;
+    }else{
+      csWrap.classList.remove('active');
+    }
+  }
   var azPh=document.getElementById('inSigAZPhone').value.trim()||'(480) 788-2320';
   var txPh=document.getElementById('inSigTXPhone').value.trim()||'(214) 838-1883';
   var sigWb=document.getElementById('inSigWebsite').value.trim()||'www.powparker.com';
@@ -1308,6 +1281,14 @@ function setSigFont(btn){
   if(sigEl) sigEl.style.fontSize = size;
   currentSigFont = font;
   currentSigSize = size;
+}
+function setCoSigFont(btn){
+  document.querySelectorAll('#coSigFontGrid .sig-font-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  var font = btn.dataset.cosigfont;
+  currentCoSigFont = font;
+  var el = document.getElementById('outCoSigName');
+  if(el) el.style.fontFamily = font;
 }
 function scheduleMusicFetch(){clearTimeout(musicFetchTimer);var url=document.getElementById('inMusic').value.trim();if(!url){document.getElementById('musicFetchPreview').classList.remove('active');currentMusicMeta=null;return;}musicFetchTimer=setTimeout(function(){fetchMusicMeta(url);},800);}
 
