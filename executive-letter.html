@@ -986,6 +986,15 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
     }
     // Restore video
     window._existingVideoKey = letter.videoKey || null;
+    // Restore video preview from existing key
+    if(letter.videoKey){
+      var vPrev=document.getElementById('videoPreview');
+      if(vPrev){vPrev.src=WORKER+'/photos/'+letter.videoKey;vPrev.style.display='block';}
+      // Switch to cinematic video tab
+      var tabV=document.getElementById('tabVideo');
+      var tabP=document.getElementById('tabPhoto');
+      if(tabV&&tabP){tabV.click();}
+    }
     window._videoFile = null;
     var vidPrev = document.getElementById('videoPreview');
     var vidWrap = document.getElementById('videoPreviewWrap');
