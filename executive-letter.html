@@ -422,14 +422,15 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <button class="font-btn" data-font="Zapfino,'Snell Roundhand','Apple Chancery',cursive" onclick="setFont(this)" style="font-family:Zapfino,'Snell Roundhand','Apple Chancery',cursive;">Zapfino ✦</button>
       <button class="font-btn" data-font="'Pinyon Script',cursive" onclick="setFont(this)" style="font-family:'Pinyon Script',cursive;">Bickham Script</button>
       <button class="font-btn" data-font="'Alex Brush',cursive" onclick="setFont(this)" style="font-family:'Alex Brush',cursive;">Burgues Script</button>
-      <button class="font-btn" data-font="'Edwardian Script ITC','Great Vibes',cursive" onclick="setFont(this)" style="font-family:'Edwardian Script ITC','Great Vibes',cursive;font-size:1.05rem;">Edwardian Script</button>
+      <button class="font-btn" data-font="'Edwardian Script ITC','Great Vibes',cursive" onclick="setFont(this)" style="font-family:'Edwardian Script ITC','Great Vibes',cursive;font-size:1.25rem;">Edwardian Script</button>
     </div>
     <div class="size-row">
       <label>Body Size</label>
       <button class="size-btn active" data-bodysize="1.05rem" onclick="setBodySize(this)">Base</button>
-      <button class="size-btn" data-bodysize="1.12rem" onclick="setBodySize(this)">+1pt</button>
-      <button class="size-btn" data-bodysize="1.18rem" onclick="setBodySize(this)">+2pt</button>
-      <button class="size-btn" data-bodysize="1.25rem" onclick="setBodySize(this)">+3pt</button>
+      <button class="size-btn" data-bodysize="1.22rem" onclick="setBodySize(this)">+2</button>
+      <button class="size-btn" data-bodysize="1.38rem" onclick="setBodySize(this)">+4</button>
+      <button class="size-btn" data-bodysize="1.55rem" onclick="setBodySize(this)">+6</button>
+      <button class="size-btn" data-bodysize="1.72rem" onclick="setBodySize(this)">+8</button>
     </div>
   </div>
   <div class="field-row" style="margin-top:16px;border-top:1px solid rgba(201,168,76,.15);padding-top:16px;"><label>Social Links</label></div>
@@ -1343,6 +1344,16 @@ function setFont(btn){
     dynStyle=document.createElement('style');
     dynStyle.id='dynBodyFont';
     document.head.appendChild(dynStyle);
+  }
+  // Script/decorative fonts auto-bump to +4pt for legibility
+  var scriptFonts = ["'Edwardian Script ITC'","'Zapfino'","'Pinyon Script'","'Alex Brush'"];
+  var isScript = scriptFonts.some(function(f){ return font.indexOf(f) >= 0; });
+  if(isScript){
+    var allSizeBtns = document.querySelectorAll('.size-btn[data-bodysize]');
+    allSizeBtns.forEach(function(b){ b.classList.remove('active'); });
+    // Find +4 button (1.38rem)
+    var plusFour = document.querySelector('.size-btn[data-bodysize="1.38rem"]');
+    if(plusFour) plusFour.classList.add('active');
   }
   var activeSizeBtn=document.querySelector('.size-btn[data-bodysize].active');
   var bSize=activeSizeBtn?activeSizeBtn.getAttribute('data-bodysize'):'1.05rem';
