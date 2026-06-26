@@ -947,11 +947,12 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
       });
     }
     // Restore body font
-    if(letter.bodyFont){
+    var effectiveFont = letter.bodyFont || (loadSettings().font || '');
+    if(effectiveFont){
       var fontBtns=document.querySelectorAll('.font-btn');
       fontBtns.forEach(function(b){
         b.classList.remove('active');
-        if(b.getAttribute('data-font')===letter.bodyFont){
+        if(b.getAttribute('data-font')===effectiveFont){
           b.classList.add('active');
           setFont(b);
         }
