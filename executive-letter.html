@@ -334,8 +334,9 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 body.has-music-gram .page-container{padding-bottom:120px}
 
 /* HEADER IMAGE — full bleed, edge to edge */
-.lh-water-banner{width:100%;line-height:0;overflow:hidden;display:block;cursor:pointer;margin:0;padding:0;}
-.lh-water-banner img{width:100%;display:block;height:auto;transition:opacity .2s;}
+.lh-water-banner{width:100%;height:300px;line-height:0;overflow:hidden;display:block;cursor:pointer;margin:0;padding:0;position:relative;}
+.lh-water-banner::before{content:'';position:absolute;inset:0;background:url('https://letters.powparker.com/parker-water-seal.webp') center/cover no-repeat;z-index:0;}
+.lh-water-banner img{display:block;max-height:300px;object-fit:contain;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(var(--hzoom,1));transform-origin:center center;z-index:1;transition:opacity .2s;}
 .lh-water-banner:hover img{opacity:.94;}
 /* GOLD FOIL BAR — matches top bar, sits directly below header image */
 .lh-gold-foil{height:10px;background:linear-gradient(90deg,#7a5c1e 0%,#9A7A2E 8%,#C9A84C 22%,#E8D5A3 38%,#F0E5B5 50%,#E8D5A3 62%,#C9A84C 78%,#9A7A2E 92%,#7a5c1e 100%);box-shadow:0 1px 4px rgba(201,168,76,.4),inset 0 1px 0 rgba(255,255,255,.18);}
@@ -385,7 +386,7 @@ body.has-music-gram .page-container{padding-bottom:120px}
     <button class="bar-btn" id="btnSettings" onclick="toggleSettings()">&#9881; Settings</button>
     <button class="bar-btn" id="btnToggle" onclick="toggleMode()">Preview</button>
     <button class="bar-btn" onclick="window.print()">&#128424; Print</button>
-    <button class="bar-btn primary" id="btnSave" onclick="generateAndSave()">&#9670; Save &amp; Share</button>
+    <button class="bar-btn" id="btnDraft" onclick="saveDraft()" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.5);color:#C9A84C;">&#128190; Save Draft</button><button class="bar-btn primary" id="btnSave" onclick="generateAndSave()">&#9670; Save &amp; Share</button>
     <button class="bar-btn reparlay" id="btnReParlay" onclick="reParlay()">&#8635; ReParLay It &#8594;</button>
     <button class="bar-btn" id="btnCancelEdit" onclick="cancelEdit()" style="display:none;border-color:#888;color:#888;">&#10005; Cancel Edit</button>
   </div>
@@ -477,19 +478,7 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <div>
         <button class="logo-swap-btn" type="button" onclick="document.getElementById('logoFileInput').click()">&#8635; Upload Logo for This Letter</button>
         <input type="file" id="logoFileInput" accept="image/*" style="display:none">
-        <div class="logo-lock-info">Logo is <strong>locked into this letter</strong> at save time.
-    <div style="margin-top:14px;">
-      <label style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(201,168,76,.7);">&#128269; HEADER SEAL ZOOM</label>
-      <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
-        <span style="font-size:.65rem;color:#aaa;">Out</span>
-        <input type="range" id="headerZoomSlider" min="0.5" max="3.0" step="0.05" value="1.0"
-          style="flex:1;accent-color:#C9A84C;"
-          oninput="document.getElementById('headerZoomVal').textContent=Math.round(parseFloat(this.value)*100)+'%';updateHeaderZoomPreview(this.value);">
-        <span style="font-size:.65rem;color:#aaa;">In</span>
-        <span style="font-size:.65rem;color:#C9A84C;min-width:36px;" id="headerZoomVal">100%</span>
-      </div>
-      <div style="font-size:.62rem;color:rgba(255,255,255,.25);margin-top:3px;">Zoom the seal header in or out. Starts fully zoomed out.</div>
-    </div></div>
+        <div class="logo-lock-info">Logo is <strong>locked into this letter</strong> at save time.</div>
         <div id="logoStatus" style="font-family:'Lato',sans-serif;font-size:.62rem;color:#2ecc71;margin-top:3px;display:none;">&#10003; New logo ready</div>
       </div>
     </div>
@@ -501,6 +490,18 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <button class="media-tab" id="tabVideo" onclick="setMediaTab('video')">🎬 Cinematic Video</button>
     </div>
     <div id="mediaPhotoSection">
+  <div style="margin:10px 0 4px;">
+    <label style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(201,168,76,.7);">&#128269; SEAL HEADER ZOOM</label>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
+      <span style="font-size:.65rem;color:#aaa;">Out</span>
+      <input type="range" id="headerZoomSlider" min="0.5" max="3.0" step="0.05" value="1.0"
+        style="flex:1;accent-color:#C9A84C;"
+        oninput="document.getElementById('headerZoomVal').textContent=Math.round(parseFloat(this.value)*100)+'%';updateHeaderZoomPreview(this.value);">
+      <span style="font-size:.65rem;color:#aaa;">In</span>
+      <span style="font-size:.65rem;color:#C9A84C;min-width:36px;" id="headerZoomVal">100%</span>
+    </div>
+    <div style="font-size:.62rem;color:rgba(255,255,255,.25);margin-top:2px;">Controls the Powell Parker seal header size. 100% = fully out.</div>
+  </div>
     <button class="hero-upload-btn" type="button" onclick="document.getElementById('heroFileInput').click()">+ Add Cover Photo</button>
     <input type="file" id="heroFileInput" accept="image/*" style="display:none">
     <div class="hero-preview-wrap" id="heroPrevWrap">
@@ -721,40 +722,10 @@ body.has-music-gram .page-container{padding-bottom:120px}
     <div class="top-bar"></div>
     <!-- HEADER IMAGE — full bleed edge to edge -->
     <div class="lh-water-banner" id="waterBanner" onclick="document.getElementById('logoFileInput').click()" title="Click to swap header image">
-      <img src="https://powparker.com/parker-water-seal.webp" id="outSeal" alt="Powell Parker" style="width:100%;display:block;">
+      <img src="https://letters.powparker.com/parker-water-seal.webp" id="outSeal" alt="Powell Parker" style="width:100%;display:block;">
     </div>
     <!-- GOLD FOIL BAR -->
     <div class="lh-gold-foil"></div>
-    <!-- GEM SEPARATOR -->
-    <div class="lh-gem-sep">
-      <svg viewBox="0 0 816 28" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="gemRuleL" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#C9A84C" stop-opacity="0"/><stop offset="85%" stop-color="#C9A84C" stop-opacity=".85"/><stop offset="100%" stop-color="#C9A84C" stop-opacity=".85"/></linearGradient>
-          <linearGradient id="gemRuleR" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#C9A84C" stop-opacity=".85"/><stop offset="15%" stop-color="#C9A84C" stop-opacity=".85"/><stop offset="100%" stop-color="#C9A84C" stop-opacity="0"/></linearGradient>
-          <filter id="gemGlow"><feGaussianBlur stdDeviation="1.2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        </defs>
-        <!-- Left rule -->
-        <rect x="0" y="13" width="318" height="1.8" fill="url(#gemRuleL)"/>
-        <!-- Left trio gems -->
-        <circle cx="334" cy="14" r="2.2" fill="#3ecec4" stroke="#C9A84C" stroke-width=".5" filter="url(#gemGlow)"/>
-        <polygon points="346,14 353,9.5 360,14 353,18.5" fill="#2ABFB8" stroke="#C9A84C" stroke-width=".6" filter="url(#gemGlow)"/>
-        <circle cx="372" cy="14" r="2.2" fill="#3ecec4" stroke="#C9A84C" stroke-width=".5" filter="url(#gemGlow)"/>
-        <!-- Thin connectors -->
-        <rect x="375" y="13.4" width="30" height="1.2" fill="rgba(201,168,76,.5)"/>
-        <!-- Gold Latin cross -->
-        <rect x="405.5" y="6" width="5" height="16" fill="#C9A84C" rx=".8"/>
-        <rect x="399" y="11" width="18" height="5" fill="#C9A84C" rx=".8"/>
-        <rect x="405.5" y="6" width="5" height="16" fill="url(#crossShine)" rx=".8" opacity=".4"/>
-        <!-- Thin connectors right -->
-        <rect x="411" y="13.4" width="30" height="1.2" fill="rgba(201,168,76,.5)"/>
-        <!-- Right trio gems (mirror) -->
-        <circle cx="444" cy="14" r="2.2" fill="#3ecec4" stroke="#C9A84C" stroke-width=".5" filter="url(#gemGlow)"/>
-        <polygon points="456,14 463,9.5 470,14 463,18.5" fill="#2ABFB8" stroke="#C9A84C" stroke-width=".6" filter="url(#gemGlow)"/>
-        <circle cx="482" cy="14" r="2.2" fill="#3ecec4" stroke="#C9A84C" stroke-width=".5" filter="url(#gemGlow)"/>
-        <!-- Right rule -->
-        <rect x="498" y="13" width="318" height="1.8" fill="url(#gemRuleR)"/>
-      </svg>
-    </div>
     <div class="letter-content" id="letterContent">
       <div class="l-hero-wrap" id="outHeroWrap">
         <img class="l-hero-img" id="outHeroImg" src="" alt="Cover Photo" style="object-position:center 40%;">
@@ -852,10 +823,33 @@ var editMode=true,editingSlug=null,exhibitCounter=0,exhibitFiles={},existingPhot
 
 // ── Auto-compression: convert any image to WebP before upload ─────────────
 // Reduces mobile upload time dramatically (4MB JPEG → ~250KB WebP)
+function saveDraft(){
+  // Save without showing the share modal — just a toast confirmation
+  var _sb = buildLetterObj();
+  var slug = document.getElementById('inSlug').value.trim();
+  var _subj = document.getElementById('inSubject').value.trim();
+  var _recip = (document.getElementById('inRecipient').value||'').split(',')[0].trim();
+  var _slugBase = _subj||_recip;
+  slug = slug || _slugBase.toLowerCase().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').substring(0,60) || ('letter-'+Date.now());
+  document.getElementById('inSlug').value = slug;
+  showToast('Saving draft...','loading');
+  fetch(WORKER+'/api/save',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','X-API-Key':API_KEY},
+    body:JSON.stringify({..._sb.parlay||_sb.letter||_sb, slug:slug})
+  }).then(function(r){return r.json();}).then(function(d){
+    if(d.slug){
+      editingSlug = d.slug;
+      document.getElementById('inSlug').value = d.slug;
+      showToast('Draft saved ✓','success');
+      loadSavedLetters();
+    } else { showToast('Save failed','error'); }
+  }).catch(function(){showToast('Save failed','error');});
+}
+
 function updateHeaderZoomPreview(val){
-  // Visual preview of zoom in the editor hero preview
-  var prev = document.getElementById('heroPreviewImg');
-  if(prev) prev.style.transform = 'scale('+val+')';
+  var banner = document.getElementById('waterBanner');
+  if(banner) banner.style.setProperty('--hzoom', val);
 }
 
 async function compressImage(file, opts) {
