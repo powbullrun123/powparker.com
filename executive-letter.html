@@ -631,6 +631,24 @@ body.has-music-gram .page-container{padding-bottom:120px}
     <div class="field-row"><label>Signature Title</label><input type="text" id="inSigTitle" value="Founder &mdash; SaveKearnyAZ.org &middot; Project 88"></div>
   </div>
 
+  <!-- SIGNOR PORTRAIT -->
+  <div style="margin-top:14px;padding:12px 14px;background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.12);border-radius:6px;">
+    <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(201,168,76,.75);margin-bottom:8px;">&#128247; Signor Portrait <span style="font-weight:400;color:rgba(255,255,255,.3);text-transform:none;letter-spacing:0;">(optional — per letter only)</span></div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <label id="sigPortraitLabel" style="cursor:pointer;background:rgba(201,168,76,.1);border:1px dashed rgba(201,168,76,.4);color:#C9A84C;font-size:.7rem;font-weight:700;padding:6px 14px;border-radius:4px;font-family:Lato,sans-serif;letter-spacing:.05em;text-transform:uppercase;">
+        &#43; Upload Photo
+        <input type="file" id="sigPortraitInput" accept="image/*" style="display:none;" onchange="handlePortraitUpload(this,'sig')">
+      </label>
+      <div id="sigPortraitPreview" style="display:none;align-items:center;gap:8px;">
+        <img id="sigPortraitThumb" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #C9A84C;" src="" alt="">
+        <button onclick="clearPortrait('sig')" style="background:none;border:none;color:#888;cursor:pointer;font-size:.9rem;padding:2px 6px;">&#10005;</button>
+      </div>
+      <div id="sigFrameToggle" style="display:none;gap:6px;align-items:center;">
+        <button class="frame-style-btn active" data-sig="sig" data-style="circle" onclick="setFrameStyle(this,'sig')" style="font-size:.65rem;font-family:Lato,sans-serif;font-weight:700;padding:4px 10px;border-radius:12px;border:1px solid rgba(201,168,76,.5);background:rgba(201,168,76,.15);color:#C9A84C;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;">&#9711; Medal</button>
+        <button class="frame-style-btn" data-sig="sig" data-style="square" onclick="setFrameStyle(this,'sig')" style="font-size:.65rem;font-family:Lato,sans-serif;font-weight:700;padding:4px 10px;border-radius:12px;border:1px solid rgba(201,168,76,.3);background:none;color:#888;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;">&#9633; Plaque</button>
+      </div>
+    </div>
+  </div>
   <!-- CO-SIGNER SECTION -->
   <div style="margin-top:14px;padding:14px 16px;background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.18);border-radius:8px;">
     <div style="font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;">&#9998; Co-Signer (optional)</div>
@@ -651,6 +669,25 @@ body.has-music-gram .page-container{padding-bottom:120px}
   </div>
   <div style="margin-top:12px;padding:14px 16px;background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.2);border-radius:8px;">
     <div style="font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:10px;">&#9998; Signature Contact Details</div>
+
+    <!-- CO-SIGNER PORTRAIT -->
+    <div style="margin-top:10px;padding:12px 14px;background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.12);border-radius:6px;">
+      <div style="font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(201,168,76,.75);margin-bottom:8px;">&#128247; Co-Signer Portrait <span style="font-weight:400;color:rgba(255,255,255,.3);text-transform:none;letter-spacing:0;">(optional)</span></div>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <label id="coSigPortraitLabel" style="cursor:pointer;background:rgba(201,168,76,.1);border:1px dashed rgba(201,168,76,.4);color:#C9A84C;font-size:.7rem;font-weight:700;padding:6px 14px;border-radius:4px;font-family:Lato,sans-serif;letter-spacing:.05em;text-transform:uppercase;">
+          &#43; Upload Photo
+          <input type="file" id="coSigPortraitInput" accept="image/*" style="display:none;" onchange="handlePortraitUpload(this,'cosig')">
+        </label>
+        <div id="coSigPortraitPreview" style="display:none;align-items:center;gap:8px;">
+          <img id="coSigPortraitThumb" style="width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid #C9A84C;" src="" alt="">
+          <button onclick="clearPortrait('cosig')" style="background:none;border:none;color:#888;cursor:pointer;font-size:.9rem;padding:2px 6px;">&#10005;</button>
+        </div>
+        <div id="coSigFrameToggle" style="display:none;gap:6px;align-items:center;">
+          <button class="frame-style-btn active" data-sig="cosig" data-style="circle" onclick="setFrameStyle(this,'cosig')" style="font-size:.65rem;font-family:Lato,sans-serif;font-weight:700;padding:4px 10px;border-radius:12px;border:1px solid rgba(201,168,76,.5);background:rgba(201,168,76,.15);color:#C9A84C;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;">&#9711; Medal</button>
+          <button class="frame-style-btn" data-sig="cosig" data-style="square" onclick="setFrameStyle(this,'cosig')" style="font-size:.65rem;font-family:Lato,sans-serif;font-weight:700;padding:4px 10px;border-radius:12px;border:1px solid rgba(201,168,76,.3);background:none;color:#888;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;">&#9633; Plaque</button>
+        </div>
+      </div>
+    </div>
     <div class="field-grid">
       <div class="field-row"><label>AZ Phone</label><input type="text" id="inSigAZPhone" value="(480) 788-2320" oninput="renderLetter()"></div>
       <div class="field-row"><label>TX Phone</label><input type="text" id="inSigTXPhone" value="(214) 838-1883" oninput="renderLetter()"></div>
@@ -824,6 +861,8 @@ body.has-music-gram .page-container{padding-bottom:120px}
 var WORKER='https://letters.powparker.com';
 var API_KEY='Parker-letters-062878!';
 var editMode=true,editingSlug=null,exhibitCounter=0,exhibitFiles={},existingPhotos=[],editingPhotoIndex=-1;
+var _sigPortraitFile=null, _sigPortraitUrl='', _sigPortraitKey='', _sigPortraitStyle='circle';
+var _coSigPortraitFile=null, _coSigPortraitUrl='', _coSigPortraitKey='', _coSigPortraitStyle='circle';
 
 // ── Auto-compression: convert any image to WebP before upload ─────────────
 // Reduces mobile upload time dramatically (4MB JPEG → ~250KB WebP)
@@ -849,6 +888,62 @@ function saveDraft(){
       loadSavedLetters();
     } else { showToast('Save failed','error'); }
   }).catch(function(){showToast('Save failed','error');});
+}
+
+function handlePortraitUpload(input, who){
+  if(!input.files||!input.files[0]) return;
+  compressImage(input.files[0], {maxPx:400, quality:0.88}).then(function(cf){
+    var isSig = (who==='sig');
+    if(isSig){ _sigPortraitFile=cf; } else { _coSigPortraitFile=cf; }
+    var reader=new FileReader();
+    reader.onload=function(e){
+      var thumb=document.getElementById(isSig?'sigPortraitThumb':'coSigPortraitThumb');
+      var prev=document.getElementById(isSig?'sigPortraitPreview':'coSigPortraitPreview');
+      var tog=document.getElementById(isSig?'sigFrameToggle':'coSigFrameToggle');
+      if(thumb) thumb.src=e.target.result;
+      if(prev)  prev.style.display='flex';
+      if(tog)   tog.style.display='flex';
+      if(isSig){ _sigPortraitUrl=e.target.result; } else { _coSigPortraitUrl=e.target.result; }
+    };
+    reader.readAsDataURL(cf);
+  });
+}
+
+function clearPortrait(who){
+  var isSig=(who==='sig');
+  if(isSig){ _sigPortraitFile=null;_sigPortraitUrl='';_sigPortraitKey=''; }
+  else { _coSigPortraitFile=null;_coSigPortraitUrl='';_coSigPortraitKey=''; }
+  var prev=document.getElementById(isSig?'sigPortraitPreview':'coSigPortraitPreview');
+  var tog=document.getElementById(isSig?'sigFrameToggle':'coSigFrameToggle');
+  var inp=document.getElementById(isSig?'sigPortraitInput':'coSigPortraitInput');
+  if(prev) prev.style.display='none';
+  if(tog)  tog.style.display='none';
+  if(inp)  inp.value='';
+}
+
+function setFrameStyle(btn, who){
+  var isSig=(who==='sig');
+  var btns=document.querySelectorAll('.frame-style-btn[data-sig="'+who+'"]');
+  btns.forEach(function(b){
+    b.style.background='none'; b.style.color='#888';
+    b.style.borderColor='rgba(201,168,76,.3)';
+  });
+  btn.style.background='rgba(201,168,76,.15)';
+  btn.style.color='#C9A84C';
+  btn.style.borderColor='rgba(201,168,76,.5)';
+  btn.classList.add('active');
+  var style=btn.getAttribute('data-style');
+  if(isSig){ _sigPortraitStyle=style; } else { _coSigPortraitStyle=style; }
+}
+
+async function uploadPortraitIfNeeded(file, slug, who){
+  if(!file) return '';
+  var fd=new FormData();
+  fd.append('photo', file);
+  fd.append('letterId', slug+'-'+who);
+  var res=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});
+  var d=await res.json();
+  return d.key||'';
 }
 
 function updateHeaderZoomPreview(val){
@@ -969,13 +1064,18 @@ function openExistingPhotoEdit(index){editingPhotoIndex=index;var p=existingPhot
 function closeExistingPhotoEdit(){editingPhotoIndex=-1;document.getElementById('existingPhotoEditPanel').classList.remove('open');document.querySelectorAll('.existing-photo-item').forEach(function(el){el.classList.remove('editing');});}
 window.saveExistingPhotoEdit=async function(){if(editingPhotoIndex<0)return;var p=existingPhotos[editingPhotoIndex],url=typeof p==='string'?p:(p.url||p),heading=document.getElementById('editPanelHeading').value.trim(),caption=document.getElementById('editPanelCaption').value.trim(),fileInput=document.getElementById('editPanelPhotoFile');if(fileInput.files&&fileInput.files[0]){showToast('Uploading...','loading');var _cEp=await compressImage(fileInput.files[0]);var fd=new FormData();fd.append('photo',_cEp);fd.append('letterId',editingSlug||'general');try{var res=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var data=await res.json();if(data.success){url=WORKER+'/photos/'+data.key;document.getElementById('editPanelPreview').src=url;}else{showToast('Upload failed','error');return;}}catch(e){showToast('Upload error','error');return;}}existingPhotos[editingPhotoIndex]={url:url,heading:heading,caption:caption};renderExistingPhotos();closeExistingPhotoEdit();showToast('Photo updated -- ReParLay to save','success');};
 
-function buildLetterObj(){var recip=document.getElementById('inRecipient').value.trim(),recipParts=recip.split(',').map(function(s){return s.trim();}),recipHtml='<strong>'+recipParts[0]+'</strong>';for(var j=1;j<recipParts.length;j++)recipHtml+='<br>'+recipParts[j];return{date:document.getElementById('inDate').value.trim(),recipientName:recipParts[0],recipientHtml:recipHtml,subject:document.getElementById('inSubject').value.trim(),salutation:document.getElementById('inSalutation').value.trim(),body:document.getElementById('inBody').value.trim(),closing:document.getElementById('inClosing').value.trim(),sigTitle:document.getElementById('inSigTitle').value.trim(),password:document.getElementById('inPassword').value.trim()||null,musicUrl:document.getElementById('inMusic').value.trim()||null,musicMeta:null,calendarUrl:(document.getElementById('inCalToggle')&&document.getElementById('inCalToggle').checked&&document.getElementById('inCalUrl'))?document.getElementById('inCalUrl').value.trim()||null:null,bodyFont:(document.querySelector('.font-btn.active')?document.querySelector('.font-btn.active').getAttribute('data-font'):''),headerZoom:parseFloat((document.getElementById('headerZoomSlider')||{value:'1.0'}).value),bodyFontSize:(document.querySelector('.size-btn[data-bodysize].active')?document.querySelector('.size-btn[data-bodysize].active').getAttribute('data-bodysize'):'1.05rem'),sigFontSizeCustom:(document.querySelector('.size-btn[data-sigsize].active')?document.querySelector('.size-btn[data-sigsize].active').getAttribute('data-sigsize'):'1.9rem'),sigFont:currentSigFont||null,heroPosition:document.getElementById('heroSlider').value||'40',heroZoom:document.getElementById('heroZoom').value||'100',sigAZPhone:document.getElementById('inSigAZPhone').value.trim()||'(480) 788-2320',sigTXPhone:document.getElementById('inSigTXPhone').value.trim()||'(214) 838-1883',sigTollFree:document.getElementById('inSigTollFree')?document.getElementById('inSigTollFree').value.trim()||'1-800-428-2022':'1-800-428-2022',sigWebsite:document.getElementById('inSigWebsite').value.trim()||'www.powparker.com',sigEmail:document.getElementById('inSigEmail').value.trim()||'powell@powparker.com',videoKey:window._existingVideoKey||null,videoPosition:(document.getElementById('videoPositionSlider')?document.getElementById('videoPositionSlider').value:'50'),videoZoom:(document.getElementById('videoZoomSlider')?document.getElementById('videoZoomSlider').value:'130'),exhibits:[],logoKey:null,coSigName:document.getElementById('inCoSigName')?document.getElementById('inCoSigName').value.trim():'',coSigTitle:document.getElementById('inCoSigTitle')?document.getElementById('inCoSigTitle').value.trim():'',coSigFont:currentCoSigFont||null,facebook:(loadSettings().facebook||'https://www.facebook.com/powparker/'),instagram:(loadSettings().instagram||'https://www.instagram.com/powparker/'),linkedin:(loadSettings().linkedin||'https://www.linkedin.com/in/pow-parker/'),twitter:(loadSettings().twitter||'https://x.com/powparker'),medium:(loadSettings().medium||'https://medium.com/@powellparker')};}
+function buildLetterObj(){var recip=document.getElementById('inRecipient').value.trim(),recipParts=recip.split(',').map(function(s){return s.trim();}),recipHtml='<strong>'+recipParts[0]+'</strong>';for(var j=1;j<recipParts.length;j++)recipHtml+='<br>'+recipParts[j];return{date:document.getElementById('inDate').value.trim(),recipientName:recipParts[0],recipientHtml:recipHtml,subject:document.getElementById('inSubject').value.trim(),salutation:document.getElementById('inSalutation').value.trim(),body:document.getElementById('inBody').value.trim(),closing:document.getElementById('inClosing').value.trim(),sigTitle:document.getElementById('inSigTitle').value.trim(),password:document.getElementById('inPassword').value.trim()||null,musicUrl:document.getElementById('inMusic').value.trim()||null,musicMeta:null,calendarUrl:(document.getElementById('inCalToggle')&&document.getElementById('inCalToggle').checked&&document.getElementById('inCalUrl'))?document.getElementById('inCalUrl').value.trim()||null:null,bodyFont:(document.querySelector('.font-btn.active')?document.querySelector('.font-btn.active').getAttribute('data-font'):''),headerZoom:parseFloat((document.getElementById('headerZoomSlider')||{value:'1.0'}).value),bodyFontSize:(document.querySelector('.size-btn[data-bodysize].active')?document.querySelector('.size-btn[data-bodysize].active').getAttribute('data-bodysize'):'1.05rem'),sigFontSizeCustom:(document.querySelector('.size-btn[data-sigsize].active')?document.querySelector('.size-btn[data-sigsize].active').getAttribute('data-sigsize'):'1.9rem'),sigFont:currentSigFont||null,heroPosition:document.getElementById('heroSlider').value||'40',heroZoom:document.getElementById('heroZoom').value||'100',sigAZPhone:document.getElementById('inSigAZPhone').value.trim()||'(480) 788-2320',sigTXPhone:document.getElementById('inSigTXPhone').value.trim()||'(214) 838-1883',sigTollFree:document.getElementById('inSigTollFree')?document.getElementById('inSigTollFree').value.trim()||'1-800-428-2022':'1-800-428-2022',sigWebsite:document.getElementById('inSigWebsite').value.trim()||'www.powparker.com',sigEmail:document.getElementById('inSigEmail').value.trim()||'powell@powparker.com',videoKey:window._existingVideoKey||null,videoPosition:(document.getElementById('videoPositionSlider')?document.getElementById('videoPositionSlider').value:'50'),videoZoom:(document.getElementById('videoZoomSlider')?document.getElementById('videoZoomSlider').value:'130'),exhibits:[],logoKey:null,coSigName:document.getElementById('inCoSigName')?document.getElementById('inCoSigName').value.trim():'',coSigTitle:document.getElementById('inCoSigTitle')?document.getElementById('inCoSigTitle').value.trim():'',coSigFont:currentCoSigFont||null,
+    sigPhotoKey:_sigPortraitKey||'',sigPhotoUrl:(!_sigPortraitKey&&_sigPortraitUrl?_sigPortraitUrl:''),sigPhotoStyle:(_sigPortraitUrl||_sigPortraitKey)?_sigPortraitStyle:'',
+    coSigPhotoKey:_coSigPortraitKey||'',coSigPhotoUrl:(!_coSigPortraitKey&&_coSigPortraitUrl?_coSigPortraitUrl:''),coSigPhotoStyle:(_coSigPortraitUrl||_coSigPortraitKey)?_coSigPortraitStyle:'',facebook:(loadSettings().facebook||'https://www.facebook.com/powparker/'),instagram:(loadSettings().instagram||'https://www.instagram.com/powparker/'),linkedin:(loadSettings().linkedin||'https://www.linkedin.com/in/pow-parker/'),twitter:(loadSettings().twitter||'https://x.com/powparker'),medium:(loadSettings().medium||'https://medium.com/@powellparker')};}
 
 async function generateAndSave(){renderLetter();var _subj=document.getElementById('inSubject').value.trim();
   var _recip=(document.getElementById('inRecipient').value||'').split(',')[0].trim();
   var _slugBase=_subj||_recip;
   var slug=document.getElementById('inSlug').value.trim()||_slugBase.toLowerCase().replace(/[^a-z0-9\s-]/g,'').replace(/\s+/g,'-').replace(/-+/g,'-').substring(0,60)||('letter-'+Date.now());
-  document.getElementById('inSlug').value=slug;var btn=document.getElementById('btnSave');btn.disabled=true;showToast('Saving...','loading');try{var logoKey=logoExistingKey||null;if(logoFile){var lfd=new FormData();lfd.append('logo',logoFile);lfd.append('slug',slug);var lRes=await fetch(WORKER+'/api/logo',{method:'POST',headers:{'X-API-Key':API_KEY},body:lfd});var lData=await lRes.json();if(lData.success){logoKey=lData.key;logoFile=null;logoExistingKey=logoKey;}}var exhibits=[];var cards=document.querySelectorAll('.exhibit-card');for(var i=0;i<cards.length;i++){var id=cards[i].id.replace('card_',''),heading=document.getElementById('heading_'+id).value.trim(),scale=document.getElementById('scale_'+id).value,caption=document.getElementById('caption_'+id).value.trim(),exData=exhibitFiles[id];if(exData&&exData.file){showToast('Uploading photo '+(i+1)+'...','loading');var _cFile=await compressImage(exData.file);var fd=new FormData();fd.append('photo',_cFile);fd.append('letterId',slug);var pRes=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var pData=await pRes.json();if(pData.success)exhibits.push({photoKey:pData.key,heading:heading,scale:scale,caption:caption});}}var allExhibits=existingPhotos.map(function(p){if(typeof p==='string')return{photoUrl:p,heading:'',scale:80,caption:''};return{photoUrl:p.url,heading:p.heading||'',scale:p.scale||80,caption:p.caption||''};}).concat(exhibits);if(heroDataUrl){showToast('Uploading cover photo...','loading');try{var hBlob=await(await fetch(heroDataUrl)).blob();var _hFile=new File([hBlob],'hero.jpg',{type:hBlob.type});var _hComp=await compressImage(_hFile,{maxPx:1600,quality:0.85});var hFd=new FormData();hFd.append('photo',_hComp,'hero.webp');hFd.append('letterId',slug);var hR=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:hFd});var hD=await hR.json();if(hD.success){heroExistingUrl=WORKER+'/photos/'+hD.key;heroDataUrl=null;}}catch(e){}}var heroKey=heroExistingUrl?heroExistingUrl.split('/photos/').pop():null;var videoKey=null;if(_videoFile){showToast('Uploading video...','loading');try{var vFd=new FormData();vFd.append('video',_videoFile);vFd.append('slug',slug);var vR=await fetch(WORKER+'/api/video',{method:'POST',headers:{'X-API-Key':API_KEY},body:vFd});var vD=await vR.json();if(vD.success){videoKey=vD.key;window._existingVideoKey=vD.key;}}catch(e){}}var letter=buildLetterObj();letter.exhibits=allExhibits;letter.logoKey=logoKey;letter.heroUrl=heroExistingUrl||null;letter.heroKey=heroKey;if(videoKey)letter.videoKey=videoKey;else if(window._existingVideoKey)letter.videoKey=window._existingVideoKey;showToast('Saving to cloud...','loading');var res=await fetch(WORKER+'/api/save',{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':API_KEY},body:JSON.stringify({slug:slug,letter:letter})});var data=await res.json();if(data.success){setSharePanel(WORKER+'/s/'+data.slug,false);showToast('Letter saved!','success');loadSavedLetters();if(editMode)toggleMode();}else throw new Error(data.error||'Save failed');}catch(e){showToast('Error: '+e.message,'error');}btn.disabled=false;}
+  document.getElementById('inSlug').value=slug;
+  // Upload portraits if new files selected
+  if(_sigPortraitFile){ showToast('Uploading signor portrait...','loading'); _sigPortraitKey=await uploadPortraitIfNeeded(_sigPortraitFile,slug,'sig'); _sigPortraitFile=null; }
+  if(_coSigPortraitFile){ showToast('Uploading co-signer portrait...','loading'); _coSigPortraitKey=await uploadPortraitIfNeeded(_coSigPortraitFile,slug,'cosig'); _coSigPortraitFile=null; }var btn=document.getElementById('btnSave');btn.disabled=true;showToast('Saving...','loading');try{var logoKey=logoExistingKey||null;if(logoFile){var lfd=new FormData();lfd.append('logo',logoFile);lfd.append('slug',slug);var lRes=await fetch(WORKER+'/api/logo',{method:'POST',headers:{'X-API-Key':API_KEY},body:lfd});var lData=await lRes.json();if(lData.success){logoKey=lData.key;logoFile=null;logoExistingKey=logoKey;}}var exhibits=[];var cards=document.querySelectorAll('.exhibit-card');for(var i=0;i<cards.length;i++){var id=cards[i].id.replace('card_',''),heading=document.getElementById('heading_'+id).value.trim(),scale=document.getElementById('scale_'+id).value,caption=document.getElementById('caption_'+id).value.trim(),exData=exhibitFiles[id];if(exData&&exData.file){showToast('Uploading photo '+(i+1)+'...','loading');var _cFile=await compressImage(exData.file);var fd=new FormData();fd.append('photo',_cFile);fd.append('letterId',slug);var pRes=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var pData=await pRes.json();if(pData.success)exhibits.push({photoKey:pData.key,heading:heading,scale:scale,caption:caption});}}var allExhibits=existingPhotos.map(function(p){if(typeof p==='string')return{photoUrl:p,heading:'',scale:80,caption:''};return{photoUrl:p.url,heading:p.heading||'',scale:p.scale||80,caption:p.caption||''};}).concat(exhibits);if(heroDataUrl){showToast('Uploading cover photo...','loading');try{var hBlob=await(await fetch(heroDataUrl)).blob();var _hFile=new File([hBlob],'hero.jpg',{type:hBlob.type});var _hComp=await compressImage(_hFile,{maxPx:1600,quality:0.85});var hFd=new FormData();hFd.append('photo',_hComp,'hero.webp');hFd.append('letterId',slug);var hR=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:hFd});var hD=await hR.json();if(hD.success){heroExistingUrl=WORKER+'/photos/'+hD.key;heroDataUrl=null;}}catch(e){}}var heroKey=heroExistingUrl?heroExistingUrl.split('/photos/').pop():null;var videoKey=null;if(_videoFile){showToast('Uploading video...','loading');try{var vFd=new FormData();vFd.append('video',_videoFile);vFd.append('slug',slug);var vR=await fetch(WORKER+'/api/video',{method:'POST',headers:{'X-API-Key':API_KEY},body:vFd});var vD=await vR.json();if(vD.success){videoKey=vD.key;window._existingVideoKey=vD.key;}}catch(e){}}var letter=buildLetterObj();letter.exhibits=allExhibits;letter.logoKey=logoKey;letter.heroUrl=heroExistingUrl||null;letter.heroKey=heroKey;if(videoKey)letter.videoKey=videoKey;else if(window._existingVideoKey)letter.videoKey=window._existingVideoKey;showToast('Saving to cloud...','loading');var res=await fetch(WORKER+'/api/save',{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':API_KEY},body:JSON.stringify({slug:slug,letter:letter})});var data=await res.json();if(data.success){setSharePanel(WORKER+'/s/'+data.slug,false);showToast('Letter saved!','success');loadSavedLetters();if(editMode)toggleMode();}else throw new Error(data.error||'Save failed');}catch(e){showToast('Error: '+e.message,'error');}btn.disabled=false;}
 
 window.reParlay=async function(){if(!editingSlug){showToast('No letter selected','error');return;}var btn=document.getElementById('btnReParlay');btn.disabled=true;showToast('Updating...','loading');try{var logoKey=logoExistingKey||null;if(logoFile){var lfd=new FormData();lfd.append('logo',logoFile);lfd.append('slug',editingSlug);var lRes=await fetch(WORKER+'/api/logo',{method:'POST',headers:{'X-API-Key':API_KEY},body:lfd});var lData=await lRes.json();if(lData.success){logoKey=lData.key;logoFile=null;logoExistingKey=logoKey;}}var newExhibits=[];var cards=document.querySelectorAll('.exhibit-card');for(var i=0;i<cards.length;i++){var id=cards[i].id.replace('card_',''),exData=exhibitFiles[id];if(exData&&exData.file){var _cFile2=await compressImage(exData.file);var fd=new FormData();fd.append('photo',_cFile2);fd.append('letterId',editingSlug);showToast('Uploading...','loading');var pRes=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var pData=await pRes.json();if(pData.success)newExhibits.push({photoKey:pData.key,heading:document.getElementById('heading_'+id).value.trim(),scale:document.getElementById('scale_'+id).value,caption:document.getElementById('caption_'+id).value.trim()});}}var allExhibits=existingPhotos.map(function(p){if(typeof p==='string')return{photoUrl:p,heading:'',scale:80,caption:''};return{photoUrl:p.url,heading:p.heading||'',scale:p.scale||80,caption:p.caption||''};}).concat(newExhibits);if(heroDataUrl){try{var hBlob2=await(await fetch(heroDataUrl)).blob();var hFd2=new FormData();hFd2.append('photo',hBlob2,'hero.jpg');hFd2.append('letterId',editingSlug);var hR2=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:hFd2});var hD2=await hR2.json();if(hD2.success){heroExistingUrl=WORKER+'/photos/'+hD2.key;heroDataUrl=null;}}catch(e){}}var heroKey2=heroExistingUrl?heroExistingUrl.split('/photos/').pop():null;var videoKey2=null;if(_videoFile){showToast('Uploading video...','loading');try{var vFd2=new FormData();vFd2.append('video',_videoFile);vFd2.append('slug',editingSlug);var vR2=await fetch(WORKER+'/api/video',{method:'POST',headers:{'X-API-Key':API_KEY},body:vFd2});var vD2=await vR2.json();if(vD2.success){videoKey2=vD2.key;window._existingVideoKey=vD2.key;_videoFile=null;}}catch(e){}}var letter=buildLetterObj();letter.exhibits=allExhibits;letter.logoKey=logoKey;letter.heroUrl=heroExistingUrl||null;letter.heroKey=heroKey2;if(videoKey2)letter.videoKey=videoKey2;else if(window._existingVideoKey)letter.videoKey=window._existingVideoKey;var res=await fetch(WORKER+'/api/save',{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':API_KEY},body:JSON.stringify({slug:editingSlug,letter:letter})});var data=await res.json();if(data.success){setSharePanel(WORKER+'/s/'+editingSlug,true);showToast('Updated! Same link.','success');renderLetter();loadSavedLetters();}else showToast(data.error||'Failed','error');}catch(e){showToast('Error: '+e.message,'error');}btn.disabled=false;};
 
@@ -1018,6 +1118,33 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
     }
     // Restore body font
     var effectiveFont = letter.bodyFont || (loadSettings().font || '');
+    // Restore portrait photos
+    _sigPortraitKey=letter.sigPhotoKey||''; _sigPortraitUrl=letter.sigPhotoUrl||''; _sigPortraitStyle=letter.sigPhotoStyle||'circle';
+    _coSigPortraitKey=letter.coSigPhotoKey||''; _coSigPortraitUrl=letter.coSigPhotoUrl||''; _coSigPortraitStyle=letter.coSigPhotoStyle||'circle';
+    // Show previews if photos exist
+    var _spSrc = letter.sigPhotoUrl||(letter.sigPhotoKey?WORKER+'/photos/'+letter.sigPhotoKey:'');
+    var _cspSrc = letter.coSigPhotoUrl||(letter.coSigPhotoKey?WORKER+'/photos/'+letter.coSigPhotoKey:'');
+    if(_spSrc){
+      var st=document.getElementById('sigPortraitThumb'); var sp=document.getElementById('sigPortraitPreview'); var sf=document.getElementById('sigFrameToggle');
+      if(st) st.src=_spSrc; if(sp) sp.style.display='flex'; if(sf) sf.style.display='flex';
+      // Set active frame style button
+      document.querySelectorAll('.frame-style-btn[data-sig="sig"]').forEach(function(b){
+        var isActive=b.getAttribute('data-style')===_sigPortraitStyle;
+        b.style.background=isActive?'rgba(201,168,76,.15)':'none';
+        b.style.color=isActive?'#C9A84C':'#888';
+        b.style.borderColor=isActive?'rgba(201,168,76,.5)':'rgba(201,168,76,.3)';
+      });
+    }
+    if(_cspSrc){
+      var ct=document.getElementById('coSigPortraitThumb'); var cp=document.getElementById('coSigPortraitPreview'); var cf=document.getElementById('coSigFrameToggle');
+      if(ct) ct.src=_cspSrc; if(cp) cp.style.display='flex'; if(cf) cf.style.display='flex';
+      document.querySelectorAll('.frame-style-btn[data-sig="cosig"]').forEach(function(b){
+        var isActive=b.getAttribute('data-style')===_coSigPortraitStyle;
+        b.style.background=isActive?'rgba(201,168,76,.15)':'none';
+        b.style.color=isActive?'#C9A84C':'#888';
+        b.style.borderColor=isActive?'rgba(201,168,76,.5)':'rgba(201,168,76,.3)';
+      });
+    }
     // Restore header zoom
     var hzSlider = document.getElementById('headerZoomSlider');
     if(hzSlider){
