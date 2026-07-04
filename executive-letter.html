@@ -60,7 +60,14 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .field-row input,.field-row textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.25);border-radius:6px;padding:10px 14px;font-family:'EB Garamond',serif;font-size:1rem;color:var(--cream);transition:border-color .3s;-webkit-appearance:none}
 .field-row input:focus,.field-row textarea:focus{outline:none;border-color:var(--gold)}
 .field-row textarea{min-height:180px;resize:vertical;line-height:1.8}
-.field-row .hint{font-family:'Lato',sans-serif;font-size:.65rem;color:rgba(255,255,255,.3);margin-top:3px}
+.field-row .hint{font-family:'EB Garamond',Georgia,serif;font-size:12pt;font-style:normal;color:rgba(255,255,255,.55);margin-top:4px;line-height:1.4;}
+.hint{font-family:'EB Garamond',Georgia,serif;font-size:12pt;font-style:normal;color:rgba(255,255,255,.55);line-height:1.4;}
+/* ── Reusable green-checkmark toggle (replaces ambiguous rectangle buttons and native checkboxes) ── */
+.check-toggle{display:inline-flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:2px 0;font-family:'EB Garamond',Georgia,serif;font-size:12pt;color:#e8e4da;text-align:left;}
+.check-box{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:2px solid rgba(201,168,76,.5);border-radius:5px;background:rgba(255,255,255,.04);flex-shrink:0;transition:all .15s;}
+.check-toggle.checked .check-box{background:#2ecc71;border-color:#2ecc71;}
+.check-toggle.checked .check-box::after{content:'\2713';color:#0A1525;font-weight:900;font-size:15px;line-height:1;}
+.check-toggle:hover .check-box{border-color:#C9A84C;}
 .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
 /* LOGO */
@@ -334,10 +341,9 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 body.has-music-gram .page-container{padding-bottom:120px}
 
 /* HEADER IMAGE — full bleed, edge to edge */
-.lh-water-banner{width:100%;height:300px;line-height:0;overflow:hidden;display:block;cursor:pointer;margin:0;padding:0;position:relative;}
-.lh-water-banner::before{content:'';position:absolute;inset:0;background:url('https://letters.powparker.com/parker-water-seal.webp') center/cover no-repeat;z-index:0;}
-.lh-water-banner img{display:block;max-height:300px;object-fit:contain;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(var(--hzoom,1));transform-origin:center center;z-index:1;transition:opacity .2s;}
-.lh-water-banner:hover img{opacity:.94;}
+.lh-water-banner{width:100%;height:300px;line-height:0;overflow:hidden;display:block;margin:0;padding:0;position:relative;background:#0A1525;}
+#waterBannerDefault img,#waterBannerBackdrop{width:100%;height:100%;object-fit:contain;object-position:center;transform:scale(var(--hzoom,1));transform-origin:center center;display:block;transition:opacity .2s;}
+#waterBannerBackdrop{object-fit:cover;}
 /* GOLD FOIL BAR — matches top bar, sits directly below header image */
 .lh-gold-foil{height:10px;background:linear-gradient(90deg,#7a5c1e 0%,#9A7A2E 8%,#C9A84C 22%,#E8D5A3 38%,#F0E5B5 50%,#E8D5A3 62%,#C9A84C 78%,#9A7A2E 92%,#7a5c1e 100%);box-shadow:0 1px 4px rgba(201,168,76,.4),inset 0 1px 0 rgba(255,255,255,.18);}
 /* GEM SEPARATOR */
@@ -476,10 +482,12 @@ body.has-music-gram .page-container{padding-bottom:120px}
 <div class="input-panel active" id="inputPanel">
   <h3>Compose Your Letter</h3>
   <div class="logo-section">
-    <div class="field-row" style="margin-bottom:10px;display:flex;align-items:center;gap:10px;">
-      <label style="margin:0;">&#128274; Show Logo</label>
-      <input type="checkbox" id="logoShowToggle" checked onchange="toggleLogoSection(this.checked)">
-      <span class="hint" style="margin:0;">Off = no logo appears anywhere on this letter.</span>
+    <div class="field-row" style="margin-bottom:10px;">
+      <button type="button" class="check-toggle" id="logoShowToggleBtn" onclick="document.getElementById('logoShowToggle').checked=!document.getElementById('logoShowToggle').checked;toggleLogoSection(document.getElementById('logoShowToggle').checked);">
+        <span class="check-box checked" id="logoShowCheck"></span> Show Logo
+      </button>
+      <input type="checkbox" id="logoShowToggle" checked style="display:none;">
+      <div class="hint">Unchecked = no logo appears anywhere on this letter.</div>
     </div>
     <div id="logoSectionBody">
       <div class="logo-section-top">
@@ -492,10 +500,12 @@ body.has-music-gram .page-container{padding-bottom:120px}
         </div>
       </div>
       <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(201,168,76,.15);">
-        <div class="field-row" style="margin-bottom:8px;display:flex;align-items:center;gap:10px;">
-          <label style="margin:0;">Logo Background</label>
-          <input type="checkbox" id="logoBgShowToggle" onchange="toggleLogoBgSection(this.checked)">
-          <span class="hint" style="margin:0;">Optional backdrop behind the logo.</span>
+        <div class="field-row" style="margin-bottom:8px;">
+          <button type="button" class="check-toggle" id="logoBgShowToggleBtn" onclick="document.getElementById('logoBgShowToggle').checked=!document.getElementById('logoBgShowToggle').checked;toggleLogoBgSection(document.getElementById('logoBgShowToggle').checked);">
+            <span class="check-box" id="logoBgShowCheck"></span> Logo Background
+          </button>
+          <input type="checkbox" id="logoBgShowToggle" style="display:none;">
+          <div class="hint">Optional backdrop behind the logo.</div>
         </div>
         <div id="logoBgSectionBody" style="display:none;">
           <button class="hero-upload-btn" type="button" onclick="document.getElementById('logoBgFileInput').click()">+ Add Logo Background</button>
@@ -517,12 +527,14 @@ body.has-music-gram .page-container{padding-bottom:120px}
     <div id="mediaPhotoSection">
     <div style="margin:12px 0 4px;padding:12px;border:1px solid rgba(201,168,76,.25);border-radius:8px;background:rgba(201,168,76,.04);">
     <label style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(201,168,76,.7);">&#9998; HEADER STYLE</label>
-    <div style="display:flex;gap:8px;margin-top:8px;">
-      <button type="button" id="headerModeDefaultBtn" onclick="setHeaderMode('default')" style="flex:1;font-family:'Lato',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:9px 10px;border-radius:5px;border:1px solid rgba(201,168,76,.5);background:rgba(201,168,76,.15);color:#C9A84C;cursor:pointer;">&#9733; Default (Seal &amp; Flag)</button>
-      <button type="button" id="headerModeCustomBtn" onclick="setHeaderMode('custom')" style="flex:1;font-family:'Lato',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:9px 10px;border-radius:5px;border:1px solid rgba(201,168,76,.3);background:none;color:#888;cursor:pointer;">&#128247; Custom Photo Header</button>
+    <div style="margin-top:10px;">
+      <button type="button" class="check-toggle" id="headerModeToggleBtn" onclick="toggleHeaderMode()">
+        <span class="check-box" id="headerModeCheck"></span> Use Custom Photo Header (unchecked = Default Seal &amp; Flag)
+      </button>
     </div>
-    <div style="font-size:.62rem;color:rgba(255,255,255,.35);margin-top:6px;">Default always uses the Powell Parker seal. Switch to Custom to use your own photo for just this letter — the two never show at once.</div>
+    <div class="hint" style="margin-top:6px;">Default always uses the Powell Parker seal. Checked = use your own photo for just this letter — the two never show at once.</div>
   </div>
+
 
   <div id="customHeaderPanel" style="display:none;margin:10px 0 4px;padding:12px;border:1px solid rgba(201,168,76,.25);border-radius:8px;">
     <label style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(201,168,76,.7);">Custom Header Backdrop</label>
@@ -658,7 +670,7 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <div style="font-family:'Lato',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">&#127881; Special Occasion Signatures</div>
       <div class="sig-font-grid" id="specialSigGrid">
         <button type="button" class="sig-font-btn" data-specialsig="patriotic-powell.webp" onclick="setSpecialSig(this)" style="padding:6px;">
-          <img src="https://letters.powparker.com/patriotic-powell.webp" alt="Patriotic Signature" style="height:16pt;width:auto;display:block;margin:0 auto;">
+          <img src="https://letters.powparker.com/patriotic-powell.webp" alt="Patriotic Signature" style="height:48pt;width:auto;display:block;margin:0 auto;">
         </button>
       </div>
       <div class="hint" style="margin-top:6px;">Uses a graphic signature image instead of a typed font. Overrides the font choice above when selected.</div>
@@ -689,10 +701,12 @@ body.has-music-gram .page-container{padding-bottom:120px}
     <div id="exhibitsContainer"></div>
     <button class="bar-btn btn-add-exhibit" type="button" onclick="addExhibit()">+ Add Photo Exhibit</button>
 
-    <div class="field-row" style="margin-top:16px;display:flex;align-items:center;gap:10px;">
-      <label style="margin:0;">&#127902; Photo Reel</label>
-      <input type="checkbox" id="reelModeToggle">
-      <span class="hint" style="margin:0;">Off (default) = individual attachments. On = 3+ photos auto-play as a Ken Burns reel.</span>
+    <div class="field-row" style="margin-top:16px;">
+      <button type="button" class="check-toggle" id="reelModeToggleBtn" onclick="document.getElementById('reelModeToggle').checked=!document.getElementById('reelModeToggle').checked;document.getElementById('reelModeCheck').classList.toggle('checked',document.getElementById('reelModeToggle').checked);">
+        <span class="check-box" id="reelModeCheck"></span> &#127902; Use Photo Reel
+      </button>
+      <input type="checkbox" id="reelModeToggle" style="display:none;">
+      <div class="hint">Unchecked (default) = individual attachments. Checked = 3+ photos auto-play as a Ken Burns reel.</div>
     </div>
 
     <div class="field-row" style="margin-top:14px;">
@@ -842,9 +856,22 @@ body.has-music-gram .page-container{padding-bottom:120px}
 <div class="page-container">
   <div class="page">
     <div class="top-bar"></div>
-    <!-- HEADER IMAGE — full bleed edge to edge -->
-    <div class="lh-water-banner" id="waterBanner" onclick="document.getElementById('logoFileInput').click()" title="Click to swap header image">
-      <img src="https://letters.powparker.com/parker-water-seal.webp" id="outSeal" alt="Powell Parker" style="width:100%;display:block;">
+    <!-- HEADER IMAGE — full bleed edge to edge — mirrors the real render exactly (Default seal OR Custom backdrop+portrait) -->
+    <div class="lh-water-banner" id="waterBanner" title="Live header preview — updates as you adjust zoom or switch header style">
+      <div id="waterBannerDefault" style="position:absolute;inset:0;">
+        <img src="https://letters.powparker.com/parker-water-seal.webp" id="outSeal" alt="Powell Parker">
+      </div>
+      <div id="waterBannerCustom" style="position:absolute;inset:0;display:none;">
+        <div id="waterBannerBackdropWrap" style="position:absolute;inset:0;overflow:hidden;">
+          <img id="waterBannerBackdrop" src="" alt="Header backdrop">
+        </div>
+        <div id="waterBannerPortraitWrap" class="lh-portrait-circle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:110px;height:110px;z-index:2;">
+          <div class="lh-portrait-inner" style="width:100%;height:100%;overflow:hidden;border:3px solid #C9A84C;box-shadow:0 6px 20px rgba(0,0,0,.4);background:#fff;">
+            <img id="waterBannerPortrait" src="" alt="Portrait" style="width:100%;height:100%;object-fit:cover;display:block;">
+          </div>
+        </div>
+      </div>
+      <div style="position:absolute;bottom:6px;right:10px;z-index:5;background:rgba(10,21,37,.75);color:#C9A84C;font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:10px;pointer-events:none;">Live Preview</div>
     </div>
     <!-- GOLD FOIL BAR -->
     <div class="lh-gold-foil"></div>
@@ -955,11 +982,15 @@ function toggleLogoSection(checked){
   logoShow = checked;
   var body = document.getElementById('logoSectionBody');
   if(body) body.style.display = checked ? '' : 'none';
+  var check = document.getElementById('logoShowCheck');
+  if(check) check.classList.toggle('checked', checked);
 }
 function toggleLogoBgSection(checked){
   logoBgShow = checked;
   var body = document.getElementById('logoBgSectionBody');
   if(body) body.style.display = checked ? 'block' : 'none';
+  var check = document.getElementById('logoBgShowCheck');
+  if(check) check.classList.toggle('checked', checked);
 }
 function handleLogoBgUpload(input){
   if(!input.files||!input.files[0]) return;
@@ -1067,16 +1098,21 @@ async function uploadPortraitIfNeeded(file, slug, who){
 // ── Header style toggle — Default (seal) vs Custom (own photo). Mutually exclusive. ──
 function setHeaderMode(mode){
   headerMode = mode;
-  var defBtn=document.getElementById('headerModeDefaultBtn'), cusBtn=document.getElementById('headerModeCustomBtn'), panel=document.getElementById('customHeaderPanel');
+  var check=document.getElementById('headerModeCheck');
+  if(check) check.classList.toggle('checked', mode==='custom');
+  var panel=document.getElementById('customHeaderPanel');
+  if(panel) panel.style.display = (mode==='custom') ? 'block' : 'none';
+  var defView=document.getElementById('waterBannerDefault'), custView=document.getElementById('waterBannerCustom');
   if(mode==='custom'){
-    if(defBtn){defBtn.style.background='none';defBtn.style.color='#888';defBtn.style.borderColor='rgba(201,168,76,.3)';}
-    if(cusBtn){cusBtn.style.background='rgba(201,168,76,.15)';cusBtn.style.color='#C9A84C';cusBtn.style.borderColor='rgba(201,168,76,.5)';}
-    if(panel) panel.style.display='block';
+    if(defView) defView.style.display='none';
+    if(custView) custView.style.display='block';
   } else {
-    if(cusBtn){cusBtn.style.background='none';cusBtn.style.color='#888';cusBtn.style.borderColor='rgba(201,168,76,.3)';}
-    if(defBtn){defBtn.style.background='rgba(201,168,76,.15)';defBtn.style.color='#C9A84C';defBtn.style.borderColor='rgba(201,168,76,.5)';}
-    if(panel) panel.style.display='none';
+    if(custView) custView.style.display='none';
+    if(defView) defView.style.display='block';
   }
+}
+function toggleHeaderMode(){
+  setHeaderMode(headerMode==='custom' ? 'default' : 'custom');
 }
 
 function handleHeaderBackdropUpload(input){
@@ -1089,6 +1125,8 @@ function handleHeaderBackdropUpload(input){
       var thumb=document.getElementById('headerBackdropThumb'), wrap=document.getElementById('headerBackdropPreviewWrap');
       if(thumb) thumb.src=e.target.result;
       if(wrap) wrap.style.display='block';
+      var live=document.getElementById('waterBannerBackdrop');
+      if(live) live.src=e.target.result;
     };
     reader.readAsDataURL(cf);
   });
@@ -1098,6 +1136,8 @@ function clearHeaderBackdrop(){
   var wrap=document.getElementById('headerBackdropPreviewWrap'), inp=document.getElementById('headerBackdropInput');
   if(wrap) wrap.style.display='none';
   if(inp) inp.value='';
+  var live=document.getElementById('waterBannerBackdrop');
+  if(live) live.src='';
 }
 function handleHeaderPortraitUpload(input){
   if(!input.files||!input.files[0]) return;
@@ -1110,6 +1150,8 @@ function handleHeaderPortraitUpload(input){
       if(thumb) thumb.src=e.target.result;
       if(prev) prev.style.display='flex';
       if(tog) tog.style.display='flex';
+      var live=document.getElementById('waterBannerPortrait');
+      if(live) live.src=e.target.result;
     };
     reader.readAsDataURL(cf);
   });
@@ -1120,6 +1162,8 @@ function clearHeaderPortrait(){
   if(prev) prev.style.display='none';
   if(tog) tog.style.display='none';
   if(inp) inp.value='';
+  var live=document.getElementById('waterBannerPortrait');
+  if(live) live.src='';
 }
 function setHeaderPortraitStyle(btn){
   document.querySelectorAll('.frame-style-btn[data-sig="headerPortrait"]').forEach(function(b){
@@ -1130,6 +1174,10 @@ function setHeaderPortraitStyle(btn){
   btn.style.borderColor='rgba(201,168,76,.5)';
   btn.classList.add('active');
   _headerPortraitStyle = btn.getAttribute('data-style');
+  var liveWrap=document.getElementById('waterBannerPortraitWrap');
+  if(liveWrap){
+    liveWrap.querySelector('.lh-portrait-inner').style.borderRadius = (_headerPortraitStyle==='square') ? '10px' : '50%';
+  }
 }
 
 function updateHeaderZoomPreview(val){
@@ -1215,7 +1263,7 @@ function setMgramMode(mode){
   });
   document.getElementById('logoFileInput').addEventListener('change',function(e){
     if(!e.target.files[0])return;logoFile=e.target.files[0];
-    var r=new FileReader();r.onload=function(ev){logoDataUrl=ev.target.result;document.getElementById('outSeal').src=ev.target.result;document.getElementById('logoPreviewEditor').src=ev.target.result;var ps=document.getElementById('printContSeal');if(ps)ps.src=ev.target.result;document.getElementById('logoStatus').style.display='block';};r.readAsDataURL(e.target.files[0]);e.target.value='';
+    var r=new FileReader();r.onload=function(ev){logoDataUrl=ev.target.result;document.getElementById('logoPreviewEditor').src=ev.target.result;var ps=document.getElementById('printContSeal');if(ps)ps.src=ev.target.result;document.getElementById('logoStatus').style.display='block';};r.readAsDataURL(e.target.files[0]);e.target.value='';
   });
   document.getElementById('heroFileInput').addEventListener('change',function(e){
     if(!e.target.files[0])return;var r=new FileReader();r.onload=function(ev){heroDataUrl=ev.target.result;heroExistingUrl=null;document.getElementById('heroPrevImg').src=ev.target.result;document.getElementById('heroPrevImg').style.objectPosition='center 40%';document.getElementById('heroPrevImg').style.height='280px';document.getElementById('heroSlider').value=40;document.getElementById('heroZoom').value=100;document.getElementById('heroZoomVal').textContent='100';document.getElementById('heroPrevWrap').classList.add('active');};r.readAsDataURL(e.target.files[0]);e.target.value='';
@@ -1367,7 +1415,7 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
     } else {
       clearSpecialSig();
     }
-    if(document.getElementById('reelModeToggle')) document.getElementById('reelModeToggle').checked = letter.reelMode === true;
+    if(document.getElementById('reelModeToggle')){ var _rmc = letter.reelMode === true; document.getElementById('reelModeToggle').checked = _rmc; var _rmck=document.getElementById('reelModeCheck'); if(_rmck) _rmck.classList.toggle('checked', _rmc); }
     if(document.getElementById('inFxEffect')) document.getElementById('inFxEffect').value = letter.fxEffect || '';    _headerBackdropKey=letter.headerBackdropKey||''; _headerBackdropUrl=letter.headerBackdropUrl||'';
     _headerPortraitKey=letter.headerPortraitKey||''; _headerPortraitUrl=letter.headerPortraitUrl||''; _headerPortraitStyle=letter.headerPortraitStyle||'circle';
     var _hbSrc = letter.headerBackdropUrl||(letter.headerBackdropKey?WORKER+'/photos/'+letter.headerBackdropKey:'');
@@ -1375,10 +1423,14 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
     if(_hbSrc){
       var hbt=document.getElementById('headerBackdropThumb'), hbw=document.getElementById('headerBackdropPreviewWrap');
       if(hbt) hbt.src=_hbSrc; if(hbw) hbw.style.display='block';
+      var _liveB=document.getElementById('waterBannerBackdrop'); if(_liveB) _liveB.src=_hbSrc;
     }
     if(_hpSrc){
       var hpt=document.getElementById('headerPortraitThumb'), hpp=document.getElementById('headerPortraitPreview'), hpf=document.getElementById('headerPortraitFrameToggle');
       if(hpt) hpt.src=_hpSrc; if(hpp) hpp.style.display='flex'; if(hpf) hpf.style.display='flex';
+      var _liveP=document.getElementById('waterBannerPortrait'); if(_liveP) _liveP.src=_hpSrc;
+      var _liveWrap=document.getElementById('waterBannerPortraitWrap');
+      if(_liveWrap) _liveWrap.querySelector('.lh-portrait-inner').style.borderRadius = (_headerPortraitStyle==='square') ? '10px' : '50%';
       document.querySelectorAll('.frame-style-btn[data-sig="headerPortrait"]').forEach(function(b){
         var isActive=b.getAttribute('data-style')===_headerPortraitStyle;
         b.style.background=isActive?'rgba(201,168,76,.15)':'none';
@@ -1407,7 +1459,7 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
     if(letter.musicMeta&&letter.musicMeta.isPodcast)setMgramMode('podcast');else setMgramMode('song');
     document.getElementById('inMusic').value=letter.musicUrl||'';
     if(letter.musicMeta&&letter.musicMeta.title){currentMusicMeta=letter.musicMeta;showMusicPreview(letter.musicMeta.title,letter.musicMeta.artist||'',letter.musicMeta.artUrl||'',letter.musicMeta.platform||'');}
-    else if(letter.musicUrl){scheduleMusicFetch();}if(letter.recipientHtml)document.getElementById('inRecipient').value=letter.recipientHtml.replace(/<strong>/gi,'').replace(/<\/strong>/gi,'').replace(/<br>/gi,', ');else if(letter.recipientName)document.getElementById('inRecipient').value=letter.recipientName;logoFile=null;logoExistingKey=letter.logoKey||null;var logoSrc=letter.logoKey?WORKER+'/photos/'+letter.logoKey:'https://powparker.com/powparker-logo.webp';document.getElementById('outSeal').src=logoSrc;document.getElementById('logoPreviewEditor').src=logoSrc;document.getElementById('logoStatus').style.display='none';
+    else if(letter.musicUrl){scheduleMusicFetch();}if(letter.recipientHtml)document.getElementById('inRecipient').value=letter.recipientHtml.replace(/<strong>/gi,'').replace(/<\/strong>/gi,'').replace(/<br>/gi,', ');else if(letter.recipientName)document.getElementById('inRecipient').value=letter.recipientName;logoFile=null;logoExistingKey=letter.logoKey||null;var logoSrc=letter.logoKey?WORKER+'/photos/'+letter.logoKey:'https://powparker.com/powparker-logo.webp';document.getElementById('logoPreviewEditor').src=logoSrc;document.getElementById('logoStatus').style.display='none';
     // Restore hero photo
     heroDataUrl=null;
     if(letter.heroUrl||letter.heroKey){
@@ -1467,7 +1519,7 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
       setMediaTab('photo');
     }existingPhotos=[];if(letter.exhibits&&letter.exhibits.length>0)letter.exhibits.forEach(function(ex){var url=ex.photoUrl||(ex.photoKey?WORKER+'/photos/'+ex.photoKey:'');if(url)existingPhotos.push({url:url,heading:ex.heading||'',caption:ex.caption||'',scale:ex.scale||80});});renderExistingPhotos();document.getElementById('exhibitsContainer').innerHTML='';exhibitCounter=0;exhibitFiles={};document.getElementById('btnSave').style.display='none';document.getElementById('btnReParlay').classList.add('active');document.getElementById('btnCancelEdit').style.display='inline-block';document.getElementById('editModeBanner').classList.add('active');if(!editMode)toggleMode();document.getElementById('inputPanel').scrollIntoView({behavior:'smooth',block:'start'});showToast('Loaded -- make edits then ReParLay It','success');showToneRow();}catch(e){showToast('Error: '+e.message,'error');}};
 
-window.cancelEdit=function(){editingSlug=null;window._existingVideoKey=null;existingPhotos=[];logoFile=null;logoExistingKey=null;logoDataUrl=null;document.getElementById('outSeal').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoPreviewEditor').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoStatus').style.display='none';['inDate','inSubject','inSlug','inRecipient','inSalutation','inBody','inPassword','inMusic'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('inClosing').value='Respectfully,';document.getElementById('inSigTitle').value='Founder -- SaveKearnyAZ.org - Project 88';document.getElementById('inSigAZPhone').value='(480) 788-2320';document.getElementById('inSigTXPhone').value='(214) 838-1883';document.getElementById('inSigWebsite').value='www.powparker.com';document.getElementById('inSigEmail').value='powell@powparker.com';document.getElementById('exhibitsContainer').innerHTML='';document.getElementById('existingPhotosWrap').style.display='none';closeExistingPhotoEdit();exhibitCounter=0;exhibitFiles={};removeHero();document.getElementById('btnSave').style.display='inline-block';document.getElementById('btnReParlay').classList.remove('active');document.getElementById('btnCancelEdit').style.display='none';document.getElementById('editModeBanner').classList.remove('active');document.getElementById('sharePanel').classList.remove('active');setMgramMode('song');currentSigFont="'Sloop Script One','Pinyon Script',cursive";currentSigSize='1.9rem';currentCoSigFont="'Pinyon Script',cursive";clearHeaderBackdrop();clearHeaderPortrait();setHeaderMode('default');if(document.getElementById('reelModeToggle'))document.getElementById('reelModeToggle').checked=false;if(document.getElementById('inFxEffect'))document.getElementById('inFxEffect').value='';document.getElementById('logoShowToggle').checked=true;toggleLogoSection(true);document.getElementById('logoBgShowToggle').checked=false;toggleLogoBgSection(false);clearLogoBg();clearSpecialSig();document.querySelectorAll('.sig-font-btn[data-sigfont]').forEach(function(b,i){b.classList.toggle('active',i===0);});
+window.cancelEdit=function(){editingSlug=null;window._existingVideoKey=null;existingPhotos=[];logoFile=null;logoExistingKey=null;logoDataUrl=null;document.getElementById('logoPreviewEditor').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoStatus').style.display='none';var _os=document.getElementById('outSeal');if(_os)_os.src='https://letters.powparker.com/parker-water-seal.webp';['inDate','inSubject','inSlug','inRecipient','inSalutation','inBody','inPassword','inMusic'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('inClosing').value='Respectfully,';document.getElementById('inSigTitle').value='Founder -- SaveKearnyAZ.org - Project 88';document.getElementById('inSigAZPhone').value='(480) 788-2320';document.getElementById('inSigTXPhone').value='(214) 838-1883';document.getElementById('inSigWebsite').value='www.powparker.com';document.getElementById('inSigEmail').value='powell@powparker.com';document.getElementById('exhibitsContainer').innerHTML='';document.getElementById('existingPhotosWrap').style.display='none';closeExistingPhotoEdit();exhibitCounter=0;exhibitFiles={};removeHero();document.getElementById('btnSave').style.display='inline-block';document.getElementById('btnReParlay').classList.remove('active');document.getElementById('btnCancelEdit').style.display='none';document.getElementById('editModeBanner').classList.remove('active');document.getElementById('sharePanel').classList.remove('active');setMgramMode('song');currentSigFont="'Sloop Script One','Pinyon Script',cursive";currentSigSize='1.9rem';currentCoSigFont="'Pinyon Script',cursive";clearHeaderBackdrop();clearHeaderPortrait();setHeaderMode('default');if(document.getElementById('reelModeToggle'))document.getElementById('reelModeToggle').checked=false;if(document.getElementById('reelModeCheck'))document.getElementById('reelModeCheck').classList.remove('checked');if(document.getElementById('inFxEffect'))document.getElementById('inFxEffect').value='';document.getElementById('logoShowToggle').checked=true;toggleLogoSection(true);document.getElementById('logoBgShowToggle').checked=false;toggleLogoBgSection(false);clearLogoBg();clearSpecialSig();document.querySelectorAll('.sig-font-btn[data-sigfont]').forEach(function(b,i){b.classList.toggle('active',i===0);});
   if(document.getElementById('inCoSigName'))document.getElementById('inCoSigName').value='';
   if(document.getElementById('inCoSigTitle'))document.getElementById('inCoSigTitle').value='';
   var csw=document.getElementById('outCoSigWrap');if(csw)csw.classList.remove('active');
