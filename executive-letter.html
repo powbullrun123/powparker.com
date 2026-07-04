@@ -68,6 +68,17 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 .check-box.checked{background:#2ecc71;border-color:#2ecc71;}
 .check-box.checked::after{content:'\2713';color:#0A1525;font-weight:900;font-size:15px;line-height:1;}
 .check-toggle:hover .check-box{border-color:#C9A84C;}
+/* ── Signor Portrait live preview frame (mirrors the actual rendered output) ── */
+.sig-frame-wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:nowrap;}
+.sig-frame-text{flex:1;min-width:0;}
+.sig-frame-photo{flex-shrink:0;display:flex;align-items:center;justify-content:flex-end;cursor:grab;touch-action:none;}
+.sig-frame-photo:active{cursor:grabbing;}
+.sig-frame-photo .frame-img{width:137px;height:137px;overflow:hidden;}
+.sig-photo-circle .frame-img{border-radius:50%;padding:3px;background:linear-gradient(135deg,#BF953F 0%,#FCF6BA 25%,#B38728 50%,#FBF5B7 75%,#AA771C 100%);}
+.sig-photo-circle .frame-img-inner{width:128px;height:128px;border-radius:50%;}
+.sig-photo-square .frame-img{border-radius:6px;padding:4px;background:linear-gradient(135deg,#BF953F 0%,#FCF6BA 25%,#B38728 50%,#FBF5B7 75%,#AA771C 100%);}
+.sig-photo-square .frame-img-inner{width:124px;height:124px;border-radius:3px;}
+.frame-img-inner{object-fit:cover;object-position:var(--sposx,50%) var(--sposy,50%);transform:scale(var(--szoom,1));transform-origin:center center;display:block;}
 .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
 /* LOGO */
@@ -564,19 +575,17 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <button class="frame-style-btn active" data-sig="headerPortrait" data-style="circle" onclick="setHeaderPortraitStyle(this)" style="font-size:.65rem;font-family:Lato,sans-serif;font-weight:700;padding:4px 10px;border-radius:12px;border:1px solid rgba(201,168,76,.5);background:rgba(201,168,76,.15);color:#C9A84C;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;">&#9711; Medal</button>
       <button class="frame-style-btn" data-sig="headerPortrait" data-style="square" onclick="setHeaderPortraitStyle(this)" style="font-size:.65rem;font-family:Lato,sans-serif;font-weight:700;padding:4px 10px;border-radius:12px;border:1px solid rgba(201,168,76,.3);background:none;color:#888;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;">&#9633; Plaque</button>
     </div>
+    <div id="headerPortraitZoomRow" style="display:none !important;">
+      <input type="range" id="headerPortraitZoomSlider" min="0.5" max="2.0" step="0.05" value="1.0" style="display:none;"
+        oninput="document.getElementById('headerPortraitZoomVal').textContent=Math.round(parseFloat(this.value)*100)+'%';_headerPortraitZoom=parseFloat(this.value);var b=document.getElementById('waterBanner');if(b)b.style.setProperty('--pzoom',this.value);">
+      <span id="headerPortraitZoomVal">100%</span>
+    </div>
   </div>
 
-  <div style="margin:10px 0 4px;">
-    <label style="font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(201,168,76,.7);">&#128269; HEADER ZOOM</label>
-    <div style="display:flex;align-items:center;gap:10px;margin-top:6px;">
-      <span style="font-size:.65rem;color:#aaa;">Out</span>
-      <input type="range" id="headerZoomSlider" min="0.5" max="3.0" step="0.05" value="1.0"
-        style="flex:1;accent-color:#C9A84C;"
-        oninput="document.getElementById('headerZoomVal').textContent=Math.round(parseFloat(this.value)*100)+'%';updateHeaderZoomPreview(this.value);">
-      <span style="font-size:.65rem;color:#aaa;">In</span>
-      <span style="font-size:.65rem;color:#C9A84C;min-width:36px;" id="headerZoomVal">100%</span>
-    </div>
-    <div style="font-size:.62rem;color:rgba(255,255,255,.25);margin-top:2px;">Controls the header image size — applies to whichever header style is active above. 100% = fully out.</div>
+  <div style="display:none;">
+    <input type="range" id="headerZoomSlider" min="0.5" max="3.0" step="0.05" value="1.0"
+      oninput="document.getElementById('headerZoomVal').textContent=Math.round(parseFloat(this.value)*100)+'%';updateHeaderZoomPreview(this.value);">
+    <span id="headerZoomVal">100%</span>
   </div>
     <button class="hero-upload-btn" type="button" onclick="document.getElementById('heroFileInput').click()">+ Add Cover Photo</button>
     <input type="file" id="heroFileInput" accept="image/*" style="display:none">
@@ -657,10 +666,6 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <button class="sig-font-btn" data-sigfont="'Dancing Script',cursive" onclick="setSigFont(this)" style="font-family:'Dancing Script',cursive;">Powell Parker</button>
       <button class="sig-font-btn" data-sigfont="'Parisienne',cursive" onclick="setSigFont(this)" style="font-family:'Parisienne',cursive;font-size:1.05rem;">Powell Parker</button>
       <button class="sig-font-btn" data-sigfont="'Edwardian Script ITC','Great Vibes',cursive" onclick="setSigFont(this)" style="font-family:'Edwardian Script ITC','Great Vibes',cursive;font-size:1.15rem;">Powell Parker</button>
-      <button class="sig-font-btn" data-sigfont="'EB Garamond',Georgia,serif" onclick="setSigFont(this)" style="font-family:'EB Garamond',Georgia,serif;">Powell Parker</button>
-      <button class="sig-font-btn" data-sigfont="'Playfair Display',serif" onclick="setSigFont(this)" style="font-family:'Playfair Display',serif;">Powell Parker</button>
-      <button class="sig-font-btn" data-sigfont="'TT Commons Pro Expanded DemiBold','Lato',sans-serif" onclick="setSigFont(this)" style="font-family:'TT Commons Pro Expanded DemiBold','Lato',sans-serif;font-size:.95rem;letter-spacing:.03em;">Powell Parker</button>
-      <button class="sig-font-btn" data-sigfont="'Organetto','Lato',sans-serif" onclick="setSigFont(this)" style="font-family:'Organetto','Lato',sans-serif;font-size:.95rem;letter-spacing:.03em;">Powell Parker</button>
     </div>
     <div class="size-row" style="margin:8px 0 14px;">
       <label>Sig Size</label>
@@ -677,7 +682,12 @@ body.has-music-gram .page-container{padding-bottom:120px}
           <img src="https://letters.powparker.com/patriotic-powell.webp" alt="Patriotic Signature" style="height:60pt;width:auto;display:block;margin:0 auto;">
         </button>
       </div>
-      <div class="hint" style="margin-top:6px;">Uses a graphic signature image instead of a typed font. Overrides the font choice above when selected.</div>
+      <div class="hint" style="margin-top:6px;">Uses a graphic signature image instead of a typed font. Overrides the font choice above when selected. Drag it in the preview above to reposition.</div>
+      <div id="specialSigZoomRow" style="display:none !important;">
+        <input type="range" id="specialSigZoomSlider" min="0.5" max="1.3" step="0.05" value="1.0" style="display:none;"
+          oninput="document.getElementById('specialSigZoomVal').textContent=Math.round(parseFloat(this.value)*100)+'%';_specialSigZoom=parseFloat(this.value);applySpecialSigTransform();">
+        <span id="specialSigZoomVal">100%</span>
+      </div>
       <button type="button" id="btnClearSpecialSig" onclick="clearSpecialSig()" style="display:none;margin-top:8px;font-size:.62rem;color:#e74c3c;background:none;border:none;cursor:pointer;">&#10005; Use typed signature instead</button>
     </div>
   </div>
@@ -746,6 +756,12 @@ body.has-music-gram .page-container{padding-bottom:120px}
         <button class="frame-style-btn active" data-sig="sig" data-style="circle" onclick="setFrameStyle(this,'sig')" style="font-size:.65rem;font-family:Lato,sans-serif;font-weight:700;padding:4px 10px;border-radius:12px;border:1px solid rgba(201,168,76,.5);background:rgba(201,168,76,.15);color:#C9A84C;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;">&#9711; Medal</button>
         <button class="frame-style-btn" data-sig="sig" data-style="square" onclick="setFrameStyle(this,'sig')" style="font-size:.65rem;font-family:Lato,sans-serif;font-weight:700;padding:4px 10px;border-radius:12px;border:1px solid rgba(201,168,76,.3);background:none;color:#888;cursor:pointer;text-transform:uppercase;letter-spacing:.05em;">&#9633; Plaque</button>
       </div>
+    </div>
+    <div id="sigPhotoZoomRow" style="margin-top:10px;">
+      <input type="range" id="sigPhotoZoomSlider" min="0.5" max="2.0" step="0.05" value="1.0" style="display:none;"
+        oninput="document.getElementById('sigPhotoZoomVal').textContent=Math.round(parseFloat(this.value)*100)+'%';_sigPhotoZoom=parseFloat(this.value);applySigPhotoTransform();">
+      <span id="sigPhotoZoomVal" style="display:none;">100%</span>
+      <div class="hint">Scroll to zoom, drag to reposition — directly on the portrait in the preview above.</div>
     </div>
   </div>
   <!-- CO-SIGNER SECTION -->
@@ -869,13 +885,14 @@ body.has-music-gram .page-container{padding-bottom:120px}
         <div id="waterBannerBackdropWrap" style="position:absolute;inset:0;overflow:hidden;">
           <img id="waterBannerBackdrop" src="" alt="Header backdrop">
         </div>
-        <div id="waterBannerPortraitWrap" class="lh-portrait-circle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:110px;height:110px;z-index:2;">
+        <div id="waterBannerPortraitWrap" class="lh-portrait-circle" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:110px;height:110px;z-index:2;display:none;">
           <div class="lh-portrait-inner" style="width:100%;height:100%;overflow:hidden;border:3px solid #C9A84C;box-shadow:0 6px 20px rgba(0,0,0,.4);background:#fff;">
-            <img id="waterBannerPortrait" src="" alt="Portrait" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img id="waterBannerPortrait" src="" alt="Portrait" style="width:100%;height:100%;object-fit:cover;display:block;transform:scale(var(--pzoom,1));transform-origin:center center;">
           </div>
         </div>
       </div>
-      <div class="drag-hint">&#9995; Drag photo &amp; portrait to reposition</div>
+      <div class="drag-hint">&#9995; Drag to move &middot; Scroll to zoom</div>
+      <div style="position:absolute;inset:6px;border:2px dashed rgba(255,255,255,.65);pointer-events:none;z-index:6;"></div>
       <div style="position:absolute;bottom:6px;right:10px;z-index:5;background:rgba(10,21,37,.75);color:#C9A84C;font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:10px;pointer-events:none;">Live Preview</div>
     </div>
     <!-- GOLD FOIL BAR -->
@@ -893,7 +910,10 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <div id="outExhibits"></div>
       <div class="l-closing" id="outClosing">Respectfully,</div>
       <div class="l-sig">
+      <div class="sig-frame-wrap">
+      <div class="sig-frame-text">
         <div class="l-sig-name" id="outSigName">Powell Parker</div>
+        <img id="outSpecialSig" src="" alt="Signature" style="display:none;height:60pt;width:auto;cursor:grab;touch-action:none;">
         <div class="l-sig-title" id="outSigTitle">Founder &mdash; SaveKearnyAZ.org &middot; Project 88</div>
         <div class="l-sig-phones">
           <span id="outSigAZPhone">AZ: <a href="tel:4807882320" style="color:var(--gold-dark);text-decoration:none;">(480) 788-2320</a></span> &nbsp;&middot;&nbsp;
@@ -921,6 +941,10 @@ body.has-music-gram .page-container{padding-bottom:120px}
           <span class="sig-divider">|</span>
           <a href="mailto:powell@powparker.com" id="outSigEmailLink">powell@powparker.com</a>
         </div>
+      </div>
+      <div id="outSigPhotoWrap" class="sig-frame-photo sig-photo-circle" style="display:none;">
+        <div class="frame-img"><img class="frame-img-inner" id="outSigPhoto" src="" alt="Signature portrait"></div>
+      </div>
       </div>
     </div>
     <!-- CO-SIGNER SIGNATURE -->
@@ -970,18 +994,22 @@ body.has-music-gram .page-container{padding-bottom:120px}
     </div>
   </div>
 </div>
+</div>
 <script>
 var WORKER='https://letters.powparker.com';
 var API_KEY='Parker-letters-062878!';
 var editMode=true,editingSlug=null,exhibitCounter=0,exhibitFiles={},existingPhotos=[],editingPhotoIndex=-1;
 var _sigPortraitFile=null, _sigPortraitUrl='', _sigPortraitKey='', _sigPortraitStyle='circle';
+var _sigPhotoZoom=1.0, _sigPhotoPosX=50, _sigPhotoPosY=50;
 var _coSigPortraitFile=null, _coSigPortraitUrl='', _coSigPortraitKey='', _coSigPortraitStyle='circle';
 var headerMode='default';
 var _headerBackdropFile=null, _headerBackdropUrl='', _headerBackdropKey='';
 var _headerPortraitFile=null, _headerPortraitUrl='', _headerPortraitKey='', _headerPortraitStyle='circle';
+var _headerPortraitZoom=1.0;
 var logoShow=true;
 var _logoBgFile=null, _logoBgUrl='', _logoBgKey='', logoBgShow=false;
 var specialSigImage='';
+var _specialSigZoom=1.0, _specialSigOffsetX=0, _specialSigOffsetY=0;
 var _headerSealPosX=50, _headerSealPosY=50;
 var _headerBackdropPosX=50, _headerBackdropPosY=50;
 var _headerPortraitPosX=50, _headerPortraitPosY=50;
@@ -1060,7 +1088,18 @@ function handlePortraitUpload(input, who){
       if(thumb) thumb.src=e.target.result;
       if(prev)  prev.style.display='flex';
       if(tog)   tog.style.display='flex';
-      if(isSig){ _sigPortraitUrl=e.target.result; } else { _coSigPortraitUrl=e.target.result; }
+      if(isSig){
+        _sigPortraitUrl=e.target.result;
+        var liveWrap=document.getElementById('outSigPhotoWrap'), liveImg=document.getElementById('outSigPhoto'), zRow=document.getElementById('sigPhotoZoomRow');
+        if(liveWrap) liveWrap.style.display='flex';
+        if(liveImg) liveImg.src=e.target.result;
+        if(zRow) zRow.style.display='block';
+        _sigPhotoZoom=1.0; _sigPhotoPosX=50; _sigPhotoPosY=50;
+        var zSlider=document.getElementById('sigPhotoZoomSlider'), zVal=document.getElementById('sigPhotoZoomVal');
+        if(zSlider) zSlider.value=1.0;
+        if(zVal) zVal.textContent='100%';
+        applySigPhotoTransform();
+      } else { _coSigPortraitUrl=e.target.result; }
     };
     reader.readAsDataURL(cf);
   });
@@ -1076,7 +1115,35 @@ function clearPortrait(who){
   if(prev) prev.style.display='none';
   if(tog)  tog.style.display='none';
   if(inp)  inp.value='';
+  if(isSig){
+    var liveWrap=document.getElementById('outSigPhotoWrap'), liveImg=document.getElementById('outSigPhoto'), zRow=document.getElementById('sigPhotoZoomRow');
+    if(liveWrap) liveWrap.style.display='none';
+    if(liveImg) liveImg.src='';
+    if(zRow) zRow.style.display='none';
+    _sigPhotoZoom=1.0; _sigPhotoPosX=50; _sigPhotoPosY=50;
+  }
 }
+
+function applySigPhotoTransform(){
+  var wrap=document.getElementById('outSigPhotoWrap');
+  if(!wrap) return;
+  wrap.style.setProperty('--szoom', _sigPhotoZoom);
+  wrap.style.setProperty('--sposx', _sigPhotoPosX+'%');
+  wrap.style.setProperty('--sposy', _sigPhotoPosY+'%');
+}
+
+function initSigPhotoDrag(){
+  var frame = document.querySelector('#outSigPhotoWrap .frame-img');
+  if(!frame) return;
+  makeDraggable(frame, frame, function(x,y){ _sigPhotoPosX=Math.round(x); _sigPhotoPosY=Math.round(y); applySigPhotoTransform(); });
+  frame.addEventListener('wheel', function(e){
+    e.preventDefault();
+    _sigPhotoZoom = Math.max(0.5, Math.min(2.0, _sigPhotoZoom + (e.deltaY < 0 ? 0.05 : -0.05)));
+    var slider=document.getElementById('sigPhotoZoomSlider'); if(slider) slider.value=_sigPhotoZoom;
+    applySigPhotoTransform();
+  }, {passive:false});
+}
+window.addEventListener('load', initSigPhotoDrag);
 
 function setFrameStyle(btn, who){
   var isSig=(who==='sig');
@@ -1090,7 +1157,11 @@ function setFrameStyle(btn, who){
   btn.style.borderColor='rgba(201,168,76,.5)';
   btn.classList.add('active');
   var style=btn.getAttribute('data-style');
-  if(isSig){ _sigPortraitStyle=style; } else { _coSigPortraitStyle=style; }
+  if(isSig){
+    _sigPortraitStyle=style;
+    var liveWrap=document.getElementById('outSigPhotoWrap');
+    if(liveWrap){ liveWrap.classList.remove('sig-photo-circle','sig-photo-square'); liveWrap.classList.add(style==='square'?'sig-photo-square':'sig-photo-circle'); }
+  } else { _coSigPortraitStyle=style; }
 }
 
 async function uploadPortraitIfNeeded(file, slug, who){
@@ -1165,18 +1236,31 @@ function handleHeaderPortraitUpload(input){
       if(tog) tog.style.display='flex';
       var live=document.getElementById('waterBannerPortrait');
       if(live) live.src=e.target.result;
+      var liveWrap=document.getElementById('waterBannerPortraitWrap');
+      if(liveWrap) liveWrap.style.display='block';
+      _headerPortraitZoom=1.0;
+      var zSlider=document.getElementById('headerPortraitZoomSlider'), zVal=document.getElementById('headerPortraitZoomVal'), zRow=document.getElementById('headerPortraitZoomRow');
+      if(zSlider) zSlider.value=1.0;
+      if(zVal) zVal.textContent='100%';
+      if(zRow) zRow.style.display='block';
+      var banner=document.getElementById('waterBanner');
+      if(banner) banner.style.setProperty('--pzoom', 1.0);
     };
     reader.readAsDataURL(cf);
   });
 }
 function clearHeaderPortrait(){
-  _headerPortraitFile=null;_headerPortraitUrl='';_headerPortraitKey='';
+  _headerPortraitFile=null;_headerPortraitUrl='';_headerPortraitKey='';_headerPortraitZoom=1.0;
   var prev=document.getElementById('headerPortraitPreview'), tog=document.getElementById('headerPortraitFrameToggle'), inp=document.getElementById('headerPortraitInput');
   if(prev) prev.style.display='none';
   if(tog) tog.style.display='none';
   if(inp) inp.value='';
   var live=document.getElementById('waterBannerPortrait');
   if(live) live.src='';
+  var liveWrap=document.getElementById('waterBannerPortraitWrap');
+  if(liveWrap) liveWrap.style.display='none';
+  var zRow=document.getElementById('headerPortraitZoomRow');
+  if(zRow) zRow.style.display='none';
 }
 function setHeaderPortraitStyle(btn){
   document.querySelectorAll('.frame-style-btn[data-sig="headerPortrait"]').forEach(function(b){
@@ -1228,26 +1312,48 @@ function initHeaderDragHandlers(){
   var banner = document.getElementById('waterBanner');
   if(!banner) return;
 
-  // Default seal — drag repositions object-position
+  function wheelZoom(el, getVal, setVal, min, max){
+    if(!el) return;
+    el.addEventListener('wheel', function(e){
+      e.preventDefault();
+      var cur = getVal();
+      var next = Math.max(min, Math.min(max, cur + (e.deltaY < 0 ? 0.05 : -0.05)));
+      setVal(next);
+    }, {passive:false});
+  }
+
+  // Default seal — drag repositions object-position, scroll zooms
   makeDraggable(document.getElementById('outSeal'), banner, function(x,y){
     _headerSealPosX = Math.round(x); _headerSealPosY = Math.round(y);
     banner.style.setProperty('--posx', x+'%');
     banner.style.setProperty('--posy', y+'%');
   });
+  wheelZoom(document.getElementById('outSeal'),
+    function(){ return parseFloat(document.getElementById('headerZoomSlider').value); },
+    function(v){ document.getElementById('headerZoomSlider').value=v; document.getElementById('headerZoomVal').textContent=Math.round(v*100)+'%'; updateHeaderZoomPreview(v); },
+    0.5, 3.0);
 
-  // Custom backdrop — drag repositions object-position
+  // Custom backdrop — drag repositions object-position, scroll zooms
   makeDraggable(document.getElementById('waterBannerBackdrop'), banner, function(x,y){
     _headerBackdropPosX = Math.round(x); _headerBackdropPosY = Math.round(y);
     banner.style.setProperty('--posx', x+'%');
     banner.style.setProperty('--posy', y+'%');
   });
+  wheelZoom(document.getElementById('waterBannerBackdrop'),
+    function(){ return parseFloat(document.getElementById('headerZoomSlider').value); },
+    function(v){ document.getElementById('headerZoomSlider').value=v; document.getElementById('headerZoomVal').textContent=Math.round(v*100)+'%'; updateHeaderZoomPreview(v); },
+    0.5, 3.0);
 
-  // Custom portrait badge — drag moves its absolute left/top position
+  // Custom portrait badge — drag moves its absolute left/top position, scroll zooms
   var portraitWrap = document.getElementById('waterBannerPortraitWrap');
   makeDraggable(portraitWrap, banner, function(x,y){
     _headerPortraitPosX = Math.round(x); _headerPortraitPosY = Math.round(y);
     if(portraitWrap){ portraitWrap.style.left = x+'%'; portraitWrap.style.top = y+'%'; }
   });
+  wheelZoom(portraitWrap,
+    function(){ return _headerPortraitZoom; },
+    function(v){ _headerPortraitZoom=v; document.getElementById('headerPortraitZoomSlider').value=v; banner.style.setProperty('--pzoom', v); },
+    0.5, 2.0);
 }
 window.addEventListener('load', initHeaderDragHandlers);
 
@@ -1366,6 +1472,7 @@ window.saveExistingPhotoEdit=async function(){if(editingPhotoIndex<0)return;var 
 
 function buildLetterObj(){var recip=document.getElementById('inRecipient').value.trim(),recipParts=recip.split(',').map(function(s){return s.trim();}),recipHtml='<strong>'+recipParts[0]+'</strong>';for(var j=1;j<recipParts.length;j++)recipHtml+='<br>'+recipParts[j];return{date:document.getElementById('inDate').value.trim(),recipientName:recipParts[0],recipientHtml:recipHtml,subject:document.getElementById('inSubject').value.trim(),salutation:document.getElementById('inSalutation').value.trim(),body:document.getElementById('inBody').value.trim(),closing:document.getElementById('inClosing').value.trim(),sigTitle:document.getElementById('inSigTitle').value.trim(),password:document.getElementById('inPassword').value.trim()||null,musicUrl:document.getElementById('inMusic').value.trim()||null,musicMeta:null,calendarUrl:(document.getElementById('inCalToggle')&&document.getElementById('inCalToggle').checked&&document.getElementById('inCalUrl'))?document.getElementById('inCalUrl').value.trim()||null:null,bodyFont:(document.querySelector('.font-btn.active')?document.querySelector('.font-btn.active').getAttribute('data-font'):''),headerZoom:parseFloat((document.getElementById('headerZoomSlider')||{value:'1.0'}).value),bodyFontSize:(document.querySelector('.size-btn[data-bodysize].active')?document.querySelector('.size-btn[data-bodysize].active').getAttribute('data-bodysize'):'1.05rem'),sigFontSizeCustom:(document.querySelector('.size-btn[data-sigsize].active')?document.querySelector('.size-btn[data-sigsize].active').getAttribute('data-sigsize'):'1.9rem'),sigFont:currentSigFont||null,heroPosition:document.getElementById('heroSlider').value||'40',heroZoom:document.getElementById('heroZoom').value||'100',sigAZPhone:document.getElementById('inSigAZPhone').value.trim()||'(480) 788-2320',sigTXPhone:document.getElementById('inSigTXPhone').value.trim()||'(214) 838-1883',sigTollFree:document.getElementById('inSigTollFree')?document.getElementById('inSigTollFree').value.trim()||'1-800-428-2022':'1-800-428-2022',sigWebsite:document.getElementById('inSigWebsite').value.trim()||'www.powparker.com',sigEmail:document.getElementById('inSigEmail').value.trim()||'powell@powparker.com',videoKey:window._existingVideoKey||null,videoPosition:(document.getElementById('videoPositionSlider')?document.getElementById('videoPositionSlider').value:'50'),videoZoom:(document.getElementById('videoZoomSlider')?document.getElementById('videoZoomSlider').value:'130'),exhibits:[],logoKey:null,coSigName:document.getElementById('inCoSigName')?document.getElementById('inCoSigName').value.trim():'',coSigTitle:document.getElementById('inCoSigTitle')?document.getElementById('inCoSigTitle').value.trim():'',coSigFont:currentCoSigFont||null,
     sigPhotoKey:_sigPortraitKey||'',sigPhotoUrl:(!_sigPortraitKey&&_sigPortraitUrl?_sigPortraitUrl:''),sigPhotoStyle:(_sigPortraitUrl||_sigPortraitKey)?_sigPortraitStyle:'',
+    sigPhotoZoom:_sigPhotoZoom||1.0,sigPhotoPosX:_sigPhotoPosX!=null?_sigPhotoPosX:50,sigPhotoPosY:_sigPhotoPosY!=null?_sigPhotoPosY:50,
     coSigPhotoKey:_coSigPortraitKey||'',coSigPhotoUrl:(!_coSigPortraitKey&&_coSigPortraitUrl?_coSigPortraitUrl:''),coSigPhotoStyle:(_coSigPortraitUrl||_coSigPortraitKey)?_coSigPortraitStyle:'',
     headerType:headerMode||'default',
     headerSealPosX:_headerSealPosX,headerSealPosY:_headerSealPosY,
@@ -1374,8 +1481,10 @@ function buildLetterObj(){var recip=document.getElementById('inRecipient').value
     logoShow:logoShow,
     logoBgKey:_logoBgKey||'',logoBgUrl:(!_logoBgKey&&_logoBgUrl?_logoBgUrl:''),logoBgShow:logoBgShow,
     specialSigImage:specialSigImage||'',
+    specialSigZoom:_specialSigZoom||1.0,specialSigOffsetX:_specialSigOffsetX||0,specialSigOffsetY:_specialSigOffsetY||0,
     headerBackdropKey:_headerBackdropKey||'',headerBackdropUrl:(!_headerBackdropKey&&_headerBackdropUrl?_headerBackdropUrl:''),
     headerPortraitKey:_headerPortraitKey||'',headerPortraitUrl:(!_headerPortraitKey&&_headerPortraitUrl?_headerPortraitUrl:''),headerPortraitStyle:(_headerPortraitUrl||_headerPortraitKey)?_headerPortraitStyle:'',
+    headerPortraitZoom:_headerPortraitZoom||1.0,
     reelMode:document.getElementById('reelModeToggle')?document.getElementById('reelModeToggle').checked:true,
     fxEffect:document.getElementById('inFxEffect')?document.getElementById('inFxEffect').value:'',
     facebook:(loadSettings().facebook||'https://www.facebook.com/powparker/'),instagram:(loadSettings().instagram||'https://www.instagram.com/powparker/'),linkedin:(loadSettings().linkedin||'https://www.linkedin.com/in/pow-parker/'),twitter:(loadSettings().twitter||'https://x.com/powparker'),medium:(loadSettings().medium||'https://medium.com/@powellparker')};}
@@ -1450,6 +1559,21 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
         b.style.color=isActive?'#C9A84C':'#888';
         b.style.borderColor=isActive?'rgba(201,168,76,.5)':'rgba(201,168,76,.3)';
       });
+      // Live preview
+      var liveWrap=document.getElementById('outSigPhotoWrap'), liveImg=document.getElementById('outSigPhoto'), zRow=document.getElementById('sigPhotoZoomRow');
+      if(liveWrap){ liveWrap.style.display='flex'; liveWrap.classList.remove('sig-photo-circle','sig-photo-square'); liveWrap.classList.add(_sigPortraitStyle==='square'?'sig-photo-square':'sig-photo-circle'); }
+      if(liveImg) liveImg.src=_spSrc;
+      if(zRow) zRow.style.display='block';
+      _sigPhotoZoom = letter.sigPhotoZoom!=null ? parseFloat(letter.sigPhotoZoom) : 1.0;
+      _sigPhotoPosX = letter.sigPhotoPosX!=null ? parseFloat(letter.sigPhotoPosX) : 50;
+      _sigPhotoPosY = letter.sigPhotoPosY!=null ? parseFloat(letter.sigPhotoPosY) : 50;
+      var _spZSlider=document.getElementById('sigPhotoZoomSlider'), _spZVal=document.getElementById('sigPhotoZoomVal');
+      if(_spZSlider) _spZSlider.value=_sigPhotoZoom;
+      if(_spZVal) _spZVal.textContent=Math.round(_sigPhotoZoom*100)+'%';
+      applySigPhotoTransform();
+    } else {
+      var _liveWrapEmptySig=document.getElementById('outSigPhotoWrap'); if(_liveWrapEmptySig) _liveWrapEmptySig.style.display='none';
+      var _zRowEmptySig=document.getElementById('sigPhotoZoomRow'); if(_zRowEmptySig) _zRowEmptySig.style.display='none';
     }
     if(_cspSrc){
       var ct=document.getElementById('coSigPortraitThumb'); var cp=document.getElementById('coSigPortraitPreview'); var cf=document.getElementById('coSigFrameToggle');
@@ -1487,6 +1611,13 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
     if(specialSigImage){
       var specBtn = document.querySelector('#specialSigGrid .sig-font-btn[data-specialsig="'+specialSigImage+'"]');
       if(specBtn) setSpecialSig(specBtn);
+      _specialSigZoom = letter.specialSigZoom!=null ? parseFloat(letter.specialSigZoom) : 1.0;
+      _specialSigOffsetX = letter.specialSigOffsetX!=null ? parseFloat(letter.specialSigOffsetX) : 0;
+      _specialSigOffsetY = letter.specialSigOffsetY!=null ? parseFloat(letter.specialSigOffsetY) : 0;
+      var _ssZSlider=document.getElementById('specialSigZoomSlider'), _ssZVal=document.getElementById('specialSigZoomVal');
+      if(_ssZSlider) _ssZSlider.value=_specialSigZoom;
+      if(_ssZVal) _ssZVal.textContent=Math.round(_specialSigZoom*100)+'%';
+      applySpecialSigTransform();
     } else {
       clearSpecialSig();
     }
@@ -1505,13 +1636,22 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
       if(hpt) hpt.src=_hpSrc; if(hpp) hpp.style.display='flex'; if(hpf) hpf.style.display='flex';
       var _liveP=document.getElementById('waterBannerPortrait'); if(_liveP) _liveP.src=_hpSrc;
       var _liveWrap=document.getElementById('waterBannerPortraitWrap');
-      if(_liveWrap) _liveWrap.querySelector('.lh-portrait-inner').style.borderRadius = (_headerPortraitStyle==='square') ? '10px' : '50%';
+      if(_liveWrap){ _liveWrap.style.display='block'; _liveWrap.querySelector('.lh-portrait-inner').style.borderRadius = (_headerPortraitStyle==='square') ? '10px' : '50%'; }
+      _headerPortraitZoom = letter.headerPortraitZoom!=null ? parseFloat(letter.headerPortraitZoom) : 1.0;
+      var _zSlider=document.getElementById('headerPortraitZoomSlider'), _zVal=document.getElementById('headerPortraitZoomVal'), _zRow=document.getElementById('headerPortraitZoomRow');
+      if(_zSlider) _zSlider.value=_headerPortraitZoom;
+      if(_zVal) _zVal.textContent=Math.round(_headerPortraitZoom*100)+'%';
+      if(_zRow) _zRow.style.display='block';
+      var _banner=document.getElementById('waterBanner'); if(_banner) _banner.style.setProperty('--pzoom', _headerPortraitZoom);
       document.querySelectorAll('.frame-style-btn[data-sig="headerPortrait"]').forEach(function(b){
         var isActive=b.getAttribute('data-style')===_headerPortraitStyle;
         b.style.background=isActive?'rgba(201,168,76,.15)':'none';
         b.style.color=isActive?'#C9A84C':'#888';
         b.style.borderColor=isActive?'rgba(201,168,76,.5)':'rgba(201,168,76,.3)';
       });
+    } else {
+      var _liveWrapEmpty=document.getElementById('waterBannerPortraitWrap'); if(_liveWrapEmpty) _liveWrapEmpty.style.display='none';
+      var _zRowEmpty=document.getElementById('headerPortraitZoomRow'); if(_zRowEmpty) _zRowEmpty.style.display='none';
     }
     // Restore header zoom
     var hzSlider = document.getElementById('headerZoomSlider');
@@ -1594,7 +1734,7 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
       setMediaTab('photo');
     }existingPhotos=[];if(letter.exhibits&&letter.exhibits.length>0)letter.exhibits.forEach(function(ex){var url=ex.photoUrl||(ex.photoKey?WORKER+'/photos/'+ex.photoKey:'');if(url)existingPhotos.push({url:url,heading:ex.heading||'',caption:ex.caption||'',scale:ex.scale||80});});renderExistingPhotos();document.getElementById('exhibitsContainer').innerHTML='';exhibitCounter=0;exhibitFiles={};document.getElementById('btnSave').style.display='none';document.getElementById('btnReParlay').classList.add('active');document.getElementById('btnCancelEdit').style.display='inline-block';document.getElementById('editModeBanner').classList.add('active');if(!editMode)toggleMode();document.getElementById('inputPanel').scrollIntoView({behavior:'smooth',block:'start'});showToast('Loaded -- make edits then ReParLay It','success');showToneRow();}catch(e){showToast('Error: '+e.message,'error');}};
 
-window.cancelEdit=function(){editingSlug=null;window._existingVideoKey=null;existingPhotos=[];logoFile=null;logoExistingKey=null;logoDataUrl=null;document.getElementById('logoPreviewEditor').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoStatus').style.display='none';var _os=document.getElementById('outSeal');if(_os)_os.src='https://letters.powparker.com/parker-water-seal.webp';['inDate','inSubject','inSlug','inRecipient','inSalutation','inBody','inPassword','inMusic'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('inClosing').value='Respectfully,';document.getElementById('inSigTitle').value='Founder -- SaveKearnyAZ.org - Project 88';document.getElementById('inSigAZPhone').value='(480) 788-2320';document.getElementById('inSigTXPhone').value='(214) 838-1883';document.getElementById('inSigWebsite').value='www.powparker.com';document.getElementById('inSigEmail').value='powell@powparker.com';document.getElementById('exhibitsContainer').innerHTML='';document.getElementById('existingPhotosWrap').style.display='none';closeExistingPhotoEdit();exhibitCounter=0;exhibitFiles={};removeHero();document.getElementById('btnSave').style.display='inline-block';document.getElementById('btnReParlay').classList.remove('active');document.getElementById('btnCancelEdit').style.display='none';document.getElementById('editModeBanner').classList.remove('active');document.getElementById('sharePanel').classList.remove('active');setMgramMode('song');currentSigFont="'Sloop Script One','Pinyon Script',cursive";currentSigSize='1.9rem';currentCoSigFont="'Pinyon Script',cursive";clearHeaderBackdrop();clearHeaderPortrait();_headerSealPosX=50;_headerSealPosY=50;_headerBackdropPosX=50;_headerBackdropPosY=50;_headerPortraitPosX=50;_headerPortraitPosY=50;setHeaderMode('default');if(document.getElementById('reelModeToggle'))document.getElementById('reelModeToggle').checked=false;if(document.getElementById('reelModeCheck'))document.getElementById('reelModeCheck').classList.remove('checked');if(document.getElementById('inFxEffect'))document.getElementById('inFxEffect').value='';document.getElementById('logoShowToggle').checked=true;toggleLogoSection(true);document.getElementById('logoBgShowToggle').checked=false;toggleLogoBgSection(false);clearLogoBg();clearSpecialSig();document.querySelectorAll('.sig-font-btn[data-sigfont]').forEach(function(b,i){b.classList.toggle('active',i===0);});
+window.cancelEdit=function(){editingSlug=null;window._existingVideoKey=null;existingPhotos=[];logoFile=null;logoExistingKey=null;logoDataUrl=null;document.getElementById('logoPreviewEditor').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoStatus').style.display='none';var _os=document.getElementById('outSeal');if(_os)_os.src='https://letters.powparker.com/parker-water-seal.webp';['inDate','inSubject','inSlug','inRecipient','inSalutation','inBody','inPassword','inMusic'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('inClosing').value='Respectfully,';document.getElementById('inSigTitle').value='Founder -- SaveKearnyAZ.org - Project 88';document.getElementById('inSigAZPhone').value='(480) 788-2320';document.getElementById('inSigTXPhone').value='(214) 838-1883';document.getElementById('inSigWebsite').value='www.powparker.com';document.getElementById('inSigEmail').value='powell@powparker.com';document.getElementById('exhibitsContainer').innerHTML='';document.getElementById('existingPhotosWrap').style.display='none';closeExistingPhotoEdit();exhibitCounter=0;exhibitFiles={};removeHero();document.getElementById('btnSave').style.display='inline-block';document.getElementById('btnReParlay').classList.remove('active');document.getElementById('btnCancelEdit').style.display='none';document.getElementById('editModeBanner').classList.remove('active');document.getElementById('sharePanel').classList.remove('active');setMgramMode('song');currentSigFont="'Sloop Script One','Pinyon Script',cursive";currentSigSize='1.9rem';currentCoSigFont="'Pinyon Script',cursive";clearHeaderBackdrop();clearHeaderPortrait();_headerSealPosX=50;_headerSealPosY=50;_headerBackdropPosX=50;_headerBackdropPosY=50;_headerPortraitPosX=50;_headerPortraitPosY=50;setHeaderMode('default');if(document.getElementById('reelModeToggle'))document.getElementById('reelModeToggle').checked=false;if(document.getElementById('reelModeCheck'))document.getElementById('reelModeCheck').classList.remove('checked');if(document.getElementById('inFxEffect'))document.getElementById('inFxEffect').value='';document.getElementById('logoShowToggle').checked=true;toggleLogoSection(true);document.getElementById('logoBgShowToggle').checked=false;toggleLogoBgSection(false);clearLogoBg();clearSpecialSig();document.querySelectorAll('.sig-font-btn[data-sigfont]').forEach(function(b,i){b.classList.toggle('active',i===0);});clearPortrait('sig');clearPortrait('cosig');
   if(document.getElementById('inCoSigName'))document.getElementById('inCoSigName').value='';
   if(document.getElementById('inCoSigTitle'))document.getElementById('inCoSigTitle').value='';
   var csw=document.getElementById('outCoSigWrap');if(csw)csw.classList.remove('active');
@@ -1879,6 +2019,14 @@ function setSpecialSig(btn){
   if(sigEl) sigEl.style.display='none';
   var clearBtn = document.getElementById('btnClearSpecialSig');
   if(clearBtn) clearBtn.style.display='inline-block';
+  var live = document.getElementById('outSpecialSig');
+  if(live){ live.src='https://letters.powparker.com/'+specialSigImage; live.style.display='block'; }
+  _specialSigZoom=1.0; _specialSigOffsetX=0; _specialSigOffsetY=0;
+  var zSlider=document.getElementById('specialSigZoomSlider'), zVal=document.getElementById('specialSigZoomVal'), zRow=document.getElementById('specialSigZoomRow');
+  if(zSlider) zSlider.value=1.0;
+  if(zVal) zVal.textContent='100%';
+  if(zRow) zRow.style.display='block';
+  applySpecialSigTransform();
 }
 function clearSpecialSig(){
   specialSigImage='';
@@ -1886,10 +2034,43 @@ function clearSpecialSig(){
   if(sigEl) sigEl.style.display='';
   var clearBtn = document.getElementById('btnClearSpecialSig');
   if(clearBtn) clearBtn.style.display='none';
+  var live = document.getElementById('outSpecialSig');
+  if(live){ live.style.display='none'; live.src=''; }
+  var zRow=document.getElementById('specialSigZoomRow');
+  if(zRow) zRow.style.display='none';
+  _specialSigZoom=1.0; _specialSigOffsetX=0; _specialSigOffsetY=0;
   document.querySelectorAll('#specialSigGrid .sig-font-btn').forEach(function(b){b.classList.remove('active');});
   var firstFontBtn = document.querySelector('#sigFontGrid .sig-font-btn');
   if(firstFontBtn) firstFontBtn.classList.add('active');
 }
+function applySpecialSigTransform(){
+  var live = document.getElementById('outSpecialSig');
+  if(!live) return;
+  live.style.transform = 'translate('+_specialSigOffsetX+'px,'+_specialSigOffsetY+'px) scale('+_specialSigZoom+')';
+  live.style.transformOrigin = 'center center';
+}
+function initSpecialSigDrag(){
+  var live = document.getElementById('outSpecialSig');
+  if(!live) return;
+  var dragging=false, startX=0, startY=0, startOffX=0, startOffY=0;
+  function pointFromEvent(e){ var t = e.touches ? e.touches[0] : e; return {x:t.clientX, y:t.clientY}; }
+  function start(e){ dragging=true; var p=pointFromEvent(e); startX=p.x; startY=p.y; startOffX=_specialSigOffsetX; startOffY=_specialSigOffsetY; e.preventDefault(); }
+  function move(e){ if(!dragging) return; var p=pointFromEvent(e); _specialSigOffsetX = Math.max(-60, Math.min(60, startOffX + (p.x-startX))); _specialSigOffsetY = Math.max(-40, Math.min(40, startOffY + (p.y-startY))); applySpecialSigTransform(); e.preventDefault(); }
+  function end(){ dragging=false; }
+  live.addEventListener('mousedown', start);
+  live.addEventListener('touchstart', start, {passive:false});
+  window.addEventListener('mousemove', move);
+  window.addEventListener('touchmove', move, {passive:false});
+  window.addEventListener('mouseup', end);
+  window.addEventListener('touchend', end);
+  live.addEventListener('wheel', function(e){
+    e.preventDefault();
+    _specialSigZoom = Math.max(0.5, Math.min(1.3, _specialSigZoom + (e.deltaY < 0 ? 0.03 : -0.03)));
+    var slider=document.getElementById('specialSigZoomSlider'); if(slider) slider.value=_specialSigZoom;
+    applySpecialSigTransform();
+  }, {passive:false});
+}
+window.addEventListener('load', initSpecialSigDrag);
 function setCoSigFont(btn){
   document.querySelectorAll('#coSigFontGrid .sig-font-btn').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
