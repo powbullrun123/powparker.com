@@ -423,6 +423,7 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <button class="font-btn" data-font="'Pinyon Script',cursive" onclick="setFont(this)" style="font-family:'Pinyon Script',cursive;">Bickham Script</button>
       <button class="font-btn" data-font="'Alex Brush',cursive" onclick="setFont(this)" style="font-family:'Alex Brush',cursive;">Burgues Script</button>
       <button class="font-btn" data-font="'Edwardian Script ITC','Great Vibes',cursive" onclick="setFont(this)" style="font-family:'Edwardian Script ITC','Great Vibes',cursive;font-size:1.25rem;">Edwardian Script</button>
+      <button class="font-btn" data-font="'Sloop Script One','Pinyon Script',cursive" onclick="setFont(this)" style="font-family:'Sloop Script One','Pinyon Script',cursive;font-size:1.25rem;">Sloop Script</button>
     </div>
     <div class="size-row">
       <label>Body Size</label>
@@ -475,13 +476,35 @@ body.has-music-gram .page-container{padding-bottom:120px}
 <div class="input-panel active" id="inputPanel">
   <h3>Compose Your Letter</h3>
   <div class="logo-section">
-    <div class="logo-section-top">
-      <img src="https://powparker.com/powparker-logo.webp" class="logo-preview-circle" id="logoPreviewEditor" alt="Logo">
-      <div>
-        <button class="logo-swap-btn" type="button" onclick="document.getElementById('logoFileInput').click()">&#8635; Upload Logo for This Letter</button>
-        <input type="file" id="logoFileInput" accept="image/*" style="display:none">
-        <div class="logo-lock-info">Logo is <strong>locked into this letter</strong> at save time.</div>
-        <div id="logoStatus" style="font-family:'Lato',sans-serif;font-size:.62rem;color:#2ecc71;margin-top:3px;display:none;">&#10003; New logo ready</div>
+    <div class="field-row" style="margin-bottom:10px;display:flex;align-items:center;gap:10px;">
+      <label style="margin:0;">&#128274; Show Logo</label>
+      <input type="checkbox" id="logoShowToggle" checked onchange="toggleLogoSection(this.checked)">
+      <span class="hint" style="margin:0;">Off = no logo appears anywhere on this letter.</span>
+    </div>
+    <div id="logoSectionBody">
+      <div class="logo-section-top">
+        <img src="https://powparker.com/powparker-logo.webp" class="logo-preview-circle" id="logoPreviewEditor" alt="Logo">
+        <div>
+          <button class="logo-swap-btn" type="button" onclick="document.getElementById('logoFileInput').click()">&#8635; Upload Logo for This Letter</button>
+          <input type="file" id="logoFileInput" accept="image/*" style="display:none">
+          <div class="logo-lock-info">Logo is <strong>locked into this letter</strong> at save time.</div>
+          <div id="logoStatus" style="font-family:'Lato',sans-serif;font-size:.62rem;color:#2ecc71;margin-top:3px;display:none;">&#10003; New logo ready</div>
+        </div>
+      </div>
+      <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(201,168,76,.15);">
+        <div class="field-row" style="margin-bottom:8px;display:flex;align-items:center;gap:10px;">
+          <label style="margin:0;">Logo Background</label>
+          <input type="checkbox" id="logoBgShowToggle" onchange="toggleLogoBgSection(this.checked)">
+          <span class="hint" style="margin:0;">Optional backdrop behind the logo.</span>
+        </div>
+        <div id="logoBgSectionBody" style="display:none;">
+          <button class="hero-upload-btn" type="button" onclick="document.getElementById('logoBgFileInput').click()">+ Add Logo Background</button>
+          <input type="file" id="logoBgFileInput" accept="image/*" style="display:none" onchange="handleLogoBgUpload(this)">
+          <div id="logoBgPreviewWrap" style="display:none;margin-top:8px;">
+            <img id="logoBgThumb" src="" alt="Logo background preview" style="width:100%;max-height:100px;object-fit:cover;border-radius:6px;">
+            <button type="button" onclick="clearLogoBg()" style="margin-top:6px;font-size:.62rem;color:#e74c3c;background:none;border:none;cursor:pointer;">&#10005; Remove Background</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -612,11 +635,16 @@ body.has-music-gram .page-container{padding-bottom:120px}
   <div class="sig-picker-section">
     <h4>&#10002; Signature Style</h4>
     <div class="sig-font-grid" id="sigFontGrid">
-      <button class="sig-font-btn active" data-sigfont="'Pinyon Script',cursive" onclick="setSigFont(this)" style="font-family:'Pinyon Script',cursive;font-size:1.15rem;">Powell Parker</button>
+      <button class="sig-font-btn active" data-sigfont="'Sloop Script One','Pinyon Script',cursive" onclick="setSigFont(this)" style="font-family:'Sloop Script One','Pinyon Script',cursive;font-size:1.2rem;">Powell Parker</button>
+      <button class="sig-font-btn" data-sigfont="'Pinyon Script',cursive" onclick="setSigFont(this)" style="font-family:'Pinyon Script',cursive;font-size:1.15rem;">Powell Parker</button>
       <button class="sig-font-btn" data-sigfont="'Great Vibes',cursive" onclick="setSigFont(this)" style="font-family:'Great Vibes',cursive;font-size:1.1rem;">Powell Parker</button>
       <button class="sig-font-btn" data-sigfont="'Dancing Script',cursive" onclick="setSigFont(this)" style="font-family:'Dancing Script',cursive;">Powell Parker</button>
       <button class="sig-font-btn" data-sigfont="'Parisienne',cursive" onclick="setSigFont(this)" style="font-family:'Parisienne',cursive;font-size:1.05rem;">Powell Parker</button>
       <button class="sig-font-btn" data-sigfont="'Edwardian Script ITC','Great Vibes',cursive" onclick="setSigFont(this)" style="font-family:'Edwardian Script ITC','Great Vibes',cursive;font-size:1.15rem;">Powell Parker</button>
+      <button class="sig-font-btn" data-sigfont="'EB Garamond',Georgia,serif" onclick="setSigFont(this)" style="font-family:'EB Garamond',Georgia,serif;">Powell Parker</button>
+      <button class="sig-font-btn" data-sigfont="'Playfair Display',serif" onclick="setSigFont(this)" style="font-family:'Playfair Display',serif;">Powell Parker</button>
+      <button class="sig-font-btn" data-sigfont="'TT Commons Pro Expanded DemiBold','Lato',sans-serif" onclick="setSigFont(this)" style="font-family:'TT Commons Pro Expanded DemiBold','Lato',sans-serif;font-size:.95rem;letter-spacing:.03em;">Powell Parker</button>
+      <button class="sig-font-btn" data-sigfont="'Organetto','Lato',sans-serif" onclick="setSigFont(this)" style="font-family:'Organetto','Lato',sans-serif;font-size:.95rem;letter-spacing:.03em;">Powell Parker</button>
     </div>
     <div class="size-row" style="margin:8px 0 14px;">
       <label>Sig Size</label>
@@ -624,6 +652,17 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <button class="size-btn" data-sigsize="2.05rem" onclick="setSigSize(this)">+1pt</button>
       <button class="size-btn" data-sigsize="2.2rem" onclick="setSigSize(this)">+2pt</button>
       <button class="size-btn" data-sigsize="2.35rem" onclick="setSigSize(this)">+3pt</button>
+    </div>
+
+    <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(201,168,76,.2);">
+      <div style="font-family:'Lato',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">&#127881; Special Occasion Signatures</div>
+      <div class="sig-font-grid" id="specialSigGrid">
+        <button type="button" class="sig-font-btn" data-specialsig="patriotic-powell.webp" onclick="setSpecialSig(this)" style="padding:6px;">
+          <img src="https://letters.powparker.com/patriotic-powell.webp" alt="Patriotic Signature" style="height:16pt;width:auto;display:block;margin:0 auto;">
+        </button>
+      </div>
+      <div class="hint" style="margin-top:6px;">Uses a graphic signature image instead of a typed font. Overrides the font choice above when selected.</div>
+      <button type="button" id="btnClearSpecialSig" onclick="clearSpecialSig()" style="display:none;margin-top:8px;font-size:.62rem;color:#e74c3c;background:none;border:none;cursor:pointer;">&#10005; Use typed signature instead</button>
     </div>
   </div>
   <div style="margin-top:18px;border-top:1px solid rgba(201,168,76,.2);padding-top:14px;">
@@ -652,8 +691,8 @@ body.has-music-gram .page-container{padding-bottom:120px}
 
     <div class="field-row" style="margin-top:16px;display:flex;align-items:center;gap:10px;">
       <label style="margin:0;">&#127902; Photo Reel</label>
-      <input type="checkbox" id="reelModeToggle" checked>
-      <span class="hint" style="margin:0;">3+ photos auto-play as a Ken Burns reel. Off = simple stacked list.</span>
+      <input type="checkbox" id="reelModeToggle">
+      <span class="hint" style="margin:0;">Off (default) = individual attachments. On = 3+ photos auto-play as a Ken Burns reel.</span>
     </div>
 
     <div class="field-row" style="margin-top:14px;">
@@ -908,6 +947,40 @@ var _coSigPortraitFile=null, _coSigPortraitUrl='', _coSigPortraitKey='', _coSigP
 var headerMode='default';
 var _headerBackdropFile=null, _headerBackdropUrl='', _headerBackdropKey='';
 var _headerPortraitFile=null, _headerPortraitUrl='', _headerPortraitKey='', _headerPortraitStyle='circle';
+var logoShow=true;
+var _logoBgFile=null, _logoBgUrl='', _logoBgKey='', logoBgShow=false;
+var specialSigImage='';
+
+function toggleLogoSection(checked){
+  logoShow = checked;
+  var body = document.getElementById('logoSectionBody');
+  if(body) body.style.display = checked ? '' : 'none';
+}
+function toggleLogoBgSection(checked){
+  logoBgShow = checked;
+  var body = document.getElementById('logoBgSectionBody');
+  if(body) body.style.display = checked ? 'block' : 'none';
+}
+function handleLogoBgUpload(input){
+  if(!input.files||!input.files[0]) return;
+  compressImage(input.files[0], {maxPx:1200, quality:0.85}).then(function(cf){
+    _logoBgFile=cf;
+    var reader=new FileReader();
+    reader.onload=function(e){
+      _logoBgUrl=e.target.result;
+      var thumb=document.getElementById('logoBgThumb'), wrap=document.getElementById('logoBgPreviewWrap');
+      if(thumb) thumb.src=e.target.result;
+      if(wrap) wrap.style.display='block';
+    };
+    reader.readAsDataURL(cf);
+  });
+}
+function clearLogoBg(){
+  _logoBgFile=null;_logoBgUrl='';_logoBgKey='';
+  var wrap=document.getElementById('logoBgPreviewWrap'), inp=document.getElementById('logoBgFileInput');
+  if(wrap) wrap.style.display='none';
+  if(inp) inp.value='';
+}
 
 // ── Auto-compression: convert any image to WebP before upload ─────────────
 // Reduces mobile upload time dramatically (4MB JPEG → ~250KB WebP)
@@ -1109,7 +1182,7 @@ async function compressImage(file, opts) {
 }
 
 var heroDataUrl=null,heroExistingUrl=null,musicArtDataUrl=null,logoDataUrl=null,logoFile=null,logoExistingKey=null;
-var currentMusicMeta=null,musicFetchTimer=null,mgramMode='song';var currentSigFont="'Pinyon Script',cursive";var currentSigSize='1.9rem';var currentCoSigFont="'Pinyon Script',cursive";
+var currentMusicMeta=null,musicFetchTimer=null,mgramMode='song';var currentSigFont="'Sloop Script One','Pinyon Script',cursive";var currentSigSize='1.9rem';var currentCoSigFont="'Pinyon Script',cursive";
 
 
 // ── MUSIC/PODCAST TOGGLE ──
@@ -1181,6 +1254,9 @@ function buildLetterObj(){var recip=document.getElementById('inRecipient').value
     sigPhotoKey:_sigPortraitKey||'',sigPhotoUrl:(!_sigPortraitKey&&_sigPortraitUrl?_sigPortraitUrl:''),sigPhotoStyle:(_sigPortraitUrl||_sigPortraitKey)?_sigPortraitStyle:'',
     coSigPhotoKey:_coSigPortraitKey||'',coSigPhotoUrl:(!_coSigPortraitKey&&_coSigPortraitUrl?_coSigPortraitUrl:''),coSigPhotoStyle:(_coSigPortraitUrl||_coSigPortraitKey)?_coSigPortraitStyle:'',
     headerType:headerMode||'default',
+    logoShow:logoShow,
+    logoBgKey:_logoBgKey||'',logoBgUrl:(!_logoBgKey&&_logoBgUrl?_logoBgUrl:''),logoBgShow:logoBgShow,
+    specialSigImage:specialSigImage||'',
     headerBackdropKey:_headerBackdropKey||'',headerBackdropUrl:(!_headerBackdropKey&&_headerBackdropUrl?_headerBackdropUrl:''),
     headerPortraitKey:_headerPortraitKey||'',headerPortraitUrl:(!_headerPortraitKey&&_headerPortraitUrl?_headerPortraitUrl:''),headerPortraitStyle:(_headerPortraitUrl||_headerPortraitKey)?_headerPortraitStyle:'',
     reelMode:document.getElementById('reelModeToggle')?document.getElementById('reelModeToggle').checked:true,
@@ -1196,10 +1272,11 @@ async function generateAndSave(){renderLetter();var _subj=document.getElementByI
   if(_sigPortraitFile){ showToast('Uploading signor portrait...','loading'); _sigPortraitKey=await uploadPortraitIfNeeded(_sigPortraitFile,slug,'sig'); _sigPortraitFile=null; }
   if(_coSigPortraitFile){ showToast('Uploading co-signer portrait...','loading'); _coSigPortraitKey=await uploadPortraitIfNeeded(_coSigPortraitFile,slug,'cosig'); _coSigPortraitFile=null; }
   if(_headerBackdropFile){ showToast('Uploading header backdrop...','loading'); _headerBackdropKey=await uploadPortraitIfNeeded(_headerBackdropFile,slug,'headerbackdrop'); _headerBackdropFile=null; }
+  if(_logoBgFile){ showToast('Uploading logo background...','loading'); _logoBgKey=await uploadPortraitIfNeeded(_logoBgFile,slug,'logobg'); _logoBgFile=null; }
   if(_headerPortraitFile){ showToast('Uploading header portrait...','loading'); _headerPortraitKey=await uploadPortraitIfNeeded(_headerPortraitFile,slug,'headerportrait'); _headerPortraitFile=null; }
   var btn=document.getElementById('btnSave');btn.disabled=true;showToast('Saving...','loading');try{var logoKey=logoExistingKey||null;if(logoFile){var lfd=new FormData();lfd.append('logo',logoFile);lfd.append('slug',slug);var lRes=await fetch(WORKER+'/api/logo',{method:'POST',headers:{'X-API-Key':API_KEY},body:lfd});var lData=await lRes.json();if(lData.success){logoKey=lData.key;logoFile=null;logoExistingKey=logoKey;}}var exhibits=[];var cards=document.querySelectorAll('.exhibit-card');for(var i=0;i<cards.length;i++){var id=cards[i].id.replace('card_',''),heading=document.getElementById('heading_'+id).value.trim(),scale=document.getElementById('scale_'+id).value,caption=document.getElementById('caption_'+id).value.trim(),exData=exhibitFiles[id];if(exData&&exData.file){showToast('Uploading photo '+(i+1)+'...','loading');var _cFile=await compressImage(exData.file);var fd=new FormData();fd.append('photo',_cFile);fd.append('letterId',slug);var pRes=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var pData=await pRes.json();if(pData.success)exhibits.push({photoKey:pData.key,heading:heading,scale:scale,caption:caption});}}var allExhibits=existingPhotos.map(function(p){if(typeof p==='string')return{photoUrl:p,heading:'',scale:80,caption:''};return{photoUrl:p.url,heading:p.heading||'',scale:p.scale||80,caption:p.caption||''};}).concat(exhibits);if(heroDataUrl){showToast('Uploading cover photo...','loading');try{var hBlob=await(await fetch(heroDataUrl)).blob();var _hFile=new File([hBlob],'hero.jpg',{type:hBlob.type});var _hComp=await compressImage(_hFile,{maxPx:1600,quality:0.85});var hFd=new FormData();hFd.append('photo',_hComp,'hero.webp');hFd.append('letterId',slug);var hR=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:hFd});var hD=await hR.json();if(hD.success){heroExistingUrl=WORKER+'/photos/'+hD.key;heroDataUrl=null;}}catch(e){}}var heroKey=heroExistingUrl?heroExistingUrl.split('/photos/').pop():null;var videoKey=null;if(_videoFile){showToast('Uploading video...','loading');try{var vFd=new FormData();vFd.append('video',_videoFile);vFd.append('slug',slug);var vR=await fetch(WORKER+'/api/video',{method:'POST',headers:{'X-API-Key':API_KEY},body:vFd});var vD=await vR.json();if(vD.success){videoKey=vD.key;window._existingVideoKey=vD.key;}}catch(e){}}var letter=buildLetterObj();letter.exhibits=allExhibits;letter.logoKey=logoKey;letter.heroUrl=heroExistingUrl||null;letter.heroKey=heroKey;if(videoKey)letter.videoKey=videoKey;else if(window._existingVideoKey)letter.videoKey=window._existingVideoKey;showToast('Saving to cloud...','loading');var res=await fetch(WORKER+'/api/save',{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':API_KEY},body:JSON.stringify({slug:slug,letter:letter})});var data=await res.json();if(data.success){setSharePanel(WORKER+'/s/'+data.slug,false);showToast('Letter saved!','success');loadSavedLetters();if(editMode)toggleMode();}else throw new Error(data.error||'Save failed');}catch(e){showToast('Error: '+e.message,'error');}btn.disabled=false;}
 
-window.reParlay=async function(){if(!editingSlug){showToast('No letter selected','error');return;}var btn=document.getElementById('btnReParlay');btn.disabled=true;showToast('Updating...','loading');try{if(_headerBackdropFile){_headerBackdropKey=await uploadPortraitIfNeeded(_headerBackdropFile,editingSlug,'headerbackdrop');_headerBackdropFile=null;}if(_headerPortraitFile){_headerPortraitKey=await uploadPortraitIfNeeded(_headerPortraitFile,editingSlug,'headerportrait');_headerPortraitFile=null;}var logoKey=logoExistingKey||null;if(logoFile){var lfd=new FormData();lfd.append('logo',logoFile);lfd.append('slug',editingSlug);var lRes=await fetch(WORKER+'/api/logo',{method:'POST',headers:{'X-API-Key':API_KEY},body:lfd});var lData=await lRes.json();if(lData.success){logoKey=lData.key;logoFile=null;logoExistingKey=logoKey;}}var newExhibits=[];var cards=document.querySelectorAll('.exhibit-card');for(var i=0;i<cards.length;i++){var id=cards[i].id.replace('card_',''),exData=exhibitFiles[id];if(exData&&exData.file){var _cFile2=await compressImage(exData.file);var fd=new FormData();fd.append('photo',_cFile2);fd.append('letterId',editingSlug);showToast('Uploading...','loading');var pRes=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var pData=await pRes.json();if(pData.success)newExhibits.push({photoKey:pData.key,heading:document.getElementById('heading_'+id).value.trim(),scale:document.getElementById('scale_'+id).value,caption:document.getElementById('caption_'+id).value.trim()});}}var allExhibits=existingPhotos.map(function(p){if(typeof p==='string')return{photoUrl:p,heading:'',scale:80,caption:''};return{photoUrl:p.url,heading:p.heading||'',scale:p.scale||80,caption:p.caption||''};}).concat(newExhibits);if(heroDataUrl){try{var hBlob2=await(await fetch(heroDataUrl)).blob();var hFd2=new FormData();hFd2.append('photo',hBlob2,'hero.jpg');hFd2.append('letterId',editingSlug);var hR2=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:hFd2});var hD2=await hR2.json();if(hD2.success){heroExistingUrl=WORKER+'/photos/'+hD2.key;heroDataUrl=null;}}catch(e){}}var heroKey2=heroExistingUrl?heroExistingUrl.split('/photos/').pop():null;var videoKey2=null;if(_videoFile){showToast('Uploading video...','loading');try{var vFd2=new FormData();vFd2.append('video',_videoFile);vFd2.append('slug',editingSlug);var vR2=await fetch(WORKER+'/api/video',{method:'POST',headers:{'X-API-Key':API_KEY},body:vFd2});var vD2=await vR2.json();if(vD2.success){videoKey2=vD2.key;window._existingVideoKey=vD2.key;_videoFile=null;}}catch(e){}}var letter=buildLetterObj();letter.exhibits=allExhibits;letter.logoKey=logoKey;letter.heroUrl=heroExistingUrl||null;letter.heroKey=heroKey2;if(videoKey2)letter.videoKey=videoKey2;else if(window._existingVideoKey)letter.videoKey=window._existingVideoKey;var res=await fetch(WORKER+'/api/save',{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':API_KEY},body:JSON.stringify({slug:editingSlug,letter:letter})});var data=await res.json();if(data.success){setSharePanel(WORKER+'/s/'+editingSlug,true);showToast('Updated! Same link.','success');renderLetter();loadSavedLetters();}else showToast(data.error||'Failed','error');}catch(e){showToast('Error: '+e.message,'error');}btn.disabled=false;};
+window.reParlay=async function(){if(!editingSlug){showToast('No letter selected','error');return;}var btn=document.getElementById('btnReParlay');btn.disabled=true;showToast('Updating...','loading');try{if(_headerBackdropFile){_headerBackdropKey=await uploadPortraitIfNeeded(_headerBackdropFile,editingSlug,'headerbackdrop');_headerBackdropFile=null;}if(_headerPortraitFile){_headerPortraitKey=await uploadPortraitIfNeeded(_headerPortraitFile,editingSlug,'headerportrait');_headerPortraitFile=null;}if(_logoBgFile){_logoBgKey=await uploadPortraitIfNeeded(_logoBgFile,editingSlug,'logobg');_logoBgFile=null;}var logoKey=logoExistingKey||null;if(logoFile){var lfd=new FormData();lfd.append('logo',logoFile);lfd.append('slug',editingSlug);var lRes=await fetch(WORKER+'/api/logo',{method:'POST',headers:{'X-API-Key':API_KEY},body:lfd});var lData=await lRes.json();if(lData.success){logoKey=lData.key;logoFile=null;logoExistingKey=logoKey;}}var newExhibits=[];var cards=document.querySelectorAll('.exhibit-card');for(var i=0;i<cards.length;i++){var id=cards[i].id.replace('card_',''),exData=exhibitFiles[id];if(exData&&exData.file){var _cFile2=await compressImage(exData.file);var fd=new FormData();fd.append('photo',_cFile2);fd.append('letterId',editingSlug);showToast('Uploading...','loading');var pRes=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:fd});var pData=await pRes.json();if(pData.success)newExhibits.push({photoKey:pData.key,heading:document.getElementById('heading_'+id).value.trim(),scale:document.getElementById('scale_'+id).value,caption:document.getElementById('caption_'+id).value.trim()});}}var allExhibits=existingPhotos.map(function(p){if(typeof p==='string')return{photoUrl:p,heading:'',scale:80,caption:''};return{photoUrl:p.url,heading:p.heading||'',scale:p.scale||80,caption:p.caption||''};}).concat(newExhibits);if(heroDataUrl){try{var hBlob2=await(await fetch(heroDataUrl)).blob();var hFd2=new FormData();hFd2.append('photo',hBlob2,'hero.jpg');hFd2.append('letterId',editingSlug);var hR2=await fetch(WORKER+'/api/photo',{method:'POST',headers:{'X-API-Key':API_KEY},body:hFd2});var hD2=await hR2.json();if(hD2.success){heroExistingUrl=WORKER+'/photos/'+hD2.key;heroDataUrl=null;}}catch(e){}}var heroKey2=heroExistingUrl?heroExistingUrl.split('/photos/').pop():null;var videoKey2=null;if(_videoFile){showToast('Uploading video...','loading');try{var vFd2=new FormData();vFd2.append('video',_videoFile);vFd2.append('slug',editingSlug);var vR2=await fetch(WORKER+'/api/video',{method:'POST',headers:{'X-API-Key':API_KEY},body:vFd2});var vD2=await vR2.json();if(vD2.success){videoKey2=vD2.key;window._existingVideoKey=vD2.key;_videoFile=null;}}catch(e){}}var letter=buildLetterObj();letter.exhibits=allExhibits;letter.logoKey=logoKey;letter.heroUrl=heroExistingUrl||null;letter.heroKey=heroKey2;if(videoKey2)letter.videoKey=videoKey2;else if(window._existingVideoKey)letter.videoKey=window._existingVideoKey;var res=await fetch(WORKER+'/api/save',{method:'POST',headers:{'Content-Type':'application/json','X-API-Key':API_KEY},body:JSON.stringify({slug:editingSlug,letter:letter})});var data=await res.json();if(data.success){setSharePanel(WORKER+'/s/'+editingSlug,true);showToast('Updated! Same link.','success');renderLetter();loadSavedLetters();}else showToast(data.error||'Failed','error');}catch(e){showToast('Error: '+e.message,'error');}btn.disabled=false;};
 
 window.editLetter=async function(slug){showToast('Loading...','loading');try{var rawRes=await fetch(WORKER+'/api/get/'+slug,{headers:{'X-API-Key':API_KEY}});var letter=await rawRes.json();if(letter.error){showToast('Error: '+letter.error,'error');return;}editingSlug=slug;document.getElementById('inDate').value=letter.date||'';document.getElementById('inSubject').value=letter.subject||'';document.getElementById('inSlug').value=slug;document.getElementById('inSalutation').value=letter.salutation||'';document.getElementById('inBody').value=letter.body||'';document.getElementById('inClosing').value=letter.closing||'Respectfully,';document.getElementById('inSigTitle').value=letter.sigTitle||'';
     if(letter.sigFont){
@@ -1269,7 +1346,28 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
     }
     // Restore header style (default vs custom) — default unless explicitly saved as custom
     setHeaderMode(letter.headerType==='custom' ? 'custom' : 'default');
-    if(document.getElementById('reelModeToggle')) document.getElementById('reelModeToggle').checked = letter.reelMode !== false;
+    // Restore logo show/hide and logo background
+    logoShow = letter.logoShow !== false;
+    document.getElementById('logoShowToggle').checked = logoShow;
+    toggleLogoSection(logoShow);
+    logoBgShow = !!letter.logoBgShow;
+    document.getElementById('logoBgShowToggle').checked = logoBgShow;
+    toggleLogoBgSection(logoBgShow);
+    _logoBgKey = letter.logoBgKey||''; _logoBgUrl = letter.logoBgUrl||'';
+    var _lbgSrc = letter.logoBgUrl||(letter.logoBgKey?WORKER+'/photos/'+letter.logoBgKey:'');
+    if(_lbgSrc){
+      var lbgt=document.getElementById('logoBgThumb'), lbgw=document.getElementById('logoBgPreviewWrap');
+      if(lbgt) lbgt.src=_lbgSrc; if(lbgw) lbgw.style.display='block';
+    }
+    // Restore special occasion signature (overrides typed font when set)
+    specialSigImage = letter.specialSigImage||'';
+    if(specialSigImage){
+      var specBtn = document.querySelector('#specialSigGrid .sig-font-btn[data-specialsig="'+specialSigImage+'"]');
+      if(specBtn) setSpecialSig(specBtn);
+    } else {
+      clearSpecialSig();
+    }
+    if(document.getElementById('reelModeToggle')) document.getElementById('reelModeToggle').checked = letter.reelMode === true;
     if(document.getElementById('inFxEffect')) document.getElementById('inFxEffect').value = letter.fxEffect || '';    _headerBackdropKey=letter.headerBackdropKey||''; _headerBackdropUrl=letter.headerBackdropUrl||'';
     _headerPortraitKey=letter.headerPortraitKey||''; _headerPortraitUrl=letter.headerPortraitUrl||''; _headerPortraitStyle=letter.headerPortraitStyle||'circle';
     var _hbSrc = letter.headerBackdropUrl||(letter.headerBackdropKey?WORKER+'/photos/'+letter.headerBackdropKey:'');
@@ -1369,7 +1467,7 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
       setMediaTab('photo');
     }existingPhotos=[];if(letter.exhibits&&letter.exhibits.length>0)letter.exhibits.forEach(function(ex){var url=ex.photoUrl||(ex.photoKey?WORKER+'/photos/'+ex.photoKey:'');if(url)existingPhotos.push({url:url,heading:ex.heading||'',caption:ex.caption||'',scale:ex.scale||80});});renderExistingPhotos();document.getElementById('exhibitsContainer').innerHTML='';exhibitCounter=0;exhibitFiles={};document.getElementById('btnSave').style.display='none';document.getElementById('btnReParlay').classList.add('active');document.getElementById('btnCancelEdit').style.display='inline-block';document.getElementById('editModeBanner').classList.add('active');if(!editMode)toggleMode();document.getElementById('inputPanel').scrollIntoView({behavior:'smooth',block:'start'});showToast('Loaded -- make edits then ReParLay It','success');showToneRow();}catch(e){showToast('Error: '+e.message,'error');}};
 
-window.cancelEdit=function(){editingSlug=null;window._existingVideoKey=null;existingPhotos=[];logoFile=null;logoExistingKey=null;logoDataUrl=null;document.getElementById('outSeal').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoPreviewEditor').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoStatus').style.display='none';['inDate','inSubject','inSlug','inRecipient','inSalutation','inBody','inPassword','inMusic'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('inClosing').value='Respectfully,';document.getElementById('inSigTitle').value='Founder -- SaveKearnyAZ.org - Project 88';document.getElementById('inSigAZPhone').value='(480) 788-2320';document.getElementById('inSigTXPhone').value='(214) 838-1883';document.getElementById('inSigWebsite').value='www.powparker.com';document.getElementById('inSigEmail').value='powell@powparker.com';document.getElementById('exhibitsContainer').innerHTML='';document.getElementById('existingPhotosWrap').style.display='none';closeExistingPhotoEdit();exhibitCounter=0;exhibitFiles={};removeHero();document.getElementById('btnSave').style.display='inline-block';document.getElementById('btnReParlay').classList.remove('active');document.getElementById('btnCancelEdit').style.display='none';document.getElementById('editModeBanner').classList.remove('active');document.getElementById('sharePanel').classList.remove('active');setMgramMode('song');currentSigFont="'Pinyon Script',cursive";currentSigSize='1.9rem';currentCoSigFont="'Pinyon Script',cursive";clearHeaderBackdrop();clearHeaderPortrait();setHeaderMode('default');if(document.getElementById('reelModeToggle'))document.getElementById('reelModeToggle').checked=true;if(document.getElementById('inFxEffect'))document.getElementById('inFxEffect').value='';
+window.cancelEdit=function(){editingSlug=null;window._existingVideoKey=null;existingPhotos=[];logoFile=null;logoExistingKey=null;logoDataUrl=null;document.getElementById('outSeal').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoPreviewEditor').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoStatus').style.display='none';['inDate','inSubject','inSlug','inRecipient','inSalutation','inBody','inPassword','inMusic'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('inClosing').value='Respectfully,';document.getElementById('inSigTitle').value='Founder -- SaveKearnyAZ.org - Project 88';document.getElementById('inSigAZPhone').value='(480) 788-2320';document.getElementById('inSigTXPhone').value='(214) 838-1883';document.getElementById('inSigWebsite').value='www.powparker.com';document.getElementById('inSigEmail').value='powell@powparker.com';document.getElementById('exhibitsContainer').innerHTML='';document.getElementById('existingPhotosWrap').style.display='none';closeExistingPhotoEdit();exhibitCounter=0;exhibitFiles={};removeHero();document.getElementById('btnSave').style.display='inline-block';document.getElementById('btnReParlay').classList.remove('active');document.getElementById('btnCancelEdit').style.display='none';document.getElementById('editModeBanner').classList.remove('active');document.getElementById('sharePanel').classList.remove('active');setMgramMode('song');currentSigFont="'Sloop Script One','Pinyon Script',cursive";currentSigSize='1.9rem';currentCoSigFont="'Pinyon Script',cursive";clearHeaderBackdrop();clearHeaderPortrait();setHeaderMode('default');if(document.getElementById('reelModeToggle'))document.getElementById('reelModeToggle').checked=false;if(document.getElementById('inFxEffect'))document.getElementById('inFxEffect').value='';document.getElementById('logoShowToggle').checked=true;toggleLogoSection(true);document.getElementById('logoBgShowToggle').checked=false;toggleLogoBgSection(false);clearLogoBg();clearSpecialSig();document.querySelectorAll('.sig-font-btn[data-sigfont]').forEach(function(b,i){b.classList.toggle('active',i===0);});
   if(document.getElementById('inCoSigName'))document.getElementById('inCoSigName').value='';
   if(document.getElementById('inCoSigTitle'))document.getElementById('inCoSigTitle').value='';
   var csw=document.getElementById('outCoSigWrap');if(csw)csw.classList.remove('active');
@@ -1637,13 +1735,33 @@ function setSigFont(btn){
   document.querySelectorAll('.sig-font-btn').forEach(function(b){b.classList.remove('active');});
   btn.classList.add('active');
   var font = btn.dataset.sigfont;
+  specialSigImage='';
   var sigEl = document.getElementById('outSigName');
-  if(sigEl) sigEl.style.fontFamily = font;
-  var size = font.indexOf('Pinyon')>=0||font.indexOf('Great Vibes')>=0||font.indexOf('Parisienne')>=0 ? '1.9rem' :
+  if(sigEl){ sigEl.style.display=''; sigEl.style.fontFamily = font; }
+  var size = font.indexOf('Pinyon')>=0||font.indexOf('Great Vibes')>=0||font.indexOf('Parisienne')>=0||font.indexOf('Sloop')>=0 ? '1.9rem' :
              font.indexOf('Dancing')>=0 ? '1.6rem' : '1.15rem';
   if(sigEl) sigEl.style.fontSize = size;
   currentSigFont = font;
   currentSigSize = size;
+}
+function setSpecialSig(btn){
+  document.querySelectorAll('.sig-font-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  specialSigImage = btn.getAttribute('data-specialsig');
+  var sigEl = document.getElementById('outSigName');
+  if(sigEl) sigEl.style.display='none';
+  var clearBtn = document.getElementById('btnClearSpecialSig');
+  if(clearBtn) clearBtn.style.display='inline-block';
+}
+function clearSpecialSig(){
+  specialSigImage='';
+  var sigEl = document.getElementById('outSigName');
+  if(sigEl) sigEl.style.display='';
+  var clearBtn = document.getElementById('btnClearSpecialSig');
+  if(clearBtn) clearBtn.style.display='none';
+  document.querySelectorAll('#specialSigGrid .sig-font-btn').forEach(function(b){b.classList.remove('active');});
+  var firstFontBtn = document.querySelector('#sigFontGrid .sig-font-btn');
+  if(firstFontBtn) firstFontBtn.classList.add('active');
 }
 function setCoSigFont(btn){
   document.querySelectorAll('#coSigFontGrid .sig-font-btn').forEach(function(b){b.classList.remove('active');});
