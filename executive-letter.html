@@ -65,8 +65,8 @@ body{font-family:var(--body-font);background:#b8b5af;-webkit-font-smoothing:anti
 /* ── Reusable green-checkmark toggle (replaces ambiguous rectangle buttons and native checkboxes) ── */
 .check-toggle{display:inline-flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;padding:2px 0;font-family:'EB Garamond',Georgia,serif;font-size:12pt;color:#e8e4da;text-align:left;}
 .check-box{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border:2px solid rgba(201,168,76,.5);border-radius:5px;background:rgba(255,255,255,.04);flex-shrink:0;transition:all .15s;}
-.check-toggle.checked .check-box{background:#2ecc71;border-color:#2ecc71;}
-.check-toggle.checked .check-box::after{content:'\2713';color:#0A1525;font-weight:900;font-size:15px;line-height:1;}
+.check-box.checked{background:#2ecc71;border-color:#2ecc71;}
+.check-box.checked::after{content:'\2713';color:#0A1525;font-weight:900;font-size:15px;line-height:1;}
 .check-toggle:hover .check-box{border-color:#C9A84C;}
 .field-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
@@ -342,8 +342,12 @@ body.has-music-gram .page-container{padding-bottom:120px}
 
 /* HEADER IMAGE — full bleed, edge to edge */
 .lh-water-banner{width:100%;height:300px;line-height:0;overflow:hidden;display:block;margin:0;padding:0;position:relative;background:#0A1525;}
-#waterBannerDefault img,#waterBannerBackdrop{width:100%;height:100%;object-fit:contain;object-position:center;transform:scale(var(--hzoom,1));transform-origin:center center;display:block;transition:opacity .2s;}
+#waterBannerDefault img,#waterBannerBackdrop{width:100%;height:100%;object-fit:contain;object-position:var(--posx,50%) var(--posy,50%);transform:scale(var(--hzoom,1));transform-origin:center center;display:block;transition:opacity .2s;cursor:grab;touch-action:none;}
 #waterBannerBackdrop{object-fit:cover;}
+#waterBannerDefault img:active,#waterBannerBackdrop:active{cursor:grabbing;}
+#waterBannerPortraitWrap{cursor:grab;touch-action:none;}
+#waterBannerPortraitWrap:active{cursor:grabbing;}
+.drag-hint{position:absolute;top:6px;left:10px;z-index:5;background:rgba(10,21,37,.75);color:#C9A84C;font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.04em;padding:3px 9px;border-radius:10px;pointer-events:none;}
 /* GOLD FOIL BAR — matches top bar, sits directly below header image */
 .lh-gold-foil{height:10px;background:linear-gradient(90deg,#7a5c1e 0%,#9A7A2E 8%,#C9A84C 22%,#E8D5A3 38%,#F0E5B5 50%,#E8D5A3 62%,#C9A84C 78%,#9A7A2E 92%,#7a5c1e 100%);box-shadow:0 1px 4px rgba(201,168,76,.4),inset 0 1px 0 rgba(255,255,255,.18);}
 /* GEM SEPARATOR */
@@ -670,7 +674,7 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <div style="font-family:'Lato',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">&#127881; Special Occasion Signatures</div>
       <div class="sig-font-grid" id="specialSigGrid">
         <button type="button" class="sig-font-btn" data-specialsig="patriotic-powell.webp" onclick="setSpecialSig(this)" style="padding:6px;">
-          <img src="https://letters.powparker.com/patriotic-powell.webp" alt="Patriotic Signature" style="height:48pt;width:auto;display:block;margin:0 auto;">
+          <img src="https://letters.powparker.com/patriotic-powell.webp" alt="Patriotic Signature" style="height:60pt;width:auto;display:block;margin:0 auto;">
         </button>
       </div>
       <div class="hint" style="margin-top:6px;">Uses a graphic signature image instead of a typed font. Overrides the font choice above when selected.</div>
@@ -871,6 +875,7 @@ body.has-music-gram .page-container{padding-bottom:120px}
           </div>
         </div>
       </div>
+      <div class="drag-hint">&#9995; Drag photo &amp; portrait to reposition</div>
       <div style="position:absolute;bottom:6px;right:10px;z-index:5;background:rgba(10,21,37,.75);color:#C9A84C;font-family:'Lato',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:10px;pointer-events:none;">Live Preview</div>
     </div>
     <!-- GOLD FOIL BAR -->
@@ -977,6 +982,9 @@ var _headerPortraitFile=null, _headerPortraitUrl='', _headerPortraitKey='', _hea
 var logoShow=true;
 var _logoBgFile=null, _logoBgUrl='', _logoBgKey='', logoBgShow=false;
 var specialSigImage='';
+var _headerSealPosX=50, _headerSealPosY=50;
+var _headerBackdropPosX=50, _headerBackdropPosY=50;
+var _headerPortraitPosX=50, _headerPortraitPosY=50;
 
 function toggleLogoSection(checked){
   logoShow = checked;
@@ -1103,12 +1111,17 @@ function setHeaderMode(mode){
   var panel=document.getElementById('customHeaderPanel');
   if(panel) panel.style.display = (mode==='custom') ? 'block' : 'none';
   var defView=document.getElementById('waterBannerDefault'), custView=document.getElementById('waterBannerCustom');
+  var banner=document.getElementById('waterBanner');
   if(mode==='custom'){
     if(defView) defView.style.display='none';
     if(custView) custView.style.display='block';
+    if(banner){ banner.style.setProperty('--posx', _headerBackdropPosX+'%'); banner.style.setProperty('--posy', _headerBackdropPosY+'%'); }
+    var pw=document.getElementById('waterBannerPortraitWrap');
+    if(pw){ pw.style.left=_headerPortraitPosX+'%'; pw.style.top=_headerPortraitPosY+'%'; }
   } else {
     if(custView) custView.style.display='none';
     if(defView) defView.style.display='block';
+    if(banner){ banner.style.setProperty('--posx', _headerSealPosX+'%'); banner.style.setProperty('--posy', _headerSealPosY+'%'); }
   }
 }
 function toggleHeaderMode(){
@@ -1184,6 +1197,59 @@ function updateHeaderZoomPreview(val){
   var banner = document.getElementById('waterBanner');
   if(banner) banner.style.setProperty('--hzoom', val);
 }
+
+// ── Drag-to-reposition: works for mouse and touch, computes % position within the banner ──
+function makeDraggable(el, containerEl, onMove){
+  if(!el) return;
+  var dragging=false;
+  function pointFromEvent(e){
+    var t = e.touches ? e.touches[0] : e;
+    return {x:t.clientX, y:t.clientY};
+  }
+  function update(e){
+    var rect = containerEl.getBoundingClientRect();
+    var p = pointFromEvent(e);
+    var pctX = Math.max(0, Math.min(100, ((p.x - rect.left) / rect.width) * 100));
+    var pctY = Math.max(0, Math.min(100, ((p.y - rect.top) / rect.height) * 100));
+    onMove(pctX, pctY);
+  }
+  function start(e){ dragging=true; update(e); e.preventDefault(); }
+  function move(e){ if(!dragging) return; update(e); e.preventDefault(); }
+  function end(){ dragging=false; }
+  el.addEventListener('mousedown', start);
+  el.addEventListener('touchstart', start, {passive:false});
+  window.addEventListener('mousemove', move);
+  window.addEventListener('touchmove', move, {passive:false});
+  window.addEventListener('mouseup', end);
+  window.addEventListener('touchend', end);
+}
+
+function initHeaderDragHandlers(){
+  var banner = document.getElementById('waterBanner');
+  if(!banner) return;
+
+  // Default seal — drag repositions object-position
+  makeDraggable(document.getElementById('outSeal'), banner, function(x,y){
+    _headerSealPosX = Math.round(x); _headerSealPosY = Math.round(y);
+    banner.style.setProperty('--posx', x+'%');
+    banner.style.setProperty('--posy', y+'%');
+  });
+
+  // Custom backdrop — drag repositions object-position
+  makeDraggable(document.getElementById('waterBannerBackdrop'), banner, function(x,y){
+    _headerBackdropPosX = Math.round(x); _headerBackdropPosY = Math.round(y);
+    banner.style.setProperty('--posx', x+'%');
+    banner.style.setProperty('--posy', y+'%');
+  });
+
+  // Custom portrait badge — drag moves its absolute left/top position
+  var portraitWrap = document.getElementById('waterBannerPortraitWrap');
+  makeDraggable(portraitWrap, banner, function(x,y){
+    _headerPortraitPosX = Math.round(x); _headerPortraitPosY = Math.round(y);
+    if(portraitWrap){ portraitWrap.style.left = x+'%'; portraitWrap.style.top = y+'%'; }
+  });
+}
+window.addEventListener('load', initHeaderDragHandlers);
 
 async function compressImage(file, opts) {
   opts = opts || {};
@@ -1302,6 +1368,9 @@ function buildLetterObj(){var recip=document.getElementById('inRecipient').value
     sigPhotoKey:_sigPortraitKey||'',sigPhotoUrl:(!_sigPortraitKey&&_sigPortraitUrl?_sigPortraitUrl:''),sigPhotoStyle:(_sigPortraitUrl||_sigPortraitKey)?_sigPortraitStyle:'',
     coSigPhotoKey:_coSigPortraitKey||'',coSigPhotoUrl:(!_coSigPortraitKey&&_coSigPortraitUrl?_coSigPortraitUrl:''),coSigPhotoStyle:(_coSigPortraitUrl||_coSigPortraitKey)?_coSigPortraitStyle:'',
     headerType:headerMode||'default',
+    headerSealPosX:_headerSealPosX,headerSealPosY:_headerSealPosY,
+    headerBackdropPosX:_headerBackdropPosX,headerBackdropPosY:_headerBackdropPosY,
+    headerPortraitPosX:_headerPortraitPosX,headerPortraitPosY:_headerPortraitPosY,
     logoShow:logoShow,
     logoBgKey:_logoBgKey||'',logoBgUrl:(!_logoBgKey&&_logoBgUrl?_logoBgUrl:''),logoBgShow:logoBgShow,
     specialSigImage:specialSigImage||'',
@@ -1393,6 +1462,12 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
       });
     }
     // Restore header style (default vs custom) — default unless explicitly saved as custom
+    _headerSealPosX = letter.headerSealPosX!=null ? letter.headerSealPosX : 50;
+    _headerSealPosY = letter.headerSealPosY!=null ? letter.headerSealPosY : 50;
+    _headerBackdropPosX = letter.headerBackdropPosX!=null ? letter.headerBackdropPosX : 50;
+    _headerBackdropPosY = letter.headerBackdropPosY!=null ? letter.headerBackdropPosY : 50;
+    _headerPortraitPosX = letter.headerPortraitPosX!=null ? letter.headerPortraitPosX : 50;
+    _headerPortraitPosY = letter.headerPortraitPosY!=null ? letter.headerPortraitPosY : 50;
     setHeaderMode(letter.headerType==='custom' ? 'custom' : 'default');
     // Restore logo show/hide and logo background
     logoShow = letter.logoShow !== false;
@@ -1519,7 +1594,7 @@ window.editLetter=async function(slug){showToast('Loading...','loading');try{var
       setMediaTab('photo');
     }existingPhotos=[];if(letter.exhibits&&letter.exhibits.length>0)letter.exhibits.forEach(function(ex){var url=ex.photoUrl||(ex.photoKey?WORKER+'/photos/'+ex.photoKey:'');if(url)existingPhotos.push({url:url,heading:ex.heading||'',caption:ex.caption||'',scale:ex.scale||80});});renderExistingPhotos();document.getElementById('exhibitsContainer').innerHTML='';exhibitCounter=0;exhibitFiles={};document.getElementById('btnSave').style.display='none';document.getElementById('btnReParlay').classList.add('active');document.getElementById('btnCancelEdit').style.display='inline-block';document.getElementById('editModeBanner').classList.add('active');if(!editMode)toggleMode();document.getElementById('inputPanel').scrollIntoView({behavior:'smooth',block:'start'});showToast('Loaded -- make edits then ReParLay It','success');showToneRow();}catch(e){showToast('Error: '+e.message,'error');}};
 
-window.cancelEdit=function(){editingSlug=null;window._existingVideoKey=null;existingPhotos=[];logoFile=null;logoExistingKey=null;logoDataUrl=null;document.getElementById('logoPreviewEditor').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoStatus').style.display='none';var _os=document.getElementById('outSeal');if(_os)_os.src='https://letters.powparker.com/parker-water-seal.webp';['inDate','inSubject','inSlug','inRecipient','inSalutation','inBody','inPassword','inMusic'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('inClosing').value='Respectfully,';document.getElementById('inSigTitle').value='Founder -- SaveKearnyAZ.org - Project 88';document.getElementById('inSigAZPhone').value='(480) 788-2320';document.getElementById('inSigTXPhone').value='(214) 838-1883';document.getElementById('inSigWebsite').value='www.powparker.com';document.getElementById('inSigEmail').value='powell@powparker.com';document.getElementById('exhibitsContainer').innerHTML='';document.getElementById('existingPhotosWrap').style.display='none';closeExistingPhotoEdit();exhibitCounter=0;exhibitFiles={};removeHero();document.getElementById('btnSave').style.display='inline-block';document.getElementById('btnReParlay').classList.remove('active');document.getElementById('btnCancelEdit').style.display='none';document.getElementById('editModeBanner').classList.remove('active');document.getElementById('sharePanel').classList.remove('active');setMgramMode('song');currentSigFont="'Sloop Script One','Pinyon Script',cursive";currentSigSize='1.9rem';currentCoSigFont="'Pinyon Script',cursive";clearHeaderBackdrop();clearHeaderPortrait();setHeaderMode('default');if(document.getElementById('reelModeToggle'))document.getElementById('reelModeToggle').checked=false;if(document.getElementById('reelModeCheck'))document.getElementById('reelModeCheck').classList.remove('checked');if(document.getElementById('inFxEffect'))document.getElementById('inFxEffect').value='';document.getElementById('logoShowToggle').checked=true;toggleLogoSection(true);document.getElementById('logoBgShowToggle').checked=false;toggleLogoBgSection(false);clearLogoBg();clearSpecialSig();document.querySelectorAll('.sig-font-btn[data-sigfont]').forEach(function(b,i){b.classList.toggle('active',i===0);});
+window.cancelEdit=function(){editingSlug=null;window._existingVideoKey=null;existingPhotos=[];logoFile=null;logoExistingKey=null;logoDataUrl=null;document.getElementById('logoPreviewEditor').src='https://powparker.com/powparker-logo.webp';document.getElementById('logoStatus').style.display='none';var _os=document.getElementById('outSeal');if(_os)_os.src='https://letters.powparker.com/parker-water-seal.webp';['inDate','inSubject','inSlug','inRecipient','inSalutation','inBody','inPassword','inMusic'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('inClosing').value='Respectfully,';document.getElementById('inSigTitle').value='Founder -- SaveKearnyAZ.org - Project 88';document.getElementById('inSigAZPhone').value='(480) 788-2320';document.getElementById('inSigTXPhone').value='(214) 838-1883';document.getElementById('inSigWebsite').value='www.powparker.com';document.getElementById('inSigEmail').value='powell@powparker.com';document.getElementById('exhibitsContainer').innerHTML='';document.getElementById('existingPhotosWrap').style.display='none';closeExistingPhotoEdit();exhibitCounter=0;exhibitFiles={};removeHero();document.getElementById('btnSave').style.display='inline-block';document.getElementById('btnReParlay').classList.remove('active');document.getElementById('btnCancelEdit').style.display='none';document.getElementById('editModeBanner').classList.remove('active');document.getElementById('sharePanel').classList.remove('active');setMgramMode('song');currentSigFont="'Sloop Script One','Pinyon Script',cursive";currentSigSize='1.9rem';currentCoSigFont="'Pinyon Script',cursive";clearHeaderBackdrop();clearHeaderPortrait();_headerSealPosX=50;_headerSealPosY=50;_headerBackdropPosX=50;_headerBackdropPosY=50;_headerPortraitPosX=50;_headerPortraitPosY=50;setHeaderMode('default');if(document.getElementById('reelModeToggle'))document.getElementById('reelModeToggle').checked=false;if(document.getElementById('reelModeCheck'))document.getElementById('reelModeCheck').classList.remove('checked');if(document.getElementById('inFxEffect'))document.getElementById('inFxEffect').value='';document.getElementById('logoShowToggle').checked=true;toggleLogoSection(true);document.getElementById('logoBgShowToggle').checked=false;toggleLogoBgSection(false);clearLogoBg();clearSpecialSig();document.querySelectorAll('.sig-font-btn[data-sigfont]').forEach(function(b,i){b.classList.toggle('active',i===0);});
   if(document.getElementById('inCoSigName'))document.getElementById('inCoSigName').value='';
   if(document.getElementById('inCoSigTitle'))document.getElementById('inCoSigTitle').value='';
   var csw=document.getElementById('outCoSigWrap');if(csw)csw.classList.remove('active');
