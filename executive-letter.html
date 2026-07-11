@@ -391,7 +391,29 @@ body.has-music-gram .page-container{padding-bottom:120px}
   .share-panel{margin:12px 10px}
   .music-gram-bar{padding:14px 18px 14px 16px;gap:12px}
   .mgb-art,.mgb-play-btn{width:56px;height:56px}
-}
+/* ── SIDE NOTES PANEL (extension capture) ── */
+.side-notes-panel{margin-top:18px;border-top:1px solid rgba(201,168,76,.25);padding-top:16px;display:none;}
+.side-notes-panel.active{display:block;}
+.side-notes-panel h4{font-family:'Cormorant',serif;font-size:1.05rem;color:#C9A84C;margin-bottom:4px;}
+.side-notes-source{font-family:'Lato',sans-serif;font-size:.68rem;color:rgba(255,255,255,.4);margin-bottom:10px;word-break:break-all;}
+.paralegal-wrap{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+.paralegal-img{width:110px;height:auto;border-radius:8px;border:2px solid rgba(201,168,76,.4);box-shadow:0 4px 14px rgba(0,0,0,.4);flex-shrink:0;transition:opacity .15s;}
+.paralegal-status{font-family:'Cormorant',serif;font-style:italic;font-size:.92rem;color:rgba(232,213,163,.85);}
+.legal-pad-wrap{background:#fdf6b2;border-radius:4px;padding:18px 18px 18px 44px;position:relative;box-shadow:0 4px 16px rgba(0,0,0,.35), inset 0 0 0 1px rgba(0,0,0,.06);margin-bottom:12px;}
+.legal-pad-wrap::before{content:'';position:absolute;top:0;bottom:0;left:32px;width:2px;background:rgba(200,40,40,.55);}
+.legal-pad-wrap::after{content:'';position:absolute;inset:0;background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 27px,rgba(60,90,160,.28) 28px);pointer-events:none;}
+.side-notes-text{width:100%;min-height:150px;background:transparent;border:none;outline:none;position:relative;z-index:1;font-family:'Merriweather',serif;font-size:.98rem;line-height:28px;color:#1B2A40;resize:vertical;}
+.side-notes-text::placeholder{color:rgba(27,42,64,.4);}
+.side-notes-summary{display:none;font-family:'Merriweather',serif;font-style:italic;font-size:.88rem;color:#1B2A40;background:#fdf6b2;border-left:3px solid rgba(200,40,40,.55);padding:10px 14px;margin-bottom:12px;line-height:1.7;box-shadow:0 2px 8px rgba(0,0,0,.2);}
+.side-notes-summary.active{display:block;}
+.side-notes-summary::before{content:"\1F58A\FE0F  Counsel's note: ";font-style:normal;font-weight:700;color:#7a5a1a;}
+.persona-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-bottom:12px;}
+.persona-btn{padding:8px 10px;border:1px solid rgba(201,168,76,.25);border-radius:6px;background:rgba(255,255,255,.03);color:rgba(232,213,163,.85);font-family:'Lato',sans-serif;font-size:.72rem;font-weight:600;cursor:pointer;text-align:left;transition:all .15s;}
+.persona-btn:hover{border-color:#C9A84C;background:rgba(201,168,76,.08);}
+.persona-btn.active{border-color:#C9A84C;background:rgba(201,168,76,.18);color:#C9A84C;}
+.side-notes-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.side-notes-actions .bar-btn{font-size:.68rem;}
+.side-notes-hint{font-family:'Lato',sans-serif;font-size:.65rem;color:rgba(255,255,255,.35);margin-top:8px;line-height:1.4;}
 </style>
 </head>
 <body>
@@ -494,6 +516,29 @@ body.has-music-gram .page-container{padding-bottom:120px}
 
 <div class="input-panel active" id="inputPanel">
   <h3>Compose Your Letter</h3>
+
+  <div class="side-notes-panel" id="sideNotesPanel">
+    <h4>&#128220; Side Notes — Captured Source</h4>
+    <div class="paralegal-wrap">
+      <img src="https://letters.powparker.com/paralegal-listening.webp" alt="" class="paralegal-img" id="paralegalImg">
+      <div class="paralegal-status" id="paralegalStatus">Ready when you are.</div>
+    </div>
+    <div class="side-notes-source" id="sideNotesSource"></div>
+    <div class="legal-pad-wrap">
+      <textarea class="side-notes-text" id="sideNotesText" placeholder="Captured text appears here."></textarea>
+    </div>
+    <div style="margin-bottom:10px;">
+      <button class="bar-btn" id="btnSummarize" onclick="runSideNotesSummarize()" style="font-size:.68rem;">&#9997;&#65039; Counsel's Summary</button>
+    </div>
+    <div class="side-notes-summary" id="sideNotesSummary"></div>
+    <div style="font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:8px;">Pick a Lens</div>
+    <div class="persona-grid" id="personaGrid"></div>
+    <div class="side-notes-actions">
+      <button class="bar-btn primary" onclick="runGenerateDraft()">&#10003; Generate Draft</button>
+      <button class="bar-btn" onclick="dismissSideNotes()" style="border-color:#888;color:#888;">Dismiss</button>
+    </div>
+    <div class="side-notes-hint">Generating a draft fills the letter body below — nothing is ever sent automatically. Review and edit before you Save &amp; Share.</div>
+  </div>
   <div class="logo-section">
     <div class="field-row" style="margin-bottom:10px;">
       <button type="button" class="check-toggle" id="logoShowToggleBtn" onclick="document.getElementById('logoShowToggle').checked=!document.getElementById('logoShowToggle').checked;toggleLogoSection(document.getElementById('logoShowToggle').checked);">
@@ -2289,6 +2334,153 @@ async function fetchAppleMusicMeta(url){
 }
 
 function showToast(msg,type){var t=document.getElementById('toast');t.textContent=msg;t.className='toast '+type+' show';if(type!=='loading')setTimeout(function(){t.className='toast';},3000);}
+
+// ── SIDE NOTES: capture handoff + persona drafting ──────────────────────
+const PARKER_PERSONAS = {
+  warm_ally:      { label: "Warm Ally",        prompt: "Reply as a warm, empathetic ally. Lead with genuine connection and validation before addressing the substance. Relationship over transaction." },
+  straight:       { label: "Straight Shooter",  prompt: "Reply directly and assertively. No hedging, no throat-clearing. State the position clearly and close with a specific ask or decision." },
+  diplomat:       { label: "Diplomat",           prompt: "Reply in a measured, formal, guarded tone. Protect the relationship, hedge where appropriate, avoid overcommitting." },
+  exec_brief:     { label: "Executive Brief",    prompt: "Reply as briefly and efficiently as possible. No elaboration beyond what's necessary. Get straight to the point." },
+  storyteller:    { label: "Storyteller",        prompt: "Reply using narrative framing — build the case through context and story rather than blunt assertion." },
+  steady_hand:    { label: "Steady Hand",        prompt: "Reply in a calm, de-escalating, grounding tone. Suited for a tense or heated exchange. Lower the temperature." },
+  closer:         { label: "The Closer",         prompt: "Reply with urgency and momentum. Drive toward a decision or deadline. Create forward motion." },
+  counselor:      { label: "Counselor",          prompt: "Reply primarily using calibrated, open-ended questions (how/what) instead of assertions, to surface the other side's real position before committing to one." },
+  old_guard:      { label: "Old Guard",          prompt: "Reply in a formal, old-world courteous register — fits an executive letterhead. No casual language, no emoji." },
+  plainspoken:    { label: "Plainspoken",        prompt: "Reply in plain, concrete, direct language. No jargon, no abstraction. Texas-native, unfiltered voice." },
+  black_swan:     { label: "Black-Swan-Wolf-of-Wall-Street", prompt: "Reply using this exact sequence: (1) Mirror back the key phrase from what they said, word for word, to prompt them to elaborate. (2) Ask one no-oriented calibrated question — phrase it so 'no' is the easy, safe answer, to surface their real objection. (3) Close with Belfort-style straight-line certainty and a direct, confident ask." }
+};
+
+let _selectedPersona = null;
+let _sideNotesSourceUrl = '';
+let _sideNotesSourceTitle = '';
+
+const PARALEGAL_IMAGES = {
+  listening: { src: 'https://letters.powparker.com/paralegal-listening.webp', status: 'Ready when you are.' },
+  thinking:  { src: 'https://letters.powparker.com/paralegal-thinking.webp',  status: 'Working on it...' },
+  thumbsup:  { src: 'https://letters.powparker.com/paralegal-thumbsup.webp',  status: 'Done — take a look.' }
+};
+
+function setParalegalState(state) {
+  const cfg = PARALEGAL_IMAGES[state];
+  if (!cfg) return;
+  const img = document.getElementById('paralegalImg');
+  const status = document.getElementById('paralegalStatus');
+  if (img) img.src = cfg.src;
+  if (status) status.textContent = cfg.status;
+}
+
+function renderPersonaGrid() {
+  const grid = document.getElementById('personaGrid');
+  if (!grid) return;
+  grid.innerHTML = Object.entries(PARKER_PERSONAS).map(([key, p]) =>
+    `<button type="button" class="persona-btn" data-persona="${key}" onclick="selectPersona('${key}', this)">${p.label}</button>`
+  ).join('');
+}
+
+function selectPersona(key, btn) {
+  _selectedPersona = key;
+  document.querySelectorAll('.persona-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function dismissSideNotes() {
+  document.getElementById('sideNotesPanel').classList.remove('active');
+}
+
+async function runSideNotesSummarize() {
+  const text = document.getElementById('sideNotesText').value.trim();
+  if (!text) { showToast('Nothing to summarize.', 'error'); return; }
+  const summaryEl = document.getElementById('sideNotesSummary');
+  setParalegalState('thinking');
+  showToast('Summarizing...', 'loading');
+  try {
+    const res = await fetch(WORKER + '/api/format', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
+      body: JSON.stringify({
+        text,
+        tone: 'Summarize the following in 2-3 plain sentences. No preamble, no bullet points, just the gist. Return only the summary text.'
+      })
+    });
+    const data = await res.json();
+    if (data.formatted) {
+      summaryEl.textContent = data.formatted;
+      summaryEl.classList.add('active');
+      setParalegalState('thumbsup');
+      showToast('Summarized', 'success');
+    } else {
+      setParalegalState('listening');
+      showToast('Could not summarize.', 'error');
+    }
+  } catch (e) {
+    setParalegalState('listening');
+    showToast('Connection error.', 'error');
+  }
+}
+
+async function runGenerateDraft() {
+  const text = document.getElementById('sideNotesText').value.trim();
+  if (!text) { showToast('Nothing to draft from.', 'error'); return; }
+  if (!_selectedPersona) { showToast('Pick a lens first.', 'error'); return; }
+  const persona = PARKER_PERSONAS[_selectedPersona];
+  setParalegalState('thinking');
+  showToast('Drafting reply...', 'loading');
+  try {
+    const res = await fetch(WORKER + '/api/format', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
+      body: JSON.stringify({
+        text,
+        tone: persona.prompt + ' Write this as a reply letter body, ready to edit. Return only the letter body text, no preamble, no signature, no explanation.'
+      })
+    });
+    const data = await res.json();
+    if (data.formatted) {
+      document.getElementById('inBody').value = data.formatted;
+      renderLetter();
+      setParalegalState('thumbsup');
+      showToast('Draft ready — review before sending', 'success');
+      dismissSideNotes();
+      document.getElementById('inBody').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } else {
+      setParalegalState('listening');
+      showToast('Could not generate draft.', 'error');
+    }
+  } catch (e) {
+    setParalegalState('listening');
+    showToast('Connection error.', 'error');
+  }
+}
+
+async function checkExtHandoff() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('ext_handoff') !== '1') return;
+  const captureId = params.get('capture');
+  if (!captureId) return;
+
+  try {
+    const res = await fetch(WORKER + '/api/ext-capture/' + captureId);
+    const data = await res.json();
+    if (data.error) { showToast('Capture expired or not found.', 'error'); return; }
+
+    document.getElementById('sideNotesText').value = data.content || '';
+    _sideNotesSourceUrl = data.sourceUrl || '';
+    _sideNotesSourceTitle = data.sourceTitle || '';
+    document.getElementById('sideNotesSource').textContent =
+      _sideNotesSourceTitle ? `From: ${_sideNotesSourceTitle} (${_sideNotesSourceUrl})` : '';
+    document.getElementById('sideNotesPanel').classList.add('active');
+    setParalegalState('listening');
+    document.getElementById('sideNotesPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    showToast('Captured text loaded', 'success');
+  } catch (e) {
+    showToast('Could not load captured text.', 'error');
+  }
+
+  window.history.replaceState({}, '', window.location.pathname);
+}
+
+renderPersonaGrid();
+checkExtHandoff();
 </script>
 </body>
 </html>
