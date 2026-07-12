@@ -529,8 +529,9 @@ body.has-music-gram .page-container{padding-bottom:120px}
     <div class="legal-pad-wrap" style="background:#fdf6b2 !important;border-radius:4px;padding:18px 18px 18px 44px;position:relative;box-shadow:0 4px 16px rgba(0,0,0,.35);margin-bottom:12px;">
       <textarea class="side-notes-text" id="sideNotesText" placeholder="Captured text appears here." style="width:100%;min-height:150px;background:transparent !important;border:none;outline:none;font-family:Merriweather,serif;font-size:.98rem;line-height:28px;color:#1B2A40 !important;resize:vertical;position:relative;z-index:1;"></textarea>
     </div>
-    <div style="margin-bottom:10px;">
+    <div style="margin-bottom:10px;display:flex;gap:8px;flex-wrap:wrap;">
       <button class="bar-btn" id="btnSummarize" onclick="runSideNotesSummarize()" style="font-size:.68rem;">&#9997;&#65039; Counsel's Summary</button>
+      <button class="bar-btn" id="btnShorten" onclick="runShortenSummary()" style="font-size:.68rem;display:none;">&#9986;&#65039; Shorten Further</button>
     </div>
     <div class="side-notes-summary" id="sideNotesSummary"></div>
     <div style="font-family:'Lato',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold-light);margin-bottom:8px;">Pick a Lens</div>
@@ -2375,24 +2376,39 @@ function renderPersonaGrid() {
   const grid = document.getElementById('personaGrid');
   if (!grid) return;
   grid.innerHTML = Object.entries(PARKER_PERSONAS).map(([key, p]) =>
-    `<button type="button" class="persona-btn" data-persona="${key}" onclick="selectPersona('${key}', this)">${p.label}</button>`
+    `<button type="button" class="persona-btn" data-persona="${key}" onclick="selectPersona('${key}', this)"><span class="persona-check" style="display:inline-block;width:14px;">&nbsp;</span>${p.label}</button>`
   ).join('');
 }
 
 function selectPersona(key, btn) {
   _selectedPersona = key;
-  document.querySelectorAll('.persona-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  document.querySelectorAll('.persona-btn').forEach(b => {
+    b.style.cssText = 'padding:8px 10px;border:1px solid rgba(201,168,76,.25);border-radius:6px;background:rgba(255,255,255,.03) !important;color:rgba(232,213,163,.85) !important;font-family:Lato,sans-serif;font-size:.72rem;font-weight:600;cursor:pointer;text-align:left;transition:all .15s;';
+    const chk = b.querySelector('.persona-check');
+    if (chk) chk.innerHTML = '&nbsp;';
+  });
+  btn.style.cssText = 'padding:8px 10px;border:2px solid #2ecc71 !important;border-radius:6px;background:rgba(46,204,113,.18) !important;color:#eafff2 !important;font-family:Lato,sans-serif;font-size:.72rem;font-weight:700;cursor:pointer;text-align:left;transition:all .15s;';
+  const chk = btn.querySelector('.persona-check');
+  if (chk) chk.innerHTML = '<span style="color:#2ecc71;font-weight:900;">&#10003;</span>';
 }
 
 function dismissSideNotes() {
   document.getElementById('sideNotesPanel').classList.remove('active');
 }
 
+let _rawSummaryText = '';
+
+function renderSummaryBox(text) {
+  const summaryEl = document.getElementById('sideNotesSummary');
+  _rawSummaryText = text;
+  summaryEl.textContent = '📝 Counsel\'s note: ' + text;
+  summaryEl.style.cssText = 'display:block !important;font-family:Merriweather,serif;font-style:italic;font-size:.88rem;color:#1B2A40 !important;background:#fdf6b2 !important;border-left:3px solid #c82828;padding:10px 14px;margin-bottom:12px;line-height:1.7;box-shadow:0 2px 8px rgba(0,0,0,.2);border-radius:4px;';
+  document.getElementById('btnShorten').style.display = 'inline-block';
+}
+
 async function runSideNotesSummarize() {
   const text = document.getElementById('sideNotesText').value.trim();
   if (!text) { showToast('Nothing to summarize.', 'error'); return; }
-  const summaryEl = document.getElementById('sideNotesSummary');
   setParalegalState('thinking');
   showToast('Summarizing...', 'loading');
   try {
@@ -2401,18 +2417,45 @@ async function runSideNotesSummarize() {
       headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
       body: JSON.stringify({
         text,
-        tone: 'Summarize the following in 2-3 plain sentences. No preamble, no bullet points, just the gist. Return only the summary text.'
+        tone: 'Summarize the following in AT MOST 2 short sentences. This is a hard limit — do not exceed it, do not list details, do not use bullet points. Just the single most important takeaway. Return only that summary text, nothing else.'
       })
     });
     const data = await res.json();
     if (data.formatted) {
-      summaryEl.textContent = '📝 Counsel\'s note: ' + data.formatted;
-      summaryEl.style.cssText = 'display:block !important;font-family:Merriweather,serif;font-style:italic;font-size:.88rem;color:#1B2A40 !important;background:#fdf6b2 !important;border-left:3px solid #c82828;padding:10px 14px;margin-bottom:12px;line-height:1.7;box-shadow:0 2px 8px rgba(0,0,0,.2);border-radius:4px;';
+      renderSummaryBox(data.formatted);
       setParalegalState('thumbsup');
       showToast('Summarized', 'success');
     } else {
       setParalegalState('listening');
       showToast('Could not summarize.', 'error');
+    }
+  } catch (e) {
+    setParalegalState('listening');
+    showToast('Connection error.', 'error');
+  }
+}
+
+async function runShortenSummary() {
+  if (!_rawSummaryText) { showToast('Nothing to shorten yet.', 'error'); return; }
+  setParalegalState('thinking');
+  showToast('Shortening...', 'loading');
+  try {
+    const res = await fetch(WORKER + '/api/format', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
+      body: JSON.stringify({
+        text: _rawSummaryText,
+        tone: 'Condense this down to ONE short sentence — the single core point only. Return only that one sentence.'
+      })
+    });
+    const data = await res.json();
+    if (data.formatted) {
+      renderSummaryBox(data.formatted);
+      setParalegalState('thumbsup');
+      showToast('Shortened', 'success');
+    } else {
+      setParalegalState('listening');
+      showToast('Could not shorten.', 'error');
     }
   } catch (e) {
     setParalegalState('listening');
@@ -2433,7 +2476,7 @@ async function runGenerateDraft() {
       headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
       body: JSON.stringify({
         text,
-        tone: persona.prompt + ' Write this as a reply letter body, ready to edit. Return only the letter body text, no preamble, no signature, no explanation.'
+        tone: persona.prompt + ' The source text below may be a message from someone (reply to it) or reference material like an article (write a letter about this topic to the recipient, using the facts as needed, entirely in this voice). Either way, take a clear position and make it persuasive and specific to this voice — do not just summarize or restate the source. Write this as a letter body, ready to edit. Return only the letter body text, no preamble, no signature, no explanation.'
       })
     });
     const data = await res.json();
