@@ -526,8 +526,8 @@ body.has-music-gram .page-container{padding-bottom:120px}
       <div class="paralegal-status" id="paralegalStatus">Ready when you are.</div>
     </div>
     <div class="side-notes-source" id="sideNotesSource"></div>
-    <div class="legal-pad-wrap">
-      <textarea class="side-notes-text" id="sideNotesText" placeholder="Captured text appears here."></textarea>
+    <div class="legal-pad-wrap" style="background:#fdf6b2 !important;border-radius:4px;padding:18px 18px 18px 44px;position:relative;box-shadow:0 4px 16px rgba(0,0,0,.35);margin-bottom:12px;">
+      <textarea class="side-notes-text" id="sideNotesText" placeholder="Captured text appears here." style="width:100%;min-height:150px;background:transparent !important;border:none;outline:none;font-family:Merriweather,serif;font-size:.98rem;line-height:28px;color:#1B2A40 !important;resize:vertical;position:relative;z-index:1;"></textarea>
     </div>
     <div style="margin-bottom:10px;">
       <button class="bar-btn" id="btnSummarize" onclick="runSideNotesSummarize()" style="font-size:.68rem;">&#9997;&#65039; Counsel's Summary</button>
@@ -2406,8 +2406,8 @@ async function runSideNotesSummarize() {
     });
     const data = await res.json();
     if (data.formatted) {
-      summaryEl.textContent = data.formatted;
-      summaryEl.classList.add('active');
+      summaryEl.textContent = '📝 Counsel\'s note: ' + data.formatted;
+      summaryEl.style.cssText = 'display:block !important;font-family:Merriweather,serif;font-style:italic;font-size:.88rem;color:#1B2A40 !important;background:#fdf6b2 !important;border-left:3px solid #c82828;padding:10px 14px;margin-bottom:12px;line-height:1.7;box-shadow:0 2px 8px rgba(0,0,0,.2);border-radius:4px;';
       setParalegalState('thumbsup');
       showToast('Summarized', 'success');
     } else {
