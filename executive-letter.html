@@ -397,7 +397,7 @@ body.has-music-gram .page-container{padding-bottom:120px}
 .side-notes-panel h4{font-family:'Cormorant',serif;font-size:1.05rem;color:#C9A84C;margin-bottom:4px;}
 .side-notes-source{font-family:'Lato',sans-serif;font-size:.7rem;color:rgba(232,213,163,.75);margin-bottom:10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%;}
 .paralegal-wrap{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
-#sideNotesPanel img.paralegal-img{width:90px !important;height:90px !important;max-width:90px !important;max-height:90px !important;min-width:90px !important;object-fit:cover !important;border-radius:8px;border:2px solid rgba(201,168,76,.4);box-shadow:0 4px 14px rgba(0,0,0,.4);flex-shrink:0;flex-grow:0;transition:opacity .15s;display:block;}
+#sideNotesPanel img.paralegal-img{width:180px !important;height:180px !important;max-width:180px !important;max-height:180px !important;min-width:180px !important;object-fit:cover !important;border-radius:8px;border:2px solid rgba(201,168,76,.4);box-shadow:0 4px 14px rgba(0,0,0,.4);flex-shrink:0;flex-grow:0;transition:opacity .15s;display:block;}
 .paralegal-status{font-family:'Cormorant',serif;font-style:italic;font-size:.92rem;color:rgba(232,213,163,.85);}
 .legal-pad-wrap{background:#fdf6b2;border-radius:4px;padding:18px 18px 18px 44px;position:relative;box-shadow:0 4px 16px rgba(0,0,0,.35), inset 0 0 0 1px rgba(0,0,0,.06);margin-bottom:12px;}
 .legal-pad-wrap::before{content:'';position:absolute;top:0;bottom:0;left:32px;width:2px;background:rgba(200,40,40,.55);}
@@ -517,17 +517,25 @@ body.has-music-gram .page-container{padding-bottom:120px}
 <div class="input-panel active" id="inputPanel">
   <h3>Compose Your Letter</h3>
 
+  <div style="margin-bottom:14px;">
+    <button class="bar-btn" id="btnOpenSideNotes" onclick="openSideNotesManually()" style="background:rgba(201,168,76,.15);border-color:rgba(201,168,76,.5);color:#C9A84C;">&#128220; Open Side Notes (paste text to analyze)</button>
+  </div>
+
   <div class="side-notes-panel" id="sideNotesPanel">
     <h4>&#128220; Side Notes — Captured Source</h4>
     <div class="paralegal-wrap">
-      <div style="width:90px;height:90px;min-width:90px;overflow:hidden;border-radius:8px;border:2px solid rgba(201,168,76,.4);box-shadow:0 4px 14px rgba(0,0,0,.4);flex-shrink:0;">
-        <img src="https://letters.powparker.com/paralegal-listening.webp" alt="" class="paralegal-img" id="paralegalImg" style="width:90px;height:90px;object-fit:cover;display:block;">
+      <div style="width:180px;height:180px;min-width:180px;overflow:hidden;border-radius:8px;border:2px solid rgba(201,168,76,.4);box-shadow:0 4px 14px rgba(0,0,0,.4);flex-shrink:0;">
+        <img src="https://letters.powparker.com/paralegal-listening.webp" alt="" class="paralegal-img" id="paralegalImg" style="width:180px;height:180px;object-fit:cover;display:block;">
       </div>
       <div class="paralegal-status" id="paralegalStatus">Ready when you are.</div>
     </div>
     <div class="side-notes-source" id="sideNotesSource"></div>
     <div class="legal-pad-wrap" style="background:#fdf6b2 !important;border-radius:4px;padding:18px 18px 18px 44px;position:relative;box-shadow:0 4px 16px rgba(0,0,0,.35);margin-bottom:12px;">
       <textarea class="side-notes-text" id="sideNotesText" placeholder="Captured text appears here." style="width:100%;min-height:150px;background:transparent !important;border:none;outline:none;font-family:Merriweather,serif;font-size:.98rem;line-height:28px;color:#1B2A40 !important;resize:vertical;position:relative;z-index:1;"></textarea>
+    </div>
+    <div style="margin-bottom:10px;">
+      <label class="bar-btn" for="sideNotesPhotoInput" style="display:inline-block;cursor:pointer;font-size:.68rem;">&#128248; Add Photo of Letter/Document</label>
+      <input type="file" id="sideNotesPhotoInput" accept="image/*" style="display:none;" onchange="handleSideNotesPhoto(this)">
     </div>
     <div style="margin-bottom:10px;display:flex;gap:8px;flex-wrap:wrap;">
       <button class="bar-btn" id="btnSummarize" onclick="runSideNotesSummarize()" style="font-size:.68rem;">&#9997;&#65039; Counsel's Summary</button>
@@ -2394,6 +2402,48 @@ function selectPersona(key, btn) {
 
 function dismissSideNotes() {
   document.getElementById('sideNotesPanel').classList.remove('active');
+}
+
+function openSideNotesManually() {
+  document.getElementById('sideNotesPanel').classList.add('active');
+  document.getElementById('sideNotesSource').textContent = '';
+  setParalegalState('listening');
+  document.getElementById('sideNotesText').focus();
+  document.getElementById('sideNotesPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+async function handleSideNotesPhoto(input) {
+  const file = input.files && input.files[0];
+  if (!file) return;
+  setParalegalState('thinking');
+  showToast('Reading photo...', 'loading');
+  try {
+    const dataUrl = await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+    const res = await fetch(WORKER + '/api/vision-ocr', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-API-Key': API_KEY },
+      body: JSON.stringify({ image: dataUrl })
+    });
+    const data = await res.json();
+    if (data.text) {
+      const ta = document.getElementById('sideNotesText');
+      ta.value = ta.value ? ta.value + '\n\n' + data.text : data.text;
+      setParalegalState('thumbsup');
+      showToast('Photo transcribed', 'success');
+    } else {
+      setParalegalState('listening');
+      showToast(data.error || 'Could not read photo.', 'error');
+    }
+  } catch (e) {
+    setParalegalState('listening');
+    showToast('Connection error.', 'error');
+  }
+  input.value = '';
 }
 
 let _rawSummaryText = '';
