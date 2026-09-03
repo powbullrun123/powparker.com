@@ -127,24 +127,28 @@
   .hero-cta-secondary { display: inline-block; padding: 15px 34px; background: rgba(7,16,24,0.6); border: 2px solid var(--gold); color: var(--gold); font-size: 0.85rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; border-radius: 4px; }
   .hero-cta-secondary:hover { background: rgba(201,168,76,0.18); transform: translateY(-2px); }
 
-  /* HERO 2: WHERE IT ALL STARTED (UNCROPPED HEAD & FULL HORSE) */
+  /* HERO 2: BORN IN HEREFORD (SUNSET SKY BACKGROUND - UNCROPPED) */
   .story-section {
     position: relative;
-    background: #08121d;
-    padding: 110px 40px;
+    padding: 120px 40px;
+    background: linear-gradient(to right, rgba(7,16,24,0.88) 0%, rgba(7,16,24,0.65) 55%, rgba(7,16,24,0.30) 100%),
+                url('images/sunset-bg.webp'),
+                url('images/sunset-bg.jpg'),
+                #08121d;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-bottom: 1px solid rgba(201,168,76,0.25);
   }
   .story-grid {
     max-width: 1240px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: 1.15fr 0.85fr;
     gap: 60px;
     align-items: center;
   }
-  .story-content {
-    max-width: 640px;
-  }
+  .story-content { max-width: 660px; }
   .story-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2.2rem, 4vw, 3.2rem);
@@ -159,6 +163,7 @@
     line-height: 1.85;
     color: var(--light);
     margin-bottom: 18px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.85);
   }
   .story-photo-box {
     display: flex;
@@ -167,12 +172,12 @@
   }
   .story-photo-box img {
     width: 100%;
-    max-width: 520px;
+    max-width: 500px;
     height: auto;
     display: block;
     border: 2px solid var(--gold);
     border-radius: 4px;
-    box-shadow: 0 16px 45px rgba(0,0,0,0.85);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.9);
   }
   
   @keyframes slideUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
@@ -183,61 +188,28 @@
   .section-body { font-family: 'Cormorant Garamond', serif; font-size: 1.26rem; line-height: 1.85; color: var(--light); max-width: 720px; }
   .divider { width: 60px; height: 3px; background: var(--gold); margin: 24px 0; }
   
-  /* REUSABLE BACKDROP SETTINGS (LIGHT ENOUGH TO CLEARLY SEE) */
-  .backdrop-container {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    overflow: hidden;
-  }
-  .backdrop-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-  }
-  .backdrop-overlay-tucson {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(7,16,24,0.45) 0%, rgba(14,24,36,0.38) 50%, rgba(7,16,24,0.52) 100%);
-  }
-  .backdrop-overlay-bonanza {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(7,16,24,0.40) 0%, rgba(11,22,34,0.35) 50%, rgba(7,16,24,0.48) 100%);
-  }
-  .backdrop-overlay-studio {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(7,16,24,0.42) 0%, rgba(26,18,8,0.32) 50%, rgba(7,16,24,0.50) 100%);
-  }
-  .backdrop-overlay-ranch {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(7,16,24,0.45) 0%, rgba(14,26,38,0.38) 50%, rgba(7,16,24,0.52) 100%);
-  }
-
-  /* THE FOUR FRONTS */
+  /* THE FOUR FRONTS (OLD TUCSON BACKDROP - LIGHT ENOUGH TO CLEARLY SEE) */
   .pillars-section {
     position: relative;
     padding: 120px 40px;
-    overflow: hidden;
-    background: #071018;
+    background: linear-gradient(180deg, rgba(7,16,24,0.48) 0%, rgba(14,24,36,0.38) 50%, rgba(7,16,24,0.55) 100%),
+                url('images/old-tucson.webp'),
+                url('images/old-tucson.jpg'),
+                url('images/old-tucson2.webp'),
+                #071018;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
   .pillars-grid {
-    position: relative;
-    z-index: 3;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 24px;
     margin-bottom: 60px;
   }
   .pillar {
-    background: rgba(11,22,34,0.90);
-    backdrop-filter: blur(10px);
+    background: rgba(11,22,34,0.92);
+    backdrop-filter: blur(8px);
     padding: 40px 32px;
     border: 2px solid var(--gold);
     border-radius: 4px;
@@ -245,7 +217,7 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.7);
   }
   .pillar:hover {
-    background: rgba(17,32,48,0.96);
+    background: rgba(17,32,48,0.98);
     transform: translateY(-4px);
     box-shadow: 0 16px 40px rgba(0,0,0,0.85), 0 0 20px rgba(201,168,76,0.25);
   }
@@ -264,22 +236,27 @@
   }
   .pillar-link:hover { border-bottom-color: var(--gold); color: var(--gold-light); }
 
-  /* PARKER FILMS SECTION */
+  /* PARKER FILMS SECTION (NEW MEXICO STUDIO SOUNDSTAGES BACKDROP) */
   #projects {
     position: relative;
     padding: 120px 20px;
-    overflow: hidden;
-    background: #071018;
+    background: linear-gradient(180deg, rgba(7,16,24,0.45) 0%, rgba(11,22,34,0.38) 50%, rgba(7,16,24,0.52) 100%),
+                url('images/new-mexico-studio.webp'),
+                url('images/new-mexico-studio.jpg'),
+                url('images/bonanza-creek.webp'),
+                #071018;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
   .film-showcase-card {
     position: relative;
-    z-index: 3;
     max-width: 980px;
     margin: 0 auto;
     border: 2px solid var(--gold);
     border-radius: 4px;
-    background: rgba(11,22,34,0.94);
-    backdrop-filter: blur(12px);
+    background: rgba(11,22,34,0.95);
+    backdrop-filter: blur(10px);
     overflow: hidden;
     box-shadow: 0 24px 80px rgba(0,0,0,0.9);
   }
@@ -322,7 +299,7 @@
   }
   .film-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 35px rgba(201,168,76,0.55); }
 
-  /* PARKER COUNTRY: LIVE MOVIE STUDIO SET BACKDROP */
+  /* PARKER COUNTRY (LIVE MOVIE SET BACKDROP WITH CRANES, CAMERAS & WAGONS) */
   .pc-divider {
     position: relative;
     width: 100vw;
@@ -332,14 +309,19 @@
     align-items: center;
     justify-content: center;
     padding: 90px 20px;
-    overflow: hidden;
+    background: linear-gradient(180deg, rgba(7,16,24,0.42) 0%, rgba(26,18,8,0.35) 50%, rgba(7,16,24,0.48) 100%),
+                url('images/bonaza-creek.jpg'),
+                url('images/bonanza-creek.jpg'),
+                url('images/bonanza-creek.webp'),
+                #071018;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     border-top: 2px solid var(--gold);
     border-bottom: 2px solid var(--gold);
-    background: #071018;
   }
   .pc-content {
     position: relative;
-    z-index: 3;
     text-align: center;
     max-width: 920px;
   }
@@ -356,34 +338,33 @@
   .western-link { display: inline-block; padding: 14px 26px; font-family: 'Rye', serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: #C9A84C !important; background: rgba(20,12,6,0.92); border: 2px solid var(--gold); border-radius: 4px; box-shadow: 0 6px 16px rgba(0,0,0,0.6); transition: all 0.2s ease; }
   .western-link:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(201,168,76,0.25); color: #fff !important; }
 
-  /* WORKING RANGE */
+  /* WORKING RANGE (CERRO PELON LIVE ACTION BACKDROP + EXPANDED FULL-BLEED FRAMES) */
   #ranch {
     position: relative;
     padding: 120px 20px;
-    overflow: hidden;
-    background: #071018;
+    background: linear-gradient(180deg, rgba(7,16,24,0.45) 0%, rgba(14,26,38,0.36) 50%, rgba(7,16,24,0.52) 100%),
+                url('images/cerro-pelon-live-action.webp'),
+                url('images/cerro-pelon-live-action.jpg'),
+                #071018;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
-  .life-header { position: relative; z-index: 3; text-align: center; margin-bottom: 70px; }
-  .photo-cards { position: relative; z-index: 3; display: flex; flex-direction: column; gap: 80px; max-width: 1040px; margin: 0 auto; }
-  .photo-card { border: 2px solid var(--gold); border-radius: 4px; background: rgba(14,24,36,0.94); backdrop-filter: blur(8px); overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,0.8); }
+  .life-header { text-align: center; margin-bottom: 70px; }
+  .photo-cards { display: flex; flex-direction: column; gap: 80px; max-width: 1040px; margin: 0 auto; }
+  .photo-card { border: 2px solid var(--gold); border-radius: 4px; background: rgba(14,24,36,0.95); backdrop-filter: blur(8px); overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,0.8); }
   
-  /* Edge-to-edge images - ZERO black pillarboxing */
+  /* EXPANDED EDGE-TO-EDGE PHOTO FRAMES (ZERO BLACK PILLARBOXING) */
   .photo-card-img-wrap {
-    position: relative;
     width: 100%;
-    height: 540px;
-    overflow: hidden;
     background: #071018;
-  }
-  .photo-card-img-wrap.tall-frame {
-    height: 640px;
+    overflow: hidden;
   }
   .photo-card-img-wrap img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
     display: block;
-    transition: transform 0.6s ease;
+    transition: transform 0.5s ease;
   }
   .photo-card:hover .photo-card-img-wrap img { transform: scale(1.02); }
   
@@ -467,7 +448,6 @@
     .about-grid, .arizona-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
     section { padding: 70px 20px; }
-    .photo-card-img-wrap, .photo-card-img-wrap.tall-frame { height: 380px; }
     .film-showcase-card { margin: 0 -10px; }
     .biz-card { padding: 40px 20px; }
     .pc-divider { padding: 70px 14px; }
@@ -494,7 +474,7 @@
 <main>
 
 <!-- ============================================================
-     HERO 1: CINEMATIC WIDESCREEN (POWELL & MONTY AT SUPERSTITIONS)
+     HERO 1: SUPERSTITION MOUNTAINS (POWELL & MONTY)
      ============================================================ -->
 <section class="hero">
   <img class="hero-img" src="images/powell-monty.webp" alt="Powell Parker with horse Monty at the foot of the Superstition Mountains" width="1600" height="900" fetchpriority="high">
@@ -511,7 +491,7 @@
 </section>
 
 <!-- ============================================================
-     HERO 2: WHERE IT ALL STARTED (CLEAN SPLIT - ZERO CHOPPING)
+     HERO 2: WHERE IT ALL STARTED (SUNSET SKY - UNCROPPED)
      ============================================================ -->
 <section id="about" class="story-section">
   <div class="story-grid">
@@ -535,7 +515,7 @@
       </div>
     </div>
 
-    <!-- Right Column: Full Uncropped Powell & Monty (Hat to Hooves) -->
+    <!-- Right Column: Full Uncropped Powell on Monty (Hat to Hooves) -->
     <div class="story-photo-box fade-in">
       <img src="images/powell-hero.webp" onerror="this.onerror=null; this.src='powell-hero.webp';" alt="Powell Parker mounted on horseback in the pasture" loading="lazy">
     </div>
@@ -544,16 +524,10 @@
 </section>
 
 <!-- ============================================================
-     THE FOUR FRONTS: OLD TUCSON MOVIE STUDIO BACKDROP (LIGHT & CLEAR)
+     THE FOUR FRONTS (OLD TUCSON BACKDROP)
      ============================================================ -->
 <section class="pillars-section">
-  <!-- Old Tucson Live Western Backdrop -->
-  <div class="backdrop-container">
-    <img class="backdrop-img" src="images/old-tucson.webp" onerror="this.onerror=null; this.src='old-tucson.webp'; this.onerror=function(){this.src='images/old-tucson.jpg';};" alt="Old Tucson Movie Studio">
-    <div class="backdrop-overlay-tucson"></div>
-  </div>
-
-  <div class="section-inner" style="position:relative; z-index:3;">
+  <div class="section-inner">
     <div style="text-align:center; margin-bottom:56px;" class="fade-in">
       <p class="section-label">Foundational Pillars &bull; Old Tucson Heritage</p>
       <h2 class="section-title">The Four Fronts</h2>
@@ -636,14 +610,9 @@
 
 <!-- ============================================================
      PARKER FILMS LLC: FEATURE SLATE SHOWCASE
-     (BACKDROP: BONANZA CREEK MOVIE RANCH - LIGHT & CLEAR)
+     (BACKDROP: NEW MEXICO FILM STUDIOS & SOUNDSTAGES)
      ============================================================ -->
 <section id="projects">
-  <div class="backdrop-container">
-    <img class="backdrop-img" src="images/bonanza-creek.webp" onerror="this.onerror=null; this.src='bonanza-creek.webp'; this.onerror=function(){this.src='images/bonanza-creek.jpg';};" alt="Bonanza Creek Movie Ranch">
-    <div class="backdrop-overlay-bonanza"></div>
-  </div>
-
   <div class="film-showcase-card fade-in">
     
     <!-- CLEAR LOGO BANNER (MULTI-TIER FALLBACK - NEVER SHOWS BROKEN ICON) -->
@@ -716,14 +685,9 @@
 </section>
 
 <!-- ============================================================
-     PARKER COUNTRY: LIVE MOVIE STUDIO SET (BONAZA-CREEK.JPG - LIGHT & CLEAR)
+     PARKER COUNTRY: LIVE MOVIE STUDIO SET (BONAZA-CREEK.JPG)
      ============================================================ -->
 <div class="pc-divider fade-in">
-  <div class="backdrop-container">
-    <img class="backdrop-img" src="images/bonaza-creek.jpg" onerror="this.onerror=null; this.src='bonaza-creek.jpg'; this.onerror=function(){this.src='images/bonanza-creek.jpg'; this.onerror=function(){this.src='bonanza-creek.webp';};};" alt="Bonanza Creek Live Western Movie Studio Set">
-    <div class="backdrop-overlay-studio"></div>
-  </div>
-
   <div class="pc-content">
     <img src="images/parker-country-logo.webp" alt="Parker Country Brand" width="700" height="442" loading="lazy" class="pc-brand-logo">
     <p class="parker-country-text">Parker Country</p>
@@ -741,15 +705,10 @@
 </div>
 
 <!-- ============================================================
-     THE WORKING RANGE: CERRO PELON LIVE ACTION BACKDROP (LIGHT & CLEAR)
-     (ZERO BLACK PILLARBOXES - 100% COVERAGE)
+     THE WORKING RANGE: CERRO PELON LIVE ACTION BACKDROP
+     (EXPANDED FLUSH EDGE-TO-EDGE PHOTO FRAMES)
      ============================================================ -->
 <section class="life-photos" id="ranch">
-  <div class="backdrop-container">
-    <img class="backdrop-img" src="images/cerro-pelon-live-action.webp" onerror="this.onerror=null; this.src='cerro-pelon-live-action.webp'; this.onerror=function(){this.src='images/cerro-pelon-live-action.jpg'; this.onerror=function(){this.src='cerro-pelon-live-action.jpg';};};" alt="Cerro Pelon Live Action Western Set">
-    <div class="backdrop-overlay-ranch"></div>
-  </div>
-
   <div class="life-header fade-in">
     <p class="section-label">Range Works &bull; Practical Horsemanship &bull; Stockmanship</p>
     <h2 class="section-title">The Western Lifestyle Is In My Blood</h2>
@@ -761,10 +720,10 @@
 
   <div class="photo-cards">
 
-    <!-- 1. GATHERING NEBRASKA HERDS (EXPANDED WIDESCREEN - NO BLACK BARS) -->
+    <!-- 1. GATHERING NEBRASKA HERDS (FLUSH EDGE-TO-EDGE - NO BLACK BARS) -->
     <div class="photo-card fade-in">
       <div class="photo-card-img-wrap">
-        <img src="images/powell-nebraska-gather.webp" style="object-position: center 30%;" alt="Powell Parker gathering black Angus cattle on horseback under vast open skies" loading="lazy" width="1200" height="800">
+        <img src="images/powell-nebraska-gather.webp" alt="Powell Parker gathering black Angus cattle on horseback under vast open skies" loading="lazy">
       </div>
       <div class="photo-card-body">
         <p class="photo-card-label">The Open Range &bull; Pasture Gathering</p>
@@ -776,10 +735,10 @@
       </div>
     </div>
 
-    <!-- 2. DEMON THE DOG & RANGE PARTNERS (EXPANDED WIDESCREEN) -->
+    <!-- 2. DEMON THE DOG & RANGE PARTNERS (FLUSH EDGE-TO-EDGE) -->
     <div class="photo-card fade-in">
       <div class="photo-card-img-wrap">
-        <img src="images/powell-demon-dog.webp" style="object-position: center 40%;" alt="Powell Parker riding sorrel horse with Demon the cattle dog trotting alongside" loading="lazy" width="1200" height="800">
+        <img src="images/powell-demon-dog.webp" alt="Powell Parker riding sorrel horse with Demon the cattle dog trotting alongside" loading="lazy">
       </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Range Companions &bull; The Daily Grind</p>
@@ -794,7 +753,7 @@
     <!-- 3. LAYING THE LOOP (BRUSH ROPING) -->
     <div class="photo-card fade-in">
       <div class="photo-card-img-wrap">
-        <img src="images/powell-swinging-loop.webp" style="object-position: center 30%;" alt="Powell Parker swinging a rope horseback at golden hour in the Arizona desert" loading="lazy" width="1200" height="800">
+        <img src="images/powell-swinging-loop.webp" alt="Powell Parker swinging a rope horseback at golden hour in the Arizona desert" loading="lazy">
       </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Hand Mechanics &bull; Desert Stockmanship</p>
@@ -806,10 +765,10 @@
       </div>
     </div>
 
-    <!-- 4. PASTURE DOCTORING (FULL-HEIGHT EXPANDED - NO BLACK BARS) -->
+    <!-- 4. PASTURE DOCTORING (FLUSH EDGE-TO-EDGE) -->
     <div class="photo-card fade-in">
-      <div class="photo-card-img-wrap tall-frame">
-        <img src="images/powell-pasture-doctoring.webp" style="object-position: center center;" alt="Doctoring a yearling steer stretched out between two horses on taut ropes in open pasture" loading="lazy" width="1000" height="1333">
+      <div class="photo-card-img-wrap">
+        <img src="images/powell-pasture-doctoring.webp" alt="Doctoring a yearling steer stretched out between two horses on taut ropes in open pasture" loading="lazy">
       </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Range Medicine &bull; Two Ropes &amp; Honest Trust</p>
@@ -821,10 +780,10 @@
       </div>
     </div>
 
-    <!-- 5. BRANDING & GROUNDWORK (FULL-HEIGHT EXPANDED - NO BLACK BARS) -->
+    <!-- 5. BRANDING & GROUNDWORK (FLUSH EDGE-TO-EDGE) -->
     <div class="photo-card fade-in">
-      <div class="photo-card-img-wrap tall-frame">
-        <img src="images/powell-branding-groundwork.webp" style="object-position: center 30%;" alt="Powell Parker flanking and holding down a calf in chaps during branding and vaccinations" loading="lazy" width="1000" height="1333">
+      <div class="photo-card-img-wrap">
+        <img src="images/powell-branding-groundwork.webp" alt="Powell Parker flanking and holding down a calf in chaps during branding and vaccinations" loading="lazy">
       </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Ranch Works &bull; In the Dirt</p>
@@ -839,7 +798,7 @@
     <!-- 6. TEAM ROPING IN THE ARENA -->
     <div class="photo-card fade-in">
       <div class="photo-card-img-wrap">
-        <img src="images/life-roping.webp" style="object-position: center 25%;" alt="Powell Parker and Joel team roping in the arena" loading="lazy" width="1000" height="800">
+        <img src="images/life-roping.webp" alt="Powell Parker and Joel team roping in the arena" loading="lazy">
       </div>
       <div class="photo-card-body">
         <p class="photo-card-label">In the Arena &bull; Timed Precision</p>
@@ -893,7 +852,7 @@
     <!-- DAUGHTERS -->
     <div class="photo-card fade-in">
       <div class="photo-card-img-wrap">
-        <img src="images/life-daughters.webp" style="object-position: center 25%;" alt="Sara and Scarlett" loading="lazy" width="800" height="600">
+        <img src="images/life-daughters.webp" alt="Sara and Scarlett" loading="lazy">
       </div>
       <div class="photo-card-body">
         <p class="photo-card-label">My Whole Heart</p>
@@ -905,8 +864,8 @@
 
     <!-- MOUNT LEMMON -->
     <div class="photo-card fade-in">
-      <div class="photo-card-img-wrap tall-frame">
-        <img src="images/mount-lemmon-family.webp" style="object-position: center 20%;" alt="Mount Lemmon family time" loading="lazy" width="1000" height="1333">
+      <div class="photo-card-img-wrap">
+        <img src="images/mount-lemmon-family.webp" alt="Mount Lemmon family time" loading="lazy">
       </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Up in the Pines</p>
@@ -918,8 +877,8 @@
 
     <!-- FISHING -->
     <div class="photo-card fade-in">
-      <div class="photo-card-img-wrap tall-frame">
-        <img src="images/couple-fishing.webp" style="object-position: center 25%;" alt="Powell and Cristina fishing at an Arizona mountain lake" loading="lazy" width="1100" height="1208">
+      <div class="photo-card-img-wrap">
+        <img src="images/couple-fishing.webp" alt="Powell and Cristina fishing at an Arizona mountain lake" loading="lazy">
       </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Stewardship &amp; Outdoors</p>
@@ -932,7 +891,7 @@
     <!-- FAMILY -->
     <div class="photo-card fade-in">
       <div class="photo-card-img-wrap">
-        <img src="images/family1.webp" style="object-position: center 20%;" alt="Powell Parker family" loading="lazy" width="900" height="892">
+        <img src="images/family1.webp" alt="Powell Parker family" loading="lazy">
       </div>
       <div class="photo-card-body">
         <p class="photo-card-label">Faith &amp; Family</p>
