@@ -26,7 +26,7 @@
 <meta property="og:description" content="Powell Parker — Founder of Parker Films LLC and Rightful Returns Recovery. Faith-driven, cowboy-built, cinematic storyteller based in Mesa, AZ.">
 <meta property="og:url" content="https://www.powparker.com/">
 <meta property="og:site_name" content="Powell Parker">
-<meta property="og:image" content="https://www.powparker.com/images/powell-parker-founder.webp">
+<meta property="og:image" content="https://www.powparker.com/images/powell-monty.webp">
 <meta property="profile:first_name" content="Powell">
 <meta property="profile:last_name" content="Parker">
 
@@ -34,7 +34,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Powell Parker | Founder, Parker Films LLC & RRR">
 <meta name="twitter:description" content="Film packaging, authentic storytelling, cattleman heritage, surplus funds recovery. Faith. Family. Film.">
-<meta name="twitter:image" content="https://www.powparker.com/images/powell-parker-founder.webp">
+<meta name="twitter:image" content="https://www.powparker.com/images/powell-monty.webp">
 
 <!-- STRUCTURED DATA: Person -->
 <script type="application/ld+json">
@@ -109,13 +109,13 @@
   .nav-links a:hover { opacity: 1; color: var(--gold); }
   .nav-badge-film { border: 1px solid var(--gold); padding: 5px 12px; border-radius: 4px; color: var(--gold) !important; font-weight: 700; }
   
-  /* HERO */
-  .hero { height: 100vh; min-height: 620px; position: relative; display: flex; align-items: center; overflow: hidden; }
-  .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; animation: heroFade 2s ease-out forwards; opacity: 0; }
+  /* HERO (ENHANCED FOR POWELL & MONTY) */
+  .hero { height: 100vh; min-height: 640px; position: relative; display: flex; align-items: center; overflow: hidden; }
+  .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% center; animation: heroFade 1.8s ease-out forwards; opacity: 0; }
   @keyframes heroFade { 0% { opacity:0; transform:scale(1.04); } 100% { opacity:1; transform:scale(1); } }
-  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(7,16,24,0.88) 45%, rgba(7,16,24,0.2) 100%); }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(7,16,24,0.92) 32%, rgba(7,16,24,0.6) 65%, rgba(7,16,24,0.15) 100%); }
   .hero-content { position: relative; z-index: 2; padding: 0 60px; max-width: 680px; }
-  .hero-eyebrow { font-size: 0.78rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; opacity: 0; animation: slideUp 0.8s 0.6s ease forwards; }
+  .hero-eyebrow { font-size: 0.78rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; opacity: 0; animation: slideUp 0.8s 0.6s ease forwards; font-weight: 700; }
   .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 6vw, 5.2rem); line-height: 1.05; color: #fff; margin-bottom: 20px; opacity: 0; animation: slideUp 0.8s 0.9s ease forwards; font-weight: 900; }
   .hero-name span { color: var(--gold); }
   .hero-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.15rem, 2vw, 1.45rem); color: var(--gold-light); line-height: 1.6; margin-bottom: 36px; opacity: 0; animation: slideUp 0.8s 1.1s ease forwards; }
@@ -300,6 +300,7 @@
     nav { padding: 14px 20px; }
     .nav-links { display: none; }
     .hero-content { padding: 0 28px; }
+    .hero-img { object-position: 74% center; }
     .about-grid, .arizona-grid { grid-template-columns: 1fr; }
     .pillars-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr 1fr; }
@@ -338,9 +339,9 @@
 
 <main>
 
-<!-- HERO -->
+<!-- HERO (CINEMATIC SHOT: POWELL & MONTY AT THE SUPERSTITIONS) -->
 <section class="hero">
-  <img class="hero-img" src="images/powell-parker-founder.webp" alt="Powell Parker on horseback" width="896" height="1199" fetchpriority="high">
+  <img class="hero-img" src="images/powell-monty.webp" alt="Powell Parker with his horse Monty at the foot of the Superstition Mountains" width="1600" height="900" fetchpriority="high">
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="hero-eyebrow">Mesa, Arizona &nbsp;·&nbsp; Producer &nbsp;·&nbsp; Cattleman &nbsp;·&nbsp; Entrepreneur</p>
@@ -493,7 +494,9 @@
   </div>
 </section>
 
-<!-- PARKER COUNTRY DIVIDER -->
+<!-- ============================================================
+     PARKER COUNTRY BRAND DIVIDER (CHAPTER BREAK)
+     ============================================================ -->
 <div class="pc-divider fade-in">
   <img src="images/parker-country-logo.webp" alt="Parker Country Brand" width="700" height="442" loading="lazy">
   <p class="parker-country-text">Parker Country</p>
