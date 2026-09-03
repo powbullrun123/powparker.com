@@ -108,105 +108,71 @@
   .nav-links { display: flex; gap: 22px; list-style: none; align-items: center; }
   .nav-links a { color: var(--light); text-decoration: none; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; transition: opacity 0.2s, color 0.2s; }
   .nav-links a:hover { opacity: 1; color: var(--gold); }
-  .nav-badge-film { border: 1px solid var(--gold); padding: 6px 14px; border-radius: 3px; color: var(--gold) !important; font-weight: 700; background: rgba(201,168,76,0.08); transition: all 0.25s ease; }
+  .nav-badge-film { border: 1px solid var(--gold); padding: 6px 14px; border-radius: 4px; color: var(--gold) !important; font-weight: 700; background: rgba(201,168,76,0.08); transition: all 0.25s ease; }
   .nav-badge-film:hover { background: var(--gold); color: var(--deep) !important; }
   
   /* HERO 1: SUPERSTITION MOUNTAINS */
   .hero { height: 100vh; min-height: 660px; position: relative; display: flex; align-items: center; overflow: hidden; }
   .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% center; animation: heroFade 2s ease-out forwards; opacity: 0; }
   @keyframes heroFade { 0% { opacity:0; transform:scale(1.03); } 100% { opacity:1; transform:scale(1); } }
-  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(7,16,24,0.95) 30%, rgba(7,16,24,0.62) 65%, rgba(7,16,24,0.15) 100%); }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(7,16,24,0.95) 30%, rgba(7,16,24,0.60) 65%, rgba(7,16,24,0.15) 100%); }
   .hero-content { position: relative; z-index: 2; padding: 0 64px; max-width: 720px; }
   .hero-eyebrow { font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; opacity: 0; animation: slideUp 0.8s 0.6s ease forwards; font-weight: 700; }
   .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 6.2vw, 5.4rem); line-height: 1.05; color: #fff; margin-bottom: 20px; opacity: 0; animation: slideUp 0.8s 0.9s ease forwards; font-weight: 900; }
   .hero-name span { color: var(--gold); }
   .hero-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.2rem, 2.1vw, 1.5rem); color: var(--gold-light); line-height: 1.6; margin-bottom: 38px; opacity: 0; animation: slideUp 0.8s 1.1s ease forwards; }
   .hero-cta-group { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; animation: slideUp 0.8s 1.3s ease forwards; }
-  .hero-cta { display: inline-block; padding: 15px 34px; background: var(--gold); color: var(--deep); font-size: 0.85rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.2s; border-radius: 2px; }
+  .hero-cta { display: inline-block; padding: 15px 34px; background: var(--gold); color: var(--deep); font-size: 0.85rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.2s; border-radius: 4px; }
   .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
-  .hero-cta-secondary { display: inline-block; padding: 15px 34px; background: rgba(7,16,24,0.6); border: 2px solid var(--gold); color: var(--gold); font-size: 0.85rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; border-radius: 2px; }
+  .hero-cta-secondary { display: inline-block; padding: 15px 34px; background: rgba(7,16,24,0.6); border: 2px solid var(--gold); color: var(--gold); font-size: 0.85rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; border-radius: 4px; }
   .hero-cta-secondary:hover { background: rgba(201,168,76,0.18); transform: translateY(-2px); }
 
   /* HERO 2: WHERE IT ALL STARTED (UNCROPPED HEAD & FULL HORSE) */
-  .story-hero {
+  .story-section {
     position: relative;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    padding: 80px 0;
-    background: #142813;
+    background: #08121d;
+    padding: 110px 40px;
+    border-bottom: 1px solid rgba(201,168,76,0.25);
   }
-  /* Ambient pasture background stretching 100vw */
-  .story-hero-backdrop {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    overflow: hidden;
-  }
-  .story-hero-backdrop img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    filter: blur(28px);
-    transform: scale(1.1);
-    opacity: 0.65;
-  }
-  .story-hero-gradient {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, rgba(7,16,24,0.96) 0%, rgba(7,16,24,0.90) 48%, rgba(7,16,24,0.35) 75%, rgba(7,16,24,0.10) 100%);
-  }
-  /* Two-column layout: Text left, full uncropped horse & rider right */
-  .story-hero-wrap {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 1300px;
+  .story-grid {
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 0 40px;
     display: grid;
-    grid-template-columns: 1.15fr 0.85fr;
-    gap: 40px;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 60px;
     align-items: center;
   }
-  .story-hero-content {
-    max-width: 660px;
+  .story-content {
+    max-width: 640px;
   }
-  .story-hero-title {
+  .story-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.2rem, 4vw, 3.4rem);
-    line-height: 1.15;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    line-height: 1.18;
     color: #fff;
     margin-bottom: 20px;
     font-weight: 800;
   }
-  .story-hero-desc {
+  .story-desc {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.25rem;
-    line-height: 1.8;
+    line-height: 1.85;
     color: var(--light);
-    margin-bottom: 16px;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+    margin-bottom: 18px;
   }
-  .story-hero-photo-box {
+  .story-photo-box {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .story-hero-photo-box img {
-    max-height: 84vh;
-    width: auto;
-    max-width: 100%;
-    object-fit: contain;
+  .story-photo-box img {
+    width: 100%;
+    max-width: 520px;
+    height: auto;
     display: block;
-    filter: drop-shadow(0 15px 35px rgba(0,0,0,0.85));
+    border: 2px solid var(--gold);
     border-radius: 4px;
+    box-shadow: 0 16px 45px rgba(0,0,0,0.85);
   }
   
   @keyframes slideUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
@@ -217,54 +183,71 @@
   .section-body { font-family: 'Cormorant Garamond', serif; font-size: 1.26rem; line-height: 1.85; color: var(--light); max-width: 720px; }
   .divider { width: 60px; height: 3px; background: var(--gold); margin: 24px 0; }
   
-  /* THE FOUR FRONTS: OLD TUCSON MOVIE STUDIO BACKDROP */
-  .pillars-section {
-    position: relative;
-    padding: 120px 40px;
-    overflow: hidden;
-    background: #071018;
-  }
-  .old-tucson-bg {
+  /* REUSABLE BACKDROP SETTINGS (LIGHT ENOUGH TO CLEARLY SEE) */
+  .backdrop-container {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
     z-index: 1;
+    overflow: hidden;
   }
-  .old-tucson-bg img {
+  .backdrop-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center;
     display: block;
   }
-  .old-tucson-overlay {
+  .backdrop-overlay-tucson {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(7,16,24,0.84) 0%, rgba(14,24,36,0.74) 50%, rgba(7,16,24,0.88) 100%);
+    background: linear-gradient(180deg, rgba(7,16,24,0.45) 0%, rgba(14,24,36,0.38) 50%, rgba(7,16,24,0.52) 100%);
+  }
+  .backdrop-overlay-bonanza {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(7,16,24,0.40) 0%, rgba(11,22,34,0.35) 50%, rgba(7,16,24,0.48) 100%);
+  }
+  .backdrop-overlay-studio {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(7,16,24,0.42) 0%, rgba(26,18,8,0.32) 50%, rgba(7,16,24,0.50) 100%);
+  }
+  .backdrop-overlay-ranch {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(7,16,24,0.45) 0%, rgba(14,26,38,0.38) 50%, rgba(7,16,24,0.52) 100%);
+  }
+
+  /* THE FOUR FRONTS */
+  .pillars-section {
+    position: relative;
+    padding: 120px 40px;
+    overflow: hidden;
+    background: #071018;
   }
   .pillars-grid {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 24px;
     margin-bottom: 60px;
   }
   .pillar {
-    background: rgba(11,22,34,0.88);
+    background: rgba(11,22,34,0.90);
     backdrop-filter: blur(10px);
     padding: 40px 32px;
-    border: 1px solid rgba(201,168,76,0.35);
-    border-top: 3px solid var(--gold);
+    border: 2px solid var(--gold);
+    border-radius: 4px;
     transition: all 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
   }
   .pillar:hover {
     background: rgba(17,32,48,0.96);
-    border-color: var(--gold);
     transform: translateY(-4px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.8), 0 0 20px rgba(201,168,76,0.2);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.85), 0 0 20px rgba(201,168,76,0.25);
   }
   .pillar-icon-box {
     width: 52px; height: 52px; border-radius: 4px;
@@ -281,59 +264,38 @@
   }
   .pillar-link:hover { border-bottom-color: var(--gold); color: var(--gold-light); }
 
-  /* PARKER FILMS SECTION: BONANZA CREEK BACKDROP */
+  /* PARKER FILMS SECTION */
   #projects {
     position: relative;
     padding: 120px 20px;
     overflow: hidden;
     background: #071018;
   }
-  .film-backdrop {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
-  .film-backdrop img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-  }
-  .film-backdrop-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(7,16,24,0.78) 0%, rgba(11,22,34,0.65) 50%, rgba(7,16,24,0.85) 100%);
-  }
   .film-showcase-card {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     max-width: 980px;
     margin: 0 auto;
-    border: 3px solid var(--gold);
-    background: rgba(11,22,34,0.95);
+    border: 2px solid var(--gold);
+    border-radius: 4px;
+    background: rgba(11,22,34,0.94);
     backdrop-filter: blur(12px);
     overflow: hidden;
-    box-shadow: 0 24px 80px rgba(0,0,0,0.9), 0 0 45px rgba(201,168,76,0.25);
+    box-shadow: 0 24px 80px rgba(0,0,0,0.9);
   }
-  .film-showcase-card::before { content: ''; position: absolute; top: -3px; left: -3px; width: 60px; height: 60px; border-top: 5px solid var(--gold); border-left: 5px solid var(--gold); z-index: 10; pointer-events: none; }
-  .film-showcase-card::after { content: ''; position: absolute; bottom: -3px; right: -3px; width: 60px; height: 60px; border-bottom: 5px solid var(--gold); border-right: 5px solid var(--gold); z-index: 10; pointer-events: none; }
-  
   .film-brand-banner {
     padding: 46px 24px 28px;
-    background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, rgba(11,22,34,0.98) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(11,22,34,0.98) 100%);
     text-align: center;
     border-bottom: 1px solid rgba(201,168,76,0.25);
   }
   .film-brand-img {
-    max-width: 460px;
-    width: 88%;
+    max-width: 440px;
+    width: 86%;
     height: auto;
     display: block;
     margin: 0 auto;
-    filter: drop-shadow(0 4px 22px rgba(201,168,76,0.35));
+    filter: drop-shadow(0 4px 18px rgba(201,168,76,0.35));
     transition: transform 0.4s ease;
   }
   .film-brand-img:hover { transform: scale(1.02); }
@@ -355,12 +317,12 @@
     display: inline-flex; align-items: center; gap: 10px; padding: 18px 40px;
     background: linear-gradient(135deg, var(--gold) 0%, #E8D5A3 100%);
     color: #071018; font-weight: 800; font-size: 0.92rem; letter-spacing: 0.14em;
-    text-transform: uppercase; text-decoration: none; border-radius: 3px;
+    text-transform: uppercase; text-decoration: none; border-radius: 4px;
     transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 25px rgba(201,168,76,0.35);
   }
   .film-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 35px rgba(201,168,76,0.55); }
 
-  /* PARKER COUNTRY: LIVE MOVIE STUDIO SET (BONAZA-CREEK.JPG) */
+  /* PARKER COUNTRY: LIVE MOVIE STUDIO SET BACKDROP */
   .pc-divider {
     position: relative;
     width: 100vw;
@@ -371,32 +333,13 @@
     justify-content: center;
     padding: 90px 20px;
     overflow: hidden;
-    border-top: 3px solid var(--gold);
-    border-bottom: 3px solid var(--gold);
+    border-top: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
     background: #071018;
-  }
-  .pc-bg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
-  .pc-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-  }
-  .pc-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(7,16,24,0.76) 0%, rgba(26,18,8,0.55) 50%, rgba(7,16,24,0.82) 100%);
   }
   .pc-content {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     text-align: center;
     max-width: 920px;
   }
@@ -406,55 +349,33 @@
     height: auto;
     display: block;
     margin: 0 auto 20px;
-    filter: drop-shadow(0 6px 24px rgba(0,0,0,0.9));
+    filter: drop-shadow(0 6px 24px rgba(0,0,0,0.95));
   }
   .parker-country-text { font-family: 'Rye', serif; font-size: clamp(2rem, 4.5vw, 3.2rem); color: #C9A84C; letter-spacing: 0.16em; text-transform: uppercase; text-shadow: 2px 3px 8px rgba(0,0,0,0.9); margin: 0; display: block; }
   .western-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 32px; padding: 0 20px; }
-  .western-link { display: inline-block; padding: 14px 26px; font-family: 'Rye', serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: #C9A84C !important; background: linear-gradient(135deg, rgba(20,12,6,0.92) 0%, rgba(45,30,16,0.92) 100%); border: 2px solid rgba(201,168,76,0.5); border-radius: 4px; box-shadow: 0 6px 16px rgba(0,0,0,0.6); transition: all 0.2s ease; }
-  .western-link:hover { transform: translateY(-2px); border-color: var(--gold); box-shadow: 0 10px 25px rgba(201,168,76,0.25); color: #fff !important; }
+  .western-link { display: inline-block; padding: 14px 26px; font-family: 'Rye', serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: #C9A84C !important; background: rgba(20,12,6,0.92); border: 2px solid var(--gold); border-radius: 4px; box-shadow: 0 6px 16px rgba(0,0,0,0.6); transition: all 0.2s ease; }
+  .western-link:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(201,168,76,0.25); color: #fff !important; }
 
-  /* WORKING RANGE: CERRO PELON LIVE ACTION BACKDROP + EXPANDED FULL-BLEED FRAMES */
+  /* WORKING RANGE */
   #ranch {
     position: relative;
     padding: 120px 20px;
     overflow: hidden;
     background: #071018;
   }
-  .ranch-backdrop {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
-  .ranch-backdrop img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block;
-  }
-  .ranch-backdrop-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(7,16,24,0.85) 0%, rgba(14,26,38,0.75) 50%, rgba(7,16,24,0.90) 100%);
-  }
-  .life-header { position: relative; z-index: 2; text-align: center; margin-bottom: 70px; }
-  .photo-cards { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 80px; max-width: 1040px; margin: 0 auto; }
-  .photo-card { border: 2px solid var(--gold); background: rgba(14,24,36,0.96); backdrop-filter: blur(8px); overflow: hidden; position: relative; box-shadow: 0 18px 50px rgba(0,0,0,0.8); }
-  .photo-card::before, .photo-card::after { content: ''; position: absolute; width: 40px; height: 40px; z-index: 10; pointer-events: none; }
-  .photo-card::before { top: -2px; left: -2px; border-top: 4px solid var(--gold); border-left: 4px solid var(--gold); }
-  .photo-card::after { bottom: -2px; right: -2px; border-bottom: 4px solid var(--gold); border-right: 4px solid var(--gold); }
+  .life-header { position: relative; z-index: 3; text-align: center; margin-bottom: 70px; }
+  .photo-cards { position: relative; z-index: 3; display: flex; flex-direction: column; gap: 80px; max-width: 1040px; margin: 0 auto; }
+  .photo-card { border: 2px solid var(--gold); border-radius: 4px; background: rgba(14,24,36,0.94); backdrop-filter: blur(8px); overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,0.8); }
   
-  /* Full-bleed expanded frames: NO black letterboxing */
+  /* Edge-to-edge images - ZERO black pillarboxing */
   .photo-card-img-wrap {
     position: relative;
     width: 100%;
-    height: 520px;
+    height: 540px;
     overflow: hidden;
-    background: #0a1520;
+    background: #071018;
   }
-  .photo-card-img-wrap.vertical-frame {
+  .photo-card-img-wrap.tall-frame {
     height: 640px;
   }
   .photo-card-img-wrap img {
@@ -474,7 +395,7 @@
 
   /* ARIZONA */
   .arizona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-  .arizona-photo { width: 100%; height: auto; object-fit: contain; border: 3px solid rgba(201,168,76,0.3); display: block; background: #000; }
+  .arizona-photo { width: 100%; height: auto; object-fit: contain; border: 2px solid var(--gold); border-radius: 4px; display: block; background: #000; }
   .moon-divider { position: relative; width: 100%; height: 60vh; min-height: 400px; overflow: hidden; }
   .moon-divider img { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
   .moon-divider-dim { position: absolute; inset: 0; background: rgba(7,16,24,0.38); }
@@ -485,13 +406,13 @@
   /* GIVING */
   .giving { background: var(--navy); text-align: center; }
   .charity-grid { display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
-  .charity-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.22); padding: 32px 30px; max-width: 280px; }
+  .charity-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.22); border-radius: 4px; padding: 32px 30px; max-width: 280px; }
   .charity-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--gold); margin-bottom: 10px; }
   .charity-desc { font-size: 0.92rem; line-height: 1.65; color: var(--light); opacity: 0.85; }
 
   /* BUSINESS / ASSET RECOVERY */
   .biz-card-section { background: var(--deep); }
-  .biz-card { max-width: 880px; margin: 0 auto; background: linear-gradient(135deg, var(--navy) 0%, #0d1f33 100%); border: 1px solid rgba(201,168,76,0.4); padding: 64px 70px; text-align: center; box-shadow: 0 24px 80px rgba(0,0,0,0.6); position: relative; }
+  .biz-card { max-width: 880px; margin: 0 auto; background: linear-gradient(135deg, var(--navy) 0%, #0d1f33 100%); border: 2px solid var(--gold); border-radius: 4px; padding: 64px 70px; text-align: center; box-shadow: 0 24px 80px rgba(0,0,0,0.6); position: relative; }
   .biz-card-name { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: #fff; margin-bottom: 6px; }
   .biz-card-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.25rem; color: var(--gold); margin-bottom: 24px; }
   .biz-card-divider { width: 80px; height: 2px; background: var(--gold); margin: 0 auto 24px; }
@@ -503,7 +424,7 @@
   /* CONTACT */
   .contact { background: var(--deep); text-align: center; }
   .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; max-width: 920px; margin-left: auto; margin-right: auto; }
-  .contact-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.22); padding: 32px 24px; transition: all 0.3s ease; }
+  .contact-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(201,168,76,0.22); border-radius: 4px; padding: 32px 24px; transition: all 0.3s ease; }
   .contact-card:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
   .contact-label { font-size: 0.74rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-weight: 700; }
   .contact-value { font-size: 1rem; color: #fff; }
@@ -516,7 +437,7 @@
   /* SOCIAL HUB */
   .social-hub { background: var(--navy); padding: 50px 40px; text-align: center; border-top: 1px solid rgba(201,168,76,0.2); border-bottom: 1px solid rgba(201,168,76,0.2); }
   .social-hub-inner { max-width: 600px; margin: 0 auto; }
-  .social-hub-photo { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; border: 4px solid var(--gold); margin: 0 auto 20px; display: block; }
+  .social-hub-photo { width: 120px; height: 120px; object-fit: cover; border-radius: 50%; border: 3px solid var(--gold); margin: 0 auto 20px; display: block; }
   .social-hub-title { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: #fff; margin-bottom: 6px; }
   .social-hub-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: var(--light); opacity: 0.8; margin-bottom: 26px; }
   .social-hub-btns { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
@@ -541,12 +462,12 @@
     nav { padding: 14px 20px; }
     .nav-links { display: none; }
     .hero-content { padding: 0 20px; }
-    .story-hero-wrap { grid-template-columns: 1fr; padding: 0 24px; gap: 30px; }
-    .story-hero-photo-box img { max-height: 60vh; }
+    .story-grid { grid-template-columns: 1fr; gap: 40px; }
+    .story-section { padding: 70px 20px; }
     .about-grid, .arizona-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
     section { padding: 70px 20px; }
-    .photo-card-img-wrap, .photo-card-img-wrap.vertical-frame { height: 380px; }
+    .photo-card-img-wrap, .photo-card-img-wrap.tall-frame { height: 380px; }
     .film-showcase-card { margin: 0 -10px; }
     .biz-card { padding: 40px 20px; }
     .pc-divider { padding: 70px 14px; }
@@ -560,7 +481,7 @@
   <a class="nav-logo" href="#">Powell Parker</a>
   <ul class="nav-links">
     <li><a href="#about">The Story</a></li>
-    <li><a href="#projects" class="nav-badge-film">✦ Parker Films</a></li>
+    <li><a href="#projects" class="nav-badge-film">Parker Films</a></li>
     <li><a href="#ranch">Ranch &amp; Range</a></li>
     <li><a href="#arizona">Arizona</a></li>
     <li><a href="#giving">Giving Back</a></li>
@@ -579,7 +500,7 @@
   <img class="hero-img" src="images/powell-monty.webp" alt="Powell Parker with horse Monty at the foot of the Superstition Mountains" width="1600" height="900" fetchpriority="high">
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Mesa, Arizona &nbsp;&bull;&nbsp; Producer &nbsp;&bull;&nbsp; Cattleman &nbsp;&bull;&nbsp; Storyteller</p>
+    <p class="hero-eyebrow">Mesa, Arizona &bull; Producer &bull; Cattleman &bull; Storyteller</p>
     <h1 class="hero-name">Powell <span>Parker</span></h1>
     <p class="hero-sub">Producer. Screenwriter. Arizona Cowboy.<br>Founder of Parker Films LLC &amp; Rightful Returns Recovery.</p>
     <div class="hero-cta-group">
@@ -590,54 +511,49 @@
 </section>
 
 <!-- ============================================================
-     HERO 2: WHERE IT ALL STARTED
-     (FULL PASTURE HORIZON + UNCROPPED HEAD & FULL HORSE)
+     HERO 2: WHERE IT ALL STARTED (CLEAN SPLIT - ZERO CHOPPING)
      ============================================================ -->
-<section id="about" class="story-hero">
-  <!-- Pasture background stretching 100vw -->
-  <div class="story-hero-backdrop">
-    <img src="images/powell-hero.webp" onerror="this.onerror=null; this.src='powell-hero.webp';" alt="Pasture Horizon">
-    <div class="story-hero-gradient"></div>
-  </div>
-  
-  <div class="story-hero-wrap">
-    <!-- Story Column -->
-    <div class="story-hero-content fade-in">
+<section id="about" class="story-section">
+  <div class="story-grid">
+    
+    <!-- Left Column: Story -->
+    <div class="story-content fade-in">
       <p class="section-label">Where It All Started &bull; West Texas &bull; Arizona Desert</p>
-      <h2 class="story-hero-title">Born in Hereford, Texas.<br>Built in the Arizona Desert.</h2>
+      <h2 class="story-title">Born in Hereford, Texas.<br>Built in the Arizona Desert.</h2>
       <div class="divider"></div>
-      <p class="story-hero-desc">
+      <p class="story-desc">
         I grew up in Hereford, Texas &mdash; a town where a man’s word is a binding contract. In the 80s we moved to Rocky, Oklahoma, a small farming and ranching town in Tornado Alley where I learned early what it means to weather hard storms and keep showing up.
       </p>
-      <p class="story-hero-desc">
+      <p class="story-desc">
         I lived in Queen Creek, Arizona back when it was red dirt roads and cotton fields. I competed in High School and College Rodeos across the state in Team Roping and Bulldogging. The rodeo arena doesn't care about excuses &mdash; you either prepare, rate your steer, and execute, or you taste dirt.
       </p>
-      <p class="story-hero-desc">
+      <p class="story-desc">
         I built my life around three things that never change: my faith, my family, and my word. Everything else &mdash; the screenplays, the film packaging, and the business operations &mdash; flows directly out of that foundation.
       </p>
       <div style="margin-top: 28px;">
-        <a href="#ranch" class="hero-cta-secondary" style="border-radius:3px;">Explore Range &amp; Cattle Works &rarr;</a>
+        <a href="#ranch" class="hero-cta-secondary">Explore Range &amp; Cattle Works &rarr;</a>
       </div>
     </div>
 
-    <!-- Powell & Monty: 100% Uncropped (Hat to Hooves) -->
-    <div class="story-hero-photo-box fade-in">
+    <!-- Right Column: Full Uncropped Powell & Monty (Hat to Hooves) -->
+    <div class="story-photo-box fade-in">
       <img src="images/powell-hero.webp" onerror="this.onerror=null; this.src='powell-hero.webp';" alt="Powell Parker mounted on horseback in the pasture" loading="lazy">
     </div>
+
   </div>
 </section>
 
 <!-- ============================================================
-     THE FOUR FRONTS: OLD TUCSON MOVIE STUDIO BACKDROP
+     THE FOUR FRONTS: OLD TUCSON MOVIE STUDIO BACKDROP (LIGHT & CLEAR)
      ============================================================ -->
 <section class="pillars-section">
   <!-- Old Tucson Live Western Backdrop -->
-  <div class="old-tucson-bg">
-    <img src="images/old-tucson.webp" onerror="this.onerror=null; this.src='old-tucson.webp'; this.onerror=function(){this.src='images/old-tucson.jpg';};" alt="Old Tucson Movie Studio">
-    <div class="old-tucson-overlay"></div>
+  <div class="backdrop-container">
+    <img class="backdrop-img" src="images/old-tucson.webp" onerror="this.onerror=null; this.src='old-tucson.webp'; this.onerror=function(){this.src='images/old-tucson.jpg';};" alt="Old Tucson Movie Studio">
+    <div class="backdrop-overlay-tucson"></div>
   </div>
 
-  <div class="section-inner" style="position:relative; z-index:2;">
+  <div class="section-inner" style="position:relative; z-index:3;">
     <div style="text-align:center; margin-bottom:56px;" class="fade-in">
       <p class="section-label">Foundational Pillars &bull; Old Tucson Heritage</p>
       <h2 class="section-title">The Four Fronts</h2>
@@ -709,7 +625,7 @@
     </div>
 
     <!-- QUOTE CALLOUT -->
-    <div style="border-left:4px solid var(--gold); padding:28px 36px; background:rgba(7,16,24,0.92); border: 1px solid rgba(201,168,76,0.3); border-left: 4px solid var(--gold); max-width:780px; margin:0 auto;" class="fade-in">
+    <div style="border: 2px solid var(--gold); border-radius: 4px; padding:28px 36px; background:rgba(7,16,24,0.92); max-width:780px; margin:0 auto;" class="fade-in">
       <p style="font-family:'Cormorant Garamond',serif; font-size:1.55rem; font-style:italic; color:var(--gold-light); line-height:1.65;">
         &ldquo;I was raised to believe that the more you're given, the more you're responsible to give. I take that seriously — with my time, my blood, and my money.&rdquo;
       </p>
@@ -720,21 +636,21 @@
 
 <!-- ============================================================
      PARKER FILMS LLC: FEATURE SLATE SHOWCASE
-     (BACKDROP: BONANZA CREEK MOVIE RANCH)
+     (BACKDROP: BONANZA CREEK MOVIE RANCH - LIGHT & CLEAR)
      ============================================================ -->
 <section id="projects">
-  <div class="film-backdrop">
-    <img src="images/bonanza-creek.webp" onerror="this.onerror=null; this.src='bonanza-creek.webp'; this.onerror=function(){this.src='images/bonanza-creek.jpg';};" alt="Bonanza Creek Movie Ranch">
-    <div class="film-backdrop-overlay"></div>
+  <div class="backdrop-container">
+    <img class="backdrop-img" src="images/bonanza-creek.webp" onerror="this.onerror=null; this.src='bonanza-creek.webp'; this.onerror=function(){this.src='images/bonanza-creek.jpg';};" alt="Bonanza Creek Movie Ranch">
+    <div class="backdrop-overlay-bonanza"></div>
   </div>
 
   <div class="film-showcase-card fade-in">
     
-    <!-- CLEAR LOGO BANNER -->
+    <!-- CLEAR LOGO BANNER (MULTI-TIER FALLBACK - NEVER SHOWS BROKEN ICON) -->
     <div class="film-brand-banner">
       <a href="https://parker-films.com" target="_blank" title="Visit Parker Films LLC Official Site">
         <img src="images/parker-films-logo-clear.png"
-             onerror="this.onerror=null; this.src='images/paker-films-logo-clear.png'; this.onerror=function(){this.src='parker-films-logo-clear.png'; this.onerror=function(){this.src='paker-films-logo-clear.png'; this.onerror=function(){this.src='images/logo.webp';};};};"
+             onerror="if(!this.dataset.t1){this.dataset.t1=true;this.src='images/paker-films-logo-clear.png';}else if(!this.dataset.t2){this.dataset.t2=true;this.src='parker-films-logo-clear.png';}else if(!this.dataset.t3){this.dataset.t3=true;this.src='paker-films-logo-clear.png';}else{this.src='images/logo.webp';}"
              alt="Parker Films LLC"
              loading="lazy"
              class="film-brand-img">
@@ -756,7 +672,7 @@
         <div class="film-feature-box">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
             <h3 style="font-family:'Playfair Display', serif; font-size: 1.55rem; color: var(--gold); margin: 0;">The First Las Vegas</h3>
-            <span style="font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-light); background: rgba(201,168,76,0.15); border: 1px solid var(--gold); padding: 5px 12px; border-radius: 3px;">Historical Western / Crime Epic</span>
+            <span style="font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-light); background: rgba(201,168,76,0.15); border: 1px solid var(--gold); padding: 5px 12px; border-radius: 4px;">Historical Western / Crime Epic</span>
           </div>
           <p style="font-family:'Cormorant Garamond', serif; font-style: italic; font-size: 1.25rem; color: var(--gold-light); margin-bottom: 12px;">
             &ldquo;Before Tombstone had a fight, Las Vegas had a war.&rdquo;
@@ -773,7 +689,7 @@
         <div class="film-feature-box">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 12px;">
             <h3 style="font-family:'Playfair Display', serif; font-size: 1.55rem; color: var(--gold); margin: 0;">Double Down or Die</h3>
-            <span style="font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-light); background: rgba(201,168,76,0.15); border: 1px solid var(--gold); padding: 5px 12px; border-radius: 3px;">Biographical Thriller</span>
+            <span style="font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-light); background: rgba(201,168,76,0.15); border: 1px solid var(--gold); padding: 5px 12px; border-radius: 4px;">Biographical Thriller</span>
           </div>
           <p style="font-family:'Cormorant Garamond', serif; font-style: italic; font-size: 1.25rem; color: var(--gold-light); margin-bottom: 12px;">
             &ldquo;When it absolutely, positively has to be there overnight.&rdquo;
@@ -800,16 +716,14 @@
 </section>
 
 <!-- ============================================================
-     PARKER COUNTRY: LIVE MOVIE STUDIO SET (BONAZA-CREEK.JPG)
+     PARKER COUNTRY: LIVE MOVIE STUDIO SET (BONAZA-CREEK.JPG - LIGHT & CLEAR)
      ============================================================ -->
 <div class="pc-divider fade-in">
-  <div class="pc-bg">
-    <img src="images/bonaza-creek.jpg"
-         onerror="this.onerror=null; this.src='bonaza-creek.jpg'; this.onerror=function(){this.src='images/bonanza-creek.jpg'; this.onerror=function(){this.src='bonanza-creek.webp';};};"
-         alt="Bonanza Creek Live Movie Studio Set"
-         loading="lazy">
-    <div class="pc-overlay"></div>
+  <div class="backdrop-container">
+    <img class="backdrop-img" src="images/bonaza-creek.jpg" onerror="this.onerror=null; this.src='bonaza-creek.jpg'; this.onerror=function(){this.src='images/bonanza-creek.jpg'; this.onerror=function(){this.src='bonanza-creek.webp';};};" alt="Bonanza Creek Live Western Movie Studio Set">
+    <div class="backdrop-overlay-studio"></div>
   </div>
+
   <div class="pc-content">
     <img src="images/parker-country-logo.webp" alt="Parker Country Brand" width="700" height="442" loading="lazy" class="pc-brand-logo">
     <p class="parker-country-text">Parker Country</p>
@@ -827,16 +741,13 @@
 </div>
 
 <!-- ============================================================
-     THE WORKING RANGE: CERRO PELON LIVE ACTION BACKDROP
-     (EXPANDED FULL-BLEED FRAMES - ZERO LETTERBOXING)
+     THE WORKING RANGE: CERRO PELON LIVE ACTION BACKDROP (LIGHT & CLEAR)
+     (ZERO BLACK PILLARBOXES - 100% COVERAGE)
      ============================================================ -->
 <section class="life-photos" id="ranch">
-  <!-- Cerro Pelon Live Action Backdrop -->
-  <div class="ranch-backdrop">
-    <img src="images/cerro-pelon-live-action.webp"
-         onerror="this.onerror=null; this.src='cerro-pelon-live-action.webp'; this.onerror=function(){this.src='images/cerro-pelon-live-action.jpg'; this.onerror=function(){this.src='cerro-pelon-live-action.jpg';};};"
-         alt="Cerro Pelon Live Action Movie Set">
-    <div class="ranch-backdrop-overlay"></div>
+  <div class="backdrop-container">
+    <img class="backdrop-img" src="images/cerro-pelon-live-action.webp" onerror="this.onerror=null; this.src='cerro-pelon-live-action.webp'; this.onerror=function(){this.src='images/cerro-pelon-live-action.jpg'; this.onerror=function(){this.src='cerro-pelon-live-action.jpg';};};" alt="Cerro Pelon Live Action Western Set">
+    <div class="backdrop-overlay-ranch"></div>
   </div>
 
   <div class="life-header fade-in">
@@ -850,7 +761,7 @@
 
   <div class="photo-cards">
 
-    <!-- 1. GATHERING NEBRASKA HERDS (EXPANDED WIDESCREEN) -->
+    <!-- 1. GATHERING NEBRASKA HERDS (EXPANDED WIDESCREEN - NO BLACK BARS) -->
     <div class="photo-card fade-in">
       <div class="photo-card-img-wrap">
         <img src="images/powell-nebraska-gather.webp" style="object-position: center 30%;" alt="Powell Parker gathering black Angus cattle on horseback under vast open skies" loading="lazy" width="1200" height="800">
@@ -895,9 +806,9 @@
       </div>
     </div>
 
-    <!-- 4. PASTURE DOCTORING (FULL-HEIGHT EXPANDED) -->
+    <!-- 4. PASTURE DOCTORING (FULL-HEIGHT EXPANDED - NO BLACK BARS) -->
     <div class="photo-card fade-in">
-      <div class="photo-card-img-wrap vertical-frame">
+      <div class="photo-card-img-wrap tall-frame">
         <img src="images/powell-pasture-doctoring.webp" style="object-position: center center;" alt="Doctoring a yearling steer stretched out between two horses on taut ropes in open pasture" loading="lazy" width="1000" height="1333">
       </div>
       <div class="photo-card-body">
@@ -910,9 +821,9 @@
       </div>
     </div>
 
-    <!-- 5. BRANDING & GROUNDWORK (FULL-HEIGHT EXPANDED) -->
+    <!-- 5. BRANDING & GROUNDWORK (FULL-HEIGHT EXPANDED - NO BLACK BARS) -->
     <div class="photo-card fade-in">
-      <div class="photo-card-img-wrap vertical-frame">
+      <div class="photo-card-img-wrap tall-frame">
         <img src="images/powell-branding-groundwork.webp" style="object-position: center 30%;" alt="Powell Parker flanking and holding down a calf in chaps during branding and vaccinations" loading="lazy" width="1000" height="1333">
       </div>
       <div class="photo-card-body">
@@ -994,7 +905,7 @@
 
     <!-- MOUNT LEMMON -->
     <div class="photo-card fade-in">
-      <div class="photo-card-img-wrap vertical-frame">
+      <div class="photo-card-img-wrap tall-frame">
         <img src="images/mount-lemmon-family.webp" style="object-position: center 20%;" alt="Mount Lemmon family time" loading="lazy" width="1000" height="1333">
       </div>
       <div class="photo-card-body">
@@ -1007,7 +918,7 @@
 
     <!-- FISHING -->
     <div class="photo-card fade-in">
-      <div class="photo-card-img-wrap vertical-frame">
+      <div class="photo-card-img-wrap tall-frame">
         <img src="images/couple-fishing.webp" style="object-position: center 25%;" alt="Powell and Cristina fishing at an Arizona mountain lake" loading="lazy" width="1100" height="1208">
       </div>
       <div class="photo-card-body">
@@ -1044,11 +955,11 @@
       <p class="section-body" style="margin: 0 auto; max-width: 680px; text-align: center;">I was raised to believe that the more you're given, the more you're responsible to give. I take that seriously — not just with financial support, but with time, effort, and my own blood. Every single month.</p>
     </div>
 
-    <div style="max-width:760px; margin:48px auto; background:rgba(255,255,255,0.04); border:2px solid rgba(201,168,76,0.35); padding:48px 40px; text-align:center;" class="fade-in">
+    <div style="max-width:760px; margin:48px auto; background:rgba(255,255,255,0.04); border: 2px solid var(--gold); border-radius: 4px; padding:48px 40px; text-align:center;" class="fade-in">
       <div style="font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--gold); margin-bottom:12px;">Monthly Plasma &amp; Blood Donation</div>
       <p style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.18rem; color:var(--gold-light); margin-bottom:20px; line-height:1.65;">Every month without exception. Showing up consistently is the only way to make a tangible difference in someone’s recovery.</p>
       <p style="font-size:0.95rem; color:rgba(245,240,232,0.85); line-height:1.75; max-width:560px; margin:0 auto 28px;">Powell donates plasma and blood monthly at BioLife Plasma Services, aiding the manufacture of life-saving therapies for patients with rare and chronic conditions.</p>
-      <a href="https://www.biolifeplasma.com" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:14px 36px; background:var(--gold); color:var(--deep); font-size:0.82rem; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; text-decoration:none;">Learn About BioLife Plasma &rarr;</a>
+      <a href="https://www.biolifeplasma.com" target="_blank" rel="noopener noreferrer" style="display:inline-block; padding:14px 36px; background:var(--gold); color:var(--deep); font-size:0.82rem; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; text-decoration:none; border-radius: 4px;">Learn About BioLife Plasma &rarr;</a>
     </div>
 
     <div class="charity-grid">
@@ -1081,11 +992,11 @@
       <div class="biz-card-name">Powell Parker</div>
       <div class="biz-card-title">Founder &amp; Managing Member — Rightful Returns Recovery</div>
       <div class="biz-card-divider"></div>
-      <div class="biz-card-tagline">Finding Hidden Assets &nbsp;&bull;&nbsp; Recovering What's Rightfully Yours &nbsp;&bull;&nbsp; TX &bull; AZ &bull; GA</div>
+      <div class="biz-card-tagline">Finding Hidden Assets &bull; Recovering What's Rightfully Yours &bull; TX &bull; AZ &bull; GA</div>
       <div class="biz-card-logo"><img src="images/rrr-logo.webp" alt="Rightful Returns Recovery Shield Logo" loading="lazy" width="480" height="480"></div>
       <div class="biz-card-motto">&ldquo;Finding Hidden Assets. Recovering What's Rightfully Yours.&rdquo;</div>
-      <div style="margin-top: 20px;"><a href="https://www.rightfulreturnsrecovery.com" target="_blank" style="display:inline-block; padding:16px 44px; background:var(--gold); color:var(--deep); font-weight:800; font-size:0.88rem; letter-spacing:0.14em; text-transform:uppercase; text-decoration:none;">Visit RightfulReturnsRecovery.com &rarr;</a></div>
-      <div style="margin-top: 18px; font-size: 0.85rem; opacity: 0.65; color: var(--light);">Toll-Free: <a href="tel:18004282022" style="color:var(--gold); text-decoration:none;">1-800-428-2022</a> &nbsp;&bull;&nbsp; Mesa: <a href="tel:14807882320" style="color:var(--gold); text-decoration:none;">480-788-2320</a> &nbsp;&bull;&nbsp; Texas: <a href="tel:12148381883" style="color:var(--gold); text-decoration:none;">214-838-1883</a></div>
+      <div style="margin-top: 20px;"><a href="https://www.rightfulreturnsrecovery.com" target="_blank" style="display:inline-block; padding:16px 44px; background:var(--gold); color:var(--deep); font-weight:800; font-size:0.88rem; letter-spacing:0.14em; text-transform:uppercase; text-decoration:none; border-radius: 4px;">Visit RightfulReturnsRecovery.com &rarr;</a></div>
+      <div style="margin-top: 18px; font-size: 0.85rem; opacity: 0.65; color: var(--light);">Toll-Free: <a href="tel:18004282022" style="color:var(--gold); text-decoration:none;">1-800-428-2022</a> &bull; Mesa: <a href="tel:14807882320" style="color:var(--gold); text-decoration:none;">480-788-2320</a> &bull; Texas: <a href="tel:12148381883" style="color:var(--gold); text-decoration:none;">214-838-1883</a></div>
     </div>
   </div>
 </section>
@@ -1104,7 +1015,7 @@
       <div class="biz-card-title">Branded Messages. Live Forever. Edit After Sending.</div>
       <div class="biz-card-divider"></div>
       <div class="biz-card-tagline">Real Estate &bull; Film Packages &bull; Executive Portfolios</div>
-      <div style="margin-top: 20px;"><a href="https://www.parlaypen.com/s/powparker/parlaypen-com-raise--a4mp" target="_blank" style="display:inline-block; padding:16px 44px; background:var(--gold); color:var(--deep); font-weight:800; font-size:0.88rem; letter-spacing:0.14em; text-transform:uppercase; text-decoration:none;">See a Real Parlayed Message &rarr;</a></div>
+      <div style="margin-top: 20px;"><a href="https://www.parlaypen.com/s/powparker/parlaypen-com-raise--a4mp" target="_blank" style="display:inline-block; padding:16px 44px; background:var(--gold); color:var(--deep); font-weight:800; font-size:0.88rem; letter-spacing:0.14em; text-transform:uppercase; text-decoration:none; border-radius: 4px;">See a Real Parlayed Message &rarr;</a></div>
       <div style="margin-top: 18px; font-size: 0.85rem; opacity: 0.65; color: var(--light);">Or visit <a href="https://www.parlaypen.com" target="_blank" style="color:var(--gold); text-decoration:none;">ParlayPen.com</a> to get started free</div>
     </div>
   </div>
@@ -1128,7 +1039,7 @@
 
   <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:20px; max-width:960px; margin:0 auto 60px;">
     <!-- George Strait -->
-    <a href="https://music.apple.com/us/library/playlist/p.3VJWu8zok8L" target="_blank" class="music-card fade-in" style="background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.25); border-radius:12px; padding:28px 22px; transition:transform 0.25s, border-color 0.25s, background 0.25s; cursor:pointer; text-decoration:none; display:block;">
+    <a href="https://music.apple.com/us/library/playlist/p.3VJWu8zok8L" target="_blank" class="music-card fade-in" style="background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.25); border-radius:4px; padding:28px 22px; transition:transform 0.25s, border-color 0.25s; text-decoration:none; display:block;">
       <img src="george.webp" alt="George Strait" style="width:100px; height:100px; border-radius:4px; object-fit:cover; object-position:center top; border:2px solid rgba(201,168,76,0.5); display:block; margin-bottom:15px;">
       <div style="font-family:'Playfair Display', Georgia, serif; font-size:1.15rem; font-weight:700; color:#F5F0E8; margin-bottom:6px;">George Strait</div>
       <div style="font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:#C9A84C; margin-bottom:10px;">Classic Country</div>
@@ -1137,7 +1048,7 @@
     </a>
     
     <!-- Alejandro Fernández -->
-    <a href="https://music.apple.com/us/library/playlist/p.YJkpC2Exr2P" target="_blank" class="music-card fade-in" style="background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.25); border-radius:12px; padding:28px 22px; transition:transform 0.25s, border-color 0.25s, background 0.25s; cursor:pointer; text-decoration:none; display:block;">
+    <a href="https://music.apple.com/us/library/playlist/p.YJkpC2Exr2P" target="_blank" class="music-card fade-in" style="background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.25); border-radius:4px; padding:28px 22px; transition:transform 0.25s, border-color 0.25s; text-decoration:none; display:block;">
       <img src="fernandez.webp" alt="Alejandro Fernández" style="width:120px; height:120px; border-radius:4px; object-fit:cover; object-position:center top; border:2px solid rgba(201,168,76,0.5); display:block; margin-bottom:15px;">
       <div style="font-family:'Playfair Display', Georgia, serif; font-size:1.15rem; font-weight:700; color:#F5F0E8; margin-bottom:6px;">Alejandro Fernández</div>
       <div style="font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:#C9A84C; margin-bottom:10px;">Contemporary Spanish</div>
@@ -1146,7 +1057,7 @@
     </a>
 
     <!-- Creedence Clearwater Revival -->
-    <div class="music-card fade-in" style="background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.25); border-radius:12px; padding:28px 22px; transition:transform 0.25s, border-color 0.25s, background 0.25s; cursor:default;">
+    <div class="music-card fade-in" style="background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.25); border-radius:4px; padding:28px 22px; transition:transform 0.25s, border-color 0.25s;">
       <img src="Creedence-Country.webp" alt="Creedence Clearwater Revival" style="width:100px; height:100px; border-radius:4px; object-fit:cover; object-position:center top; border:2px solid rgba(201,168,76,0.5); display:block; margin-bottom:15px;">
       <div style="font-family:'Playfair Display', Georgia, serif; font-size:1.15rem; font-weight:700; color:#F5F0E8; margin-bottom:6px;">Creedence Clearwater</div>
       <div style="font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:#C9A84C; margin-bottom:10px;">Classic Rock &bull; Vintage</div>
@@ -1154,7 +1065,7 @@
     </div>
 
     <!-- The Bee Gees -->
-    <a href="https://music.apple.com/us/song/night-fever-from-saturday-night-fever-soundtrack/1445668465" target="_blank" class="music-card fade-in" style="background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.25); border-radius:12px; padding:28px 22px; transition:transform 0.25s, border-color 0.25s, background 0.25s; cursor:pointer; text-decoration:none; display:block;">
+    <a href="https://music.apple.com/us/song/night-fever-from-saturday-night-fever-soundtrack/1445668465" target="_blank" class="music-card fade-in" style="background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.25); border-radius:4px; padding:28px 22px; transition:transform 0.25s, border-color 0.25s; text-decoration:none; display:block;">
       <img src="beegees.webp" alt="The Bee Gees" style="width:120px; height:120px; border-radius:4px; object-fit:cover; object-position:center top; border:2px solid rgba(201,168,76,0.5); display:block; margin-bottom:15px;">
       <div style="font-family:'Playfair Display', Georgia, serif; font-size:1.15rem; font-weight:700; color:#F5F0E8; margin-bottom:6px;">The Bee Gees</div>
       <div style="font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:#C9A84C; margin-bottom:10px;">70s Soul &amp; Harmony</div>
@@ -1163,7 +1074,7 @@
     </a>
 
     <!-- Post Malone -->
-    <a href="https://music.apple.com/us/library/playlist/p.kGBVcBxYeBV" target="_blank" class="music-card fade-in" style="background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.25); border-radius:12px; padding:28px 22px; transition:transform 0.25s, border-color 0.25s, background 0.25s; cursor:pointer; text-decoration:none; display:block;">
+    <a href="https://music.apple.com/us/library/playlist/p.kGBVcBxYeBV" target="_blank" class="music-card fade-in" style="background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.25); border-radius:4px; padding:28px 22px; transition:transform 0.25s, border-color 0.25s; text-decoration:none; display:block;">
       <img src="postmalone.webp" alt="Post Malone" style="width:120px; height:120px; border-radius:4px; object-fit:cover; object-position:center top; border:2px solid rgba(201,168,76,0.5); display:block; margin-bottom:15px;">
       <div style="font-family:'Playfair Display', Georgia, serif; font-size:1.15rem; font-weight:700; color:#F5F0E8; margin-bottom:6px;">Post Malone</div>
       <div style="font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:#C9A84C; margin-bottom:10px;">Country Crossover</div>
@@ -1172,7 +1083,7 @@
     </a>
 
     <!-- Ella Langley -->
-    <a href="https://music.apple.com/us/playlist/ella-the-gang/pl.u-b3m9sLopGL0" target="_blank" class="music-card fade-in" style="background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.25); border-radius:12px; padding:28px 22px; transition:transform 0.25s, border-color 0.25s, background 0.25s; cursor:pointer; text-decoration:none; display:block;">
+    <a href="https://music.apple.com/us/playlist/ella-the-gang/pl.u-b3m9sLopGL0" target="_blank" class="music-card fade-in" style="background:rgba(255,255,255,0.04); border:1px solid rgba(201,168,76,0.25); border-radius:4px; padding:28px 22px; transition:transform 0.25s, border-color 0.25s; text-decoration:none; display:block;">
       <img src="ella.webp" alt="Ella Langley" style="width:120px; height:120px; border-radius:4px; object-fit:cover; object-position:center top; border:2px solid rgba(201,168,76,0.5); display:block; margin-bottom:15px;">
       <div style="font-family:'Playfair Display', Georgia, serif; font-size:1.15rem; font-weight:700; color:#F5F0E8; margin-bottom:6px;">Ella Langley</div>
       <div style="font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:#C9A84C; margin-bottom:10px;">Western Soul</div>
@@ -1182,10 +1093,10 @@
   </div>
 
   <!-- Apple Music CTA -->
-  <div style="max-width:560px; margin:0 auto 70px; background:linear-gradient(135deg, rgba(201,168,76,0.12) 0%, rgba(201,168,76,0.04) 100%); border:1.5px solid rgba(201,168,76,0.4); border-radius:8px; padding:36px 32px; text-align:center;">
+  <div style="max-width:560px; margin:0 auto 70px; background:linear-gradient(135deg, rgba(201,168,76,0.12) 0%, rgba(201,168,76,0.04) 100%); border:1.5px solid rgba(201,168,76,0.4); border-radius:4px; padding:36px 32px; text-align:center;">
     <h3 style="font-family:'Playfair Display', Georgia, serif; font-size:1.45rem; font-weight:700; color:#F5F0E8; margin:0 0 10px;">Follow ParkercountryAZ on Apple Music</h3>
     <p style="font-size:0.95rem; color:#c8c0b0; line-height:1.65; margin:0 0 24px;">Dive into Powell's personal rotation — country legends, Spanish fire, and timeless rock. Free to stream on Apple Music.</p>
-    <a href="https://music.apple.com/profile/ParkercountryAZ" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; background:#FC3C44; color:#fff; font-weight:700; font-size:0.92rem; letter-spacing:0.08em; text-transform:uppercase; padding:14px 34px; border-radius:3px; text-decoration:none; box-shadow:0 4px 20px rgba(252,60,68,0.35);">
+    <a href="https://music.apple.com/profile/ParkercountryAZ" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:10px; background:#FC3C44; color:#fff; font-weight:700; font-size:0.92rem; letter-spacing:0.08em; text-transform:uppercase; padding:14px 34px; border-radius:4px; text-decoration:none; box-shadow:0 4px 20px rgba(252,60,68,0.35);">
       Listen on Apple Music &rarr;
     </a>
   </div>
@@ -1200,9 +1111,9 @@
       <input type="hidden" name="_subject" value="New Newsletter Signup — powparker.com">
       <input type="hidden" name="source" value="Music Newsletter">
       <input type="text" name="_gotcha" style="display:none">
-      <input type="text" name="name" placeholder="Your First Name" required style="background:rgba(255,255,255,0.06); border:1px solid rgba(201,168,76,0.3); border-radius:3px; padding:14px 18px; color:#F5F0E8; font-size:0.95rem; outline:none;">
-      <input type="email" name="email" placeholder="Your Email Address" required style="background:rgba(255,255,255,0.06); border:1px solid rgba(201,168,76,0.3); border-radius:3px; padding:14px 18px; color:#F5F0E8; font-size:0.95rem; outline:none;">
-      <button type="submit" style="background:linear-gradient(135deg, #C9A84C, #E8D5A3); color:#071018; font-weight:800; font-size:0.92rem; letter-spacing:0.12em; text-transform:uppercase; padding:16px 28px; border:none; border-radius:3px; cursor:pointer; box-shadow:0 4px 18px rgba(201,168,76,0.25);">
+      <input type="text" name="name" placeholder="Your First Name" required style="background:rgba(255,255,255,0.06); border:1px solid rgba(201,168,76,0.3); border-radius:4px; padding:14px 18px; color:#F5F0E8; font-size:0.95rem; outline:none;">
+      <input type="email" name="email" placeholder="Your Email Address" required style="background:rgba(255,255,255,0.06); border:1px solid rgba(201,168,76,0.3); border-radius:4px; padding:14px 18px; color:#F5F0E8; font-size:0.95rem; outline:none;">
+      <button type="submit" style="background:linear-gradient(135deg, #C9A84C, #E8D5A3); color:#071018; font-weight:800; font-size:0.92rem; letter-spacing:0.12em; text-transform:uppercase; padding:16px 28px; border:none; border-radius:4px; cursor:pointer; box-shadow:0 4px 18px rgba(201,168,76,0.25);">
         Subscribe &rarr;
       </button>
       <div id="newsletter-msg" style="display:none; padding:12px 18px; border-radius:4px; font-size:0.92rem; font-weight:600; text-align:center;"></div>
