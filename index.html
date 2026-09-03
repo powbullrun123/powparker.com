@@ -131,10 +131,9 @@
   .story-section {
     position: relative;
     padding: 120px 40px;
-    background: linear-gradient(to right, rgba(7,16,24,0.88) 0%, rgba(7,16,24,0.65) 55%, rgba(7,16,24,0.30) 100%),
-                url('images/sunset-bg.webp'),
-                url('images/sunset-bg.jpg'),
-                #08121d;
+    background-color: #08121d;
+    background-image: linear-gradient(to right, rgba(7,16,24,0.85) 0%, rgba(7,16,24,0.60) 55%, rgba(7,16,24,0.20) 100%),
+                      url('images/sunset-bg.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -188,15 +187,13 @@
   .section-body { font-family: 'Cormorant Garamond', serif; font-size: 1.26rem; line-height: 1.85; color: var(--light); max-width: 720px; }
   .divider { width: 60px; height: 3px; background: var(--gold); margin: 24px 0; }
   
-  /* THE FOUR FRONTS (OLD TUCSON BACKDROP - LIGHT ENOUGH TO CLEARLY SEE) */
+  /* THE FOUR FRONTS: OLD TUCSON (LIGHT & CRISP) */
   .pillars-section {
     position: relative;
     padding: 120px 40px;
-    background: linear-gradient(180deg, rgba(7,16,24,0.48) 0%, rgba(14,24,36,0.38) 50%, rgba(7,16,24,0.55) 100%),
-                url('images/old-tucson.webp'),
-                url('images/old-tucson.jpg'),
-                url('images/old-tucson2.webp'),
-                #071018;
+    background-color: #071018;
+    background-image: linear-gradient(180deg, rgba(7,16,24,0.45) 0%, rgba(14,24,36,0.35) 50%, rgba(7,16,24,0.50) 100%),
+                      url('images/old-tucson.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -236,15 +233,13 @@
   }
   .pillar-link:hover { border-bottom-color: var(--gold); color: var(--gold-light); }
 
-  /* PARKER FILMS SECTION (NEW MEXICO STUDIO SOUNDSTAGES BACKDROP) */
+  /* PARKER FILMS SECTION (BONANZA CREEK TOWN STREET) */
   #projects {
     position: relative;
     padding: 120px 20px;
-    background: linear-gradient(180deg, rgba(7,16,24,0.45) 0%, rgba(11,22,34,0.38) 50%, rgba(7,16,24,0.52) 100%),
-                url('images/new-mexico-studio.webp'),
-                url('images/new-mexico-studio.jpg'),
-                url('images/bonanza-creek.webp'),
-                #071018;
+    background-color: #071018;
+    background-image: linear-gradient(180deg, rgba(7,16,24,0.42) 0%, rgba(11,22,34,0.32) 50%, rgba(7,16,24,0.48) 100%),
+                      url('images/bonanza-creek.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -299,7 +294,7 @@
   }
   .film-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 35px rgba(201,168,76,0.55); }
 
-  /* PARKER COUNTRY (LIVE MOVIE SET BACKDROP WITH CRANES, CAMERAS & WAGONS) */
+  /* PARKER COUNTRY (NEW MEXICO FILM STUDIOS & SOUNDSTAGES) */
   .pc-divider {
     position: relative;
     width: 100vw;
@@ -309,11 +304,9 @@
     align-items: center;
     justify-content: center;
     padding: 90px 20px;
-    background: linear-gradient(180deg, rgba(7,16,24,0.42) 0%, rgba(26,18,8,0.35) 50%, rgba(7,16,24,0.48) 100%),
-                url('images/bonaza-creek.jpg'),
-                url('images/bonanza-creek.jpg'),
-                url('images/bonanza-creek.webp'),
-                #071018;
+    background-color: #071018;
+    background-image: linear-gradient(180deg, rgba(7,16,24,0.40) 0%, rgba(26,18,8,0.30) 50%, rgba(7,16,24,0.48) 100%),
+                      url('images/new-mexico-studio.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -338,23 +331,23 @@
   .western-link { display: inline-block; padding: 14px 26px; font-family: 'Rye', serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: #C9A84C !important; background: rgba(20,12,6,0.92); border: 2px solid var(--gold); border-radius: 4px; box-shadow: 0 6px 16px rgba(0,0,0,0.6); transition: all 0.2s ease; }
   .western-link:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(201,168,76,0.25); color: #fff !important; }
 
-  /* WORKING RANGE (CERRO PELON LIVE ACTION BACKDROP + EXPANDED FULL-BLEED FRAMES) */
+  /* THE WORKING RANGE (CERRO PELON BACKDROP - FIXED TO VIEWPORT SO IT NEVER BLOWS UP) */
   #ranch {
     position: relative;
     padding: 120px 20px;
-    background: linear-gradient(180deg, rgba(7,16,24,0.45) 0%, rgba(14,26,38,0.36) 50%, rgba(7,16,24,0.52) 100%),
-                url('images/cerro-pelon-live-action.webp'),
-                url('images/cerro-pelon-live-action.jpg'),
-                #071018;
+    background-color: #071018;
+    background-image: linear-gradient(180deg, rgba(7,16,24,0.48) 0%, rgba(14,26,38,0.38) 50%, rgba(7,16,24,0.52) 100%),
+                      url('images/cerro-pelon-live-action.webp');
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-repeat: no-repeat;
+    background-attachment: fixed; /* STOPS 400% ZOOM - SIZES PROPORTIONALLY TO SCREEN */
   }
   .life-header { text-align: center; margin-bottom: 70px; }
-  .photo-cards { display: flex; flex-direction: column; gap: 80px; max-width: 1040px; margin: 0 auto; }
+  .photo-cards { display: flex; flex-direction: column; gap: 80px; max-width: 860px; margin: 0 auto; }
   .photo-card { border: 2px solid var(--gold); border-radius: 4px; background: rgba(14,24,36,0.95); backdrop-filter: blur(8px); overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,0.8); }
   
-  /* EXPANDED EDGE-TO-EDGE PHOTO FRAMES (ZERO BLACK PILLARBOXING) */
+  /* EXPANDED FLUSH PHOTO FRAMES - ZERO CROPPED HEADS, ZERO BLACK BARS */
   .photo-card-img-wrap {
     width: 100%;
     background: #071018;
@@ -451,6 +444,7 @@
     .film-showcase-card { margin: 0 -10px; }
     .biz-card { padding: 40px 20px; }
     .pc-divider { padding: 70px 14px; }
+    #ranch { background-attachment: scroll; } /* Smooth scroll on mobile */
   }
 </style>
 </head>
@@ -517,7 +511,7 @@
 
     <!-- Right Column: Full Uncropped Powell on Monty (Hat to Hooves) -->
     <div class="story-photo-box fade-in">
-      <img src="images/powell-hero.webp" onerror="this.onerror=null; this.src='powell-hero.webp';" alt="Powell Parker mounted on horseback in the pasture" loading="lazy">
+      <img src="images/powell-hero.webp" alt="Powell Parker mounted on horseback in the pasture" loading="lazy">
     </div>
 
   </div>
@@ -610,16 +604,16 @@
 
 <!-- ============================================================
      PARKER FILMS LLC: FEATURE SLATE SHOWCASE
-     (BACKDROP: NEW MEXICO FILM STUDIOS & SOUNDSTAGES)
+     (BACKDROP: BONANZA CREEK TOWN STREET)
      ============================================================ -->
 <section id="projects">
   <div class="film-showcase-card fade-in">
     
-    <!-- CLEAR LOGO BANNER (MULTI-TIER FALLBACK - NEVER SHOWS BROKEN ICON) -->
+    <!-- CLEAR LOGO BANNER (MATCHES EXACT GITHUB FILENAME: paker-films-logo-clear.png) -->
     <div class="film-brand-banner">
       <a href="https://parker-films.com" target="_blank" title="Visit Parker Films LLC Official Site">
-        <img src="images/parker-films-logo-clear.png"
-             onerror="if(!this.dataset.t1){this.dataset.t1=true;this.src='images/paker-films-logo-clear.png';}else if(!this.dataset.t2){this.dataset.t2=true;this.src='parker-films-logo-clear.png';}else if(!this.dataset.t3){this.dataset.t3=true;this.src='paker-films-logo-clear.png';}else{this.src='images/logo.webp';}"
+        <img src="images/paker-films-logo-clear.png"
+             onerror="this.onerror=null; this.src='images/parker-films-logo-clear.png'; this.onerror=function(){this.src='images/logo.webp';};"
              alt="Parker Films LLC"
              loading="lazy"
              class="film-brand-img">
@@ -685,7 +679,7 @@
 </section>
 
 <!-- ============================================================
-     PARKER COUNTRY: LIVE MOVIE STUDIO SET (BONAZA-CREEK.JPG)
+     PARKER COUNTRY: NEW MEXICO FILM STUDIOS & SOUNDSTAGES BACKDROP
      ============================================================ -->
 <div class="pc-divider fade-in">
   <div class="pc-content">
@@ -720,7 +714,7 @@
 
   <div class="photo-cards">
 
-    <!-- 1. GATHERING NEBRASKA HERDS (FLUSH EDGE-TO-EDGE - NO BLACK BARS) -->
+    <!-- 1. GATHERING NEBRASKA HERDS (FULL UNCROPPED HAT & HERD) -->
     <div class="photo-card fade-in">
       <div class="photo-card-img-wrap">
         <img src="images/powell-nebraska-gather.webp" alt="Powell Parker gathering black Angus cattle on horseback under vast open skies" loading="lazy">
@@ -735,7 +729,7 @@
       </div>
     </div>
 
-    <!-- 2. DEMON THE DOG & RANGE PARTNERS (FLUSH EDGE-TO-EDGE) -->
+    <!-- 2. DEMON THE DOG & RANGE PARTNERS -->
     <div class="photo-card fade-in">
       <div class="photo-card-img-wrap">
         <img src="images/powell-demon-dog.webp" alt="Powell Parker riding sorrel horse with Demon the cattle dog trotting alongside" loading="lazy">
@@ -765,7 +759,7 @@
       </div>
     </div>
 
-    <!-- 4. PASTURE DOCTORING (FLUSH EDGE-TO-EDGE) -->
+    <!-- 4. PASTURE DOCTORING (FULL-HEIGHT UNCROPPED) -->
     <div class="photo-card fade-in">
       <div class="photo-card-img-wrap">
         <img src="images/powell-pasture-doctoring.webp" alt="Doctoring a yearling steer stretched out between two horses on taut ropes in open pasture" loading="lazy">
@@ -780,7 +774,7 @@
       </div>
     </div>
 
-    <!-- 5. BRANDING & GROUNDWORK (FLUSH EDGE-TO-EDGE) -->
+    <!-- 5. BRANDING & GROUNDWORK (FULL-HEIGHT UNCROPPED) -->
     <div class="photo-card fade-in">
       <div class="photo-card-img-wrap">
         <img src="images/powell-branding-groundwork.webp" alt="Powell Parker flanking and holding down a calf in chaps during branding and vaccinations" loading="lazy">
@@ -840,7 +834,7 @@
   </div>
 </div>
 
-<!-- FAMILY & LIFE MOMENTS -->
+<!-- FAMILY & LIFE MOMENTS (FULL UNCROPPED HEADS) -->
 <section class="life-photos" id="life" style="background: var(--navy);">
   <div class="life-header fade-in">
     <p class="section-label">Foundation &amp; Family</p>
@@ -888,7 +882,7 @@
       </div>
     </div>
 
-    <!-- FAMILY -->
+    <!-- FAMILY (FULL UNCROPPED HEADS) -->
     <div class="photo-card fade-in">
       <div class="photo-card-img-wrap">
         <img src="images/family1.webp" alt="Powell Parker family" loading="lazy">
