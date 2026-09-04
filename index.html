@@ -127,13 +127,13 @@
   .hero-cta-secondary { display: inline-block; padding: 15px 34px; background: rgba(7,16,24,0.6); border: 2px solid var(--gold); color: var(--gold); font-size: 0.85rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; border-radius: 4px; }
   .hero-cta-secondary:hover { background: rgba(201,168,76,0.18); transform: translateY(-2px); }
 
-  /* HERO 2: BORN IN HEREFORD (SUNSET SKY - UNCROPPED) */
+  /* HERO 2: BORN IN HEREFORD (OLD TUCSON LIVE SET BACKDROP - 35% OVERLAY) */
   .story-section {
     position: relative;
     padding: 120px 40px;
     background-color: #08121d;
     background-image: linear-gradient(to right, rgba(7,16,24,0.85) 0%, rgba(7,16,24,0.55) 55%, rgba(7,16,24,0.20) 100%),
-                      url('images/sunset-bg.webp');
+                      url('images/old-tucson.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -188,13 +188,13 @@
   .section-body { font-family: 'Cormorant Garamond', serif; font-size: 1.26rem; line-height: 1.85; color: var(--light); max-width: 720px; }
   .divider { width: 60px; height: 3px; background: var(--gold); margin: 24px 0; }
   
-  /* THE FOUR FRONTS: OLD TUCSON (LIGHT & CRISP) */
+  /* THE FOUR FRONTS: OLD TUCSON STUDIO STREET (LIGHT & CRISP) */
   .pillars-section {
     position: relative;
     padding: 120px 40px;
     background-color: #071018;
     background-image: linear-gradient(180deg, rgba(7,16,24,0.38) 0%, rgba(14,24,36,0.28) 50%, rgba(7,16,24,0.42) 100%),
-                      url('images/old-tucson.webp');
+                      url('images/old-tucson2.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -258,11 +258,18 @@
     overflow: hidden;
     box-shadow: 0 24px 80px rgba(0,0,0,0.9);
   }
+  /* EMBEDDED LIVE MOVIE SHOOT SET JUST BEHIND THE PARKER FILMS LOGO */
   .film-brand-banner {
-    padding: 46px 24px 28px;
-    background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(11,22,34,0.98) 100%);
+    position: relative;
+    padding: 60px 24px 40px;
+    background-color: #071018;
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.40) 0%, rgba(11,22,34,0.85) 100%),
+                      url('images/bonaza-creek.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     text-align: center;
-    border-bottom: 1px solid rgba(201,168,76,0.25);
+    border-bottom: 1px solid rgba(201,168,76,0.35);
   }
   .film-brand-img {
     max-width: 440px;
@@ -270,7 +277,7 @@
     height: auto;
     display: block;
     margin: 0 auto;
-    filter: drop-shadow(0 4px 18px rgba(201,168,76,0.35));
+    filter: drop-shadow(0 6px 24px rgba(0,0,0,0.95)) drop-shadow(0 0 20px rgba(201,168,76,0.3));
     transition: transform 0.4s ease;
   }
   .film-brand-img:hover { transform: scale(1.02); }
@@ -335,7 +342,7 @@
   .western-link { display: inline-block; padding: 14px 26px; font-family: 'Rye', serif; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; color: #C9A84C !important; background: rgba(20,12,6,0.92); border: 2px solid var(--gold); border-radius: 4px; box-shadow: 0 6px 16px rgba(0,0,0,0.6); transition: all 0.2s ease; }
   .western-link:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(201,168,76,0.25); color: #fff !important; }
 
-  /* THE WORKING RANGE (CERRO PELON BACKDROP - FIXED PROPORTIONS) */
+  /* THE WORKING RANGE (CERRO PELON BACKDROP - PROPORTIONALLY LOCKED) */
   #ranch {
     position: relative;
     padding: 120px 20px;
@@ -371,15 +378,73 @@
   .photo-card-divider { width: 50px; height: 2px; background: var(--gold); margin-bottom: 16px; }
   .photo-card-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.22rem; line-height: 1.85; color: var(--light); opacity: 0.94; }
 
-  /* ARIZONA */
+  /* ARIZONA: STATE 48 (SUNSET-BG.WEBP BACKDROP) */
+  #arizona {
+    position: relative;
+    padding: 120px 40px;
+    background-color: #071018;
+    background-image: linear-gradient(180deg, rgba(7,16,24,0.40) 0%, rgba(7,16,24,0.50) 100%),
+                      url('images/sunset-bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    border-top: 1px solid rgba(201,168,76,0.25);
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+  }
   .arizona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
   .arizona-photo { width: 100%; height: auto; object-fit: contain; border: 2px solid var(--gold); border-radius: 4px; display: block; background: #000; }
-  .moon-divider { position: relative; width: 100%; height: 60vh; min-height: 400px; overflow: hidden; }
-  .moon-divider img { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
-  .moon-divider-dim { position: absolute; inset: 0; background: rgba(7,16,24,0.38); }
-  .moon-text { position: absolute; bottom: 48px; left: 50%; transform: translateX(-50%); text-align: center; z-index: 2; width: 90%; }
-  .moon-text p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.2rem, 2.5vw, 1.8rem); color: #fff; text-shadow: 0 2px 20px rgba(0,0,0,0.9); }
-  .moon-text cite { display: block; margin-top: 10px; font-size: 0.8rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); font-style: normal; }
+  
+  /* ARIZONA MOON: EXTENDED SEAMLESSLY ALL THE WAY PAST DAUGHTERS */
+  #moon-daughters {
+    position: relative;
+    padding: 100px 20px 120px;
+    background-color: #071018;
+    background-image: linear-gradient(180deg, rgba(7,16,24,0.30) 0%, rgba(7,16,24,0.55) 100%),
+                      url('images/arizona-moon.webp');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  .moon-text-block {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 70px;
+  }
+  .moon-text-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+    color: #fff;
+    text-shadow: 0 3px 20px rgba(0,0,0,0.95);
+    margin-bottom: 12px;
+  }
+  .moon-text-block cite {
+    font-size: 0.85rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  /* CUSTOM CARD BACKDROPS (MT. LEMMON & LAKE POWELL) */
+  .card-bg-lemmon {
+    background-color: #071018;
+    background-image: linear-gradient(180deg, rgba(7,16,24,0.35) 0%, rgba(14,24,36,0.85) 100%),
+                      url('images/mt-lemmon.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .card-bg-powell {
+    background-color: #071018;
+    background-image: linear-gradient(180deg, rgba(7,16,24,0.35) 0%, rgba(14,24,36,0.85) 100%),
+                      url('images/lake-powell.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 
   /* GIVING */
   .giving { background: var(--navy); text-align: center; }
@@ -448,7 +513,7 @@
     .film-showcase-card { margin: 0 -10px; }
     .biz-card { padding: 40px 20px; }
     .pc-divider { padding: 70px 14px; }
-    .story-section, .pillars-section, #projects, .pc-divider, #ranch {
+    .story-section, .pillars-section, #projects, .pc-divider, #ranch, #arizona, #moon-daughters {
       background-attachment: scroll; /* Smooth mobile performance */
     }
   }
@@ -491,7 +556,7 @@
 </section>
 
 <!-- ============================================================
-     HERO 2: WHERE IT ALL STARTED (SUNSET SKY - UNCROPPED)
+     HERO 2: WHERE IT ALL STARTED (OLD TUCSON LIVE SET BACKDROP)
      ============================================================ -->
 <section id="about" class="story-section">
   <div class="story-grid">
@@ -524,7 +589,7 @@
 </section>
 
 <!-- ============================================================
-     THE FOUR FRONTS: OLD TUCSON MOVIE STUDIO BACKDROP
+     THE FOUR FRONTS: OLD TUCSON STUDIO STREET BACKDROP
      ============================================================ -->
 <section class="pillars-section">
   <div class="section-inner">
@@ -610,12 +675,12 @@
 
 <!-- ============================================================
      PARKER FILMS LLC: FEATURE SLATE SHOWCASE
-     (BACKDROP: BONANZA CREEK TOWN STREET)
+     (BONANZA CREEK TOWN STREET + EMBEDDED LIVE SHOOT SET BEHIND LOGO)
      ============================================================ -->
 <section id="projects">
   <div class="film-showcase-card fade-in">
     
-    <!-- CLEAR LOGO BANNER (MATCHES GITHUB: paker-films-logo-clear.png) -->
+    <!-- CLEAR LOGO BANNER (LIVE SHOOT BACKDROP RIGHT BEHIND LOGO) -->
     <div class="film-brand-banner">
       <a href="https://parker-films.com" target="_blank" title="Visit Parker Films LLC Official Site">
         <img src="images/paker-films-logo-clear.png"
@@ -813,11 +878,13 @@
   </div>
 </section>
 
-<!-- ARIZONA -->
-<section id="arizona" style="background: var(--deep);">
+<!-- ============================================================
+     ARIZONA: STATE 48 (SUNSET-BG.WEBP BACKDROP)
+     ============================================================ -->
+<section id="arizona">
   <div class="section-inner arizona-grid">
     <div class="fade-in">
-      <p class="section-label">Arizona Roots</p>
+      <p class="section-label">Arizona Roots &bull; State 48</p>
       <h2 class="section-title">State 48.<br>My Home Forever.</h2>
       <div class="divider"></div>
       <p class="section-body">I lived in Queen Creek, Arizona back when it was red dirt roads, cotton fields, and working spreads where everybody knew everybody. I competed in High School and College Rodeos all across the state in Team Roping and Bulldogging.</p>
@@ -830,26 +897,23 @@
   </div>
 </section>
 
-<!-- MOON DIVIDER -->
-<div class="moon-divider">
-  <img src="images/arizona-moon.webp" alt="Arizona moonrise over the desert" loading="lazy" width="1600" height="900">
-  <div class="moon-divider-dim"></div>
-  <div class="moon-text">
-    <p>"Arizona, where every sunrise paints a canvas of hope for the day ahead"</p>
+<!-- ============================================================
+     ARIZONA MOONRISE: EXTENDS PAST THE DAUGHTERS PHOTO
+     ============================================================ -->
+<section id="moon-daughters">
+  <div class="moon-text-block fade-in">
+    <p>&ldquo;Arizona, where every sunrise paints a canvas of hope for the day ahead&rdquo;</p>
     <cite>&sim; P. Parker</cite>
   </div>
-</div>
 
-<!-- FAMILY & LIFE MOMENTS (FULL UNCROPPED HEADS) -->
-<section class="life-photos" id="life" style="background: var(--navy);">
-  <div class="life-header fade-in">
+  <div class="life-header fade-in" style="margin-bottom: 60px;">
     <p class="section-label">Foundation &amp; Family</p>
     <h2 class="section-title">The People Behind Every Milestone</h2>
   </div>
 
-  <div class="photo-cards">
-
-    <!-- DAUGHTERS -->
+  <div class="photo-cards" style="max-width: 860px; margin: 0 auto;">
+    
+    <!-- DAUGHTERS: EMBEDDED DIRECTLY IN EXTENDED MOONRISE BACKDROP -->
     <div class="photo-card fade-in">
       <div class="photo-card-img-wrap">
         <img src="images/life-daughters.webp" alt="Sara and Scarlett" loading="lazy">
@@ -862,33 +926,42 @@
       </div>
     </div>
 
-    <!-- MOUNT LEMMON -->
-    <div class="photo-card fade-in">
+  </div>
+</section>
+
+<!-- ============================================================
+     FAMILY & LIFE MOMENTS (MT. LEMMON & LAKE POWELL BACKDROPS)
+     ============================================================ -->
+<section class="life-photos" id="life" style="background: var(--navy);">
+  <div class="photo-cards" style="max-width: 860px; margin: 0 auto;">
+
+    <!-- MOUNT LEMMON: BACKED WITH MT-LEMMON.WEBP SCENIC WALLPAPER -->
+    <div class="photo-card card-bg-lemmon fade-in">
       <div class="photo-card-img-wrap">
         <img src="images/mount-lemmon-family.webp" alt="Mount Lemmon family time" loading="lazy">
       </div>
       <div class="photo-card-body">
-        <p class="photo-card-label">Up in the Pines</p>
+        <p class="photo-card-label">Up in the Pines &bull; Mount Lemmon</p>
         <h3 class="photo-card-title">Mount Lemmon &mdash; Where I Go to Reset</h3>
         <div class="photo-card-divider"></div>
         <p class="photo-card-desc">There's something about getting up in elevation that clears my head like nothing else. Mount Lemmon, the White Mountains, the Santa Catalinas — when I'm up in the pines with my family I'm reminded of what's actually real and what's just noise.</p>
       </div>
     </div>
 
-    <!-- FISHING -->
-    <div class="photo-card fade-in">
+    <!-- FISHING: BACKED WITH LAKE-POWELL.WEBP SCENIC WALLPAPER -->
+    <div class="photo-card card-bg-powell fade-in">
       <div class="photo-card-img-wrap">
         <img src="images/couple-fishing.webp" alt="Powell and Cristina fishing at an Arizona mountain lake" loading="lazy">
       </div>
       <div class="photo-card-body">
-        <p class="photo-card-label">Stewardship &amp; Outdoors</p>
+        <p class="photo-card-label">Stewardship &amp; Outdoors &bull; Lake Powell</p>
         <h3 class="photo-card-title">Catch &amp; Release &mdash; Respecting the Land</h3>
         <div class="photo-card-divider"></div>
         <p class="photo-card-desc">Cristina and I up at the lake enjoying God's creation. Catch and release isn't just good sportsmanship — it's stewardship. We're borrowing this land, not owning it. I want to make sure there's something left for the next generation.</p>
       </div>
     </div>
 
-    <!-- FAMILY (FULL UNCROPPED HEADS) -->
+    <!-- FAMILY: UNCROPPED AND FULL HEADS VISIBLE -->
     <div class="photo-card fade-in">
       <div class="photo-card-img-wrap">
         <img src="images/family1.webp" alt="Powell Parker family" loading="lazy">
