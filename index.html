@@ -258,15 +258,14 @@
     overflow: hidden;
     box-shadow: 0 24px 80px rgba(0,0,0,0.9);
   }
-  /* LIVE MOVIE SHOOT SET JUST BEHIND THE PARKER FILMS LOGO BANNER */
+  /* LIVE MOVIE SHOOT SET DIRECTLY BEHIND PARKER FILMS LOGO */
   .film-brand-banner {
     position: relative;
     padding: 60px 24px 40px;
     background-color: #071018;
-    background-image: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(11,22,34,0.85) 100%),
+    background-image: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(11,22,34,0.85) 100%),
                       url('images/bonanza-creek-live.webp'),
-                      url('images/bonaza-creek-live.jpg'),
-                      url('images/bonaza-creek.jpg');
+                      url('images/bonaza-creek-live.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -478,20 +477,9 @@
   .charity-desc { font-size: 0.92rem; line-height: 1.65; color: var(--light); opacity: 0.9; }
 
   /* BUSINESS / ASSET RECOVERY & PARLAYPEN (SUNSET-BG.WEBP BACKDROP) */
-  .business-hub-wrapper {
-    position: relative;
-    background-color: #071018;
-    background-image: linear-gradient(180deg, rgba(7,16,24,0.32) 0%, rgba(7,16,24,0.45) 100%),
-                      url('images/sunset-bg.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    border-top: 1px solid rgba(201,168,76,0.25);
-  }
   .biz-card-section {
-    padding: 90px 40px;
-    background: transparent;
+    background: transparent !important;
+    padding: 80px 20px;
   }
   .biz-card { max-width: 880px; margin: 0 auto; background: rgba(14,24,36,0.94); backdrop-filter: blur(10px); border: 2px solid var(--gold); border-radius: 4px; padding: 64px 70px; text-align: center; box-shadow: 0 24px 80px rgba(0,0,0,0.7); position: relative; }
   .biz-card-name { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: #fff; margin-bottom: 6px; }
@@ -525,19 +513,6 @@
     background-attachment: fixed;
     overflow: hidden;
     font-family: 'Lato', sans-serif;
-  }
-
-  /* DIRECT INQUIRIES & SITE FINALE WRAPPER (OFFICE-SPACE.WEBP TO THE VERY END OF SITE) */
-  .site-end-wrap {
-    position: relative;
-    background-color: #071018;
-    background-image: linear-gradient(180deg, rgba(7,16,24,0.30) 0%, rgba(7,16,24,0.45) 50%, rgba(7,16,24,0.65) 100%),
-                      url('images/office-space.webp');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    border-top: 1px solid rgba(201,168,76,0.25);
   }
 
   /* CONTACT (TRANSPARENT CONTAINER TO LET FULL OFFICE IMAGE FLOW) */
@@ -576,7 +551,7 @@
   .network-card-desc { font-size: 0.82rem; color: var(--light); opacity: 0.7; line-height: 1.5; }
 
   /* FOOTER */
-  footer { background: rgba(7,16,24,0.92) !important; padding: 50px 40px 36px; text-align: center; border-top: 1px solid rgba(201,168,76,0.2); }
+  footer { background: transparent !important; padding: 50px 40px 36px; text-align: center; border-top: 1px solid rgba(201,168,76,0.2); }
   .footer-brand img { max-width: 380px; height: auto; display: block; margin: 0 auto 10px; }
   .footer-name { font-family: 'Playfair Display', serif; font-size: 1.25rem; color: var(--gold); margin-bottom: 6px; }
   .footer-location { color: var(--light); opacity: 0.85; margin-bottom: 24px; }
@@ -598,7 +573,7 @@
     .film-showcase-card { margin: 0 -10px; }
     .biz-card { padding: 40px 20px; }
     .pc-divider { padding: 70px 14px; }
-    .story-section, .pillars-section, #projects, .pc-divider, #ranch, #arizona, #moon-daughters, #section-lemmon, #section-fishing, .giving, .business-hub-wrapper, #music, .site-end-wrap {
+    .story-section, .pillars-section, #projects, .pc-divider, #ranch, #arizona, #moon-daughters, #section-lemmon, #section-fishing, .giving, #music, #business-wrapper, .site-end-wrap {
       background-attachment: scroll; /* Smooth mobile performance */
     }
   }
@@ -615,7 +590,7 @@
     <li><a href="#ranch">Ranch &amp; Range</a></li>
     <li><a href="#arizona">Arizona</a></li>
     <li><a href="#giving">Giving Back</a></li>
-    <li><a href="#rrr">Business</a></li>
+    <li><a href="#business-wrapper">Business</a></li>
     <li><a href="#music">Music</a></li>
     <li><a href="#contact">Connect</a></li>
   </ul>
@@ -847,7 +822,7 @@
       <a href="#ranch" class="western-link">Ranch &amp; Range</a>
       <a href="#arizona" class="western-link">Arizona</a>
       <a href="#giving" class="western-link">Giving Back</a>
-      <a href="#rrr" class="western-link">Business</a>
+      <a href="#business-wrapper" class="western-link">Business</a>
       <a href="#music" class="western-link">Music</a>
       <a href="#contact" class="western-link">Connect</a>
     </div>
@@ -1106,12 +1081,12 @@
 </section>
 
 <!-- ============================================================
-     BUSINESS HUB: RRR & PARLAYPEN (SUNSET-BG.WEBP BACKDROP)
+     BUSINESS HUB: RRR & PARLAYPEN (SUNSET-BG.WEBP FULL-BLEED BACKDROP)
      ============================================================ -->
-<div class="business-hub-wrapper" id="rrr">
+<div id="business-wrapper" style="position: relative; padding: 120px 20px; background-color: #071018; background-image: linear-gradient(180deg, rgba(7,16,24,0.30) 0%, rgba(7,16,24,0.40) 100%), url('images/sunset-bg.webp'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; border-top: 1px solid rgba(201,168,76,0.25);">
   
-  <!-- RIGHTFUL RETURNS RECOVERY SECTION -->
-  <section class="biz-card-section">
+  <!-- RIGHTFUL RETURNS RECOVERY -->
+  <section class="biz-card-section" id="rrr" style="padding-top: 0;">
     <div class="section-inner">
       <div style="text-align:center; margin-bottom: 56px;" class="fade-in">
         <p class="section-label">Private Capital &bull; Asset Recovery</p>
@@ -1133,7 +1108,7 @@
   </section>
 
   <!-- PARLAYPEN SECTION (OFFICIAL LOGO ASSET) -->
-  <section class="biz-card-section" id="parlaypen" style="padding-top:0;">
+  <section class="biz-card-section" id="parlaypen" style="padding-bottom: 0; margin-top: 60px;">
     <div class="section-inner">
       <div style="text-align:center; margin-bottom: 56px;" class="fade-in">
         <p class="section-label">Digital Platform</p>
@@ -1254,10 +1229,10 @@
 </section>
 
 <!-- ============================================================
-     SITE FINALE WRAPPER: DIRECT INQUIRIES, SOCIAL, NETWORK & FOOTER
-     (FULL-BLEED OFFICE-SPACE.WEBP BACKGROUND TO THE VERY END OF SITE)
+     SITE FINALE: FULL OFFICE SPACE BACKDROP TO THE VERY END OF SITE
+     (OFFICE-SPACE.WEBP ENCOMPASSES DIRECT INQUIRIES THROUGH FOOTER)
      ============================================================ -->
-<div class="site-end-wrap">
+<div class="site-end-wrap" style="position: relative; background-color: #071018; background-image: linear-gradient(180deg, rgba(7,16,24,0.30) 0%, rgba(7,16,24,0.40) 60%, rgba(7,16,24,0.65) 100%), url('images/office-space.webp'); background-size: cover; background-position: center top; background-repeat: no-repeat; border-top: 1px solid rgba(201,168,76,0.25);">
 
   <!-- DIRECT INQUIRIES -->
   <section id="contact" class="contact">
