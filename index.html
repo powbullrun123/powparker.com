@@ -258,14 +258,14 @@
     overflow: hidden;
     box-shadow: 0 24px 80px rgba(0,0,0,0.9);
   }
-  /* LIVE MOVIE SHOOT SET DIRECTLY BEHIND PARKER FILMS LOGO */
-.film-brand-banner {
-  position: relative;
-  padding: 60px 24px 40px;
-  background: url('images/bonanza-creek-live.webp') center center / cover no-repeat !important;
-  text-align: center;
-  border-bottom: 1px solid rgba(201,168,76,0.35);
-}
+ /* LIVE MOVIE SHOOT SET DIRECTLY BEHIND PARKER FILMS LOGO */
+  .film-brand-banner {
+    position: relative;
+    padding: 60px 24px 40px;
+    background: radial-gradient(ellipse at center, rgba(7,16,24,0.55) 0%, rgba(7,16,24,0.20) 65%, transparent 85%),
+                url('images/bonanza-creek-live.webp') center center / cover no-repeat !important;
+    text-align: center;
+    border-bottom: 1px solid rgba(201,168,76,0.35);
   }
   .film-brand-img {
     max-width: 440px;
@@ -273,11 +273,15 @@
     height: auto;
     display: block;
     margin: 0 auto;
-    filter: drop-shadow(0 6px 24px rgba(0,0,0,0.95)) drop-shadow(0 0 20px rgba(201,168,76,0.3));
-    transition: transform 0.4s ease;
+    /* TURNS BRONZE LOGO INTO SHINING STERLING SILVER / CHROME */
+    filter: grayscale(100%) brightness(1.85) contrast(1.35) drop-shadow(0 6px 18px rgba(0,0,0,0.95));
+    transition: transform 0.4s ease, filter 0.4s ease;
   }
-  .film-brand-img:hover { transform: scale(1.02); }
-
+ .film-brand-img:hover {
+  transform: scale(1.02);
+  filter: grayscale(100%) brightness(2.05) contrast(1.4) drop-shadow(0 8px 22px rgba(0,0,0,1));
+}
+    
   .film-feature-box {
     background: rgba(255,255,255,0.03);
     border: 1px solid rgba(201,168,76,0.3);
