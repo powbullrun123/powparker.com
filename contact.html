@@ -16,7 +16,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rye&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <style>
 :root{--paper:#f2e6cf;--ink:#2b1d12;--brown:#5a3e26;--red:#8e2b1f;--gold:#b08a3e;--rule:#7a5a3a}
 *{box-sizing:border-box}
@@ -157,8 +156,6 @@ input:focus,textarea:focus{outline:3px solid var(--gold);outline-offset:1px}
     <div class="hp" aria-hidden="true"><label for="f-website">Leave this empty</label><input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off"></div>
   </fieldset>
 
-  <div class="turnstile"><div class="cf-turnstile" data-sitekey="0x4AAAAAAAFFpvBo8QLdF_NCM" data-theme="light"></div></div>
-
   <div class="submit-row"><button class="btn" type="submit" id="send-btn">Send Message</button></div>
   <p class="status" id="status" role="status" aria-live="polite"></p>
 </form>
@@ -198,8 +195,6 @@ input:focus,textarea:focus{outline:3px solid var(--gold);outline-offset:1px}
     if (!name) { f['name'].focus(); return fail('Enter your name.'); }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { f['email'].focus(); return fail('Enter a valid email address so Powell can reply.'); }
     if (!msg) { f['message'].focus(); return fail('Write a short message.'); }
-    var token = form.querySelector('[name="cf-turnstile-response"]');
-    if (!token || !token.value) return fail('Wait for the security check to finish, then send again.');
 
     btn.disabled = true;
     btn.textContent = 'Sending\u2026';
@@ -213,7 +208,6 @@ input:focus,textarea:focus{outline:3px solid var(--gold);outline-offset:1px}
         done.focus();
       })
       .catch(function (err) {
-        if (window.turnstile) try { window.turnstile.reset(); } catch (x) {}
         fail(err.message || 'The message didn\u2019t go through. Please try again.');
       });
   });
