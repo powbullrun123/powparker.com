@@ -118,13 +118,13 @@
   .hero { height: 100vh; min-height: 660px; position: relative; display: flex; align-items: center; overflow: hidden; }
   .hero-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% center; animation: heroFade 2s ease-out forwards; opacity: 0; }
   @keyframes heroFade { 0% { opacity:0; transform:scale(1.03); } 100% { opacity:1; transform:scale(1); } }
-  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(7,16,24,0.95) 30%, rgba(7,16,24,0.60) 65%, rgba(7,16,24,0.15) 100%); }
-  .hero-content { position: relative; z-index: 2; padding: 0 64px; max-width: 720px; }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(7,16,24,0.78) 0%, rgba(7,16,24,0.55) 28%, rgba(7,16,24,0.15) 50%, rgba(7,16,24,0) 70%); }
+  .hero-content { position: relative; z-index: 2; padding: 0 64px; max-width: 720px; text-shadow: 0 2px 14px rgba(0,0,0,0.55); }
   .hero-eyebrow { font-size: 0.78rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; opacity: 0; animation: slideUp 0.8s 0.6s ease forwards; font-weight: 700; }
   .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 6.2vw, 5.4rem); line-height: 1.05; color: #fff; margin-bottom: 20px; opacity: 0; animation: slideUp 0.8s 0.9s ease forwards; font-weight: 900; }
   .hero-name span { color: var(--gold); }
   .hero-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.2rem, 2.1vw, 1.5rem); color: var(--gold-light); line-height: 1.6; margin-bottom: 38px; opacity: 0; animation: slideUp 0.8s 1.1s ease forwards; }
-  .hero-cta-group { display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; animation: slideUp 0.8s 1.3s ease forwards; }
+  .hero-cta-group { text-shadow: none; display: flex; gap: 14px; flex-wrap: wrap; opacity: 0; animation: slideUp 0.8s 1.3s ease forwards; }
   .hero-cta { display: inline-block; padding: 15px 34px; background: var(--gold); color: var(--deep); font-size: 0.85rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, transform 0.2s; border-radius: 4px; }
   .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
   .hero-cta-secondary { display: inline-block; padding: 15px 34px; background: rgba(7,16,24,0.6); border: 2px solid var(--gold); color: var(--gold); font-size: 0.85rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; border-radius: 4px; }
@@ -1271,21 +1271,6 @@
       </div>
     </div>
   </div>
-
-  <!-- NETWORK SECTION -->
-  <section class="network-section">
-    <div style="max-width:900px; margin:0 auto;">
-      <p class="section-label" style="margin-bottom:14px;">The Powell Parker Network</p>
-      <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.4rem,2.5vw,2rem); color:#fff; margin-bottom:20px; line-height:1.3;">One Mission. Multiple Fronts.</h2>
-      <p style="font-family:'Cormorant Garamond',serif; font-size:1.15rem; color:var(--light); opacity:0.9; max-width:640px; margin:0 auto 40px; line-height:1.8;">Powell Parker operates across several platforms — connecting independent cinematic production with forensic asset recovery and authentic Western heritage.</p>
-      <div class="network-grid">
-        <a href="https://parker-films.com" target="_blank" class="network-card network-card-highlight"><div class="network-card-domain">🎬 Parker-Films.com</div><div class="network-card-desc">Parker Films LLC — Independent Film Packaging &amp; Production Slate</div></a>
-        <a href="https://www.powparker.com" rel="me" class="network-card"><div class="network-card-domain">powparker.com</div><div class="network-card-desc">Powell Parker — Personal &amp; professional hub</div></a>
-        <a href="https://www.powellparker.com" rel="me" target="_blank" class="network-card"><div class="network-card-domain">powellparker.com</div><div class="network-card-desc">Powell Parker — Blog &amp; research archives</div></a>
-        <a href="https://www.rightfulreturnsrecovery.com" target="_blank" class="network-card network-card-highlight"><div class="network-card-domain">RightfulReturnsRecovery.com</div><div class="network-card-desc">Contingency-only asset recovery — TX · AZ · GA</div></a>
-      </div>
-    </div>
-  </section>
 
   <!-- FOOTER -->
   <footer>
